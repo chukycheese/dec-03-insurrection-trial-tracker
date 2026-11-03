@@ -14,7 +14,7 @@ body{margin:0}
   --s-app:#1F5F99; --s-app-bg:#E2EDF7;
   --s-trial:#8A5A12; --s-trial-bg:#F6EDDC;
   --s-sched:#5A6572; --s-sched-bg:#E8EBEE;
-  --acq:#A23B3B; --cat-bg:#E7EDF3;
+  --acq:#A23B3B; --acq-bg:#F9EBEB; --cat-bg:#E7EDF3;
   --f-display:"Gowun Batang","Nanum Myeongjo",serif;
   --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
@@ -23,12 +23,12 @@ body{margin:0}
   --bg:#0F141A; --surface:#161D25; --ink:#E5EAF0; --muted:#97A3B0; --line:#2A3542; --accent:#9DBCE3;
   --s-final:#8FD1AE; --s-final-bg:#18302A; --s-sup:#B9AEF0; --s-sup-bg:#26223F;
   --s-app:#8EC3F2; --s-app-bg:#16293D; --s-trial:#E8C07A; --s-trial-bg:#33281A;
-  --s-sched:#A7B2BE; --s-sched-bg:#222B35; --acq:#F0918E; --cat-bg:#1E2732; color-scheme:dark}}
+  --s-sched:#A7B2BE; --s-sched-bg:#222B35; --acq:#F0918E; --acq-bg:#321A1A; --cat-bg:#1E2732; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0F141A; --surface:#161D25; --ink:#E5EAF0; --muted:#97A3B0; --line:#2A3542; --accent:#9DBCE3;
   --s-final:#8FD1AE; --s-final-bg:#18302A; --s-sup:#B9AEF0; --s-sup-bg:#26223F;
   --s-app:#8EC3F2; --s-app-bg:#16293D; --s-trial:#E8C07A; --s-trial-bg:#33281A;
-  --s-sched:#A7B2BE; --s-sched-bg:#222B35; --acq:#F0918E; --cat-bg:#1E2732; color-scheme:dark}
+  --s-sched:#A7B2BE; --s-sched-bg:#222B35; --acq:#F0918E; --acq-bg:#321A1A; --cat-bg:#1E2732; color-scheme:dark}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
 .wrap{max-width:1040px;margin:0 auto;display:grid;gap:28px}
@@ -57,6 +57,12 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,46px);l
 .st-app{color:var(--s-app);background:var(--s-app-bg)} .st-trial{color:var(--s-trial);background:var(--s-trial-bg)}
 .st-sched{color:var(--s-sched);background:var(--s-sched-bg)}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+/* 사람 이름과 선고 결과 시각적 분리 태그 */
+.person-tag{display:inline-block;font-weight:700;background:var(--bg);border:1px solid var(--line);padding:1px 7px;border-radius:4px;font-size:12.5px;color:var(--ink);margin-right:4px;letter-spacing:-0.01em}
+.sentence-tag{font-weight:600}
+.sentence-tag.acq{color:var(--acq)}
+
 /* timeline */
 .tl{display:grid;gap:26px}
 .month h2{font-family:var(--f-display);font-size:20px;margin:0 0 10px;display:flex;gap:10px;align-items:baseline}
@@ -72,9 +78,18 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,46px);l
 .ev .b{display:grid;gap:4px;min-width:0}
 .ev .t{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .ev .t strong{font-size:15px}
-.ev .r{font-size:14px}
+.ev .r{font-size:14px;display:flex;flex-wrap:wrap;align-items:center;gap:4px}
 .ev .m{font-size:12.5px;color:var(--muted)}
 .acq{color:var(--acq);font-weight:600}
+
+/* 피고인별 선고 리스트 (테이블형 배지 정렬) */
+.sents{list-style:none;margin:6px 0 0;padding:6px 10px;background:var(--bg);border-radius:4px;display:grid;gap:4px;font-size:13px;border:1px solid var(--line)}
+.sent-item{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.sent-person{font-weight:700;color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:1px 6px;border-radius:3px;font-size:12px;letter-spacing:-0.01em}
+.sent-result{font-weight:600;color:var(--ink)}
+.sent-result.acq{color:var(--acq)}
+.sent-rq{color:var(--muted);font-size:12px;margin-left:2px}
+
 /* cases */
 .cases{display:grid;gap:16px}
 .case{background:var(--surface);border:1px solid var(--line);display:grid}
@@ -87,7 +102,7 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,46px);l
 .stage:last-child{border-right:0}
 .stage .lbl{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted)}
 .stage .res{font-size:14.5px;font-weight:600}
-.stage .res small{display:block;font-weight:400;font-size:13px;color:var(--ink)}
+.stage .res small{display:block;font-weight:400;font-size:13px;color:var(--ink);margin-top:2px}
 .stage dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:12.5px}
 .stage dt{color:var(--muted)} .stage dd{margin:0;min-width:0;overflow-wrap:anywhere}
 .stage.empty{color:var(--muted);font-size:13px}
@@ -116,17 +131,28 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,46px);l
 .person-badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .role-box{background:var(--bg);padding:10px 12px;border-left:3px solid var(--accent);font-size:13px;color:var(--ink);line-height:1.55;border-radius:0 4px 4px 0}
 .role-box strong{color:var(--accent);display:inline-block;margin-right:6px}
-.status-pill{font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px;background:var(--cat-bg);color:var(--ink)}
+
+/* 개별 선고 칩/배지 */
+.status-pill{font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px;background:var(--cat-bg);color:var(--ink);display:inline-block}
+.status-pill.st-final{color:var(--s-final);background:var(--s-final-bg);border:1px solid var(--s-final)}
+.status-pill.st-heavy{color:#8A1C1C;background:#FDE8E8;border:1px solid #ECCACA;font-weight:700}
+.status-pill.acq{color:var(--acq);background:var(--acq-bg);border:1px solid var(--acq)}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .status-pill.st-heavy{color:#FCA5A5;background:#351515;border-color:#5E2323}
+  :root:not([data-theme="light"]) .status-pill.st-final{color:#8FD1AE;background:#18302A;border-color:#2F5D47}
+}
 
 .pcase-list{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:10px}
-.pcase-item{display:grid;gap:3px;font-size:13px}
+.pcase-item{display:grid;gap:4px;font-size:13px}
 .pcase-item .ct{font-weight:600;display:flex;justify-content:space-between;gap:8px;align-items:center}
 .pcase-item .ct a{color:inherit}
 .pcase-item .ct a:hover{color:var(--accent);text-decoration:underline}
-.chain{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center;font-size:12.5px}
-.chain .step{display:inline-flex;gap:4px;align-items:baseline}
-.chain .lv{font-size:11px;color:var(--muted);font-family:var(--f-mono)}
-.chain .arr{color:var(--muted)}
+.chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
+.chain .step{display:inline-flex;gap:4px;align-items:center;background:var(--bg);border:1px solid var(--line);padding:2px 7px;border-radius:4px}
+.chain .lv{font-size:11px;color:var(--muted);font-family:var(--f-mono);font-weight:700}
+.chain .step-sent{font-weight:600;color:var(--ink)}
+.chain .step-sent.acq{color:var(--acq)}
+.chain .arr{color:var(--muted);font-size:11px}
 
 .person-footer{display:flex;justify-content:flex-end;border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
 .btn-open-modal{all:unset;cursor:pointer;font-size:12.5px;color:var(--accent);font-weight:600;display:inline-flex;align-items:center;gap:4px}
@@ -137,13 +163,20 @@ dialog#person-dialog{border:1px solid var(--line);border-radius:8px;background:v
 dialog#person-dialog::backdrop{background:rgba(0,0,0,0.55);backdrop-filter:blur(3px)}
 .modal-header{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .modal-header h2{font-family:var(--f-display);font-size:24px;margin:0}
-.modal-header .sub{font-size:14px;color:var(--muted);margin-top:4px}
+.modal-header .sub{font-size:13.5px;color:var(--muted);margin-top:4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .modal-close{all:unset;cursor:pointer;font-size:22px;color:var(--muted);line-height:1;padding:4px 8px;border-radius:4px}
 .modal-close:hover{color:var(--ink);background:var(--bg)}
 .modal-body{padding:20px 24px;max-height:70vh;overflow-y:auto;display:grid;gap:18px}
 .modal-section h4{margin:0 0 8px;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-family:var(--f-mono)}
 .modal-case{border:1px solid var(--line);padding:12px 16px;background:var(--bg);display:grid;gap:6px;border-radius:4px}
 .modal-case-title{font-weight:700;font-size:15px;display:flex;justify-content:space-between;gap:8px}
+
+.modal-ruling-row{font-size:13px;display:flex;justify-content:space-between;gap:10px;align-items:center;padding:4px 0}
+.ruling-court{display:flex;gap:6px;align-items:center}
+.lv-badge{font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px;background:var(--surface);border:1px solid var(--line);font-family:var(--f-mono)}
+.ruling-sent{display:flex;gap:6px;align-items:center}
+.sent-badge{font-weight:700;color:var(--ink)}
+.sent-badge.acq{color:var(--acq)}
 
 @media (max-width:760px){
   .summary{grid-template-columns:repeat(3,1fr)}
@@ -227,13 +260,31 @@ function links(r){
   (r.sources||[]).forEach(([l,u])=>out.push(`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)} ↗</a>`));
   return out.join(" ");
 }
+
+// 피고인별 선고 리스트: 피고인명 배지와 형량 텍스트 시각적 분리
 function sentList(r){
   if(!r.sentences.length)return "";
   const s=[...r.sentences].sort((a,b)=>(a.outcome==="무죄")-(b.outcome==="무죄"));
-  return `<ul class="sents">${s.map(x=>`<li><span class="nm">${esc(x.person?.name||x.personId)}</span> <span class="${x.outcome==="무죄"?"acq":""}">${esc(x.sentence)}</span>${x.requested?` <span class="rq">(구형 ${esc(x.requested)})</span>`:""}</li>`).join("")}</ul>`;
+  return `<ul class="sents">${s.map(x=>`
+    <li class="sent-item">
+      <span class="sent-person">${esc(x.person?.name||x.personId)}</span>
+      <span class="sent-result ${x.outcome==='무죄'?'acq':''}">${esc(x.sentence)}</span>
+      ${x.requested?`<span class="sent-rq">(구형 ${esc(x.requested)})</span>`:""}
+    </li>`).join("")}</ul>`;
 }
+
 const isAcq=r=>r.sentences.length>0&&r.sentences.every(s=>s.outcome==="무죄");
-const resultHTML=r=>`<span class="${isAcq(r)?"acq":""}">${esc(r.result)}</span>`;
+
+// 판결 헤드라인에서 피고인명과 형량 분리 렌더링
+function resultHTML(r){
+  if(!r.result) return "";
+  const acqClass = isAcq(r) ? " acq" : "";
+  const m = r.result.match(/^([가-힣]{2,4})\s+(징역.*|무기징역|무죄.*)/);
+  if(m){
+    return `<span class="person-tag">${esc(m[1])}</span><span class="sentence-tag${acqClass}">${esc(m[2])}</span>`;
+  }
+  return `<span class="sentence-tag${acqClass}">${esc(r.result)}</span>`;
+}
 
 function renderTimeline(cases){
   const evs=cases.flatMap(c=>c.rulings.map(r=>({c,r}))).filter(e=>e.r.date).sort((a,b)=>b.r.date.localeCompare(a.r.date));
@@ -338,13 +389,25 @@ function renderPeople(cases,P){
     const statusNote=person.statusNote||"";
     const keyRole=person.keyRole||"";
 
+    // 개별 선고 칩 렌더링
+    const statusChips = statusNote ? statusNote.split(" / ").map(sn=>{
+      const isAcq = sn.includes("무죄");
+      const isFinal = sn.includes("확정");
+      const isHeavy = sn.includes("무기") || sn.includes("30년") || sn.includes("25년");
+      let cls = "status-pill";
+      if(isAcq) cls += " acq";
+      else if(isFinal) cls += " st-final";
+      else if(isHeavy) cls += " st-heavy";
+      return `<span class="${cls}">${esc(sn)}</span>`;
+    }).join("") : "";
+
     return `<article class="person" id="person-${esc(person.id)}">
       <div class="person-header">
         <div class="top-row">
           <h3>${esc(person.name)} <small>${esc(person.role||"")}</small></h3>
           <span class="cat-pill">${esc(cat)}</span>
         </div>
-        ${statusNote?`<div class="person-badges"><span class="status-pill">${esc(statusNote)}</span></div>`:""}
+        ${statusChips?`<div class="person-badges">${statusChips}</div>`:""}
       </div>
 
       ${keyRole?`<div class="role-box"><strong>행적·혐의:</strong> ${esc(keyRole)}</div>`:""}
@@ -356,7 +419,9 @@ function renderPeople(cases,P){
           const steps=c.rulings.map(r=>{const s=r.sentences.find(x=>x.personId===person.id);
             const txt=s?s.sentence:(r.kind==="pending"?r.result:"");
             if(!txt)return "";
-            return `<span class="step"><span class="lv">${LV[r.level]}</span> <span class="${s&&s.outcome==="무죄"?"acq":""}">${esc(txt)}</span></span>`}).filter(Boolean);
+            const isAcq = s && s.outcome==="무죄";
+            return `<span class="step"><span class="lv">${LV[r.level]}</span> <span class="step-sent ${isAcq?"acq":""}">${esc(txt)}</span></span>`;
+          }).filter(Boolean);
           return `<div class="pcase-item">
             <div class="ct">
               <a href="#case-${esc(c.id)}" onclick="goToCase('${esc(c.id)}');return false;">${esc(c.title)}</a>
@@ -400,11 +465,25 @@ function openPersonModal(personId){
   const modal=document.getElementById("person-dialog");
   const content=document.getElementById("modal-content");
 
+  const statusChips = person.statusNote ? person.statusNote.split(" / ").map(sn=>{
+    const isAcq = sn.includes("무죄");
+    const isFinal = sn.includes("확정");
+    const isHeavy = sn.includes("무기") || sn.includes("30년") || sn.includes("25년");
+    let cls = "status-pill";
+    if(isAcq) cls += " acq";
+    else if(isFinal) cls += " st-final";
+    else if(isHeavy) cls += " st-heavy";
+    return `<span class="${cls}">${esc(sn)}</span>`;
+  }).join("") : "";
+
   content.innerHTML=`
     <div class="modal-header">
       <div>
         <h2 id="modal-person-name">${esc(person.name)} <small style="font-size:15px;color:var(--muted);font-weight:400">${esc(person.role||"")}</small></h2>
-        <div class="sub"><span class="cat-pill">${esc(person.category||"기타")}</span> ${person.statusNote?`· <strong>${esc(person.statusNote)}</strong>`:""}</div>
+        <div class="sub">
+          <span class="cat-pill">${esc(person.category||"기타")}</span>
+          ${statusChips}
+        </div>
       </div>
       <button type="button" class="modal-close" onclick="closePersonModal()" aria-label="닫기">✕</button>
     </div>
@@ -430,9 +509,13 @@ function openPersonModal(personId){
                 ${c.rulings.map(r=>{
                   const s=r.sentences.find(x=>x.personId===personId);
                   const txt=s?s.sentence:(r.kind==="pending"?r.result:"");
-                  return `<div style="font-size:13px;display:flex;justify-content:space-between;gap:8px">
-                    <span class="mono"><strong>${LV[r.level]}</strong> (${esc(r.court)})</span>
-                    <span>${txt?`<span class="${s&&s.outcome==="무죄"?"acq":""}">${esc(txt)}</span>`:"-"} ${s&&s.requested?`<small class="rq">(구형 ${esc(s.requested)})</small>`:""}</span>
+                  const isAcq = s && s.outcome==="무죄";
+                  return `<div class="modal-ruling-row">
+                    <div class="ruling-court"><span class="lv-badge">${LV[r.level]}</span> <span>${esc(r.court)}</span></div>
+                    <div class="ruling-sent">
+                      ${txt?`<span class="sent-badge ${isAcq?'acq':''}">${esc(txt)}</span>`:'<span class="m">-</span>'}
+                      ${s&&s.requested?`<span class="sent-rq">(구형 ${esc(s.requested)})</span>`:''}
+                    </div>
                   </div>`;
                 }).join("")}
               </div>
