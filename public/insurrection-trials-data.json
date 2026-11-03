@@ -1485,14 +1485,25 @@
       "role": "당시 국민의힘 원내대표(현 대구시장)",
       "category": "국회·정계",
       "keyRole": "비상계엄 해제 표결 방해 목적 의원총회 지연 및 표결 불참 유도",
-      "statusNote": "1심 선고 예정 (11.18, 특검 징역 20년 구형)"
+      "statusNote": "1심 선고 예정 (11.18, 특검 징역 20년 구형)",
+      "photo": "assets/photos/choogh",
+      "photoAlt": "추경호 당시 국민의힘 원내대표 프로필 사진",
+      "photoCredit": "국민의힘TV",
+      "photoLicense": "CC BY 3.0",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Choo_Kyung-ho%27s_Portrait_(2024.5).png",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/"
     },
     "choty": {
       "name": "조태용",
       "role": "전 국가정보원장",
       "category": "정부·국무위원",
       "keyRole": "국정원 비상계엄 국회 미보고(직무유기), 헌재 위증, 허위공문서 작성",
-      "statusNote": "1심 징역 1년 6개월 → 2심 징역 2년 6개월"
+      "statusNote": "1심 징역 1년 6개월 → 2심 징역 2년 6개월",
+      "photo": "assets/photos/choty",
+      "photoAlt": "조태용 전 국가정보원장 프로필 사진",
+      "photoCredit": "U.S. Department of State",
+      "photoLicense": "Public domain",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Cho_Taeyong_in_2022_(cropped).jpg"
     },
     "gush": {
       "name": "구삼회",
@@ -1506,7 +1517,13 @@
       "role": "전 국무총리",
       "category": "정부·국무위원",
       "keyRole": "사후 계엄선포 국무회의 주재 및 사후 부서 의혹, 헌재·국회 위증",
-      "statusNote": "1심 징역 23년 → 2심 징역 15년 (대법원 심리 중)"
+      "statusNote": "1심 징역 23년 → 2심 징역 15년 (대법원 심리 중)",
+      "photo": "assets/photos/handc",
+      "photoAlt": "한덕수 전 국무총리 프로필 사진",
+      "photoCredit": "제주특별자치도청 정책기획관",
+      "photoLicense": "공공누리 제1유형",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Prime_Minister_of_South_Korea_HAN_Duck-soo_20240516.jpg",
+      "photoLicenseUrl": "https://www.kogl.or.kr/info/licenseType1.do"
     },
     "jungsw": {
       "name": "정성우",
@@ -1590,7 +1607,12 @@
       "role": "전 국방부 장관",
       "category": "군 지휘부",
       "keyRole": "비상계엄 건의 및 기획 주도, 특전사·수방사 국회·선관위 병력 투입 지시",
-      "statusNote": "내란 1심 징역 30년 / 비화폰 징역 3년 / 군기누설 징역 3년"
+      "statusNote": "내란 1심 징역 30년 / 비화폰 징역 3년 / 군기누설 징역 3년",
+      "photo": "assets/photos/kimyh",
+      "photoAlt": "김용현 전 국방부 장관 프로필 사진",
+      "photoCredit": "U.S. Department of Defense",
+      "photoLicense": "Public domain",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Kim_Yong-hyun_(%EA%B9%80%EC%9A%A9%ED%98%84)_(2024)_(cropped).jpg"
     },
     "kwakjg": {
       "name": "곽종근",
@@ -1618,7 +1640,13 @@
       "role": "전 행정안전부 장관",
       "category": "정부·국무위원",
       "keyRole": "언론사·정당 단전·단수 지시, 소방·경찰 동원 지시 혐의, 사후 위증",
-      "statusNote": "1심 징역 7년 → 2심 징역 9년 (대법원 심리 중)"
+      "statusNote": "1심 징역 7년 → 2심 징역 9년 (대법원 심리 중)",
+      "photo": "assets/photos/leesm",
+      "photoAlt": "이상민 전 행정안전부 장관 프로필 사진",
+      "photoCredit": "제주특별자치도청",
+      "photoLicense": "공공누리 제1유형",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Lee_Sang-min_20240531.jpg",
+      "photoLicenseUrl": "https://www.kogl.or.kr/info/licenseType1.do"
     },
     "mokht": {
       "name": "목현태",
@@ -1660,7 +1688,13 @@
       "role": "전 법무부 장관",
       "category": "정부·국무위원",
       "keyRole": "출국금지팀 대기 지시, 교정시설 수용여력 점검, 검사 파견 검토",
-      "statusNote": "1심 징역 25년 → 2심 징역 9년 (쌍방 상고)"
+      "statusNote": "1심 징역 25년 → 2심 징역 9년 (쌍방 상고)",
+      "photo": "assets/photos/parksj",
+      "photoAlt": "박성재 전 법무부 장관 프로필 사진",
+      "photoCredit": "법무부",
+      "photoLicense": "공공누리 제1유형",
+      "photoSource": "https://www.moj.go.kr/minister/2090/subview.do",
+      "photoLicenseUrl": "https://www.kogl.or.kr/info/licenseType1.do"
     },
     "yeoih": {
       "name": "여인형",
@@ -1674,7 +1708,13 @@
       "role": "전 대통령",
       "category": "대통령실",
       "keyRole": "12·3 비상계엄 선포 및 국회·선관위 무력 진입 지시, 체포영장 집행 저지",
-      "statusNote": "내란 1심 무기징역 / 일반이적 1심 징역 30년 / 체포방해 징역 7년 확정"
+      "statusNote": "내란 1심 무기징역 / 일반이적 1심 징역 30년 / 체포방해 징역 7년 확정",
+      "photo": "assets/photos/yoon",
+      "photoAlt": "윤석열 전 대통령 공식 초상",
+      "photoCredit": "대한민국 대통령실",
+      "photoLicense": "CC BY 3.0",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:South_Korea_President_Yoon_Suk_Yeol_portrait_(crop).jpg",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/"
     },
     "yoonsy": {
       "name": "윤승영",

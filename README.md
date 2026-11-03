@@ -5,6 +5,7 @@
 ## 파일 구성
 - `public/index.html` / `public/insurrection-trials-offline.html`: 타임라인·사건별·인물별 재판 기록부 웹 인터페이스
 - `public/insurrection-trials-data.json`: 사건, 피고인, 판결 및 재판부 데이터
+- `public/assets/photos/`: 인물사전 프로필 사진(WebP) 및 출처·라이선스 문서
 - `wrangler.jsonc`: Cloudflare Workers (Static Assets) 배포 설정
 
 ## 로컬 개발 및 실행
