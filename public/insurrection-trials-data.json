@@ -1619,14 +1619,26 @@
       "role": "전 육군특수전사령관",
       "category": "군 지휘부",
       "keyRole": "특전사 공수여단 국회 헬기 강습 및 본회의장 침투 지시",
-      "statusNote": "1심 징역 9년 (보석 취소 후 재구속)"
+      "statusNote": "1심 징역 9년 (보석 취소 후 재구속)",
+      "photo": "assets/photos/kwakjg",
+      "photoAlt": "곽종근 전 육군특수전사령관 프로필 사진",
+      "photoCredit": "MBC PD Note",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Kwak_Jong-geun_in_November_2025.png"
     },
     "leejw": {
       "name": "이진우",
       "role": "전 수도방위사령관",
       "category": "군 지휘부",
       "keyRole": "수도방위사령부 예하 부대 국회 본관 침투 및 본회의장 진입 지휘",
-      "statusNote": "1심 징역 15년 (보석 취소 후 재구속)"
+      "statusNote": "1심 징역 15년 (보석 취소 후 재구속)",
+      "photo": "assets/photos/leejw",
+      "photoAlt": "이진우 전 수도방위사령관 프로필 사진",
+      "photoCredit": "MBC PD Note",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Lieutenant_General_Lee_Jin-woo.png"
     },
     "leekw": {
       "name": "이광우",
@@ -1667,21 +1679,38 @@
       "role": "전 국군정보사령관",
       "category": "군 지휘부",
       "keyRole": "사조직 제2수사단 구성, 정치인 사찰 및 알선수재",
-      "statusNote": "개인정보보호법 위반 등 징역 2년 확정 / 내란 1심 징역 18년"
+      "statusNote": "개인정보보호법 위반 등 징역 2년 확정 / 내란 1심 징역 18년",
+      "photo": "assets/photos/nohsw",
+      "photoAlt": "노상원 전 국군정보사령관 프로필 사진",
+      "photoCredit": "MBC PD수첩",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:PD%EC%88%98%EC%B2%A9_%EB%85%B8%EC%83%81%EC%9B%90_%EC%82%AC%EC%A7%84.jpg"
     },
     "parkas": {
       "name": "박안수",
       "role": "전 육군참모총장(계엄사령관)",
       "category": "군 지휘부",
       "keyRole": "계엄사령관 명의 포고령 제1호 발표, 계엄군 명목 지휘",
-      "statusNote": "1심 징역 10년 (보석 취소 후 재구속)"
+      "statusNote": "1심 징역 10년 (보석 취소 후 재구속)",
+      "photo": "assets/photos/parkas",
+      "photoAlt": "박안수 전 육군참모총장(계엄사령관) 공식 사진",
+      "photoCredit": "U.S. Army (Sgt. Johanna Pullum)",
+      "photoLicense": "Public domain",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:LANPAC_24_240515-A-MM617-1007.jpg"
     },
     "parkjj": {
       "name": "박종준",
       "role": "전 대통령경호처장",
       "category": "대통령실",
       "keyRole": "대통령경호처 체포영장 집행 저지, 비화폰 통화기록 삭제 지시",
-      "statusNote": "체포방해 2심 징역 3년 / 비화폰 2심 징역 1년"
+      "statusNote": "체포방해 2심 징역 3년 / 비화폰 2심 징역 1년",
+      "photo": "assets/photos/parkjj",
+      "photoAlt": "박종준 전 대통령경호처장 프로필 사진",
+      "photoCredit": "Allurehomme",
+      "photoLicense": "CC BY-SA 4.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:%EB%B0%95%EC%A2%85%EC%A4%80.jpg"
     },
     "parksj": {
       "name": "박성재",
@@ -1701,7 +1730,13 @@
       "role": "전 국군방첩사령관",
       "category": "군 지휘부",
       "keyRole": "방첩사 병력 국회·선관위 투입, 합동수사본부 가동 및 정치인 체포 계획 수립",
-      "statusNote": "군 지휘부 1심 징역 18년 / 일반이적 1심 징역 15년"
+      "statusNote": "군 지휘부 1심 징역 18년 / 일반이적 1심 징역 15년",
+      "photo": "assets/photos/yeoih",
+      "photoAlt": "여인형 전 국군방첩사령관 프로필 사진",
+      "photoCredit": "MBC PD Note",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Lieutenant_General_Yeo_In-hyung.png"
     },
     "yoon": {
       "name": "윤석열",

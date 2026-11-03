@@ -11,5 +11,11 @@
 | `parksj-*.webp` | 박성재 | [법무부 역대 장관](https://www.moj.go.kr/minister/2090/subview.do) | 법무부 | [공공누리 제1유형](https://www.kogl.or.kr/info/licenseType1.do) |
 | `choty-*.webp` | 조태용 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cho_Taeyong_in_2022_(cropped).jpg) | U.S. Department of State | Public domain |
 | `choogh-*.webp` | 추경호 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Choo_Kyung-ho%27s_Portrait_(2024.5).png) | 국민의힘TV | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `parkas-*.webp` | 박안수 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:LANPAC_24_240515-A-MM617-1007.jpg) | U.S. Army (Sgt. Johanna Pullum) | Public domain |
+| `kwakjg-*.webp` | 곽종근 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kwak_Jong-geun_in_November_2025.png) | MBC PD Note | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `yeoih-*.webp` | 여인형 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lieutenant_General_Yeo_In-hyung.png) | MBC PD Note | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `leejw-*.webp` | 이진우 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lieutenant_General_Lee_Jin-woo.png) | MBC PD Note | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `nohsw-*.webp` | 노상원 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:PD%EC%88%98%EC%B2%A9_%EB%85%B8%EC%83%81%EC%9B%90_%EC%82%AC%EC%A7%84.jpg) | MBC PD수첩 | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `parkjj-*.webp` | 박종준 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:%EB%B0%95%EC%A2%85%EC%A4%80.jpg) | Allurehomme | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 
 사진이 없는 인물은 이름 첫 글자를 사용한 이니셜 모노그램 아바타로 표시합니다.
