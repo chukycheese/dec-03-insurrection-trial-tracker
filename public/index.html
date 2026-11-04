@@ -324,6 +324,33 @@ body.graph-fs-open{overflow:hidden}
 #toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(8px);background:var(--ink);color:var(--bg);padding:8px 18px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media (prefers-reduced-motion:reduce){#toast{transition:none}}
+
+/* 판결 결과 인사이트 바 (무죄·가중·감형 원클릭 필터) */
+.outcome-insights{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:-14px}
+.o-ins-btn{all:unset;cursor:pointer;font-size:13px;font-weight:600;padding:5px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s}
+.o-ins-btn:hover{color:var(--ink);border-color:var(--ink)}
+.o-ins-btn[aria-pressed="true"]{color:#fff;border-color:transparent;font-weight:700;box-shadow:0 1px 6px rgba(0,0,0,.18)}
+.o-ins-btn.o-inn[aria-pressed="true"]{background:var(--acq)}
+.o-ins-btn.o-agr[aria-pressed="true"]{background:#B3261E}
+.o-ins-btn.o-mit[aria-pressed="true"]{background:#1E5F8A}
+.o-ins-hint{font-size:12px;color:var(--muted)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .o-ins-btn.o-agr[aria-pressed="true"]{background:#C0463E}:root:not([data-theme="light"]) .o-ins-btn.o-mit[aria-pressed="true"]{background:#3E6E99}}
+
+/* 타임라인 일정 필터 칩 */
+.timeline-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tf-chip{all:unset;cursor:pointer;font-size:13px;font-weight:600;padding:5px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s}
+.tf-chip:hover{color:var(--ink);border-color:var(--ink)}
+.tf-chip[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}
+
+/* 선고·공판 예정 배지 */
+.badge-upcoming{font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;border:1px solid var(--s-trial);color:var(--s-trial);background:var(--s-trial-bg);letter-spacing:.02em;white-space:nowrap}
+
+/* 재판부 카드 판결 결과 배지 (무죄·가중·감형 대비 강조) */
+.badge-outcome{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid;display:inline-flex;align-items:center;gap:3px}
+.badge-outcome.aggravated{color:#B3261E;background:#FDECEA;border-color:#B3261E}
+.badge-outcome.mitigated{color:#1E5F8A;background:#E7F1F9;border-color:#1E5F8A}
+.badge-outcome.acquitted{color:var(--acq);background:var(--acq-bg);border-color:var(--acq)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .badge-outcome.aggravated{color:#FCA5A5;background:#351515;border-color:#7A2E2E}:root:not([data-theme="light"]) .badge-outcome.mitigated{color:#A8D0F0;background:#14293D;border-color:#2E5A85}}
 </style>
 
 <div class="wrap">
@@ -341,6 +368,8 @@ body.graph-fs-open{overflow:hidden}
   </header>
 
   <div class="summary" id="summary" role="group" aria-label="현재 단계별 사건 수"></div>
+
+  <div class="outcome-insights" id="outcome-insights" role="group" aria-label="판결 결과 인사이트 필터"></div>
 
   <div class="controls">
     <div class="tabs" role="tablist">
@@ -379,7 +408,7 @@ const fmt=d=>d?d.replace(/^(\d{4})-(\d{2})-(\d{2})$/,"$1.$2.$3"):"미정";
 const store={}; const loaded=new Set();
 const VIEWS=["timeline","cases","people","graph","judges"];
 const TARGET_TYPES=["person","case","panel"];
-let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03",modalPerson:null};
+let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03",modalPerson:null,outcomeFilter:null,tlSched:false};
 let initRoute=null;
 try{const v=localStorage.getItem("ins-view");if(v&&VIEWS.includes(v))state.view=v}catch(e){}
 try{
@@ -449,7 +478,7 @@ function textMatches(target,query){
 }
 function personHay(p,items){return [p.name,p.role,p.category,p.keyRole,p.statusNote,...(items||[]).map(hay)].join(" ")}
 
-function filterCases(cases){return cases.filter(c=>(!state.status||c.status===state.status)&&(!state.q||textMatches(hay(c),state.q)))}
+function filterCases(cases){return cases.filter(c=>(!state.status||c.status===state.status)&&(!state.q||textMatches(hay(c),state.q))&&(!state.outcomeFilter||caseOutcome(c)[state.outcomeFilter].length>0))}
 
 // 검색창 UI 갱신: 클리어 버튼 표시/숨김 + 검색 결과 피드백(사건·인물 건수)
 function clearSearch(){
@@ -555,6 +584,75 @@ function sentList(r){
 
 const isAcq=r=>r.sentences.length>0&&r.sentences.every(s=>s.outcome==="무죄");
 
+// ===== 판결 결과 인사이트: 무죄·항소심 가중·항소심 감형 =====
+// 형량 텍스트를 개월 수 가중치로 환산한다. 무죄는 0, 무기징역·사형은 최상위값, 벌금은 징역보다 낮은 값.
+// 괄호 안 보충 설명("(1심 무죄 파기)" 등)은 판단에서 제외한다.
+function sentenceMonths(txt){
+  const t=String(txt||"").replace(/\([^)]*\)/g,"");
+  if(!t)return null;
+  if(t.includes("사형"))return 2400;
+  if(t.includes("무기"))return 1200;
+  const m=t.match(/징역\s*(?:(\d+)\s*년)?\s*(?:(\d+)\s*개월)?/);
+  if(m&&(m[1]||m[2]))return parseInt(m[1]||"0",10)*12+parseInt(m[2]||"0",10);
+  if(t.includes("징역"))return null;
+  if(t.includes("벌금")||t.includes("집행유예"))return 1;
+  if(t.includes("무죄"))return 0;
+  return null;
+}
+// 사건 하나의 판결 결과를 분류한다. 결과는 심급 판결 id 배열.
+// - innocent: 전원 무죄로 선고된 판결
+// - aggravated: 1심보다 2심에서 형량이 늘어난 판결 (1심 무죄 → 2심 유죄 포함)
+// - mitigated: 1심보다 2심에서 형량이 줄어든 판결 (2심 전원 무죄는 무죄로만 분류)
+function caseOutcome(c){
+  const res={innocent:[],aggravated:[],mitigated:[]};
+  const byLv={};
+  c.rulings.forEach(r=>{(byLv[r.level]=byLv[r.level]||[]).push(r)});
+  [1,2,3].forEach(lv=>(byLv[lv]||[]).forEach(r=>{if(isAcq(r))res.innocent.push(r.id)}));
+  if(!byLv[1]||!byLv[2])return res;
+  const s1={};
+  byLv[1].forEach(r=>r.sentences.forEach(s=>{s1[s.personId]=sentenceMonths(s.sentence)}));
+  byLv[2].forEach(r=>{
+    let agr=false,mit=false;
+    r.sentences.forEach(s=>{
+      const w=sentenceMonths(s.sentence),w1=s1[s.personId];
+      if(w==null||w1==null)return;
+      if(w>w1)agr=true;
+      else if(w<w1&&w>0)mit=true;
+    });
+    if(agr)res.aggravated.push(r.id);
+    else if(mit)res.mitigated.push(r.id);
+  });
+  return res;
+}
+// 현재 데이터셋 전체의 인사이트 지표: 건수와 필터 대상 사건·판결 id
+function calculateOutcomeStats(cases){
+  const out={innocent:{n:0,caseIds:[],rulingIds:[]},aggravated:{n:0,caseIds:[],rulingIds:[]},mitigated:{n:0,caseIds:[],rulingIds:[]}};
+  cases.forEach(c=>{
+    const m=caseOutcome(c);
+    ["innocent","aggravated","mitigated"].forEach(k=>{
+      if(m[k].length){out[k].n+=m[k].length;out[k].caseIds.push(c.id);out[k].rulingIds.push(...m[k])}
+    });
+  });
+  return out;
+}
+// 인사이트 필터 칩: 클릭 시 해당 결과 토글
+function toggleOutcomeFilter(k){
+  state.outcomeFilter=state.outcomeFilter===k?null:k;
+  render();
+}
+function renderInsights(cases){
+  const el=document.getElementById("outcome-insights");
+  if(!el)return;
+  const st=calculateOutcomeStats(cases);
+  const items=[
+    ["innocent","o-inn","⚖️ 무죄",st.innocent.n,"전원 무죄가 선고된 판결 수 — 클릭하면 해당 사건만 모아봅니다"],
+    ["aggravated","o-agr","▲ 항소심 가중",st.aggravated.n,"1심보다 2심에서 형량이 늘어난 사건 수 — 클릭하면 해당 사건만 모아봅니다"],
+    ["mitigated","o-mit","▼ 항소심 감형",st.mitigated.n,"1심보다 2심에서 형량이 줄어든 사건 수 — 클릭하면 해당 사건만 모아봅니다"]
+  ];
+  el.innerHTML=items.map(([k,cls,label,n,tip])=>`<button type="button" class="o-ins-btn ${cls}" data-outcome="${k}" aria-pressed="${state.outcomeFilter===k}" title="${tip}">${label} <span class="mono">${n}건</span></button>`).join("")+`<span class="o-ins-hint">판결 결과 경향 한눈에 보기 · 다시 누르면 필터 해제</span>`;
+  el.querySelectorAll("[data-outcome]").forEach(b=>b.onclick=()=>toggleOutcomeFilter(b.dataset.outcome));
+}
+
 // ===== URL 라우팅·딥링크 =====
 // 해시 스키마: #{dataset}/{view}, #{dataset}/person/{id}, #{dataset}/case/{id}, #{dataset}/panel/{panelId}
 // 하위 호환: #dec03, #kim, #timeline 등 단일 세그먼트 해시도 해석한다. (TARGET_TYPES는 스크립트 상단 선언)
@@ -619,16 +717,30 @@ function resultHTML(r){
   return `<span class="sentence-tag${acqClass}">${esc(r.result)}</span>`;
 }
 
+// 예정된 일정(선고·공판) 판정: 미확정 판결(pending) 또는 결과·요약에 "예정"이 포함된 판결
+function isSchedRuling(r){
+  return r.kind==="pending"||String(r.result||"").includes("예정")||String(r.summary||"").includes("예정");
+}
 function renderTimeline(cases){
-  const evs=cases.flatMap(c=>c.rulings.map(r=>({c,r}))).filter(e=>e.r.date).sort((a,b)=>b.r.date.localeCompare(a.r.date));
+  let evs=cases.flatMap(c=>{
+    // 인사이트 필터 중이면 해당 결과에 해당하는 판결만 이벤트로 남긴다
+    const keep=state.outcomeFilter?caseOutcome(c)[state.outcomeFilter]:null;
+    return c.rulings.filter(r=>r.date&&(!keep||keep.includes(r.id))&&(!state.tlSched||isSchedRuling(r))).map(r=>({c,r}));
+  }).sort((a,b)=>b.r.date.localeCompare(a.r.date));
   if(!evs.length)return empty();
+  const tf=`<div class="timeline-filters" role="group" aria-label="타임라인 일정 필터">
+    <button type="button" class="tf-chip" data-tf="all" aria-pressed="${!state.tlSched}">전체 일정</button>
+    <button type="button" class="tf-chip" data-tf="sched" aria-pressed="${state.tlSched}" title="앞으로 다가오는 선고·공판 일정만 모아봅니다">선고·공판 예정</button>
+  </div>`;
   const groups={};evs.forEach(e=>{const m=e.r.date.slice(0,7);(groups[m]=groups[m]||[]).push(e)});
-  return `<div class="tl">${Object.entries(groups).map(([m,arr])=>{const [y,mo]=m.split("-");
+  return tf+`<div class="tl">${Object.entries(groups).map(([m,arr])=>{const [y,mo]=m.split("-");
     return `<section class="month"><h2>${y}년 ${+mo}월 <span>${arr.length}건</span></h2><div class="ev-list">${arr.map(({c,r})=>{
       const pend=r.kind==="pending",k=pend?"sched":(r.level===3?"final":r.level===2?"app":"trial");
       const tag=pend?`<span class="pill st-sched">${LV[r.level]} · 예정/진행</span>`:`<span class="pill st-${k}">${LV[r.level]}</span>`;
+      const upTxt=pend?(String(r.result||"").includes("선고 예정")?"선고 예정":(String(r.result||"").includes("예정")||String(r.summary||"").includes("예정"))?"공판 예정":""):"";
+      const upBadge=upTxt?` <span class="badge-upcoming">${upTxt}</span>`:"";
       return `<article class="ev k-${k}"><div class="d">${fmt(r.date).slice(5)}</div><div class="b">
-        <div class="t">${tag} <strong>${esc(c.title)}</strong></div>
+        <div class="t">${tag} <strong>${esc(c.title)}</strong>${upBadge}</div>
         <div class="r">${resultHTML(r)}${r.requested&&!r.sentences.length?` <span class="m">(구형 ${esc(r.requested)})</span>`:""}</div>
         ${r.sentences.length>1?sentList(r):""}
         ${r.summary?`<div class="m">${esc(r.summary)}</div>`:""}
@@ -931,6 +1043,7 @@ document.getElementById("person-dialog").addEventListener("click",e=>{
 
 function empty(){
   if(state.q)return `<div class="empty-state"><p>‘${esc(state.q)}’에 대한 검색 결과가 없습니다.</p><button type="button" class="lk-btn" data-q-clear>검색어 초기화</button></div>`;
+  if(state.outcomeFilter||state.tlSched)return `<div class="empty-state"><p>조건에 맞는 항목이 없습니다. 인사이트·일정 필터를 해제해 보세요.</p><button type="button" class="lk-btn" data-f-clear>필터 해제</button></div>`;
   return `<div class="empty-state">${loaded.size<COLLS.length?"재판 기록을 불러오는 중입니다.":Object.keys(store.cases||{}).length?"조건에 맞는 항목이 없습니다. 검색어나 필터를 지워 보세요.":"아직 등록된 기록이 없습니다."}</div>`}
 
 function render(){
@@ -955,6 +1068,7 @@ function render(){
   if(state.err){gview.innerHTML="";jview.innerHTML="";view.innerHTML=`<div class="empty-state">${esc(state.err)}</div>`;return}
   const {cases,P}=model();
   renderSummary(cases);
+  renderInsights(cases);
   updateSearchUI(cases);
   const asof=store.meta?.info?.asOf;
   document.getElementById("asof").textContent=(asof?fmt(asof)+" 기준 · ":"")+"언론 보도 종합"+(state.stale?" · 최신 데이터를 확인하지 못했습니다":"");
@@ -973,6 +1087,9 @@ function render(){
   view.innerHTML=state.view==="timeline"?renderTimeline(list):state.view==="cases"?renderCases(list):renderPeople(cases.filter(c=>!state.status||c.status===state.status),P);
 
   // 이벤트 바인딩
+  if(state.view==="timeline"){
+    document.querySelectorAll(".tf-chip").forEach(b=>b.onclick=()=>{state.tlSched=b.dataset.tf==="sched";render()});
+  }
   if(state.view==="people"){
     document.querySelectorAll(".cat-btn").forEach(btn=>{
       btn.onclick=()=>{
@@ -994,10 +1111,12 @@ document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{state.view=b
 document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value.trim();render()});
 document.getElementById("q").addEventListener("keydown",e=>{if(e.key==="Escape"&&state.q)clearSearch()});
 document.getElementById("q-clear").onclick=clearSearch;
-// 0건 empty state의 [검색어 초기화] 등 동적으로 렌더되는 지우기 버튼 위임 처리
+// 0건 empty state의 [검색어 초기화]·[필터 해제] 등 동적으로 렌더되는 버튼 위임 처리
 if(document.addEventListener)document.addEventListener("click",e=>{
   const t=e.target&&e.target.closest?e.target.closest("[data-q-clear]"):null;
   if(t)clearSearch();
+  const f=e.target&&e.target.closest?e.target.closest("[data-f-clear]"):null;
+  if(f){state.outcomeFilter=null;state.tlSched=false;render()}
 });
 
 // ===== 관계도 그래프 뷰 (D3.js Force-Directed Graph) =====
@@ -1371,9 +1490,9 @@ function renderJudges(cases){
     if(p.stats.probation)stats.push(`집행유예 ${p.stats.probation}명`);
     if(p.stats.acq)stats.push(`<span class="acq">무죄 ${p.stats.acq}건</span>`);
     const badges=[];
-    if(p.stats.heavy)badges.push(`<span class="status-pill st-heavy">가중 ${p.stats.heavy}건</span>`);
-    if(p.stats.light)badges.push(`<span class="status-pill">감형 ${p.stats.light}건</span>`);
-    if(p.stats.acq)badges.push(`<span class="status-pill acq">무죄 판결 포함</span>`);
+    if(p.stats.heavy)badges.push(`<span class="badge-outcome aggravated" title="1심보다 2심에서 형량이 늘어난 판결 — 엄벌 성향">▲ 가중 ${p.stats.heavy}건</span>`);
+    if(p.stats.light)badges.push(`<span class="badge-outcome mitigated" title="1심보다 2심에서 형량이 줄어든 판결">▼ 감형 ${p.stats.light}건</span>`);
+    if(p.stats.acq)badges.push(`<span class="badge-outcome acquitted" title="전원 무죄 선고 포함 — 엄격 증명">⚖ 무죄 ${p.stats.acq}건</span>`);
     const caseHTML=p.rulings.map(r=>{
       const pend=r.kind==="pending";
       const k=pend?"sched":(r.level===3?"final":r.level===2?"app":"trial");
@@ -2232,7 +2351,7 @@ function applyEmbedded(ds){Object.assign(store,EMBEDDED[ds]||{});COLLS.forEach(n
 function applyDataset(ds,reset,skipURL){
   state.dataset=ds;
   applyEmbedded(ds);
-  if(reset){state.status=null;state.q="";document.getElementById("q").value="";state.personCat="all";state.judgeCat="all";graphState.hiddenCats.clear();hideGraphCard()}
+  if(reset){state.status=null;state.q="";document.getElementById("q").value="";state.personCat="all";state.judgeCat="all";state.outcomeFilter=null;state.tlSched=false;graphState.hiddenCats.clear();hideGraphCard()}
   try{localStorage.setItem("trials-dataset",ds)}catch(e){}
   if(!skipURL)replaceHash();
 }
