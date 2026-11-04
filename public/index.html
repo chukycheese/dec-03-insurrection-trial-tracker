@@ -300,11 +300,25 @@ dialog#person-dialog::backdrop{background:rgba(0,0,0,0.55);backdrop-filter:blur(
 .judge-link{all:unset;cursor:pointer;color:inherit;padding:1px 3px;margin:-1px -3px;border-radius:3px;border-bottom:1px dashed var(--muted)}
 .judge-link:hover{color:var(--accent);border-bottom-color:var(--accent);background:var(--cat-bg)}
 @media (max-width:760px){.judges{grid-template-columns:1fr}.judge-link{padding:3px 4px;margin:-3px -4px}}
+
+/* 링크 복사(공유) 버튼과 복사 완료 토스트 */
+.eyebrow-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.copy-link-btn{all:unset;cursor:pointer;box-sizing:border-box;min-height:32px;font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 12px;display:inline-flex;gap:5px;align-items:center}
+.copy-link-btn:hover{color:var(--ink);border-color:var(--ink)}
+.share-btn{all:unset;cursor:pointer;min-width:32px;min-height:32px;display:inline-grid;place-items:center;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:14px;background:var(--surface)}
+.share-btn:hover{color:var(--ink);border-color:var(--ink)}
+.case-h .top-right{display:flex;gap:8px;align-items:center}
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(8px);background:var(--ink);color:var(--bg);padding:8px 18px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (prefers-reduced-motion:reduce){#toast{transition:none}}
 </style>
 
 <div class="wrap">
   <header>
-    <div class="eyebrow" id="asof">언론 보도 종합</div>
+    <div class="eyebrow-row">
+      <div class="eyebrow" id="asof">언론 보도 종합</div>
+      <button type="button" class="copy-link-btn" onclick="copyPageLink()" title="현재 보기 링크 복사" aria-label="현재 보기 링크 복사">🔗 링크 복사</button>
+    </div>
     <div class="switcher" role="tablist" aria-label="재판 기록부 선택">
       <button type="button" role="tab" data-ds="dec03" aria-selected="true">12·3 내란 재판</button>
       <button type="button" role="tab" data-ds="kim" aria-selected="false">김건희·명태균 특검</button>
@@ -350,12 +364,18 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const fmt=d=>d?d.replace(/^(\d{4})-(\d{2})-(\d{2})$/,"$1.$2.$3"):"미정";
 const store={}; const loaded=new Set();
 const VIEWS=["timeline","cases","people","graph","judges"];
-let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03"};
+const TARGET_TYPES=["person","case","panel"];
+let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03",modalPerson:null};
+let initRoute=null;
 try{const v=localStorage.getItem("ins-view");if(v&&VIEWS.includes(v))state.view=v}catch(e){}
-try{const d=localStorage.getItem("trials-dataset");if(d&&["dec03","kim"].includes(d))state.dataset=d;
-  const h=location.hash.slice(1);
-  if(h==="#dec03"||h==="#kim")state.dataset=h.slice(1);
-  else if(VIEWS.includes(h))state.view=h;
+try{
+  const d=localStorage.getItem("trials-dataset");if(d&&["dec03","kim"].includes(d))state.dataset=d;
+  const route=parseHash(location.hash);
+  if(route){
+    if(route.dataset)state.dataset=route.dataset;
+    if(route.view)state.view=route.view;
+    initRoute=route;
+  }
 }catch(e){}
 
 // 데이터셋(특검 기록부) 설정: 전환 스위처와 각 뷰의 동적 텍스트가 이 설정을 따른다
@@ -477,6 +497,57 @@ function sentList(r){
 
 const isAcq=r=>r.sentences.length>0&&r.sentences.every(s=>s.outcome==="무죄");
 
+// ===== URL 라우팅·딥링크 =====
+// 해시 스키마: #{dataset}/{view}, #{dataset}/person/{id}, #{dataset}/case/{id}, #{dataset}/panel/{panelId}
+// 하위 호환: #dec03, #kim, #timeline 등 단일 세그먼트 해시도 해석한다. (TARGET_TYPES는 스크립트 상단 선언)
+function parseHash(hash){
+  let h=(hash||"").replace(/^#/,"");
+  if(!h)return null;
+  let parts;
+  try{parts=h.split("/").map(decodeURIComponent)}catch(e){parts=h.split("/")}
+  if(parts[0]==="dec03"||parts[0]==="kim"){
+    const out={dataset:parts[0],view:null,targetType:null,targetId:null};
+    if(TARGET_TYPES.includes(parts[1])){
+      out.targetType=parts[1];
+      out.targetId=parts.slice(2).join("/");
+      if(!out.targetId)return {dataset:parts[0],view:null,targetType:null,targetId:null};
+    }else if(VIEWS.includes(parts[1])){out.view=parts[1]}
+    return out;
+  }
+  if(VIEWS.includes(parts[0]))return {dataset:null,view:parts[0],targetType:null,targetId:null};
+  return null;
+}
+// 현재 state(데이터셋·뷰·열린 모달)에 맞는 해시로 URL을 갱신한다.
+function updateURL(push){
+  const h=state.modalPerson
+    ?"#"+state.dataset+"/person/"+state.modalPerson
+    :"#"+state.dataset+"/"+state.view;
+  try{
+    if(push&&history.pushState)history.pushState({modal:state.modalPerson?"person":null,id:state.modalPerson||null,dataset:state.dataset},"",h);
+    else if(history.replaceState)history.replaceState(null,"",h);
+  }catch(e){}
+}
+function replaceHash(){updateURL(false)}
+// popstate(브라우저 뒤로/앞으로 가기): 해시를 해석해 모달·데이터셋·뷰·타깃을 동기화한다.
+function applyRoute(){
+  const r=parseHash(location.hash);
+  const modal=document.getElementById("person-dialog");
+  const isPersonRoute=!!(r&&r.targetType==="person");
+  if(r&&r.dataset&&r.dataset!==state.dataset){applyDataset(r.dataset,false,true);fetchRemote(r.dataset)}
+  if(isPersonRoute){
+    if(!(modal&&modal.open))openPersonModal(r.targetId,{fromHistory:true});
+  }else if(modal&&modal.open){
+    closePersonModal(true);
+  }
+  if(r&&r.view&&r.view!==state.view){state.view=r.view;try{localStorage.setItem("ins-view",r.view)}catch(e){}}
+  render();
+  if(r&&r.targetType&&r.targetType!=="person"){
+    const id=r.targetType==="panel"?(r.targetId.startsWith("panel-")?r.targetId:"panel-"+r.targetId):r.targetId;
+    focusCard((r.targetType==="case"?"case-":"")+id);
+  }
+}
+window.addEventListener("popstate",applyRoute);
+
 // 판결 헤드라인에서 피고인명과 형량 분리 렌더링
 function resultHTML(r){
   if(!r.result) return "";
@@ -515,7 +586,7 @@ function renderCases(cases){
         <dl><dt>재판부</dt><dd><button type="button" class="judge-link" onclick="goToPanel('${esc(r.court)}')" title="[재판부] 탭에서 이 재판부 카드 열기">${esc(r.court)}</button></dd>${judgeLine(r)?`<dt>판사</dt><dd><button type="button" class="judge-link" onclick="goToPanel('${esc(r.court)}')" title="[재판부] 탭에서 이 재판부 카드 열기">${esc(judgeLine(r))}</button></dd>`:""}
         <dt>사건번호</dt><dd class="mono">${r.caseNo?esc(r.caseNo):"보도 미확인"}</dd>${r.requested?`<dt>구형</dt><dd>${esc(r.requested)}</dd>`:""}</dl>
         <div class="links">${links(r)}</div></div>`}).join("");
-    return `<article class="case" id="case-${esc(c.id)}"><div class="case-h"><div class="top"><h3>${esc(c.title)}</h3><span class="pill ${st.cls}">${st.label}</span></div>
+    return `<article class="case" id="case-${esc(c.id)}"><div class="case-h"><div class="top"><h3>${esc(c.title)}</h3><div class="top-right"><span class="pill ${st.cls}">${st.label}</span><button type="button" class="share-btn" onclick="copyDeepLink('case','${esc(c.id)}')" title="사건 링크 복사" aria-label="${esc(c.title)} 사건 링크 복사">🔗</button></div></div>
       <div class="who">피고인 ${esc(c.defendants.map(d=>d.name).join(", "))}</div><div class="who">혐의 ${esc(c.charge)}</div></div>
       <div class="rail">${stages}</div>${c.note?`<div class="case-n">${esc(c.note)}</div>`:""}</article>`}).join("")}</div>`;
 }
@@ -676,12 +747,10 @@ function renderPeople(cases,P){
   return headerHTML + `<div class="people">${cardsHTML}</div>` + (hasPhotos?`<p class="photo-note">프로필 사진은 위키미디어 공용 및 정부 기관이 공개한 공공·공용 이미지를 사용했습니다. 개별 사진의 출처와 라이선스는 각 인물의 상세 프로필에서 확인할 수 있습니다.</p>`:"");
 }
 
-function goToCase(caseId){
-  state.view="cases";
-  try{localStorage.setItem("ins-view","cases")}catch(e){}
-  render();
+// 카드 찾아 스크롤·하이라이트 (딥링크 진입·뷰 전환 공통)
+function focusCard(id){
   setTimeout(()=>{
-    const target=document.getElementById("case-"+caseId);
+    const target=document.getElementById(id);
     if(target){
       target.scrollIntoView({behavior:"smooth",block:"center"});
       target.style.outline="3px solid var(--accent)";
@@ -691,7 +760,16 @@ function goToCase(caseId){
   },80);
 }
 
-function openPersonModal(personId){
+function goToCase(caseId){
+  state.view="cases";
+  try{localStorage.setItem("ins-view","cases")}catch(e){}
+  render();
+  if(history.replaceState)history.replaceState(null,"","#"+state.dataset+"/case/"+caseId);
+  focusCard("case-"+caseId);
+}
+
+function openPersonModal(personId,opts){
+  opts=opts||{};
   const P=store.people||{};
   const person=P[personId];
   if(!person)return;
@@ -725,7 +803,10 @@ function openPersonModal(personId){
           ${photoCreditHTML(person,true)}
         </div>
       </div>
-      <button type="button" class="modal-close" onclick="closePersonModal()" aria-label="닫기">✕</button>
+      <div style="display:grid;gap:8px;justify-items:end">
+        <button type="button" class="modal-close" onclick="closePersonModal()" aria-label="닫기">✕</button>
+        <button type="button" class="copy-link-btn" onclick="copyDeepLink('person','${esc(personId)}')" title="이 인물의 딥링크 복사" aria-label="이 인물의 링크 복사">🔗 인물 링크 복사</button>
+      </div>
     </div>
     <div class="modal-body">
       ${person.keyRole?`
@@ -766,12 +847,25 @@ function openPersonModal(personId){
     </div>`;
 
   modal.showModal();
+  // 모달 열림을 히스토리 엔트리로 기록: 브라우저 뒤로 가기 시 모달만 닫힌다.
+  state.modalPerson=personId;
+  if(!opts.fromHistory)updateURL(true);
 }
 
-function closePersonModal(){
+function closePersonModal(fromPop){
+  const wasId=state.modalPerson;
+  state.modalPerson=null;
   const modal=document.getElementById("person-dialog");
-  modal.close();
+  if(modal.open)modal.close();
+  // 닫기 경로(Esc·배경 클릭·✕)에서 현재 히스토리 엔트리가 모달 엔트리면 뷰 해시로 되돌린다.
+  if(!fromPop&&wasId&&history.state&&history.state.modal==="person")replaceHash();
 }
+// Esc 등 dialog 기본 닫힘도 같은 경로로 처리
+document.getElementById("person-dialog").addEventListener("close",()=>{
+  if(!state.modalPerson)return;
+  state.modalPerson=null;
+  if(history.state&&history.state.modal==="person")replaceHash();
+});
 
 document.getElementById("person-dialog").addEventListener("click",e=>{
   if(e.target===document.getElementById("person-dialog"))closePersonModal();
@@ -832,7 +926,7 @@ function render(){
   }
 }
 
-document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{state.view=b.dataset.view;try{localStorage.setItem("ins-view",state.view)}catch(e){}if(history.replaceState)history.replaceState(null,"","#"+state.view);render()});
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{state.view=b.dataset.view;try{localStorage.setItem("ins-view",state.view)}catch(e){}replaceHash();render()});
 document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value.trim();render()});
 
 // ===== 관계도 그래프 뷰 (D3.js Force-Directed Graph) =====
@@ -1106,15 +1200,8 @@ function goToPerson(personId){
   state.view="people";
   try{localStorage.setItem("ins-view","people")}catch(e){}
   render();
-  setTimeout(()=>{
-    const target=document.getElementById("person-"+personId);
-    if(target){
-      target.scrollIntoView({behavior:"smooth",block:"center"});
-      target.style.outline="3px solid var(--accent)";
-      target.style.outlineOffset="4px";
-      setTimeout(()=>{target.style.outline="";target.style.outlineOffset=""},2500);
-    }
-  },80);
+  replaceHash();
+  focusCard("person-"+personId);
 }
 
 window.addEventListener("resize",()=>{if(state.view==="graph")renderGraph()});
@@ -1184,17 +1271,9 @@ function goToPanel(court){
   state.judgeCat="all";
   state.q="";document.getElementById("q").value="";
   try{localStorage.setItem("ins-view","judges")}catch(e){}
-  if(history.replaceState)history.replaceState(null,"","#judges");
+  replaceHash();
   render();
-  setTimeout(()=>{
-    const target=document.getElementById(panelIdOf(court));
-    if(target){
-      target.scrollIntoView({behavior:"smooth",block:"center"});
-      target.style.outline="3px solid var(--accent)";
-      target.style.outlineOffset="4px";
-      setTimeout(()=>{target.style.outline="";target.style.outlineOffset=""},2500);
-    }
-  },80);
+  focusCard(panelIdOf(court));
 }
 
 // 초기 데이터 로딩: 내장 데이터 먼저 주입 후, fetch 시도
@@ -1976,13 +2055,52 @@ EMBEDDED.kim={
   }
 };
 
+// ===== 링크 복사(공유) =====
+let toastTimer=null;
+function showToast(msg){
+  let t=document.getElementById("toast");
+  if(!t&&document.createElement&&document.body){t=document.createElement("div");t.id="toast";t.setAttribute("role","status");document.body.appendChild(t)}
+  if(!t)return;
+  t.textContent=msg;t.classList.add("show");
+  if(toastTimer)clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{t.classList.remove("show")},1500);
+}
+function copyText(text){
+  const ok=()=>showToast("복사됐어요! 링크를 공유하세요");
+  try{
+    if(typeof navigator!=="undefined"&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,()=>legacyCopy(text,ok));return}
+  }catch(e){}
+  legacyCopy(text,ok);
+}
+// HTTPS 제한 환경 폴백: 숨은 textarea + execCommand
+function legacyCopy(text,ok){
+  try{
+    const ta=document.createElement("textarea");
+    ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";
+    document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);
+  }catch(e){}
+  ok();
+}
+function baseURL(){
+  try{return (location.origin||"")+(location.pathname||"")}catch(e){return ""}
+}
+function deepLinkURL(type,id){
+  const seg=type==="person"?"person/"+id:type==="case"?"case/"+id:"panel/"+id;
+  return baseURL()+"#"+state.dataset+"/"+seg;
+}
+function copyPageLink(){
+  let url="";try{url=location.href||baseURL()}catch(e){url=baseURL()}
+  copyText(url||baseURL()+"#"+state.dataset+"/"+state.view);
+}
+function copyDeepLink(type,id){copyText(deepLinkURL(type,id))}
+
 function applyEmbedded(ds){Object.assign(store,EMBEDDED[ds]||{});COLLS.forEach(n=>loaded.add(n))}
-function applyDataset(ds,reset){
+function applyDataset(ds,reset,skipURL){
   state.dataset=ds;
   applyEmbedded(ds);
   if(reset){state.status=null;state.q="";document.getElementById("q").value="";state.personCat="all";state.judgeCat="all";graphState.hiddenCats.clear();hideGraphCard()}
   try{localStorage.setItem("trials-dataset",ds)}catch(e){}
-  if(history.replaceState)history.replaceState(null,"","#"+ds);
+  if(!skipURL)replaceHash();
 }
 function fetchRemote(ds){
   fetch(DATASETS[ds].file)
@@ -1992,8 +2110,27 @@ function fetchRemote(ds){
 }
 document.querySelectorAll(".switcher button").forEach(b=>b.onclick=()=>{const ds=b.dataset.ds;if(ds===state.dataset)return;applyDataset(ds,true);render();fetchRemote(ds)});
 
-applyDataset(state.dataset,false);
+applyDataset(state.dataset,false,!!(initRoute&&initRoute.targetType));
 render();
 fetchRemote(state.dataset);
+
+// 초기 진입 시 딥링크 처리: 인물 모달 자동 열기 / 사건·재판부 카드 스크롤·하이라이트
+if(initRoute&&initRoute.targetType){
+  const t=initRoute;
+  if(t.targetType==="person"){
+    openPersonModal(t.targetId,{fromHistory:true});
+  }else if(t.targetType==="case"){
+    state.view="cases";
+    try{localStorage.setItem("ins-view","cases")}catch(e){}
+    render();
+    focusCard("case-"+t.targetId);
+  }else if(t.targetType==="panel"){
+    const pid=t.targetId.startsWith("panel-")?t.targetId:"panel-"+t.targetId;
+    state.view="judges";
+    try{localStorage.setItem("ins-view","judges")}catch(e){}
+    render();
+    focusCard(pid);
+  }
+}
 </script>
 </html>
