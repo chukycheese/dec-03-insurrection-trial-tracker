@@ -547,6 +547,8 @@ function applyRoute(){
   }
 }
 window.addEventListener("popstate",applyRoute);
+// 주소창에서 해시를 직접 고친 경우(popstate와 함께/단독으로 발화) — applyRoute는 멱등하므로 중복 실행 무해
+window.addEventListener("hashchange",applyRoute);
 
 // 판결 헤드라인에서 피고인명과 형량 분리 렌더링
 function resultHTML(r){
