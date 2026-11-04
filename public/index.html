@@ -857,8 +857,11 @@ function closePersonModal(fromPop){
   state.modalPerson=null;
   const modal=document.getElementById("person-dialog");
   if(modal.open)modal.close();
-  // 닫기 경로(Esc·배경 클릭·✕)에서 현재 히스토리 엔트리가 모달 엔트리면 뷰 해시로 되돌린다.
-  if(!fromPop&&wasId&&history.state&&history.state.modal==="person")replaceHash();
+  // 닫기 경로(Esc·배경 클릭·✕)에서 현재 URL이 인물 딥링크면 뷰 해시로 되돌린다.
+  if(!fromPop&&wasId){
+    const r=parseHash(location.hash);
+    if((history.state&&history.state.modal==="person")||(r&&r.targetType==="person"))replaceHash();
+  }
 }
 // Esc 등 dialog 기본 닫힘도 같은 경로로 처리
 document.getElementById("person-dialog").addEventListener("close",()=>{
