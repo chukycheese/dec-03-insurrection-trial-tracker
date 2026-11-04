@@ -843,7 +843,7 @@ function renderGraph(){
       }
       n.append("circle").attr("class","ring").attr("r",23.5).attr("fill","none").attr("stroke-width",2).attr("pointer-events","none");
       n.append("text").attr("class","nname").attr("y",42).text(d.name);
-      if(d.role)n.append("text").attr("class","nrole").attr("y",57).text(d.role.length>16?d.role.slice(0,15)+"…":d.role);
+      if(d.role){const max=W<640?10:16;n.append("text").attr("class","nrole").attr("y",57).text(d.role.length>max?d.role.slice(0,max-1)+"…":d.role)}
     });
   // 이름표가 캔버스 밖으로 잘리지 않도록 노드별 실제 폭의 절반을 저장한다.
   nodeSel.each(function(d){
@@ -856,7 +856,7 @@ function renderGraph(){
     .force("link",d3.forceLink(links).id(d=>d.id).distance(l=>l.type==="cmd"?100:l.type==="pol"?150:58).strength(l=>l.type==="cmd"?0.5:l.type==="pol"?0.2:0.25))
     .force("charge",d3.forceManyBody().strength(-420))
     .force("center",d3.forceCenter(W/2,H/2))
-    .force("collide",d3.forceCollide().radius(42))
+    .force("collide",d3.forceCollide().radius(W>640?50:42))
     .force("x",d3.forceX(W/2).strength(0.03))
     .force("y",d3.forceY(H/2).strength(0.05))
     .on("tick",()=>{
