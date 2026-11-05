@@ -1549,6 +1549,9 @@ function chartMonthsOf(txt){
   // 사형이 무기징역보다 길게 보이도록 상한(CHART_SCALE) 아래에서 두 값을 구분해 환산한다.
   if(t.includes("사형"))return CHART_SCALE;
   if(t.includes("무기"))return Math.round(CHART_SCALE*0.85);
+  // 범위 구형("징역 5~7년")은 하한을 취해 감형 폭이 부풀지 않게 한다.
+  const rg=t.match(/(?:징역|금고)?\s*(\d+)\s*[~～\-–]\s*(\d+)\s*년/);
+  if(rg)return parseInt(rg[1],10)*12;
   const m=sentenceMonths(txt);
   if(m!=null)return m;
   const g=t.match(/금고\s*(?:(\d+)\s*년)?\s*(?:(\d+)\s*개월)?/);
@@ -1573,7 +1576,9 @@ function buildChartRows(cases){
       const s1=r1?sentOf(r1):null,s2=r2?sentOf(r2):null,s3=r3?sentOf(r3):null;
       // 구형: 피고인별 문장(선고 문장)의 requested를 우선하고, 단일 피고인 사건일 때만 판결문 requested로 대체한다.
       //  다중 피고인 사건의 ruling.requested는 특정 피고인만 언급하는 경우("윤석열 사형" 등)가 있어 오배석을 막는다.
-      const demandTxt=(s1&&s1.requested)||(single&&r1&&r1.requested)||"";
+      let demandTxt=(s1&&s1.requested)||(single&&r1&&r1.requested)||"";
+      // 다중 피고인 사건에서 형량으로 환산되지 않는 구형 문장("박종준·김성훈 7년" 등)은 다른 피고인 구형일 수 있어 표시하지 않는다.
+      if(!single&&chartMonthsOf(demandTxt)==null)demandTxt="";
       // 해당 심급 선고 문장: 피고인별 선고가 없으면 단일 피고인 사건에 한해 판결 결과 텍스트를 쓴다.
       const lvTxt=(r,s,pnd)=>s?s.sentence:(single&&r&&r.result?r.result:(pnd&&single&&r?r.result:""));
       const t1Txt=lvTxt(r1,s1,false),t2Txt=lvTxt(r2,s2,false);
@@ -1627,7 +1632,6 @@ function renderCharts(cases){
   const headerHTML=`<div class="dict-nav"><div class="cat-chips">${filterChips}</div><div class="cat-chips">${sortBtns}</div></div>
     <div class="dict-stats">피고인·사건 ${rows.length}건 표시 · 바 길이는 형량을 개월 수로 환산한 사건 내 상대값입니다 (사형·무기징역은 ${CHART_SCALE}개월 환산 상한)</div>`;
   if(!rows.length){
-    const cleared=()=>{state.chartFilter="all";state.q="";document.getElementById("q").value="";render()};
     return headerHTML+(state.q||state.chartFilter!=="all"
       ?`<div class="empty-state"><p>조건에 맞는 형량 비교 항목이 없습니다.</p><button type="button" class="lk-btn" onclick="state.chartFilter='all';clearSearch()">필터 해제</button></div>`
       :empty());
@@ -1656,7 +1660,6 @@ function renderCharts(cases){
     if(r.reductionPct!=null&&r.cat!=="acq")badges.push(`<span class="badge-outcome mitigated" title="특검 구형량 대비 감형률">구형 대비 ▼ ${r.reductionPct}%</span>`);
     else if(r.cat!=="acq"&&r.demandM>0&&r.lastM===r.demandM)badges.push(`<span class="cat-pill" title="법원이 특검 구형량을 그대로 선고했습니다">구형 전량</span>`);
     if(r.fin.final)badges.push(`<span class="pill st-final">확정</span>`);
-    if(!badges.length&&r.cat===null&&r.lastM!=null&&r.demandM!=null&&r.lastM===r.demandM)badges.push(`<span class="badge-outcome aggravated">구형 전량</span>`);
     return `<article class="person chart-row" id="chart-${esc(r.caseId)}-${esc(r.pid)}">
       <div class="person-header">
         <div class="person-head">
