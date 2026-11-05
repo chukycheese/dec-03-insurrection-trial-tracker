@@ -1626,7 +1626,12 @@ function renderCharts(cases){
     `<button type="button" class="cat-btn" data-cfilter="${k}" aria-pressed="${state.chartFilter===k}">${l} <span class="mono">${counts[k]}</span></button>`).join("");
   const headerHTML=`<div class="dict-nav"><div class="cat-chips">${filterChips}</div><div class="cat-chips">${sortBtns}</div></div>
     <div class="dict-stats">피고인·사건 ${rows.length}건 표시 · 바 길이는 형량을 개월 수로 환산한 사건 내 상대값입니다 (사형·무기징역은 ${CHART_SCALE}개월 환산 상한)</div>`;
-  if(!rows.length)return headerHTML+empty();
+  if(!rows.length){
+    const cleared=()=>{state.chartFilter="all";state.q="";document.getElementById("q").value="";render()};
+    return headerHTML+(state.q||state.chartFilter!=="all"
+      ?`<div class="empty-state"><p>조건에 맞는 형량 비교 항목이 없습니다.</p><button type="button" class="lk-btn" onclick="state.chartFilter='all';clearSearch()">필터 해제</button></div>`
+      :empty());
+  }
 
   const cap=m=>m==null?null:Math.min(m,CHART_SCALE);
   const cards=rows.map(r=>{
