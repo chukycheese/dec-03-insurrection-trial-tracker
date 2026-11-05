@@ -76,6 +76,11 @@
   "rulings": {
     "chae-park-mutiny-1": {
       "caseId": "chae-park-mutiny-1",
+      "quote": {
+        "text": "피고인의 수사 서류 이첩 행위는 군사법원법에 따른 정당한 직무 수행이며, 국방부 장관의 이첩 보류 명령은 직권의 한계를 벗어난 부당한 지시로서 정당한 직무상 명령으로 볼 수 없다.",
+        "speaker": "주심 김종일 재판부장",
+        "context": "1심 무죄 판시"
+      },
       "level": 1,
       "date": "2025-01-09",
       "kind": "ruling",
@@ -110,6 +115,11 @@
     },
     "chae-im-negligence-1": {
       "caseId": "chae-im-negligence-1",
+      "quote": {
+        "text": "수중수색이 이뤄질 수 있음을 인식하고도 안전조치와 장비 지급을 하지 않은 업무상 과실이 인정되며, 피고인은 이번 사고에 가장 책임이 큰 인물이다.",
+        "speaker": "재판장 조형우 부장판사",
+        "context": "1심 유죄 판시"
+      },
       "level": 1,
       "date": "2026-05-08",
       "kind": "ruling",
@@ -143,6 +153,11 @@
     },
     "chae-im-negligence-3": {
       "caseId": "chae-im-negligence-1",
+      "quote": {
+        "text": "원심 판단에 자유심증주의의 한계를 벗어나거나 법리를 오해한 잘못이 없고, 형량이 현저히 부당하지도 않다.",
+        "speaker": "주심 신숙희 대법관",
+        "context": "대법원 상고 기각 · 확정"
+      },
       "level": 3,
       "date": "2026-10-27",
       "kind": "ruling",
