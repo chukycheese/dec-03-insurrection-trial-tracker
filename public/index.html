@@ -2,6 +2,14 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>12·3 내란 재판 기록부</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:site_name" content="12·3 비상계엄 내란 및 특검 재판기록부">
+<meta property="og:title" content="12·3 비상계엄 내란 및 특검 재판기록부">
+<meta property="og:description" content="12·3 비상계엄 내란 재판 및 김건희·명태균 특검 공판 진행 상황과 선고 내역을 정리하고 시각화하는 인터랙티브 재판기록부입니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dec-03-insurrection-trial-tracker.inkstone.workers.dev/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="12·3 비상계엄 내란 및 특검 재판기록부">
+<meta name="twitter:description" content="12·3 비상계엄 내란 재판 및 김건희·명태균 특검 공판 진행 상황과 선고 내역을 정리하고 시각화하는 인터랙티브 재판기록부입니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -60,6 +68,18 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,46px);l
 .search{flex:1;min-width:0;max-width:340px;position:relative}
 .search input{width:100%;box-sizing:border-box;padding:9px 36px 9px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:14px}
 #q-clear{position:absolute;top:50%;right:6px;transform:translateY(-50%);width:26px;height:26px;min-width:26px;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--muted);font:inherit;font-size:15px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* 데이터 내보내기 드롭다운 */
+.export-dropdown{position:relative;flex:0 0 auto}
+.export-btn{all:unset;cursor:pointer;padding:9px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:14px;font-weight:600;border-radius:8px;white-space:nowrap}
+.export-btn:hover{border-color:var(--accent);color:var(--accent)}
+.export-btn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.export-btn:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.export-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:30;min-width:236px;background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.18);padding:6px;display:grid;gap:2px}
+.export-menu button{all:unset;cursor:pointer;padding:9px 12px;font-size:13.5px;font-weight:500;color:var(--ink);border-radius:6px;white-space:nowrap;text-align:left}
+.export-menu button:hover{background:var(--accent);color:#fff}
+.export-menu button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .export-menu{box-shadow:0 8px 24px rgba(0,0,0,.5)}:root:not([data-theme="light"]) .export-menu button:hover{color:#0b0f16}}
 #q-clear:hover{color:var(--ink);border-color:var(--accent)}
 .search-feedback{margin:10px 0 0;font-size:13px;color:var(--muted)}
 .pill{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap;display:inline-block}
@@ -352,7 +372,8 @@ body.graph-fs-open{overflow:hidden}
 .badge-outcome.acquitted{color:var(--acq);background:var(--acq-bg);border-color:var(--acq)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .badge-outcome.aggravated{color:#FCA5A5;background:#351515;border-color:#7A2E2E}:root:not([data-theme="light"]) .badge-outcome.mitigated{color:#A8D0F0;background:#14293D;border-color:#2E5A85}}
 </style>
-
+</head>
+<body>
 <div class="wrap">
   <header>
     <div class="eyebrow-row">
@@ -380,6 +401,15 @@ body.graph-fs-open{overflow:hidden}
       <button type="button" class="tab-btn" data-view="judges" role="tab" id="tab-judges" aria-controls="view-judges">재판부</button>
     </div>
     <div class="search"><input id="q" type="search" placeholder="인물·직책·재판장 이름으로 찾기 (예: 김용현, 경호처)" aria-label="검색" autocomplete="off"><button type="button" id="q-clear" aria-label="검색어 지우기" hidden>×</button></div>
+    <div class="export-dropdown" id="export-dropdown">
+      <button type="button" class="export-btn" id="export-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="export-menu">📥 데이터 내보내기</button>
+      <div class="export-menu" id="export-menu" role="menu" aria-label="내보내기 형식 선택" hidden>
+        <button type="button" role="menuitem" data-export="cases-csv" onclick="runExport('cases-csv')">사건 목록 다운로드 (CSV)</button>
+        <button type="button" role="menuitem" data-export="cases-json" onclick="runExport('cases-json')">사건 목록 다운로드 (JSON)</button>
+        <button type="button" role="menuitem" data-export="people-csv" onclick="runExport('people-csv')">인물 목록 다운로드 (CSV)</button>
+        <button type="button" role="menuitem" data-export="people-json" onclick="runExport('people-json')">인물 목록 다운로드 (JSON)</button>
+      </div>
+    </div>
   </div>
   <div id="search-feedback" class="search-feedback" role="status" aria-live="polite" hidden></div>
 
@@ -698,6 +728,7 @@ function applyRoute(){
   if(r&&r.view&&r.view!==state.view){state.view=r.view;try{localStorage.setItem("ins-view",r.view)}catch(e){}}
   render();
   if(r&&r.targetType&&r.targetType!=="person"){
+    if(r.targetType==="case")syncCaseMetaTitle(r.targetId);
     const id=r.targetType==="panel"?(r.targetId.startsWith("panel-")?r.targetId:"panel-"+r.targetId):r.targetId;
     focusCard((r.targetType==="case"?"case-":"")+id);
   }
@@ -933,6 +964,7 @@ function goToCase(caseId){
   render();
   if(history.replaceState)history.replaceState(null,"","#"+state.dataset+"/case/"+caseId);
   focusCard("case-"+caseId);
+  syncCaseMetaTitle(caseId);
 }
 
 function openPersonModal(personId,opts){
@@ -1016,12 +1048,14 @@ function openPersonModal(personId,opts){
   modal.showModal();
   // 모달 열림을 히스토리 엔트리로 기록: 브라우저 뒤로 가기 시 모달만 닫힌다.
   state.modalPerson=personId;
+  updateMetaTitle(person.name+" — "+(DATASETS[state.dataset]||{}).title);
   if(!opts.fromHistory)updateURL(true);
 }
 
 function closePersonModal(fromPop){
   const wasId=state.modalPerson;
   state.modalPerson=null;
+  updateMetaTitle((DATASETS[state.dataset]||{}).title);
   const modal=document.getElementById("person-dialog");
   if(modal.open)modal.close();
   // 닫기 경로(Esc·배경 클릭·✕)에서 현재 URL이 인물 딥링크면 뷰 해시로 되돌린다.
@@ -1034,6 +1068,7 @@ function closePersonModal(fromPop){
 document.getElementById("person-dialog").addEventListener("close",()=>{
   if(!state.modalPerson)return;
   state.modalPerson=null;
+  updateMetaTitle((DATASETS[state.dataset]||{}).title);
   if(history.state&&history.state.modal==="person")replaceHash();
 });
 
@@ -1048,7 +1083,7 @@ function empty(){
 
 function render(){
   const DS=DATASETS[state.dataset];
-  document.title=DS.title;
+  updateMetaTitle(DS.title);
   document.querySelectorAll(".switcher button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.ds===state.dataset)));
   document.getElementById("site-title").textContent=DS.title;
   document.getElementById("site-lede").textContent=DS.lede;
@@ -2367,6 +2402,127 @@ applyDataset(state.dataset,false,!!(initRoute&&initRoute.targetType));
 render();
 fetchRemote(state.dataset);
 
+// ===== 메타 타이틀 동기화 (OG·트위터 카드) =====
+// 문서 타이틀과 og:title·twitter:title 메타태그를 함께 갱신한다. 딥링크 진입·인물 모달·사건 카드 이동 시 호출된다.
+function updateMetaTitle(title){
+  const t=String(title==null?"":title);
+  document.title=t;
+  try{
+    const og=document.querySelector('meta[property="og:title"]');
+    const tw=document.querySelector('meta[name="twitter:title"]');
+    if(og)og.setAttribute("content",t);
+    if(tw)tw.setAttribute("content",t);
+  }catch(e){}
+}
+function syncCaseMetaTitle(caseId){
+  const c=(store.cases||{})[caseId];
+  if(c)updateMetaTitle(c.title+" — "+(DATASETS[state.dataset]||{}).title);
+}
+
+// ===== 데이터 내보내기 (CSV/JSON) =====
+const EXPORT_CASE_COLS=["사건번호","사건명","카테고리","주요피고인","적용죄명","1심선고","2심선고","대법원선고","담당재판부","진행상태"];
+const EXPORT_PEOPLE_COLS=["인물ID","이름","역할및직책","분류","주요사건","선고결과요약"];
+// CSV 셀 이스케이프: 쉼표·줄바꿈·쌍따옴표가 있으면 통째로 감싸고 내부 쌍따옴표는 두 배로 늘린다.
+function csvEscape(v){
+  const str=String(v==null?"":v);
+  return /[",\r\n]/.test(str)?'"'+str.replace(/"/g,'""')+'"':str;
+}
+// UTF-8 BOM(\uFEFF) 접두사로 Excel에서 한글이 바로 정상 표시되도록 한다.
+function csvRows(rows){return "\uFEFF"+rows.map(r=>r.map(csvEscape).join(",")).join("\r\n")}
+function rulingText(r){
+  if(!r)return "";
+  const d=fmt(r.date);
+  const parts=[];
+  if(d&&d!=="미정")parts.push(d);
+  if(r.result)parts.push(r.result);
+  return parts.join(" ");
+}
+function caseExportRecord(c){
+  const byLevel=l=>c.rulings.find(r=>r.level===l);
+  const uniq=a=>[...new Set(a.filter(Boolean))];
+  return {
+    "사건번호":uniq(c.rulings.map(r=>r.caseNo)).join(", "),
+    "사건명":c.title,
+    "카테고리":uniq(c.defendants.map(d=>d.category)).join(", "),
+    "주요피고인":c.defendants.map(d=>d.name).filter(Boolean).join(", "),
+    "적용죄명":c.charge||"",
+    "1심선고":rulingText(byLevel(1)),
+    "2심선고":rulingText(byLevel(2)),
+    "대법원선고":rulingText(byLevel(3)),
+    "담당재판부":uniq(c.rulings.map(r=>r.court)).join(", "),
+    "진행상태":(STATUS[c.status]||{}).label||c.status||""
+  };
+}
+function personExportRecord(id,p,cases){
+  const rel=(cases||[]).filter(c=>c.defendantIds&&c.defendantIds.includes(id)).map(c=>c.title);
+  return {
+    "인물ID":id,
+    "이름":(p&&p.name)||"",
+    "역할및직책":(p&&p.role)||"",
+    "분류":(p&&p.category)||"",
+    "주요사건":rel.join(", "),
+    "선고결과요약":(p&&p.statusNote)||""
+  };
+}
+function exportPayload(kind){
+  const {cases}=model();
+  if(kind.indexOf("cases")===0){
+    const records=cases.map(caseExportRecord);
+    return kind.endsWith("csv")
+      ? csvRows([EXPORT_CASE_COLS].concat(records.map(r=>EXPORT_CASE_COLS.map(k=>r[k]))))
+      : JSON.stringify(records,null,2);
+  }
+  const records=Object.entries(store.people||{}).map(([id,p])=>personExportRecord(id,p,cases));
+  return kind.endsWith("csv")
+    ? csvRows([EXPORT_PEOPLE_COLS].concat(records.map(r=>EXPORT_PEOPLE_COLS.map(k=>r[k]))))
+    : JSON.stringify(records,null,2);
+}
+function exportFileName(kind){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,"0");
+  const stamp=d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+  const parts=kind.split("-");
+  return state.dataset+"-"+parts[0]+"-"+stamp+"."+parts[1];
+}
+function downloadFile(name,content,mime){
+  const blob=new Blob([content],{type:mime+";charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download=name;a.style.display="none";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{try{document.body.removeChild(a);URL.revokeObjectURL(url)}catch(e){}},0);
+}
+function runExport(kind){
+  if(["cases-csv","cases-json","people-csv","people-json"].indexOf(kind)<0)return;
+  const isCsv=kind.endsWith("csv");
+  downloadFile(exportFileName(kind),exportPayload(kind),isCsv?"text/csv":"application/json");
+  closeExportMenu();
+}
+// 드롭다운 개폐: 버튼 토글, 메뉴 밖 클릭 시 닫기, ESC 닫기(초점 복귀)
+function closeExportMenu(){
+  const btn=document.getElementById("export-btn"),menu=document.getElementById("export-menu");
+  if(!btn||!menu)return;
+  menu.hidden=true;
+  btn.setAttribute("aria-expanded","false");
+}
+function toggleExportMenu(){
+  const btn=document.getElementById("export-btn"),menu=document.getElementById("export-menu");
+  if(!btn||!menu)return;
+  const willOpen=menu.hidden;
+  menu.hidden=!willOpen;
+  btn.setAttribute("aria-expanded",String(willOpen));
+}
+(function initExportDropdown(){
+  const btn=document.getElementById("export-btn"),menu=document.getElementById("export-menu"),dd=document.getElementById("export-dropdown");
+  if(!btn||!menu||!dd)return;
+  try{
+    btn.addEventListener("click",e=>{if(e&&e.stopPropagation)e.stopPropagation();toggleExportMenu()});
+    document.addEventListener("click",e=>{if(!menu.hidden&&!(e.target&&dd.contains(e.target)))closeExportMenu()});
+    document.addEventListener("keydown",e=>{if((e.key==="Escape"||e.key==="Esc")&&!menu.hidden){closeExportMenu();btn.focus()}});
+  }catch(e){}
+})();
+
 // 초기 진입 시 딥링크 처리: 인물 모달 자동 열기 / 사건·재판부 카드 스크롤·하이라이트
 if(initRoute&&initRoute.targetType){
   const t=initRoute;
@@ -2377,6 +2533,7 @@ if(initRoute&&initRoute.targetType){
     try{localStorage.setItem("ins-view","cases")}catch(e){}
     render();
     focusCard("case-"+t.targetId);
+    syncCaseMetaTitle(t.targetId);
   }else if(t.targetType==="panel"){
     const pid=t.targetId.startsWith("panel-")?t.targetId:"panel-"+t.targetId;
     state.view="judges";
