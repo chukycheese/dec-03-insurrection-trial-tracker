@@ -21,6 +21,25 @@ npm run dev
 ```
 
 ## Cloudflare 배포
+
+### 자동 배포 (GitHub Actions)
+
+`main` 브랜치에 푸시(또는 PR 머지)하면 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 워크플로가 실행되어,
+데이터 무결성(JSON) 검증 후 Cloudflare Workers로 자동 배포됩니다.
+
+- **트리거**: `main` 브랜치 `push`, GitHub 웹 UI의 `workflow_dispatch` 수동 실행
+- **흐름**: `test` 잡(Node 20, 데이터 무결성 검증) → `deploy` 잡(`cloudflare/wrangler-action@v3`)
+
+#### 필수 Secrets 설정
+
+저장소의 **Settings > Secrets and variables > Actions**에서 아래 시크릿을 등록하세요.
+
+| Secret | 설명 |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare 대시보드(My Profile > API Tokens)에서 **Edit Cloudflare Workers** 권한으로 생성한 API 토큰 |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare 계정 ID (선택 사항 — Workers > Overview 또는 계정 우측 사이드바에서 확인) |
+
+### 로컬 수동 배포
 ```bash
 # Cloudflare Workers (Static Assets) 배포
 npm run deploy
