@@ -298,6 +298,11 @@
     },
     "han-1": {
       "caseId": "han",
+      "quote": {
+        "text": "국무총리로서 위헌·위법한 비상계엄의 선포를 저지하고 국무위원의 심의를 거치도록 할 직무상 의무가 있었음에도 이를 외면한 채 사후 계엄선포문 작성을 도운 책임을 면할 수 없다.",
+        "speaker": "재판장 이진관 부장판사",
+        "context": "1심 양형 이유"
+      },
       "level": 1,
       "date": "2026-01-21",
       "kind": "ruling",
@@ -558,6 +563,11 @@
     },
     "lotteria-1": {
       "caseId": "lotteria",
+      "quote": {
+        "text": "공모 관계 및 내란 실행 행위 가담에 대한 합리적 의심 없는 증명이 부족하여 무죄를 선고한다.",
+        "speaker": "재판장 정수영 부장판사",
+        "context": "1심 무죄 판시"
+      },
       "level": 1,
       "date": "2026-10-30",
       "kind": "ruling",
@@ -896,6 +906,11 @@
     },
     "yoon-main-1": {
       "caseId": "yoon-main",
+      "quote": {
+        "text": "대통령의 헌법 수호 책무를 정면으로 저버리고 국가 질서를 파괴한 중대 범죄로서, 국가의 존립과 민주적 기본질서를 위태롭게 한 행위는 엄중한 단죄가 불가피하다.",
+        "speaker": "재판장 지귀연 부장판사",
+        "context": "1심 양형 이유"
+      },
       "level": 1,
       "date": "2026-02-19",
       "kind": "ruling",
@@ -1593,7 +1608,13 @@
       "role": "전 드론작전사령관",
       "category": "군 지휘부",
       "keyRole": "평양 무인기 침투 작전 관여 (일반이적)",
-      "statusNote": "1심 징역 3년, 집행유예 5년"
+      "statusNote": "1심 징역 3년, 집행유예 5년",
+      "photo": "assets/photos/kimyd",
+      "photoAlt": "김용대 전 드론작전사령관 프로필 사진",
+      "photoCredit": "MBC PD Note",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:(PD%EC%88%98%EC%B2%A9_10%EB%B6%84_%EC%BB%B7)_%ED%8F%89%EC%96%91%EC%97%90_%EC%B6%94%EB%9D%BD%ED%95%9C_%EB%AC%B4%EC%9D%B8%EA%B8%B0,_%EA%B3%84%EC%97%84%EC%9D%84_%EC%9C%84%ED%95%9C_%EC%84%A4%EA%B3%84%EC%98%80%EB%82%98_-_2025%EB%85%84_8%EC%9B%94_5%EC%9D%BC_%EB%B0%A9%EC%86%A1.webm"
     },
     "kimyg": {
       "name": "김용군",

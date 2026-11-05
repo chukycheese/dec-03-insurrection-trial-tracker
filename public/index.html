@@ -2,6 +2,14 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>12·3 내란 재판 기록부</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:site_name" content="12·3 비상계엄 내란 및 특검 재판기록부">
+<meta property="og:title" content="12·3 비상계엄 내란 및 특검 재판기록부">
+<meta property="og:description" content="12·3 비상계엄 내란 재판 및 김건희·명태균 특검 공판 진행 상황과 선고 내역을 정리하고 시각화하는 인터랙티브 재판기록부입니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dec-03-insurrection-trial-tracker.inkstone.workers.dev/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="12·3 비상계엄 내란 및 특검 재판기록부">
+<meta name="twitter:description" content="12·3 비상계엄 내란 재판 및 김건희·명태균 특검 공판 진행 상황과 선고 내역을 정리하고 시각화하는 인터랙티브 재판기록부입니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -60,6 +68,18 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,46px);l
 .search{flex:1;min-width:0;max-width:340px;position:relative}
 .search input{width:100%;box-sizing:border-box;padding:9px 36px 9px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:14px}
 #q-clear{position:absolute;top:50%;right:6px;transform:translateY(-50%);width:26px;height:26px;min-width:26px;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--muted);font:inherit;font-size:15px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* 데이터 내보내기 드롭다운 */
+.export-dropdown{position:relative;flex:0 0 auto}
+.export-btn{all:unset;cursor:pointer;padding:9px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:14px;font-weight:600;border-radius:8px;white-space:nowrap}
+.export-btn:hover{border-color:var(--accent);color:var(--accent)}
+.export-btn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.export-btn:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.export-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:30;min-width:236px;background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.18);padding:6px;display:grid;gap:2px}
+.export-menu button{all:unset;cursor:pointer;padding:9px 12px;font-size:13.5px;font-weight:500;color:var(--ink);border-radius:6px;white-space:nowrap;text-align:left}
+.export-menu button:hover{background:var(--accent);color:#fff}
+.export-menu button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .export-menu{box-shadow:0 8px 24px rgba(0,0,0,.5)}:root:not([data-theme="light"]) .export-menu button:hover{color:#0b0f16}}
 #q-clear:hover{color:var(--ink);border-color:var(--accent)}
 .search-feedback{margin:10px 0 0;font-size:13px;color:var(--muted)}
 .pill{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap;display:inline-block}
@@ -223,6 +243,21 @@ dialog#person-dialog::backdrop{background:rgba(0,0,0,0.55);backdrop-filter:blur(
 .sent-badge{font-weight:700;color:var(--ink)}
 .sent-badge.acq{color:var(--acq)}
 
+/* 판결 요지·양형 이유 인용구 카드 */
+.ruling-quote{margin:8px 0 2px;padding:11px 14px 10px;background:var(--cat-bg);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;display:grid;gap:6px;position:relative;overflow:hidden}
+.ruling-quote::after{content:"”";position:absolute;right:10px;top:-2px;font-family:var(--f-display);font-size:46px;line-height:1.1;color:var(--accent);opacity:.16;pointer-events:none}
+.rq-head{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;color:var(--muted)}
+.rq-text{margin:0;font-family:var(--f-display);font-size:15px;line-height:1.65;color:var(--ink);text-wrap:pretty;padding-right:22px}
+.rq-src{margin:0;font-size:12px;color:var(--muted)}
+.rq-src strong{color:var(--ink);font-weight:600}
+.quote-copy-btn{all:unset;cursor:pointer;justify-self:start;font-size:11.5px;font-weight:600;color:var(--accent);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 10px;line-height:1.5}
+.quote-copy-btn:hover,.quote-copy-btn:focus-visible{border-color:var(--accent)}
+.quote-copy-btn.copied{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.ruling-quote.compact{padding:9px 12px 8px;gap:4px}
+.ruling-quote.compact .rq-text{font-size:13.5px;line-height:1.6}
+.ruling-quote.compact::after{font-size:38px}
+.ruling-quote.rq-highlight{box-shadow:0 0 0 2px var(--accent)}
+
 @media (max-width:760px){
   .summary{grid-template-columns:repeat(3,1fr)}
   .rail{grid-template-columns:1fr}
@@ -347,12 +382,42 @@ body.graph-fs-open{overflow:hidden}
 
 /* 재판부 카드 판결 결과 배지 (무죄·가중·감형 대비 강조) */
 .badge-outcome{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid;display:inline-flex;align-items:center;gap:3px}
+
 .badge-outcome.aggravated{color:#B3261E;background:#FDECEA;border-color:#B3261E}
 .badge-outcome.mitigated{color:#1E5F8A;background:#E7F1F9;border-color:#1E5F8A}
 .badge-outcome.acquitted{color:var(--acq);background:var(--acq-bg);border-color:var(--acq)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .badge-outcome.aggravated{color:#FCA5A5;background:#351515;border-color:#7A2E2E}:root:not([data-theme="light"]) .badge-outcome.mitigated{color:#A8D0F0;background:#14293D;border-color:#2E5A85}}
-</style>
 
+/* 형량비교 뷰 */
+.charts{display:grid;gap:14px}
+.chart-row .chart-person-btn{all:unset;cursor:pointer;font-weight:700}
+.chart-row .chart-person-btn:hover{text-decoration:underline}
+.chart-case{font-size:13px;margin:2px 0 8px}
+.chart-case a{color:var(--accent);text-decoration:none;font-weight:600}
+.chart-case a:hover{text-decoration:underline}
+.chart-bars{display:grid;gap:4px}
+.bar-line{display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:center}
+.bar-label{font-size:12px;font-weight:700;color:var(--muted);text-align:right;white-space:nowrap}
+.bar-track{position:relative;display:flex;align-items:center;min-height:24px;background:var(--surface);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.bar-fill{position:absolute;left:0;top:0;bottom:0;opacity:.8}
+.bar-fill.demand{background:#B3261E}
+.bar-fill.lv1{background:#64748B}
+.bar-fill.lv2{background:#1E5F8A}
+.bar-fill.final{background:#1B5E20;opacity:.95}
+.bar-fill.acq{background:transparent;border-right:2px solid var(--acq);opacity:1}
+.bar-txt{position:relative;z-index:1;padding:0 8px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-none{position:relative;z-index:1;padding:0 8px;font-size:12px;color:var(--muted)}
+.chart-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+:root[data-theme="dark"] .bar-fill.lv1{background:#94A3B8}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bar-fill.lv1{background:#94A3B8}}
+@media (max-width:560px){
+  .bar-line{grid-template-columns:34px 1fr;gap:6px}
+  .bar-label{font-size:11px}
+  .bar-txt,.bar-none{font-size:11px;padding:0 6px}
+}
+</style>
+</head>
+<body>
 <div class="wrap">
   <header>
     <div class="eyebrow-row">
@@ -362,6 +427,7 @@ body.graph-fs-open{overflow:hidden}
     <div class="switcher" role="tablist" aria-label="재판 기록부 선택">
       <button type="button" role="tab" data-ds="dec03" aria-selected="true">12·3 내란 재판</button>
       <button type="button" role="tab" data-ds="kim" aria-selected="false">김건희·명태균 특검</button>
+      <button type="button" role="tab" data-ds="chae" aria-selected="false">채상병 특검</button>
     </div>
     <h1 id="site-title">12·3 내란 재판 기록부</h1>
     <p class="lede" id="site-lede">12·3 비상계엄 관련 형사재판의 선고를 심급별로 정리했습니다. 사건번호·재판부·형량은 언론 보도를 대조해 적었고, 보도로 확인되지 않은 항목은 비워 두었습니다.</p>
@@ -378,8 +444,18 @@ body.graph-fs-open{overflow:hidden}
       <button role="tab" id="tab-people" aria-selected="false" data-view="people">인물사전</button>
       <button role="tab" id="tab-graph" aria-selected="false" data-view="graph">관계도</button>
       <button type="button" class="tab-btn" data-view="judges" role="tab" id="tab-judges" aria-controls="view-judges">재판부</button>
+      <button type="button" class="tab-btn" data-view="charts" role="tab" id="tab-charts" aria-controls="view">형량비교</button>
     </div>
     <div class="search"><input id="q" type="search" placeholder="인물·직책·재판장 이름으로 찾기 (예: 김용현, 경호처)" aria-label="검색" autocomplete="off"><button type="button" id="q-clear" aria-label="검색어 지우기" hidden>×</button></div>
+    <div class="export-dropdown" id="export-dropdown">
+      <button type="button" class="export-btn" id="export-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="export-menu">📥 데이터 내보내기</button>
+      <div class="export-menu" id="export-menu" role="menu" aria-label="내보내기 형식 선택" hidden>
+        <button type="button" role="menuitem" data-export="cases-csv" onclick="runExport('cases-csv')">사건 목록 다운로드 (CSV)</button>
+        <button type="button" role="menuitem" data-export="cases-json" onclick="runExport('cases-json')">사건 목록 다운로드 (JSON)</button>
+        <button type="button" role="menuitem" data-export="people-csv" onclick="runExport('people-csv')">인물 목록 다운로드 (CSV)</button>
+        <button type="button" role="menuitem" data-export="people-json" onclick="runExport('people-json')">인물 목록 다운로드 (JSON)</button>
+      </div>
+    </div>
   </div>
   <div id="search-feedback" class="search-feedback" role="status" aria-live="polite" hidden></div>
 
@@ -394,6 +470,7 @@ body.graph-fs-open{overflow:hidden}
   <section class="note">
     <p id="note-court"><strong>판결문 열람.</strong> 법원은 내란 사건 판결문을 피고인 실명을 가린 비실명 사본으로만 제공합니다. 사건번호로 <a href="https://portal.scourt.go.kr" target="_blank" rel="noopener">사법정보공개포털</a>의 ‘판결서 사본 제공 신청’에서 받을 수 있습니다. 사건번호가 확인되지 않은 사건은 선고 보도 링크로 대신했습니다.</p>
     <p><strong>표기.</strong> 괄호 안은 특검 구형입니다. ‘상고심 계류’는 대법원 판단을 기다리는 상태입니다. 이 페이지는 언론 보도를 바탕으로 한 정리이며 공식 기록이 아닙니다.</p>
+    <p><strong>판결 요지.</strong> 인용구 카드는 판결문 원문을 그대로 옮긴 것이 아니라 언론 보도로 확인된 판시 요지·양형 이유를 정리한 것이고, 재판장 표기와 선고일은 해당 심급 판결을 기준으로 했습니다. [📋 판결 요지 복사]를 누르면 재판부·선고일과 함께 인용 형식으로 복사됩니다.</p>
   </section>
 </div>
 
@@ -406,13 +483,13 @@ const COLLS=["cases","rulings","sentences","people","judges","meta"];
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt=d=>d?d.replace(/^(\d{4})-(\d{2})-(\d{2})$/,"$1.$2.$3"):"미정";
 const store={}; const loaded=new Set();
-const VIEWS=["timeline","cases","people","graph","judges"];
+const VIEWS=["timeline","cases","people","graph","judges","charts"];
 const TARGET_TYPES=["person","case","panel"];
-let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03",modalPerson:null,outcomeFilter:null,tlSched:false};
+let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03",modalPerson:null,outcomeFilter:null,tlSched:false,chartSort:"reduction",chartFilter:"all"};
 let initRoute=null;
 try{const v=localStorage.getItem("ins-view");if(v&&VIEWS.includes(v))state.view=v}catch(e){}
 try{
-  const d=localStorage.getItem("trials-dataset");if(d&&["dec03","kim"].includes(d))state.dataset=d;
+  const d=localStorage.getItem("trials-dataset");if(d&&["dec03","kim","chae"].includes(d))state.dataset=d;
   const route=parseHash(location.hash);
   if(route){
     if(route.dataset)state.dataset=route.dataset;
@@ -440,6 +517,15 @@ const DATASETS={
     graphAria:"김건희·명태균 특검 사건 인물 관계도",
     cmdLabel:"청탁·금품 제공 계통",
     noteCourt:"<strong>판결문 열람.</strong> 확정 판결문 일부(권성동 2026도7033, 건진법사 2026도8525 등)는 <a href=\"https://portal.scourt.go.kr\" target=\"_blank\" rel=\"noopener\">사법정보공개포털</a>과 대법원 보도자료로 확인할 수 있습니다. 사건번호가 확인되지 않은 사건은 선고 보도 링크로 대신했습니다."
+  },
+  chae:{
+    file:"chae-trials-data.json",
+    title:"채상병 순직 및 수사외압 특검 재판 기록부",
+    lede:"이명현 특별검사팀 기소 사건 종합 · 박정훈 대령 항명 재판 · 임성근 사단장 업무상과실치사 및 구명 로비 · 이종섭 호주대사 도피 및 국방부·대통령실 수사외압 의혹 형사재판의 선고를 심급별로 정리했습니다.",
+    searchPh:"인물·직책·재판장 이름으로 찾기 (예: 박정훈, 임성근, 이종섭)",
+    graphAria:"채상병 특검 사건 인물 관계도",
+    cmdLabel:"수사외압·지휘 계통",
+    noteCourt:"<strong>판결문 열람.</strong> 군사법원 및 일반법원 판결문은 <a href=\"https://portal.scourt.go.kr\" target=\"_blank\" rel=\"noopener\">사법정보공개포털</a>과 국방부 사법포털에서 확인할 수 있습니다. 사건번호가 확인되지 않은 사건은 선고 보도 링크로 대신했습니다."
   }
 };
 
@@ -584,6 +670,46 @@ function sentList(r){
 
 const isAcq=r=>r.sentences.length>0&&r.sentences.every(s=>s.outcome==="무죄");
 
+// ===== 판결 요지·양형 이유 인용구 카드 =====
+// 판결(r)에 quote{text,speaker,context}가 있을 때만 인용구 카드를 만든다.
+// 복사 버튼은 같은 심급·재판부·선고일을 함께 붙여 인용 가능한 문장으로 클립보드에 넣는다.
+function quoteCopyText(r){
+  const q=r&&r.quote;
+  if(!q||!q.text)return "";
+  const date=r.date?", "+fmt(r.date):"";
+  return "“"+q.text+"” — "+(q.speaker||"재판부")+" ("+(r.court||"재판부 미확인")+date+")";
+}
+function quoteHTML(r,opts){
+  const q=r&&r.quote;
+  if(!q||!q.text)return "";
+  const compact=!!(opts&&opts.compact);
+  const speaker=q.speaker||"재판부";
+  return `<figure class="ruling-quote${compact?" compact":""}" data-quote-id="${esc(r.id||"")}">
+    <div class="rq-head"><span>판결 요지 &amp; 양형 이유</span><span>${r.date?fmt(r.date):""}</span></div>
+    <blockquote class="rq-text">${esc(q.text)}</blockquote>
+    <figcaption class="rq-src">— <strong>${esc(speaker)}</strong>${q.context?` · ${esc(q.context)}`:""}${r.court?` <span class="rq-court">(${esc(r.court)})</span>`:""}</figcaption>
+    <button type="button" class="quote-copy-btn" onclick="copyRulingQuote(this,'${esc(r.id||"")}')" title="인용구를 클립보드에 복사합니다" aria-label="${esc(speaker)} 판결 요지 복사">📋 판결 요지 복사</button>
+  </figure>`;
+}
+function copyRulingQuote(btn,id){
+  const r=(store.rulings||{})[id];
+  if(!r||!r.quote)return;
+  const text=quoteCopyText(r);
+  const done=()=>{
+    if(!btn)return;
+    if(!btn.getAttribute||!btn.setAttribute)return;
+    const label=btn.getAttribute("data-label")||btn.textContent;
+    if(!btn.getAttribute("data-label"))btn.setAttribute("data-label",label);
+    btn.textContent="복사됨!";
+    btn.classList&&btn.classList.add("copied");
+    setTimeout(()=>{btn.textContent=label;btn.classList&&btn.classList.remove("copied")},1500);
+  };
+  try{
+    if(typeof navigator!=="undefined"&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,()=>{legacyCopy(text,()=>{});done()});return}
+  }catch(e){}
+  legacyCopy(text,()=>{});done();
+}
+
 // ===== 판결 결과 인사이트: 무죄·항소심 가중·항소심 감형 =====
 // 형량 텍스트를 개월 수 가중치로 환산한다. 무죄는 0, 무기징역·사형은 최상위값, 벌금은 징역보다 낮은 값.
 // 괄호 안 보충 설명("(1심 무죄 파기)" 등)은 판단에서 제외한다.
@@ -661,7 +787,7 @@ function parseHash(hash){
   if(!h)return null;
   let parts;
   try{parts=h.split("/").map(decodeURIComponent)}catch(e){parts=h.split("/")}
-  if(parts[0]==="dec03"||parts[0]==="kim"){
+  if(["dec03","kim","chae"].includes(parts[0])){
     const out={dataset:parts[0],view:null,targetType:null,targetId:null};
     if(TARGET_TYPES.includes(parts[1])){
       out.targetType=parts[1];
@@ -698,6 +824,7 @@ function applyRoute(){
   if(r&&r.view&&r.view!==state.view){state.view=r.view;try{localStorage.setItem("ins-view",r.view)}catch(e){}}
   render();
   if(r&&r.targetType&&r.targetType!=="person"){
+    if(r.targetType==="case")syncCaseMetaTitle(r.targetId);
     const id=r.targetType==="panel"?(r.targetId.startsWith("panel-")?r.targetId:"panel-"+r.targetId):r.targetId;
     focusCard((r.targetType==="case"?"case-":"")+id);
   }
@@ -744,6 +871,7 @@ function renderTimeline(cases){
         <div class="r">${resultHTML(r)}${r.requested&&!r.sentences.length?` <span class="m">(구형 ${esc(r.requested)})</span>`:""}</div>
         ${r.sentences.length>1?sentList(r):""}
         ${r.summary?`<div class="m">${esc(r.summary)}</div>`:""}
+        ${quoteHTML(r)}
         <div class="m"><button type="button" class="judge-link" onclick="goToPanel('${esc(r.court)}')" title="[재판부] 탭에서 이 재판부 카드 열기">${esc(r.court)}</button>${judgeLine(r)?` · <button type="button" class="judge-link" onclick="goToPanel('${esc(r.court)}')" title="[재판부] 탭에서 이 재판부 카드 열기">${esc(judgeLine(r))}</button>`:""}${r.caseNo?` · <span class="mono">${esc(r.caseNo)}</span>`:""}</div>
         <div class="m">${links(r)}</div></div></article>`}).join("")}</div></section>`}).join("")}</div>`;
 }
@@ -755,6 +883,7 @@ function renderCases(cases){
       return `<div class="stage"><div class="lbl"><span>${LV[lv]}${r.kind==="pending"?" · 진행":""}</span><span class="mono">${fmt(r.date)}</span></div>
         <div class="res">${resultHTML(r)}${r.summary?`<small>${esc(r.summary)}</small>`:""}</div>
         ${r.sentences.length>1?sentList(r):""}
+        ${quoteHTML(r,{compact:true})}
         <dl><dt>재판부</dt><dd><button type="button" class="judge-link" onclick="goToPanel('${esc(r.court)}')" title="[재판부] 탭에서 이 재판부 카드 열기">${esc(r.court)}</button></dd>${judgeLine(r)?`<dt>판사</dt><dd><button type="button" class="judge-link" onclick="goToPanel('${esc(r.court)}')" title="[재판부] 탭에서 이 재판부 카드 열기">${esc(judgeLine(r))}</button></dd>`:""}
         <dt>사건번호</dt><dd class="mono">${r.caseNo?esc(r.caseNo):"보도 미확인"}</dd>${r.requested?`<dt>구형</dt><dd>${esc(r.requested)}</dd>`:""}</dl>
         <div class="links">${links(r)}</div></div>`}).join("");
@@ -768,7 +897,9 @@ const CATS_BY_DS={
   dec03:{list:["all","대통령실","정부·국무위원","군 지휘부","계엄군 현장 지휘관","경찰","국회·정계"],
     labels:{"all":"전체","대통령실":"대통령·경호처","정부·국무위원":"정부·국무위원","군 지휘부":"군 지휘부","계엄군 현장 지휘관":"현장 지휘관","경찰":"경찰","국회·정계":"국회·정계"}},
   kim:{list:["all","전직 대통령 부부","정계·선거","통일교·청탁","도이치모터스","인사·금품청탁"],
-    labels:{"all":"전체","전직 대통령 부부":"전직 대통령 부부","정계·선거":"정계·선거","통일교·청탁":"통일교·청탁","도이치모터스":"도이치모터스","인사·금품청탁":"인사·금품청탁"}}
+    labels:{"all":"전체","전직 대통령 부부":"전직 대통령 부부","정계·선거":"정계·선거","통일교·청탁":"통일교·청탁","도이치모터스":"도이치모터스","인사·금품청탁":"인사·금품청탁"}},
+  chae:{list:["all","대통령실","국방부·군 수뇌부","해병대 지휘부","군검찰·수사기구","정부·법무·민간"],
+    labels:{"all":"전체","대통령실":"대통령실","국방부·군 수뇌부":"국방부·군 수뇌부","해병대 지휘부":"해병대 지휘부","군검찰·수사기구":"군검찰·수사기구","정부·법무·민간":"정부·법무·민간"}}
 };
 const CATEGORIES=()=>CATS_BY_DS[state.dataset].list;
 const CAT_LABELS=()=>CATS_BY_DS[state.dataset].labels;
@@ -923,6 +1054,9 @@ function focusCard(id){
       target.style.outline="3px solid var(--accent)";
       target.style.outlineOffset="4px";
       setTimeout(()=>{target.style.outline="";target.style.outlineOffset=""},2500);
+      // 사건 딥링크로 들어올 때는 카드 안의 판결 요지도 함께 강조해 바로 보이게 한다.
+      const quotes=target.querySelectorAll?target.querySelectorAll(".ruling-quote"):[];
+      Array.prototype.forEach.call(quotes,q=>{q.classList&&q.classList.add("rq-highlight");setTimeout(()=>{q.classList&&q.classList.remove("rq-highlight")},2500)});
     }
   },80);
 }
@@ -933,6 +1067,7 @@ function goToCase(caseId){
   render();
   if(history.replaceState)history.replaceState(null,"","#"+state.dataset+"/case/"+caseId);
   focusCard("case-"+caseId);
+  syncCaseMetaTitle(caseId);
 }
 
 function openPersonModal(personId,opts){
@@ -1007,6 +1142,7 @@ function openPersonModal(personId,opts){
                   </div>`;
                 }).join("")}
               </div>
+              ${c.rulings.filter(r=>r.quote&&r.sentences.some(s=>s.personId===personId)).map(r=>quoteHTML(r,{compact:true})).join("")}
             </div>`;
           }).join("")}
         </div>
@@ -1016,12 +1152,14 @@ function openPersonModal(personId,opts){
   modal.showModal();
   // 모달 열림을 히스토리 엔트리로 기록: 브라우저 뒤로 가기 시 모달만 닫힌다.
   state.modalPerson=personId;
+  updateMetaTitle(person.name+" — "+(DATASETS[state.dataset]||{}).title);
   if(!opts.fromHistory)updateURL(true);
 }
 
 function closePersonModal(fromPop){
   const wasId=state.modalPerson;
   state.modalPerson=null;
+  updateMetaTitle((DATASETS[state.dataset]||{}).title);
   const modal=document.getElementById("person-dialog");
   if(modal.open)modal.close();
   // 닫기 경로(Esc·배경 클릭·✕)에서 현재 URL이 인물 딥링크면 뷰 해시로 되돌린다.
@@ -1034,6 +1172,7 @@ function closePersonModal(fromPop){
 document.getElementById("person-dialog").addEventListener("close",()=>{
   if(!state.modalPerson)return;
   state.modalPerson=null;
+  updateMetaTitle((DATASETS[state.dataset]||{}).title);
   if(history.state&&history.state.modal==="person")replaceHash();
 });
 
@@ -1048,7 +1187,7 @@ function empty(){
 
 function render(){
   const DS=DATASETS[state.dataset];
-  document.title=DS.title;
+  updateMetaTitle(DS.title);
   document.querySelectorAll(".switcher button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.ds===state.dataset)));
   document.getElementById("site-title").textContent=DS.title;
   document.getElementById("site-lede").textContent=DS.lede;
@@ -1084,7 +1223,12 @@ function render(){
     return;
   }
   const list=filterCases(cases);
-  view.innerHTML=state.view==="timeline"?renderTimeline(list):state.view==="cases"?renderCases(list):renderPeople(cases.filter(c=>!state.status||c.status===state.status),P);
+  view.innerHTML=state.view==="timeline"?renderTimeline(list):state.view==="cases"?renderCases(list):state.view==="charts"?renderCharts(cases.filter(c=>!state.status||c.status===state.status)):renderPeople(cases.filter(c=>!state.status||c.status===state.status),P);
+
+  if(state.view==="charts"){
+    document.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{state.chartSort=b.dataset.csort;render()});
+    document.querySelectorAll("[data-cfilter]").forEach(b=>b.onclick=()=>{state.chartFilter=state.chartFilter===b.dataset.cfilter?"all":b.dataset.cfilter;render()});
+  }
 
   // 이벤트 바인딩
   if(state.view==="timeline"){
@@ -1140,16 +1284,15 @@ const POLITICAL_LINKS=[
 ];
 const CAT_CLASS_BY_DS={
   dec03:{"대통령실":"cat-pres","정부·국무위원":"cat-gov","군 지휘부":"cat-mil","계엄군 현장 지휘관":"cat-fld","경찰":"cat-pol","국회·정계":"cat-nat"},
-  kim:{"전직 대통령 부부":"cat-pres","정계·선거":"cat-nat","통일교·청탁":"cat-fld","도이치모터스":"cat-mil","인사·금품청탁":"cat-gov"}
+  kim:{"전직 대통령 부부":"cat-pres","정계·선거":"cat-nat","통일교·청탁":"cat-fld","도이치모터스":"cat-mil","인사·금품청탁":"cat-gov"},
+  chae:{"대통령실":"cat-pres","국방부·군 수뇌부":"cat-gov","해병대 지휘부":"cat-mil","군검찰·수사기구":"cat-pol","정부·법무·민간":"cat-nat"}
 };
 const graphState={hiddenCats:new Set(),showCmd:true,showCase:true,showPol:true,selected:null,graph:null};
 
-// 데이터셋별 지휘·청탁 링크: 김건희 특검 데이터는 meta.graphLinks(청탁·금품 제공 계통)를 사용
+// 데이터셋별 지휘·외압 링크: 데이터가 meta.graphLinks(계통 라벨·links)를 제공하면 그것을 사용하고, 없으면 공통 COMMAND_LINKS로 폴백
 function cmdLinks(){
-  if(state.dataset==="kim"){
-    const gl=(store.meta&&store.meta.graphLinks&&store.meta.graphLinks.links)||[];
-    if(gl.length)return gl.map(l=>[l.source,l.target]);
-  }
+  const gl=(store.meta&&store.meta.graphLinks&&store.meta.graphLinks.links)||[];
+  if(gl.length)return gl.map(l=>[l.source,l.target]);
   return COMMAND_LINKS;
 }
 
@@ -1459,6 +1602,150 @@ function goToPerson(personId){
 
 window.addEventListener("resize",()=>{if(state.view==="graph")renderGraph()});
 
+// ===== 형량비교 뷰: 특검 구형량 vs 심급별 선고 형량 수평 바 차트 =====
+// 스케일 상한: 사형·무기징역은 CHART_SCALE(480개월)로 환산해 바 길이가 무한대로 늘어나지 않게 한다.
+const CHART_SCALE=480;
+// sentenceMonths는 징역만 개월 환산하므로, 군 재판(금고형)을 위해 금고 파싱을 보강한다.
+function chartMonthsOf(txt){
+  const t=String(txt||"").replace(/\([^)]*\)/g,"");
+  // 사형이 무기징역보다 길게 보이도록 상한(CHART_SCALE) 아래에서 두 값을 구분해 환산한다.
+  if(t.includes("사형"))return CHART_SCALE;
+  if(t.includes("무기"))return Math.round(CHART_SCALE*0.85);
+  // 범위 구형("징역 5~7년")은 하한을 취해 감형 폭이 부풀지 않게 한다.
+  const rg=t.match(/(?:징역|금고)?\s*(\d+)\s*[~～\-–]\s*(\d+)\s*년/);
+  if(rg)return parseInt(rg[1],10)*12;
+  const m=sentenceMonths(txt);
+  if(m!=null)return m;
+  const g=t.match(/금고\s*(?:(\d+)\s*년)?\s*(?:(\d+)\s*개월)?/);
+  if(g&&(g[1]||g[2]))return parseInt(g[1]||"0",10)*12+parseInt(g[2]||"0",10);
+  return null;
+}
+// 피고인×사건 단위 행 구성: 구형(1심 특검 구형)·1심 선고·2심 선고·대법원 확정 형량을 모은다.
+function buildChartRows(cases){
+  const rows=[];
+  cases.forEach(c=>{
+    const single=(c.defendantIds||[]).length===1;
+    (c.defendants||[]).forEach(d=>{
+      const pid=d.id,p=store.people[pid];if(!p)return;
+      const byLv={};
+      c.rulings.forEach(r=>{(byLv[r.level]=byLv[r.level]||[]).push(r)});
+      const sentOf=r=>r.sentences.find(s=>s.personId===pid);
+      const r1=(byLv[1]||[]).find(r=>r.kind==="ruling");
+      const r2=(byLv[2]||[]).find(r=>r.kind==="ruling");
+      const r3=(byLv[3]||[]).find(r=>r.kind==="ruling");
+      const p1=(byLv[1]||[]).find(r=>r.kind==="pending");
+      const p2=(byLv[2]||[]).find(r=>r.kind==="pending");
+      const s1=r1?sentOf(r1):null,s2=r2?sentOf(r2):null,s3=r3?sentOf(r3):null;
+      // 구형: 피고인별 문장(선고 문장)의 requested를 우선하고, 단일 피고인 사건일 때만 판결문 requested로 대체한다.
+      //  다중 피고인 사건의 ruling.requested는 특정 피고인만 언급하는 경우("윤석열 사형" 등)가 있어 오배석을 막는다.
+      let demandTxt=(s1&&s1.requested)||(single&&r1&&r1.requested)||"";
+      // 다중 피고인 사건에서 형량으로 환산되지 않는 구형 문장("박종준·김성훈 7년" 등)은 다른 피고인 구형일 수 있어 표시하지 않는다.
+      if(!single&&chartMonthsOf(demandTxt)==null)demandTxt="";
+      // 해당 심급 선고 문장: 피고인별 선고가 없으면 단일 피고인 사건에 한해 판결 결과 텍스트를 쓴다.
+      const lvTxt=(r,s,pnd)=>s?s.sentence:(single&&r&&r.result?r.result:(pnd&&single&&r?r.result:""));
+      const t1Txt=lvTxt(r1,s1,false),t2Txt=lvTxt(r2,s2,false);
+      // 확정: 대법원 선고 문장 → 상고 기각이면 2심 형량이 확정
+      let finTxt=lvTxt(r3,s3,false),finFinal=false;
+      if(r3&&r3.kind==="ruling"&&r3.result&&/기각|확정/.test(r3.result)){finFinal=true;if(!finTxt&&s2)finTxt=s2.sentence+" (상고 기각)";}
+      if(!demandTxt&&!s1&&!s2&&!s3)return; // 구형·선고 정보가 전혀 없는 재판 진행 중 행은 제외
+      const row={pid,p,caseId:c.id,caseTitle:c.title,
+        demandTxt,demandM:chartMonthsOf(demandTxt),
+        t1:{txt:t1Txt,m:chartMonthsOf(t1Txt),acq:!!(s1&&s1.outcome==="무죄")},
+        t2:{txt:t2Txt,m:chartMonthsOf(t2Txt),acq:!!(s2&&s2.outcome==="무죄")},
+        fin:{txt:finTxt,m:chartMonthsOf(finTxt),acq:!!(s3&&s3.outcome==="무죄"),final:finFinal},
+        p1Txt:p1?p1.result:"",p2Txt:p2?p2.result:""};
+      // 최종 형량: 확정 → 2심 → 1심 순으로 사용 가능한 것
+      const last=row.fin.txt?row.fin:row.t2.txt?row.t2:row.t1;
+      row.lastM=last.m;row.lastTxt=last.txt;row.lastAcq=last.acq;
+      // 분류: 무죄 / 벌금형 / 가중 / 감형
+      let cat=null,changePct=null;
+      if(row.lastAcq||(row.lastTxt&&row.lastM===0&&/무죄/.test(row.lastTxt)))cat="acq";
+      else if(row.lastTxt&&/벌금/.test(row.lastTxt)&&!/징역|금고/.test(row.lastTxt))cat="fine";
+      else if(row.lastM!=null&&row.t1.m!=null){
+        if(row.t1.acq||row.t1.m===0){cat="agr"}
+        else if(row.lastM>row.t1.m){cat="agr";changePct=Math.round((row.lastM-row.t1.m)/row.t1.m*100)}
+        else if(row.lastM<row.t1.m){cat="mit";changePct=Math.round((row.t1.m-row.lastM)/row.t1.m*100)}
+      }
+      row.cat=cat;row.changePct=changePct;
+      // 구형 대비 감형률: 무죄는 100% 감형으로 환산
+      if(cat==="acq"&&row.demandM>0)row.reductionPct=100;
+      else if(row.demandM>0&&row.lastM!=null&&row.lastM<row.demandM)row.reductionPct=Math.round((row.demandM-row.lastM)/row.demandM*100);
+      rows.push(row);
+    });
+  });
+  return rows;
+}
+function renderCharts(cases){
+  let rows=buildChartRows(cases);
+  // 상단 검색어는 다른 뷰와 동일하게 형량비교에서도 피고인명·직책·사건명에 적용한다.
+  if(state.q)rows=rows.filter(r=>textMatches([r.p.name,r.p.role,r.p.category||"",r.caseTitle,r.demandTxt||"",r.lastTxt||""].join(" "),state.q));
+  const FLABELS={all:"전체",agr:"▲ 가중",mit:"▼ 감형",acq:"⚖️ 무죄"};
+  const counts={all:rows.length,agr:0,mit:0,acq:0};
+  rows.forEach(r=>{if(counts[r.cat]!=null)counts[r.cat]++});
+  if(state.chartFilter&&state.chartFilter!=="all")rows=rows.filter(r=>r.cat===state.chartFilter);
+  if(state.chartSort==="severity")rows.sort((a,b)=>(b.lastM??-1)-(a.lastM??-1)||a.p.name.localeCompare(b.p.name,"ko"));
+  else if(state.chartSort==="name")rows.sort((a,b)=>a.p.name.localeCompare(b.p.name,"ko"));
+  else rows.sort((a,b)=>(b.reductionPct??-1)-(a.reductionPct??-1)||a.p.name.localeCompare(b.p.name,"ko"));
+
+  const sortBtns=[["reduction","감형 폭 큰 순"],["severity","형량 높은 순"],["name","이름 순"]].map(([k,l])=>
+    `<button type="button" class="cat-btn" data-csort="${k}" aria-pressed="${state.chartSort===k}">${l}</button>`).join("");
+  const filterChips=Object.entries(FLABELS).map(([k,l])=>
+    `<button type="button" class="cat-btn" data-cfilter="${k}" aria-pressed="${state.chartFilter===k}">${l} <span class="mono">${counts[k]}</span></button>`).join("");
+  const headerHTML=`<div class="dict-nav"><div class="cat-chips">${filterChips}</div><div class="cat-chips">${sortBtns}</div></div>
+    <div class="dict-stats">피고인·사건 ${rows.length}건 표시 · 바 길이는 형량을 개월 수로 환산한 사건 내 상대값입니다 (사형·무기징역은 ${CHART_SCALE}개월 환산 상한)</div>`;
+  if(!rows.length){
+    return headerHTML+(state.q||state.chartFilter!=="all"
+      ?`<div class="empty-state"><p>조건에 맞는 형량 비교 항목이 없습니다.</p><button type="button" class="lk-btn" onclick="state.chartFilter='all';clearSearch()">필터 해제</button></div>`
+      :empty());
+  }
+
+  const cap=m=>m==null?null:Math.min(m,CHART_SCALE);
+  const cards=rows.map(r=>{
+    const cands=[cap(r.demandM),cap(r.t1.m),cap(r.t2.m),cap(r.fin.m)].filter(v=>v!=null);
+    const maxC=Math.max(0,...cands);
+    const bar=(label,txt,m,cls,pndTxt)=>{
+      if(!txt&&!pndTxt)return "";
+      const cm=cap(m);
+      const acqNow=cm===0&&/무죄/.test(txt||"");
+      const w=cm==null?0:acqNow?2:Math.max(3,Math.round(cm/maxC*100));
+      const inner=cm==null
+        ?`<span class="bar-none">${esc(pndTxt||txt||"선고 전")}</span>`
+        :`<span class="bar-fill ${cls}${acqNow?" acq":""}" style="width:${w}%"></span><span class="bar-txt">${esc(txt)}</span>`;
+      return `<div class="bar-line" role="img" aria-label="${esc(label)} ${esc(txt||pndTxt||"")}"><span class="bar-label">${label}</span><span class="bar-track">${inner}</span></div>`;
+    };
+    const badges=[];
+    if(r.cat==="acq")badges.push(`<span class="badge-outcome acquitted">⚖️ 무죄</span>`);
+    else if(r.cat==="fine")badges.push(`<span class="badge-outcome mitigated">💰 벌금형</span>`);
+    else if(r.cat==="agr")badges.push(`<span class="badge-outcome aggravated" title="1심보다 형량이 늘어났거나 무죄가 뒤집혔습니다">▲ ${r.changePct!=null?r.changePct+"% ":""}가중</span>`);
+    else if(r.cat==="mit")badges.push(`<span class="badge-outcome mitigated" title="1심보다 형량이 줄었습니다">▼ ${r.changePct!=null?r.changePct+"% ":""}감형</span>`);
+    if(!r.cat&&r.t2.m!=null&&r.t1.m!=null&&r.t2.m===r.t1.m&&!r.t2.acq)badges.push(`<span class="cat-pill" title="2심이 1심 형량을 그대로 유지했습니다">2심 유지</span>`);
+    if(r.reductionPct!=null&&r.cat!=="acq")badges.push(`<span class="badge-outcome mitigated" title="특검 구형량 대비 감형률">구형 대비 ▼ ${r.reductionPct}%</span>`);
+    else if(r.cat!=="acq"&&r.demandM>0&&r.lastM===r.demandM)badges.push(`<span class="cat-pill" title="법원이 특검 구형량을 그대로 선고했습니다">구형 전량</span>`);
+    if(r.fin.final)badges.push(`<span class="pill st-final">확정</span>`);
+    return `<article class="person chart-row" id="chart-${esc(r.caseId)}-${esc(r.pid)}">
+      <div class="person-header">
+        <div class="person-head">
+          <div class="person-head-main">
+            <div class="top-row">
+              <h3><button type="button" class="chart-person-btn" onclick="openPersonModal('${esc(r.pid)}')" title="인물 상세 프로필 열기">${esc(r.p.name)}</button> <small>${esc(r.p.role||"")}</small></h3>
+              <span class="cat-pill">${esc(r.p.category||"")}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-case"><a href="#case-${esc(r.caseId)}" onclick="goToCase('${esc(r.caseId)}');return false;" title="사건별 뷰에서 해당 사건 열기">${esc(r.caseTitle)}</a></div>
+      <div class="chart-bars">
+        ${bar("구형",r.demandTxt,r.demandM,"demand")}
+        ${bar("1심",r.t1.txt,r.t1.m,"lv1",r.p1Txt)}
+        ${bar("2심",r.t2.txt,r.t2.m,"lv2",r.p2Txt)}
+        ${bar("확정",r.fin.txt,r.fin.m,"final")}
+      </div>
+      ${badges.length?`<div class="chart-badges">${badges.join("")}</div>`:""}
+    </article>`;
+  }).join("");
+  return headerHTML+`<div class="charts">${cards}</div>`;
+}
+
 // ===== 재판부 탭 =====
 function renderJudges(cases){
   const panels=buildPanels(cases);
@@ -1531,7 +1818,7 @@ function goToPanel(court){
 
 // 초기 데이터 로딩: 내장 데이터 먼저 주입 후, fetch 시도
 const EMBEDDED={};
-EMBEDDED.dec03={"cases":{"cho":{"order":12,"title":"조태용 국회 위증·정치관여","charge":"직무유기, 국정원법 위반, 국회증언감정법 위반, 증거인멸, 위증 등","status":"sup","note":"2심 재판부를 세계일보는 형사6-3부(민달기 재판장)로 보도했습니다. 결심 공판 보도는 형사1부로 일치합니다.","defendantIds":["choty"]},"choo":{"order":9,"title":"추경호 계엄 해제 표결 방해","charge":"내란 중요임무 종사","status":"sched","note":"","defendantIds":["choogh"]},"generals":{"order":7,"title":"군 지휘부 국회·선관위 병력 투입","charge":"내란 중요임무 종사, 직권남용","status":"trial","note":"계엄 1년 9개월 만의 1심. 중앙지역군사법원에서 서울중앙지법으로 이송된 사건입니다.","defendantIds":["yeoih","leejw","munsh","parkas","kwakjg"]},"han":{"order":3,"title":"한덕수 내란 중요임무 종사","charge":"내란 중요임무 종사, 허위공문서 작성, 대통령기록물법 위반, 위증 등","status":"sup","note":"","defendantIds":["handc"]},"kang":{"order":11,"title":"강의구 사후 계엄선포문 작성","charge":"허위공문서 작성·행사, 공용서류손상, 대통령기록물법 위반","status":"final","note":"","defendantIds":["kangeg"]},"kim-leak":{"order":15,"title":"김용현 정보사 요원 명단 누설","charge":"군형법상 군기누설, 개인정보보호법 위반","status":"app","note":"","defendantIds":["kimyh"]},"kim-phone":{"order":14,"title":"김용현 비화폰 지급·증거인멸 교사","charge":"위계공무집행방해, 증거인멸 교사","status":"app","note":"김용현 측 항소 의사 표명까지 확인. 항소심 일정은 보도로 확인하지 못했습니다.","defendantIds":["kimyh"]},"lee":{"order":4,"title":"이상민 언론사 단전·단수 지시","charge":"내란 중요임무 종사, 직권남용, 위증","status":"sup","note":"","defendantIds":["leesm"]},"lotteria":{"order":8,"title":"롯데리아 회동·계엄군 현장 지휘관","charge":"내란 중요임무 종사, 직권남용","status":"trial","note":"","defendantIds":["gush","bangjh","kimjg","anms","kimsy","kimch","jungsw","kimsw"]},"noh":{"order":10,"title":"노상원 제2수사단 구성","charge":"개인정보보호법 위반, 특가법상 알선수재","status":"final","note":"","defendantIds":["nohsw"]},"park":{"order":5,"title":"박성재 내란 중요임무 종사","charge":"내란 중요임무 종사, 직권남용","status":"sup","note":"","defendantIds":["parksj"]},"pss-phone":{"order":17,"title":"박종준 비화폰 기록 삭제","charge":"증거인멸","status":"app","note":"선고 직후라 상고 여부는 아직 보도되지 않았습니다.","defendantIds":["parkjj"]},"pss":{"order":16,"title":"경호처 체포영장 집행 저지","charge":"특수공무집행방해 등","status":"app","note":"선고 직후라 상고 여부는 아직 보도되지 않았습니다.","defendantIds":["parkjj","kimsh","leekw","kimshin"]},"yoon-arrest":{"order":2,"title":"윤석열 체포방해·국무위원 심의권 침해","charge":"특수공무집행방해, 직권남용, 허위공문서 작성 등","status":"final","note":"","defendantIds":["yoon"]},"yoon-drone":{"order":6,"title":"평양 무인기 투입 (일반이적)","charge":"일반이적, 직권남용, 군기누설 등","status":"app","note":"","defendantIds":["yoon","kimyh","yeoih","kimyd"]},"yoon-main":{"order":1,"title":"윤석열 등 내란 우두머리·중요임무 종사","charge":"내란 우두머리, 내란 중요임무 종사, 직권남용","status":"app","note":"","defendantIds":["yoon","kimyh","nohsw","chojh","kimbs","mokht","kimyg","yoonsy"]},"yoon-perjury":{"order":13,"title":"윤석열 한덕수 재판 위증","charge":"위증","status":"sup","note":"","defendantIds":["yoon"]}},"rulings":{"cho-1":{"caseId":"cho","level":1,"date":"2026-05-21","kind":"ruling","court":"서울중앙지법","judgeIds":[],"result":"징역 1년 6개월","summary":"계엄 국회 미보고(직무유기)·국정원법 위반 무죄, 위증·허위공문서 유죄","requested":"징역 7년","sources":[["뉴시스","https://www.newsis.com/view/NISX20260521_0003639911"]],"caseNo":"","judgeNote":""},"cho-2":{"caseId":"cho","level":2,"date":"2026-08-19","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"징역 2년 6개월 · 자격정지 2년 6개월","summary":"정치관여·증거인멸·헌재 위증이 유죄로 바뀌어 형량 가중","requested":"징역 7년","sources":[["노컷뉴스","https://nocutnews.co.kr/news/6564739"]],"caseNo":"","judgeNote":""},"cho-3":{"caseId":"cho","level":3,"date":"","kind":"pending","court":"대법원","judgeIds":[],"result":"상고심","summary":"상고 접수 여부는 보도로 직접 확인하지 못했습니다","sources":[],"caseNo":"","requested":"","judgeNote":""},"choo-1":{"caseId":"choo","level":1,"date":"2026-11-18","kind":"pending","court":"서울중앙지법 형사합의34부","judgeIds":["hansj"],"result":"선고 예정 (11.18 오후 2시)","summary":"9.30 결심","requested":"징역 20년","sources":[["뉴시스","https://www.newsis.com/view/NISX20260930_0003809440"]],"caseNo":"","judgeNote":""},"generals-1":{"caseId":"generals","level":1,"date":"2026-09-21","kind":"ruling","court":"서울중앙지법 형사합의26부","judgeIds":["leehk"],"result":"여인형 징역 18년","summary":"5명 전원 실형. 이진우·박안수·곽종근 보석 취소 후 재구속","requested":"여인형·이진우 30년","sources":[["경향신문","https://khan.co.kr/article/202609212126015"],["허프포스트","https://www.huffingtonpost.kr/article/260689"]],"caseNo":"","judgeNote":""},"han-1":{"caseId":"han","level":1,"date":"2026-01-21","kind":"ruling","court":"서울중앙지법 형사합의33부","judgeIds":["leejk"],"caseNo":"2025고합1219","result":"징역 23년 · 법정구속","summary":"12·3 비상계엄을 ‘위로부터의 내란’으로 규정. 내란 우두머리 방조는 불성립","requested":"징역 15년","sources":[["법률신문","https://www.lawtimes.co.kr/news/articleView.html?idxno=215185"]],"judgeNote":""},"han-2":{"caseId":"han","level":2,"date":"2026-05-07","kind":"ruling","court":"서울고법 형사12-1부","judgeIds":["leesc","chojg","kimma"],"result":"징역 15년","summary":"부작위범 부분 불고불리 원칙으로 파기, 위증 일부 무죄","requested":"징역 23년","sources":[["머니투데이","https://www.mt.co.kr/society/2026/05/07/2026050709511945660"]],"caseNo":"","judgeNote":""},"han-3":{"caseId":"han","level":3,"date":"2026-08-05","kind":"pending","court":"대법원 전원합의체","judgeIds":["chohd"],"judgeNote":"재판장 조희대","result":"전원합의체 심리 중","summary":"8.5 전원합의체 회부, 9.29 첫 합의기일. 선고일 미정","sources":[["경향신문","https://www.khan.co.kr/article/202608051548001/"]],"caseNo":"","requested":""},"kang-1":{"caseId":"kang","level":1,"date":"2026-05-28","kind":"ruling","court":"서울중앙지법 형사합의30부","judgeIds":["parkoh"],"result":"징역 1년 6개월 · 법정구속","summary":"허위공문서 행사는 무죄","requested":"징역 5년","sources":[["경향신문","https://www.khan.co.kr/article/202605282118025/"]],"caseNo":"","judgeNote":""},"kang-2":{"caseId":"kang","level":2,"date":"2026-08-24","kind":"ruling","court":"서울고법 형사12-3부","judgeIds":["kimma","leesc","chojg"],"result":"항소 기각 · 징역 1년 6개월","requested":"징역 5년","sources":[["데일리안","https://m.dailian.co.kr/news/view/1681669"]],"caseNo":"","summary":"","judgeNote":""},"kang-3":{"caseId":"kang","level":3,"date":"2026-10-27","kind":"ruling","court":"대법원 형사1부","judgeIds":["cheondy"],"judgeNote":"주심 천대엽","caseNo":"2026도13791","result":"상고 기각 · 확정","sources":[["법률신문","https://www.lawtimes.co.kr/news/articleView.html?idxno=228407"]],"summary":"","requested":""},"kim-leak-1":{"caseId":"kim-leak","level":1,"date":"2026-06-19","kind":"ruling","court":"서울중앙지법 형사21부","judgeIds":["chosp"],"result":"징역 3년","sources":[["미주중앙일보","https://www.koreadaily.com/article/20260618234701693"]],"caseNo":"","summary":"","requested":"","judgeNote":""},"kim-leak-2":{"caseId":"kim-leak","level":2,"date":"2026-08-11","kind":"pending","court":"서울고법 형사12-3부","judgeIds":["kimma","leesc","chojg"],"result":"항소심 진행 중","summary":"8.11 첫 공판준비기일","sources":[["뉴시스","https://mobile.newsis.com/view/NISX20260803_0003733701"]],"caseNo":"","requested":"","judgeNote":""},"kim-phone-1":{"caseId":"kim-phone","level":1,"date":"2026-05-19","kind":"ruling","court":"서울중앙지법 형사합의34부","judgeIds":["hansj"],"result":"징역 3년","summary":"내란 특검 ‘1호 기소’ 사건","requested":"징역 5년","sources":[["한국경제","https://www.hankyung.com/article/202605196805i"]],"caseNo":"","judgeNote":""},"lee-1":{"caseId":"lee","level":1,"date":"2026-02-12","kind":"ruling","court":"서울중앙지법 형사합의32부","judgeIds":["ryukj"],"result":"징역 7년","summary":"직권남용 무죄, 위증 일부 유죄","requested":"징역 15년","sources":[["뉴시스","https://www.newsis.com/view/NISX20260212_0003513827"]],"caseNo":"","judgeNote":""},"lee-2":{"caseId":"lee","level":2,"date":"2026-05-12","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss","minsc","leedh"],"caseNo":"2026노509","result":"징역 9년","summary":"유무죄 판단 유지, 형량 2년 가중","sources":[["뉴시스","https://www.newsis.com/view/NISX20260512_0003626588"]],"requested":"","judgeNote":""},"lee-3":{"caseId":"lee","level":3,"date":"2026-08-05","kind":"pending","court":"대법원 전원합의체","judgeIds":["chohd"],"judgeNote":"재판장 조희대","caseNo":"2026도7559","result":"전원합의체 심리 중","summary":"한덕수 사건과 함께 심리. 선고일 미정","sources":[["헤럴드경제","https://biz.heraldcorp.com/article/10832073"]],"requested":""},"lotteria-1":{"caseId":"lotteria","level":1,"date":"2026-10-30","kind":"ruling","court":"서울중앙지법 형사합의38-2부","judgeIds":["jungsy"],"result":"8명 전원 무죄","summary":"국헌문란 목적 인식이 증명되지 않았다고 판단. 특검 반발","requested":"징역 5~7년","sources":[["시사타파뉴스","https://sstpnews.com/news/view/1065589676619126"],["오마이뉴스","https://www.ohmynews.com/NWS_Web/Series/series_premium_pg.aspx?CNTN_CD=A0003280164"]],"caseNo":"","judgeNote":""},"noh-1":{"caseId":"noh","level":1,"date":"2025-12-15","kind":"ruling","court":"서울중앙지법 형사합의21부","judgeIds":["leehb"],"caseNo":"2025고합901","result":"징역 2년 · 추징 2,490만원","summary":"특검 기소 사건 중 첫 1심 선고","requested":"징역 3년","sources":[["법률신문","https://www.lawtimes.co.kr/news/214180"]],"judgeNote":""},"noh-2":{"caseId":"noh","level":2,"date":"2026-02-12","kind":"ruling","court":"서울고법 형사3부","judgeIds":["leesh"],"result":"쌍방 항소 기각 · 징역 2년","sources":[["경향신문","https://www.khan.co.kr/article/202602121549001"]],"caseNo":"","summary":"","requested":"","judgeNote":""},"noh-3":{"caseId":"noh","level":3,"date":"2026-05-12","kind":"ruling","court":"대법원","judgeIds":[],"result":"상고 기각 · 확정","summary":"12·3 비상계엄 관련 첫 대법원 확정","sources":[["뉴시스","https://www.newsis.com/view/NISX20260512_0003626007"]],"caseNo":"","requested":"","judgeNote":""},"park-1":{"caseId":"park","level":1,"date":"2026-06-22","kind":"ruling","court":"서울중앙지법 형사합의33부","judgeIds":["leejk"],"result":"징역 25년 · 법정구속","summary":"출국금지팀 대기·교정시설 수용여력 점검 지시 등 유죄","requested":"징역 20년","sources":[["MBC","https://imnews.imbc.com/replay/2026/nwdesk/article/6832014_37004.html"]],"caseNo":"","judgeNote":""},"park-2":{"caseId":"park","level":2,"date":"2026-10-21","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"징역 9년","summary":"검사 파견 검토 지시·직권남용 전부 무죄로 판단","requested":"징역 25년","sources":[["YTN","https://www.ytn.co.kr/_ln/0103_202610211633407993"]],"caseNo":"","judgeNote":""},"park-3":{"caseId":"park","level":3,"date":"2026-10-27","kind":"pending","court":"대법원","judgeIds":[],"result":"쌍방 상고","summary":"박성재 측과 특검 모두 10.27 상고장 제출","sources":[["연합뉴스(재인용)","https://www.koreancenter.or.kr/news/articleView.html?idxno=1430884"]],"caseNo":"","requested":"","judgeNote":""},"pss-1":{"caseId":"pss","level":1,"date":"2026-07-09","kind":"ruling","court":"서울중앙지법","judgeIds":[],"result":"박종준 징역 4년","summary":"실형 선고자 법정구속","requested":"박종준·김성훈 7년","sources":[["뉴시스","https://www.newsis.com/view/NISX20260709_0003702954"]],"caseNo":"","judgeNote":""},"pss-2":{"caseId":"pss","level":2,"date":"2026-10-28","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"박종준 징역 3년","summary":"박종준 사직·범행 인정 참작해 감형","requested":"박종준·김성훈 7년","sources":[["파이낸셜뉴스","https://www.fnnews.com/news/202610281551176001"]],"caseNo":"","judgeNote":""},"pss-phone-1":{"caseId":"pss-phone","level":1,"date":"2026-05-21","kind":"ruling","court":"서울중앙지법 형사합의32부","judgeIds":["ryukj"],"result":"무죄","requested":"징역 3년","sources":[["아시아경제","https://view.asiae.co.kr/article/2026052116034649014"]],"caseNo":"","summary":"","judgeNote":""},"pss-phone-2":{"caseId":"pss-phone","level":2,"date":"2026-10-14","kind":"ruling","court":"서울고법 형사12-2부","judgeIds":["chojg"],"result":"징역 1년 (1심 무죄 파기)","requested":"징역 3년","sources":[["경향신문","https://khan.co.kr/article/202610141431001"]],"caseNo":"","summary":"","judgeNote":""},"yoon-arrest-1":{"caseId":"yoon-arrest","level":1,"date":"2026-01-16","kind":"ruling","court":"서울중앙지법 형사합의35부","judgeIds":["baekdh"],"caseNo":"2025고합1010","result":"징역 5년","summary":"12·3 관련 윤석열 재판 중 첫 선고","requested":"징역 10년","sources":[["법률신문","https://www.lawtimes.co.kr/news/215054"]],"judgeNote":""},"yoon-arrest-2":{"caseId":"yoon-arrest","level":2,"date":"2026-04-29","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"징역 7년","summary":"1심 무죄였던 심의권 침해 일부·허위 PG 지시가 유죄로 바뀌어 형량 가중","requested":"징역 10년","sources":[["노컷뉴스","https://www.nocutnews.co.kr/news/6510519"]],"caseNo":"","judgeNote":""},"yoon-arrest-3":{"caseId":"yoon-arrest","level":3,"date":"2026-07-09","kind":"ruling","court":"대법원 3부","judgeIds":["leesy"],"judgeNote":"주심 이숙연","result":"상고 기각 · 징역 7년 확정","summary":"계엄 이후 583일 만의 대법원 확정","sources":[["경기일보","https://kyeonggi.com/article/20260709580229"]],"caseNo":"","requested":""},"yoon-drone-1":{"caseId":"yoon-drone","level":1,"date":"2026-06-12","kind":"ruling","court":"서울중앙지법 형사합의36부","judgeIds":["leejy"],"result":"윤석열 징역 30년","summary":"전직 대통령 첫 일반이적 유죄","requested":"윤석열 30년 · 김용현 25년","sources":[["위키트리","https://www.wikitree.co.kr/articles/1141065"],["인사이트","https://www.insight.co.kr/news/558326"]],"caseNo":"","judgeNote":""},"yoon-drone-2":{"caseId":"yoon-drone","level":2,"date":"2026-12-04","kind":"pending","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"선고 예정 (12.4 오후 3시)","summary":"10.16 결심. 윤석열·김용현 각 30년, 여인형 20년, 김용대 5년 구형","sources":[["연합뉴스(재인용)","https://www.koreancenter.or.kr/news/articleView.html?idxno=1425820"]],"caseNo":"","requested":"","judgeNote":""},"yoon-main-1":{"caseId":"yoon-main","level":1,"date":"2026-02-19","kind":"ruling","court":"서울중앙지법 형사합의25부","judgeIds":["jiky"],"caseNo":"2025고합129","result":"윤석열 무기징역","summary":"12·3 비상계엄의 국헌문란 목적과 폭동을 모두 인정. 김용군·윤승영은 무죄","requested":"윤석열 사형","sources":[["더팩트","https://v.daum.net/v/20260220000128927"],["파이낸셜뉴스","https://www.fnnews.com/news/202604141438579229"]],"judgeNote":""},"yoon-main-2":{"caseId":"yoon-main","level":2,"date":"2026-10-29","kind":"pending","court":"서울고법 형사12-1부","judgeIds":["leesc","chojg","kimma"],"result":"결심 진행 중","summary":"특검 사형 구형(10.29). 11.3·11.5 최종변론 후 선고기일 지정 예정","requested":"윤석열 사형","sources":[["경향신문","https://www.khan.co.kr/article/202610290757001/"],["뉴데일리","https://www.newdaily.co.kr/site/data/html/2026/10/29/2026102900190.html"]],"caseNo":"","judgeNote":""},"yoon-perjury-1":{"caseId":"yoon-perjury","level":1,"date":"2026-05-28","kind":"ruling","court":"서울중앙지법 형사합의32부","judgeIds":["ryukj"],"result":"무죄","requested":"징역 2년","sources":[["데일리안","https://www.dailian.co.kr/news/view/1649627/"]],"caseNo":"","summary":"","judgeNote":""},"yoon-perjury-2":{"caseId":"yoon-perjury","level":2,"date":"2026-09-16","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"무죄 (항소 기각)","requested":"벌금 1,000만원","sources":[["위키트리","https://www.wikitree.co.kr/articles/1159872"]],"caseNo":"","summary":"","judgeNote":""},"yoon-perjury-3":{"caseId":"yoon-perjury","level":3,"date":"","kind":"pending","court":"대법원","judgeIds":[],"result":"특검 상고","sources":[["연합뉴스(재인용)","https://supple.kr/news/cmudi0vdl003dnn35smvj295b"]],"caseNo":"","summary":"","requested":"","judgeNote":""}},"sentences":{"cho-1-choty":{"rulingId":"cho-1","caseId":"cho","personId":"choty","outcome":"일부 유죄","sentence":"징역 1년 6개월","requested":"징역 7년"},"cho-2-choty":{"rulingId":"cho-2","caseId":"cho","personId":"choty","outcome":"일부 유죄","sentence":"징역 2년 6개월","requested":"징역 7년"},"generals-1-kwakjg":{"rulingId":"generals-1","caseId":"generals","personId":"kwakjg","outcome":"유죄","sentence":"징역 9년","requested":"징역 20년"},"generals-1-leejw":{"rulingId":"generals-1","caseId":"generals","personId":"leejw","outcome":"유죄","sentence":"징역 15년","requested":"징역 30년"},"generals-1-munsh":{"rulingId":"generals-1","caseId":"generals","personId":"munsh","outcome":"유죄","sentence":"징역 12년","requested":"징역 20년"},"generals-1-parkas":{"rulingId":"generals-1","caseId":"generals","personId":"parkas","outcome":"유죄","sentence":"징역 10년","requested":"징역 25년"},"generals-1-yeoih":{"rulingId":"generals-1","caseId":"generals","personId":"yeoih","outcome":"유죄","sentence":"징역 18년","requested":"징역 30년"},"han-1-handc":{"rulingId":"han-1","caseId":"han","personId":"handc","outcome":"유죄","sentence":"징역 23년","requested":"징역 15년"},"han-2-handc":{"rulingId":"han-2","caseId":"han","personId":"handc","outcome":"유죄","sentence":"징역 15년","requested":"징역 23년"},"kang-1-kangeg":{"rulingId":"kang-1","caseId":"kang","personId":"kangeg","outcome":"유죄","sentence":"징역 1년 6개월","requested":"징역 5년"},"kang-2-kangeg":{"rulingId":"kang-2","caseId":"kang","personId":"kangeg","outcome":"유죄","sentence":"징역 1년 6개월","requested":"징역 5년"},"kang-3-kangeg":{"rulingId":"kang-3","caseId":"kang","personId":"kangeg","outcome":"유죄","sentence":"징역 1년 6개월 확정","requested":""},"kim-leak-1-kimyh":{"rulingId":"kim-leak-1","caseId":"kim-leak","personId":"kimyh","outcome":"유죄","sentence":"징역 3년","requested":""},"kim-phone-1-kimyh":{"rulingId":"kim-phone-1","caseId":"kim-phone","personId":"kimyh","outcome":"유죄","sentence":"징역 3년","requested":"징역 5년"},"lee-1-leesm":{"rulingId":"lee-1","caseId":"lee","personId":"leesm","outcome":"유죄","sentence":"징역 7년","requested":"징역 15년"},"lee-2-leesm":{"rulingId":"lee-2","caseId":"lee","personId":"leesm","outcome":"유죄","sentence":"징역 9년","requested":""},"lotteria-1-anms":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"anms","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-bangjh":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"bangjh","outcome":"무죄","sentence":"무죄","requested":"징역 7년"},"lotteria-1-gush":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"gush","outcome":"무죄","sentence":"무죄","requested":"징역 7년"},"lotteria-1-jungsw":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"jungsw","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-kimch":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"kimch","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-kimjg":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"kimjg","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-kimsw":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"kimsw","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-kimsy":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"kimsy","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"noh-1-nohsw":{"rulingId":"noh-1","caseId":"noh","personId":"nohsw","outcome":"유죄","sentence":"징역 2년","requested":"징역 3년"},"noh-2-nohsw":{"rulingId":"noh-2","caseId":"noh","personId":"nohsw","outcome":"유죄","sentence":"징역 2년","requested":""},"noh-3-nohsw":{"rulingId":"noh-3","caseId":"noh","personId":"nohsw","outcome":"유죄","sentence":"징역 2년 확정","requested":""},"park-1-parksj":{"rulingId":"park-1","caseId":"park","personId":"parksj","outcome":"유죄","sentence":"징역 25년","requested":"징역 20년"},"park-2-parksj":{"rulingId":"park-2","caseId":"park","personId":"parksj","outcome":"유죄","sentence":"징역 9년","requested":"징역 25년"},"pss-1-kimsh":{"rulingId":"pss-1","caseId":"pss","personId":"kimsh","outcome":"유죄","sentence":"징역 5년","requested":"징역 7년"},"pss-1-kimshin":{"rulingId":"pss-1","caseId":"pss","personId":"kimshin","outcome":"유죄","sentence":"징역 1년, 집행유예 2년","requested":""},"pss-1-leekw":{"rulingId":"pss-1","caseId":"pss","personId":"leekw","outcome":"유죄","sentence":"징역 2년 6개월","requested":""},"pss-1-parkjj":{"rulingId":"pss-1","caseId":"pss","personId":"parkjj","outcome":"유죄","sentence":"징역 4년","requested":"징역 7년"},"pss-2-kimsh":{"rulingId":"pss-2","caseId":"pss","personId":"kimsh","outcome":"유죄","sentence":"징역 5년","requested":"징역 7년"},"pss-2-kimshin":{"rulingId":"pss-2","caseId":"pss","personId":"kimshin","outcome":"유죄","sentence":"징역 1년, 집행유예 2년","requested":"징역 3년"},"pss-2-leekw":{"rulingId":"pss-2","caseId":"pss","personId":"leekw","outcome":"유죄","sentence":"징역 2년","requested":"징역 5년"},"pss-2-parkjj":{"rulingId":"pss-2","caseId":"pss","personId":"parkjj","outcome":"유죄","sentence":"징역 3년","requested":"징역 7년"},"pss-phone-1-parkjj":{"rulingId":"pss-phone-1","caseId":"pss-phone","personId":"parkjj","outcome":"무죄","sentence":"무죄","requested":"징역 3년"},"pss-phone-2-parkjj":{"rulingId":"pss-phone-2","caseId":"pss-phone","personId":"parkjj","outcome":"유죄","sentence":"징역 1년","requested":"징역 3년"},"yoon-arrest-1-yoon":{"rulingId":"yoon-arrest-1","caseId":"yoon-arrest","personId":"yoon","outcome":"유죄","sentence":"징역 5년","requested":"징역 10년"},"yoon-arrest-2-yoon":{"rulingId":"yoon-arrest-2","caseId":"yoon-arrest","personId":"yoon","outcome":"유죄","sentence":"징역 7년","requested":"징역 10년"},"yoon-arrest-3-yoon":{"rulingId":"yoon-arrest-3","caseId":"yoon-arrest","personId":"yoon","outcome":"유죄","sentence":"징역 7년 확정","requested":""},"yoon-drone-1-kimyd":{"rulingId":"yoon-drone-1","caseId":"yoon-drone","personId":"kimyd","outcome":"유죄","sentence":"징역 3년, 집행유예 5년","requested":""},"yoon-drone-1-kimyh":{"rulingId":"yoon-drone-1","caseId":"yoon-drone","personId":"kimyh","outcome":"유죄","sentence":"징역 30년","requested":"징역 25년"},"yoon-drone-1-yeoih":{"rulingId":"yoon-drone-1","caseId":"yoon-drone","personId":"yeoih","outcome":"유죄","sentence":"징역 15년","requested":""},"yoon-drone-1-yoon":{"rulingId":"yoon-drone-1","caseId":"yoon-drone","personId":"yoon","outcome":"유죄","sentence":"징역 30년","requested":"징역 30년"},"yoon-main-1-chojh":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"chojh","outcome":"유죄","sentence":"징역 12년","requested":""},"yoon-main-1-kimbs":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"kimbs","outcome":"유죄","sentence":"징역 10년","requested":"징역 15년"},"yoon-main-1-kimyg":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"kimyg","outcome":"무죄","sentence":"무죄","requested":""},"yoon-main-1-kimyh":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"kimyh","outcome":"유죄","sentence":"징역 30년","requested":"무기징역"},"yoon-main-1-mokht":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"mokht","outcome":"유죄","sentence":"징역 3년","requested":""},"yoon-main-1-nohsw":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"nohsw","outcome":"유죄","sentence":"징역 18년","requested":"징역 30년"},"yoon-main-1-yoon":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"yoon","outcome":"유죄","sentence":"무기징역","requested":"사형"},"yoon-main-1-yoonsy":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"yoonsy","outcome":"무죄","sentence":"무죄","requested":""},"yoon-perjury-1-yoon":{"rulingId":"yoon-perjury-1","caseId":"yoon-perjury","personId":"yoon","outcome":"무죄","sentence":"무죄","requested":"징역 2년"},"yoon-perjury-2-yoon":{"rulingId":"yoon-perjury-2","caseId":"yoon-perjury","personId":"yoon","outcome":"무죄","sentence":"무죄","requested":"벌금 1,000만원"}},"people":{"anms":{"name":"안무성","role":"전 9공수특전여단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·9공수특전여단 현장 지휘","statusNote":"1심 무죄"},"bangjh":{"name":"방정환","role":"전 국방부 혁신기획관","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·국방부 혁신기획관 현장 관여","statusNote":"1심 무죄"},"chojh":{"name":"조지호","role":"전 경찰청장","category":"경찰","keyRole":"경찰청장으로서 경찰 기동대 국회 출입문 전면 봉쇄 지시","statusNote":"내란 1심 징역 12년"},"choogh":{"name":"추경호","role":"당시 국민의힘 원내대표(현 대구시장)","category":"국회·정계","keyRole":"비상계엄 해제 표결 방해 목적 의원총회 지연 및 표결 불참 유도","statusNote":"1심 선고 예정 (11.18, 특검 징역 20년 구형)","photo":"assets/photos/choogh","photoAlt":"추경호 당시 국민의힘 원내대표 프로필 사진","photoCredit":"국민의힘TV","photoLicense":"CC BY 3.0","photoSource":"https://commons.wikimedia.org/wiki/File:Choo_Kyung-ho%27s_Portrait_(2024.5).png","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/"},"choty":{"name":"조태용","role":"전 국가정보원장","category":"정부·국무위원","keyRole":"국정원 비상계엄 국회 미보고(직무유기), 헌재 위증, 허위공문서 작성","statusNote":"1심 징역 1년 6개월 → 2심 징역 2년 6개월","photo":"assets/photos/choty","photoAlt":"조태용 전 국가정보원장 프로필 사진","photoCredit":"U.S. Department of State","photoLicense":"Public domain","photoSource":"https://commons.wikimedia.org/wiki/File:Cho_Taeyong_in_2022_(cropped).jpg"},"gush":{"name":"구삼회","role":"전 육군 2기갑여단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·계엄군 현장 지휘 준비","statusNote":"1심 무죄"},"handc":{"name":"한덕수","role":"전 국무총리","category":"정부·국무위원","keyRole":"사후 계엄선포 국무회의 주재 및 사후 부서 의혹, 헌재·국회 위증","statusNote":"1심 징역 23년 → 2심 징역 15년 (대법원 심리 중)","photo":"assets/photos/handc","photoAlt":"한덕수 전 국무총리 프로필 사진","photoCredit":"제주특별자치도청 정책기획관","photoLicense":"공공누리 제1유형","photoSource":"https://commons.wikimedia.org/wiki/File:Prime_Minister_of_South_Korea_HAN_Duck-soo_20240516.jpg","photoLicenseUrl":"https://www.kogl.or.kr/info/licenseType1.do"},"jungsw":{"name":"정성우","role":"전 방첩사 1처장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·방첩사 1처 현장 관여","statusNote":"1심 무죄"},"kangeg":{"name":"강의구","role":"전 대통령실 제1부속실장","category":"대통령실","keyRole":"비상계엄 해제 가결 후 사후 계엄선포문 허위 작성·행사 및 폐기","statusNote":"징역 1년 6개월 대법원 확정 (수감)"},"kimbs":{"name":"김봉식","role":"전 서울경찰청장","category":"경찰","keyRole":"서울경찰청장으로서 서울 기동대 국회 봉쇄 현장 지휘","statusNote":"내란 1심 징역 10년"},"kimch":{"name":"김창학","role":"전 수방사 군사경찰단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·수방사 군사경찰단 현장 지휘","statusNote":"1심 무죄"},"kimjg":{"name":"김정근","role":"전 3공수특전여단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·3공수특전여단 현장 지휘","statusNote":"1심 무죄"},"kimsh":{"name":"김성훈","role":"전 대통령경호처 차장","category":"대통령실","keyRole":"대통령경호처 차장으로서 한남동 관저 영장 저지 현장 지휘","statusNote":"1·2심 징역 5년"},"kimshin":{"name":"김신","role":"전 가족경호부장","category":"대통령실","keyRole":"경호처 가족경호부장으로서 체포영장 집행 저지 가담","statusNote":"1·2심 징역 1년, 집행유예 2년"},"kimsw":{"name":"김세운","role":"전 특수작전항공단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·특수작전항공단 헬기 동원 관여","statusNote":"1심 무죄"},"kimsy":{"name":"김상용","role":"전 국방부 조사본부 차장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·국방부 조사본부 현장 관여","statusNote":"1심 무죄"},"kimyd":{"name":"김용대","role":"전 드론작전사령관","category":"군 지휘부","keyRole":"평양 무인기 침투 작전 관여 (일반이적)","statusNote":"1심 징역 3년, 집행유예 5년"},"kimyg":{"name":"김용군","role":"전 제3야전군 헌병대장","category":"경찰","keyRole":"제3야전군 헌병대장 (내란 가담 혐의)","statusNote":"1심 무죄"},"kimyh":{"name":"김용현","role":"전 국방부 장관","category":"군 지휘부","keyRole":"비상계엄 건의 및 기획 주도, 특전사·수방사 국회·선관위 병력 투입 지시","statusNote":"내란 1심 징역 30년 / 비화폰 징역 3년 / 군기누설 징역 3년","photo":"assets/photos/kimyh","photoAlt":"김용현 전 국방부 장관 프로필 사진","photoCredit":"U.S. Department of Defense","photoLicense":"Public domain","photoSource":"https://commons.wikimedia.org/wiki/File:Kim_Yong-hyun_(%EA%B9%80%EC%9A%A9%ED%98%84)_(2024)_(cropped).jpg"},"kwakjg":{"name":"곽종근","role":"전 육군특수전사령관","category":"군 지휘부","keyRole":"특전사 공수여단 국회 헬기 강습 및 본회의장 침투 지시","statusNote":"1심 징역 9년 (보석 취소 후 재구속)","photo":"assets/photos/kwakjg","photoAlt":"곽종근 전 육군특수전사령관 프로필 사진","photoCredit":"MBC PD Note","photoLicense":"CC BY 3.0","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/","photoSource":"https://commons.wikimedia.org/wiki/File:Kwak_Jong-geun_in_November_2025.png"},"leejw":{"name":"이진우","role":"전 수도방위사령관","category":"군 지휘부","keyRole":"수도방위사령부 예하 부대 국회 본관 침투 및 본회의장 진입 지휘","statusNote":"1심 징역 15년 (보석 취소 후 재구속)","photo":"assets/photos/leejw","photoAlt":"이진우 전 수도방위사령관 프로필 사진","photoCredit":"MBC PD Note","photoLicense":"CC BY 3.0","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/","photoSource":"https://commons.wikimedia.org/wiki/File:Lieutenant_General_Lee_Jin-woo.png"},"leekw":{"name":"이광우","role":"전 경호본부장","category":"대통령실","keyRole":"대통령경호처 체포영장 집행 저지 가담","statusNote":"1심 징역 2년 6개월 → 2심 징역 2년"},"leesm":{"name":"이상민","role":"전 행정안전부 장관","category":"정부·국무위원","keyRole":"언론사·정당 단전·단수 지시, 소방·경찰 동원 지시 혐의, 사후 위증","statusNote":"1심 징역 7년 → 2심 징역 9년 (대법원 심리 중)","photo":"assets/photos/leesm","photoAlt":"이상민 전 행정안전부 장관 프로필 사진","photoCredit":"제주특별자치도청","photoLicense":"공공누리 제1유형","photoSource":"https://commons.wikimedia.org/wiki/File:Lee_Sang-min_20240531.jpg","photoLicenseUrl":"https://www.kogl.or.kr/info/licenseType1.do"},"mokht":{"name":"목현태","role":"전 국회경비대장","category":"경찰","keyRole":"국회경비대장으로서 계엄군의 국회 본관 진입 묵인 및 조력","statusNote":"내란 1심 징역 3년"},"munsh":{"name":"문상호","role":"전 국군정보사령관","category":"군 지휘부","keyRole":"정보사 요원 선관위 침투 및 전산 서버 확인 지휘","statusNote":"1심 징역 12년"},"nohsw":{"name":"노상원","role":"전 국군정보사령관","category":"군 지휘부","keyRole":"사조직 제2수사단 구성, 정치인 사찰 및 알선수재","statusNote":"개인정보보호법 위반 등 징역 2년 확정 / 내란 1심 징역 18년","photo":"assets/photos/nohsw","photoAlt":"노상원 전 국군정보사령관 프로필 사진","photoCredit":"MBC PD수첩","photoLicense":"CC BY 3.0","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/","photoSource":"https://commons.wikimedia.org/wiki/File:PD%EC%88%98%EC%B2%A9_%EB%85%B8%EC%83%81%EC%9B%90_%EC%82%AC%EC%A7%84.jpg"},"parkas":{"name":"박안수","role":"전 육군참모총장(계엄사령관)","category":"군 지휘부","keyRole":"계엄사령관 명의 포고령 제1호 발표, 계엄군 명목 지휘","statusNote":"1심 징역 10년 (보석 취소 후 재구속)","photo":"assets/photos/parkas","photoAlt":"박안수 전 육군참모총장(계엄사령관) 공식 사진","photoCredit":"U.S. Army (Sgt. Johanna Pullum)","photoLicense":"Public domain","photoSource":"https://commons.wikimedia.org/wiki/File:LANPAC_24_240515-A-MM617-1007.jpg"},"parkjj":{"name":"박종준","role":"전 대통령경호처장","category":"대통령실","keyRole":"대통령경호처 체포영장 집행 저지, 비화폰 통화기록 삭제 지시","statusNote":"체포방해 2심 징역 3년 / 비화폰 2심 징역 1년","photo":"assets/photos/parkjj","photoAlt":"박종준 전 대통령경호처장 프로필 사진","photoCredit":"Allurehomme","photoLicense":"CC BY-SA 4.0","photoLicenseUrl":"https://creativecommons.org/licenses/by-sa/4.0/","photoSource":"https://commons.wikimedia.org/wiki/File:%EB%B0%95%EC%A2%85%EC%A4%80.jpg"},"parksj":{"name":"박성재","role":"전 법무부 장관","category":"정부·국무위원","keyRole":"출국금지팀 대기 지시, 교정시설 수용여력 점검, 검사 파견 검토","statusNote":"1심 징역 25년 → 2심 징역 9년 (쌍방 상고)","photo":"assets/photos/parksj","photoAlt":"박성재 전 법무부 장관 프로필 사진","photoCredit":"법무부","photoLicense":"공공누리 제1유형","photoSource":"https://www.moj.go.kr/minister/2090/subview.do","photoLicenseUrl":"https://www.kogl.or.kr/info/licenseType1.do"},"yeoih":{"name":"여인형","role":"전 국군방첩사령관","category":"군 지휘부","keyRole":"방첩사 병력 국회·선관위 투입, 합동수사본부 가동 및 정치인 체포 계획 수립","statusNote":"군 지휘부 1심 징역 18년 / 일반이적 1심 징역 15년","photo":"assets/photos/yeoih","photoAlt":"여인형 전 국군방첩사령관 프로필 사진","photoCredit":"MBC PD Note","photoLicense":"CC BY 3.0","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/","photoSource":"https://commons.wikimedia.org/wiki/File:Lieutenant_General_Yeo_In-hyung.png"},"yoon":{"name":"윤석열","role":"전 대통령","category":"대통령실","keyRole":"12·3 비상계엄 선포 및 국회·선관위 무력 진입 지시, 체포영장 집행 저지","statusNote":"내란 1심 무기징역 / 일반이적 1심 징역 30년 / 체포방해 징역 7년 확정","photo":"assets/photos/yoon","photoAlt":"윤석열 전 대통령 공식 초상","photoCredit":"대한민국 대통령실","photoLicense":"CC BY 3.0","photoSource":"https://commons.wikimedia.org/wiki/File:South_Korea_President_Yoon_Suk_Yeol_portrait_(crop).jpg","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/"},"yoonsy":{"name":"윤승영","role":"전 국가수사본부 수사기획조정관","category":"경찰","keyRole":"국수본 수사기획조정관 (내란 가담 혐의)","statusNote":"1심 무죄"}},"judges":{"baekdh":{"name":"백대현","position":"서울중앙지법 부장판사"},"cheondy":{"name":"천대엽","position":"대법관"},"chohd":{"name":"조희대","position":"대법원장"},"chojg":{"name":"조진구","position":"서울고법 고법판사"},"chosp":{"name":"조순표","position":"서울중앙지법 부장판사"},"hansj":{"name":"한성진","position":"서울중앙지법 부장판사"},"jiky":{"name":"지귀연","position":"서울중앙지법 부장판사"},"jungsy":{"name":"정수영","position":"서울중앙지법 부장판사"},"kimma":{"name":"김민아","position":"서울고법 고법판사"},"leedh":{"name":"이동현","position":"서울고법 고법판사"},"leehb":{"name":"이현복","position":"서울중앙지법 부장판사"},"leehk":{"name":"이현경","position":"서울중앙지법 부장판사"},"leejk":{"name":"이진관","position":"서울중앙지법 부장판사"},"leejy":{"name":"이정엽","position":"서울중앙지법 부장판사"},"leesc":{"name":"이승철","position":"서울고법 고법판사"},"leesh":{"name":"이승한","position":"서울고법 부장판사"},"leesy":{"name":"이숙연","position":"대법관"},"minsc":{"name":"민성철","position":"서울고법 고법판사"},"parkoh":{"name":"박옥희","position":"서울중앙지법 부장판사"},"ryukj":{"name":"류경진","position":"서울중앙지법 부장판사"},"yoonss":{"name":"윤성식","position":"서울고법 부장판사"}},"meta":{"info":{"asOf":"2026-11-01","basis":"언론 보도 종합"}}};
+EMBEDDED.dec03={"cases":{"cho":{"order":12,"title":"조태용 국회 위증·정치관여","charge":"직무유기, 국정원법 위반, 국회증언감정법 위반, 증거인멸, 위증 등","status":"sup","note":"2심 재판부를 세계일보는 형사6-3부(민달기 재판장)로 보도했습니다. 결심 공판 보도는 형사1부로 일치합니다.","defendantIds":["choty"]},"choo":{"order":9,"title":"추경호 계엄 해제 표결 방해","charge":"내란 중요임무 종사","status":"sched","note":"","defendantIds":["choogh"]},"generals":{"order":7,"title":"군 지휘부 국회·선관위 병력 투입","charge":"내란 중요임무 종사, 직권남용","status":"trial","note":"계엄 1년 9개월 만의 1심. 중앙지역군사법원에서 서울중앙지법으로 이송된 사건입니다.","defendantIds":["yeoih","leejw","munsh","parkas","kwakjg"]},"han":{"order":3,"title":"한덕수 내란 중요임무 종사","charge":"내란 중요임무 종사, 허위공문서 작성, 대통령기록물법 위반, 위증 등","status":"sup","note":"","defendantIds":["handc"]},"kang":{"order":11,"title":"강의구 사후 계엄선포문 작성","charge":"허위공문서 작성·행사, 공용서류손상, 대통령기록물법 위반","status":"final","note":"","defendantIds":["kangeg"]},"kim-leak":{"order":15,"title":"김용현 정보사 요원 명단 누설","charge":"군형법상 군기누설, 개인정보보호법 위반","status":"app","note":"","defendantIds":["kimyh"]},"kim-phone":{"order":14,"title":"김용현 비화폰 지급·증거인멸 교사","charge":"위계공무집행방해, 증거인멸 교사","status":"app","note":"김용현 측 항소 의사 표명까지 확인. 항소심 일정은 보도로 확인하지 못했습니다.","defendantIds":["kimyh"]},"lee":{"order":4,"title":"이상민 언론사 단전·단수 지시","charge":"내란 중요임무 종사, 직권남용, 위증","status":"sup","note":"","defendantIds":["leesm"]},"lotteria":{"order":8,"title":"롯데리아 회동·계엄군 현장 지휘관","charge":"내란 중요임무 종사, 직권남용","status":"trial","note":"","defendantIds":["gush","bangjh","kimjg","anms","kimsy","kimch","jungsw","kimsw"]},"noh":{"order":10,"title":"노상원 제2수사단 구성","charge":"개인정보보호법 위반, 특가법상 알선수재","status":"final","note":"","defendantIds":["nohsw"]},"park":{"order":5,"title":"박성재 내란 중요임무 종사","charge":"내란 중요임무 종사, 직권남용","status":"sup","note":"","defendantIds":["parksj"]},"pss-phone":{"order":17,"title":"박종준 비화폰 기록 삭제","charge":"증거인멸","status":"app","note":"선고 직후라 상고 여부는 아직 보도되지 않았습니다.","defendantIds":["parkjj"]},"pss":{"order":16,"title":"경호처 체포영장 집행 저지","charge":"특수공무집행방해 등","status":"app","note":"선고 직후라 상고 여부는 아직 보도되지 않았습니다.","defendantIds":["parkjj","kimsh","leekw","kimshin"]},"yoon-arrest":{"order":2,"title":"윤석열 체포방해·국무위원 심의권 침해","charge":"특수공무집행방해, 직권남용, 허위공문서 작성 등","status":"final","note":"","defendantIds":["yoon"]},"yoon-drone":{"order":6,"title":"평양 무인기 투입 (일반이적)","charge":"일반이적, 직권남용, 군기누설 등","status":"app","note":"","defendantIds":["yoon","kimyh","yeoih","kimyd"]},"yoon-main":{"order":1,"title":"윤석열 등 내란 우두머리·중요임무 종사","charge":"내란 우두머리, 내란 중요임무 종사, 직권남용","status":"app","note":"","defendantIds":["yoon","kimyh","nohsw","chojh","kimbs","mokht","kimyg","yoonsy"]},"yoon-perjury":{"order":13,"title":"윤석열 한덕수 재판 위증","charge":"위증","status":"sup","note":"","defendantIds":["yoon"]}},"rulings":{"cho-1":{"caseId":"cho","level":1,"date":"2026-05-21","kind":"ruling","court":"서울중앙지법","judgeIds":[],"result":"징역 1년 6개월","summary":"계엄 국회 미보고(직무유기)·국정원법 위반 무죄, 위증·허위공문서 유죄","requested":"징역 7년","sources":[["뉴시스","https://www.newsis.com/view/NISX20260521_0003639911"]],"caseNo":"","judgeNote":""},"cho-2":{"caseId":"cho","level":2,"date":"2026-08-19","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"징역 2년 6개월 · 자격정지 2년 6개월","summary":"정치관여·증거인멸·헌재 위증이 유죄로 바뀌어 형량 가중","requested":"징역 7년","sources":[["노컷뉴스","https://nocutnews.co.kr/news/6564739"]],"caseNo":"","judgeNote":""},"cho-3":{"caseId":"cho","level":3,"date":"","kind":"pending","court":"대법원","judgeIds":[],"result":"상고심","summary":"상고 접수 여부는 보도로 직접 확인하지 못했습니다","sources":[],"caseNo":"","requested":"","judgeNote":""},"choo-1":{"caseId":"choo","level":1,"date":"2026-11-18","kind":"pending","court":"서울중앙지법 형사합의34부","judgeIds":["hansj"],"result":"선고 예정 (11.18 오후 2시)","summary":"9.30 결심","requested":"징역 20년","sources":[["뉴시스","https://www.newsis.com/view/NISX20260930_0003809440"]],"caseNo":"","judgeNote":""},"generals-1":{"caseId":"generals","level":1,"date":"2026-09-21","kind":"ruling","court":"서울중앙지법 형사합의26부","judgeIds":["leehk"],"result":"여인형 징역 18년","summary":"5명 전원 실형. 이진우·박안수·곽종근 보석 취소 후 재구속","requested":"여인형·이진우 30년","sources":[["경향신문","https://khan.co.kr/article/202609212126015"],["허프포스트","https://www.huffingtonpost.kr/article/260689"]],"caseNo":"","judgeNote":""},"han-1":{"caseId":"han","quote":{"text":"국무총리로서 위헌·위법한 비상계엄의 선포를 저지하고 국무위원의 심의를 거치도록 할 직무상 의무가 있었음에도 이를 외면한 채 사후 계엄선포문 작성을 도운 책임을 면할 수 없다.","speaker":"재판장 이진관 부장판사","context":"1심 양형 이유"},"level":1,"date":"2026-01-21","kind":"ruling","court":"서울중앙지법 형사합의33부","judgeIds":["leejk"],"caseNo":"2025고합1219","result":"징역 23년 · 법정구속","summary":"12·3 비상계엄을 ‘위로부터의 내란’으로 규정. 내란 우두머리 방조는 불성립","requested":"징역 15년","sources":[["법률신문","https://www.lawtimes.co.kr/news/articleView.html?idxno=215185"]],"judgeNote":""},"han-2":{"caseId":"han","level":2,"date":"2026-05-07","kind":"ruling","court":"서울고법 형사12-1부","judgeIds":["leesc","chojg","kimma"],"result":"징역 15년","summary":"부작위범 부분 불고불리 원칙으로 파기, 위증 일부 무죄","requested":"징역 23년","sources":[["머니투데이","https://www.mt.co.kr/society/2026/05/07/2026050709511945660"]],"caseNo":"","judgeNote":""},"han-3":{"caseId":"han","level":3,"date":"2026-08-05","kind":"pending","court":"대법원 전원합의체","judgeIds":["chohd"],"judgeNote":"재판장 조희대","result":"전원합의체 심리 중","summary":"8.5 전원합의체 회부, 9.29 첫 합의기일. 선고일 미정","sources":[["경향신문","https://www.khan.co.kr/article/202608051548001/"]],"caseNo":"","requested":""},"kang-1":{"caseId":"kang","level":1,"date":"2026-05-28","kind":"ruling","court":"서울중앙지법 형사합의30부","judgeIds":["parkoh"],"result":"징역 1년 6개월 · 법정구속","summary":"허위공문서 행사는 무죄","requested":"징역 5년","sources":[["경향신문","https://www.khan.co.kr/article/202605282118025/"]],"caseNo":"","judgeNote":""},"kang-2":{"caseId":"kang","level":2,"date":"2026-08-24","kind":"ruling","court":"서울고법 형사12-3부","judgeIds":["kimma","leesc","chojg"],"result":"항소 기각 · 징역 1년 6개월","requested":"징역 5년","sources":[["데일리안","https://m.dailian.co.kr/news/view/1681669"]],"caseNo":"","summary":"","judgeNote":""},"kang-3":{"caseId":"kang","level":3,"date":"2026-10-27","kind":"ruling","court":"대법원 형사1부","judgeIds":["cheondy"],"judgeNote":"주심 천대엽","caseNo":"2026도13791","result":"상고 기각 · 확정","sources":[["법률신문","https://www.lawtimes.co.kr/news/articleView.html?idxno=228407"]],"summary":"","requested":""},"kim-leak-1":{"caseId":"kim-leak","level":1,"date":"2026-06-19","kind":"ruling","court":"서울중앙지법 형사21부","judgeIds":["chosp"],"result":"징역 3년","sources":[["미주중앙일보","https://www.koreadaily.com/article/20260618234701693"]],"caseNo":"","summary":"","requested":"","judgeNote":""},"kim-leak-2":{"caseId":"kim-leak","level":2,"date":"2026-08-11","kind":"pending","court":"서울고법 형사12-3부","judgeIds":["kimma","leesc","chojg"],"result":"항소심 진행 중","summary":"8.11 첫 공판준비기일","sources":[["뉴시스","https://mobile.newsis.com/view/NISX20260803_0003733701"]],"caseNo":"","requested":"","judgeNote":""},"kim-phone-1":{"caseId":"kim-phone","level":1,"date":"2026-05-19","kind":"ruling","court":"서울중앙지법 형사합의34부","judgeIds":["hansj"],"result":"징역 3년","summary":"내란 특검 ‘1호 기소’ 사건","requested":"징역 5년","sources":[["한국경제","https://www.hankyung.com/article/202605196805i"]],"caseNo":"","judgeNote":""},"lee-1":{"caseId":"lee","level":1,"date":"2026-02-12","kind":"ruling","court":"서울중앙지법 형사합의32부","judgeIds":["ryukj"],"result":"징역 7년","summary":"직권남용 무죄, 위증 일부 유죄","requested":"징역 15년","sources":[["뉴시스","https://www.newsis.com/view/NISX20260212_0003513827"]],"caseNo":"","judgeNote":""},"lee-2":{"caseId":"lee","level":2,"date":"2026-05-12","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss","minsc","leedh"],"caseNo":"2026노509","result":"징역 9년","summary":"유무죄 판단 유지, 형량 2년 가중","sources":[["뉴시스","https://www.newsis.com/view/NISX20260512_0003626588"]],"requested":"","judgeNote":""},"lee-3":{"caseId":"lee","level":3,"date":"2026-08-05","kind":"pending","court":"대법원 전원합의체","judgeIds":["chohd"],"judgeNote":"재판장 조희대","caseNo":"2026도7559","result":"전원합의체 심리 중","summary":"한덕수 사건과 함께 심리. 선고일 미정","sources":[["헤럴드경제","https://biz.heraldcorp.com/article/10832073"]],"requested":""},"lotteria-1":{"caseId":"lotteria","quote":{"text":"공모 관계 및 내란 실행 행위 가담에 대한 합리적 의심 없는 증명이 부족하여 무죄를 선고한다.","speaker":"재판장 정수영 부장판사","context":"1심 무죄 판시"},"level":1,"date":"2026-10-30","kind":"ruling","court":"서울중앙지법 형사합의38-2부","judgeIds":["jungsy"],"result":"8명 전원 무죄","summary":"국헌문란 목적 인식이 증명되지 않았다고 판단. 특검 반발","requested":"징역 5~7년","sources":[["시사타파뉴스","https://sstpnews.com/news/view/1065589676619126"],["오마이뉴스","https://www.ohmynews.com/NWS_Web/Series/series_premium_pg.aspx?CNTN_CD=A0003280164"]],"caseNo":"","judgeNote":""},"noh-1":{"caseId":"noh","level":1,"date":"2025-12-15","kind":"ruling","court":"서울중앙지법 형사합의21부","judgeIds":["leehb"],"caseNo":"2025고합901","result":"징역 2년 · 추징 2,490만원","summary":"특검 기소 사건 중 첫 1심 선고","requested":"징역 3년","sources":[["법률신문","https://www.lawtimes.co.kr/news/214180"]],"judgeNote":""},"noh-2":{"caseId":"noh","level":2,"date":"2026-02-12","kind":"ruling","court":"서울고법 형사3부","judgeIds":["leesh"],"result":"쌍방 항소 기각 · 징역 2년","sources":[["경향신문","https://www.khan.co.kr/article/202602121549001"]],"caseNo":"","summary":"","requested":"","judgeNote":""},"noh-3":{"caseId":"noh","level":3,"date":"2026-05-12","kind":"ruling","court":"대법원","judgeIds":[],"result":"상고 기각 · 확정","summary":"12·3 비상계엄 관련 첫 대법원 확정","sources":[["뉴시스","https://www.newsis.com/view/NISX20260512_0003626007"]],"caseNo":"","requested":"","judgeNote":""},"park-1":{"caseId":"park","level":1,"date":"2026-06-22","kind":"ruling","court":"서울중앙지법 형사합의33부","judgeIds":["leejk"],"result":"징역 25년 · 법정구속","summary":"출국금지팀 대기·교정시설 수용여력 점검 지시 등 유죄","requested":"징역 20년","sources":[["MBC","https://imnews.imbc.com/replay/2026/nwdesk/article/6832014_37004.html"]],"caseNo":"","judgeNote":""},"park-2":{"caseId":"park","level":2,"date":"2026-10-21","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"징역 9년","summary":"검사 파견 검토 지시·직권남용 전부 무죄로 판단","requested":"징역 25년","sources":[["YTN","https://www.ytn.co.kr/_ln/0103_202610211633407993"]],"caseNo":"","judgeNote":""},"park-3":{"caseId":"park","level":3,"date":"2026-10-27","kind":"pending","court":"대법원","judgeIds":[],"result":"쌍방 상고","summary":"박성재 측과 특검 모두 10.27 상고장 제출","sources":[["연합뉴스(재인용)","https://www.koreancenter.or.kr/news/articleView.html?idxno=1430884"]],"caseNo":"","requested":"","judgeNote":""},"pss-1":{"caseId":"pss","level":1,"date":"2026-07-09","kind":"ruling","court":"서울중앙지법","judgeIds":[],"result":"박종준 징역 4년","summary":"실형 선고자 법정구속","requested":"박종준·김성훈 7년","sources":[["뉴시스","https://www.newsis.com/view/NISX20260709_0003702954"]],"caseNo":"","judgeNote":""},"pss-2":{"caseId":"pss","level":2,"date":"2026-10-28","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"박종준 징역 3년","summary":"박종준 사직·범행 인정 참작해 감형","requested":"박종준·김성훈 7년","sources":[["파이낸셜뉴스","https://www.fnnews.com/news/202610281551176001"]],"caseNo":"","judgeNote":""},"pss-phone-1":{"caseId":"pss-phone","level":1,"date":"2026-05-21","kind":"ruling","court":"서울중앙지법 형사합의32부","judgeIds":["ryukj"],"result":"무죄","requested":"징역 3년","sources":[["아시아경제","https://view.asiae.co.kr/article/2026052116034649014"]],"caseNo":"","summary":"","judgeNote":""},"pss-phone-2":{"caseId":"pss-phone","level":2,"date":"2026-10-14","kind":"ruling","court":"서울고법 형사12-2부","judgeIds":["chojg"],"result":"징역 1년 (1심 무죄 파기)","requested":"징역 3년","sources":[["경향신문","https://khan.co.kr/article/202610141431001"]],"caseNo":"","summary":"","judgeNote":""},"yoon-arrest-1":{"caseId":"yoon-arrest","level":1,"date":"2026-01-16","kind":"ruling","court":"서울중앙지법 형사합의35부","judgeIds":["baekdh"],"caseNo":"2025고합1010","result":"징역 5년","summary":"12·3 관련 윤석열 재판 중 첫 선고","requested":"징역 10년","sources":[["법률신문","https://www.lawtimes.co.kr/news/215054"]],"judgeNote":""},"yoon-arrest-2":{"caseId":"yoon-arrest","level":2,"date":"2026-04-29","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"징역 7년","summary":"1심 무죄였던 심의권 침해 일부·허위 PG 지시가 유죄로 바뀌어 형량 가중","requested":"징역 10년","sources":[["노컷뉴스","https://www.nocutnews.co.kr/news/6510519"]],"caseNo":"","judgeNote":""},"yoon-arrest-3":{"caseId":"yoon-arrest","level":3,"date":"2026-07-09","kind":"ruling","court":"대법원 3부","judgeIds":["leesy"],"judgeNote":"주심 이숙연","result":"상고 기각 · 징역 7년 확정","summary":"계엄 이후 583일 만의 대법원 확정","sources":[["경기일보","https://kyeonggi.com/article/20260709580229"]],"caseNo":"","requested":""},"yoon-drone-1":{"caseId":"yoon-drone","level":1,"date":"2026-06-12","kind":"ruling","court":"서울중앙지법 형사합의36부","judgeIds":["leejy"],"result":"윤석열 징역 30년","summary":"전직 대통령 첫 일반이적 유죄","requested":"윤석열 30년 · 김용현 25년","sources":[["위키트리","https://www.wikitree.co.kr/articles/1141065"],["인사이트","https://www.insight.co.kr/news/558326"]],"caseNo":"","judgeNote":""},"yoon-drone-2":{"caseId":"yoon-drone","level":2,"date":"2026-12-04","kind":"pending","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"선고 예정 (12.4 오후 3시)","summary":"10.16 결심. 윤석열·김용현 각 30년, 여인형 20년, 김용대 5년 구형","sources":[["연합뉴스(재인용)","https://www.koreancenter.or.kr/news/articleView.html?idxno=1425820"]],"caseNo":"","requested":"","judgeNote":""},"yoon-main-1":{"caseId":"yoon-main","quote":{"text":"대통령의 헌법 수호 책무를 정면으로 저버리고 국가 질서를 파괴한 중대 범죄로서, 국가의 존립과 민주적 기본질서를 위태롭게 한 행위는 엄중한 단죄가 불가피하다.","speaker":"재판장 지귀연 부장판사","context":"1심 양형 이유"},"level":1,"date":"2026-02-19","kind":"ruling","court":"서울중앙지법 형사합의25부","judgeIds":["jiky"],"caseNo":"2025고합129","result":"윤석열 무기징역","summary":"12·3 비상계엄의 국헌문란 목적과 폭동을 모두 인정. 김용군·윤승영은 무죄","requested":"윤석열 사형","sources":[["더팩트","https://v.daum.net/v/20260220000128927"],["파이낸셜뉴스","https://www.fnnews.com/news/202604141438579229"]],"judgeNote":""},"yoon-main-2":{"caseId":"yoon-main","level":2,"date":"2026-10-29","kind":"pending","court":"서울고법 형사12-1부","judgeIds":["leesc","chojg","kimma"],"result":"결심 진행 중","summary":"특검 사형 구형(10.29). 11.3·11.5 최종변론 후 선고기일 지정 예정","requested":"윤석열 사형","sources":[["경향신문","https://www.khan.co.kr/article/202610290757001/"],["뉴데일리","https://www.newdaily.co.kr/site/data/html/2026/10/29/2026102900190.html"]],"caseNo":"","judgeNote":""},"yoon-perjury-1":{"caseId":"yoon-perjury","level":1,"date":"2026-05-28","kind":"ruling","court":"서울중앙지법 형사합의32부","judgeIds":["ryukj"],"result":"무죄","requested":"징역 2년","sources":[["데일리안","https://www.dailian.co.kr/news/view/1649627/"]],"caseNo":"","summary":"","judgeNote":""},"yoon-perjury-2":{"caseId":"yoon-perjury","level":2,"date":"2026-09-16","kind":"ruling","court":"서울고법 형사1부","judgeIds":["yoonss"],"result":"무죄 (항소 기각)","requested":"벌금 1,000만원","sources":[["위키트리","https://www.wikitree.co.kr/articles/1159872"]],"caseNo":"","summary":"","judgeNote":""},"yoon-perjury-3":{"caseId":"yoon-perjury","level":3,"date":"","kind":"pending","court":"대법원","judgeIds":[],"result":"특검 상고","sources":[["연합뉴스(재인용)","https://supple.kr/news/cmudi0vdl003dnn35smvj295b"]],"caseNo":"","summary":"","requested":"","judgeNote":""}},"sentences":{"cho-1-choty":{"rulingId":"cho-1","caseId":"cho","personId":"choty","outcome":"일부 유죄","sentence":"징역 1년 6개월","requested":"징역 7년"},"cho-2-choty":{"rulingId":"cho-2","caseId":"cho","personId":"choty","outcome":"일부 유죄","sentence":"징역 2년 6개월","requested":"징역 7년"},"generals-1-kwakjg":{"rulingId":"generals-1","caseId":"generals","personId":"kwakjg","outcome":"유죄","sentence":"징역 9년","requested":"징역 20년"},"generals-1-leejw":{"rulingId":"generals-1","caseId":"generals","personId":"leejw","outcome":"유죄","sentence":"징역 15년","requested":"징역 30년"},"generals-1-munsh":{"rulingId":"generals-1","caseId":"generals","personId":"munsh","outcome":"유죄","sentence":"징역 12년","requested":"징역 20년"},"generals-1-parkas":{"rulingId":"generals-1","caseId":"generals","personId":"parkas","outcome":"유죄","sentence":"징역 10년","requested":"징역 25년"},"generals-1-yeoih":{"rulingId":"generals-1","caseId":"generals","personId":"yeoih","outcome":"유죄","sentence":"징역 18년","requested":"징역 30년"},"han-1-handc":{"rulingId":"han-1","caseId":"han","personId":"handc","outcome":"유죄","sentence":"징역 23년","requested":"징역 15년"},"han-2-handc":{"rulingId":"han-2","caseId":"han","personId":"handc","outcome":"유죄","sentence":"징역 15년","requested":"징역 23년"},"kang-1-kangeg":{"rulingId":"kang-1","caseId":"kang","personId":"kangeg","outcome":"유죄","sentence":"징역 1년 6개월","requested":"징역 5년"},"kang-2-kangeg":{"rulingId":"kang-2","caseId":"kang","personId":"kangeg","outcome":"유죄","sentence":"징역 1년 6개월","requested":"징역 5년"},"kang-3-kangeg":{"rulingId":"kang-3","caseId":"kang","personId":"kangeg","outcome":"유죄","sentence":"징역 1년 6개월 확정","requested":""},"kim-leak-1-kimyh":{"rulingId":"kim-leak-1","caseId":"kim-leak","personId":"kimyh","outcome":"유죄","sentence":"징역 3년","requested":""},"kim-phone-1-kimyh":{"rulingId":"kim-phone-1","caseId":"kim-phone","personId":"kimyh","outcome":"유죄","sentence":"징역 3년","requested":"징역 5년"},"lee-1-leesm":{"rulingId":"lee-1","caseId":"lee","personId":"leesm","outcome":"유죄","sentence":"징역 7년","requested":"징역 15년"},"lee-2-leesm":{"rulingId":"lee-2","caseId":"lee","personId":"leesm","outcome":"유죄","sentence":"징역 9년","requested":""},"lotteria-1-anms":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"anms","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-bangjh":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"bangjh","outcome":"무죄","sentence":"무죄","requested":"징역 7년"},"lotteria-1-gush":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"gush","outcome":"무죄","sentence":"무죄","requested":"징역 7년"},"lotteria-1-jungsw":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"jungsw","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-kimch":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"kimch","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-kimjg":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"kimjg","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-kimsw":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"kimsw","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"lotteria-1-kimsy":{"rulingId":"lotteria-1","caseId":"lotteria","personId":"kimsy","outcome":"무죄","sentence":"무죄","requested":"징역 5~7년"},"noh-1-nohsw":{"rulingId":"noh-1","caseId":"noh","personId":"nohsw","outcome":"유죄","sentence":"징역 2년","requested":"징역 3년"},"noh-2-nohsw":{"rulingId":"noh-2","caseId":"noh","personId":"nohsw","outcome":"유죄","sentence":"징역 2년","requested":""},"noh-3-nohsw":{"rulingId":"noh-3","caseId":"noh","personId":"nohsw","outcome":"유죄","sentence":"징역 2년 확정","requested":""},"park-1-parksj":{"rulingId":"park-1","caseId":"park","personId":"parksj","outcome":"유죄","sentence":"징역 25년","requested":"징역 20년"},"park-2-parksj":{"rulingId":"park-2","caseId":"park","personId":"parksj","outcome":"유죄","sentence":"징역 9년","requested":"징역 25년"},"pss-1-kimsh":{"rulingId":"pss-1","caseId":"pss","personId":"kimsh","outcome":"유죄","sentence":"징역 5년","requested":"징역 7년"},"pss-1-kimshin":{"rulingId":"pss-1","caseId":"pss","personId":"kimshin","outcome":"유죄","sentence":"징역 1년, 집행유예 2년","requested":""},"pss-1-leekw":{"rulingId":"pss-1","caseId":"pss","personId":"leekw","outcome":"유죄","sentence":"징역 2년 6개월","requested":""},"pss-1-parkjj":{"rulingId":"pss-1","caseId":"pss","personId":"parkjj","outcome":"유죄","sentence":"징역 4년","requested":"징역 7년"},"pss-2-kimsh":{"rulingId":"pss-2","caseId":"pss","personId":"kimsh","outcome":"유죄","sentence":"징역 5년","requested":"징역 7년"},"pss-2-kimshin":{"rulingId":"pss-2","caseId":"pss","personId":"kimshin","outcome":"유죄","sentence":"징역 1년, 집행유예 2년","requested":"징역 3년"},"pss-2-leekw":{"rulingId":"pss-2","caseId":"pss","personId":"leekw","outcome":"유죄","sentence":"징역 2년","requested":"징역 5년"},"pss-2-parkjj":{"rulingId":"pss-2","caseId":"pss","personId":"parkjj","outcome":"유죄","sentence":"징역 3년","requested":"징역 7년"},"pss-phone-1-parkjj":{"rulingId":"pss-phone-1","caseId":"pss-phone","personId":"parkjj","outcome":"무죄","sentence":"무죄","requested":"징역 3년"},"pss-phone-2-parkjj":{"rulingId":"pss-phone-2","caseId":"pss-phone","personId":"parkjj","outcome":"유죄","sentence":"징역 1년","requested":"징역 3년"},"yoon-arrest-1-yoon":{"rulingId":"yoon-arrest-1","caseId":"yoon-arrest","personId":"yoon","outcome":"유죄","sentence":"징역 5년","requested":"징역 10년"},"yoon-arrest-2-yoon":{"rulingId":"yoon-arrest-2","caseId":"yoon-arrest","personId":"yoon","outcome":"유죄","sentence":"징역 7년","requested":"징역 10년"},"yoon-arrest-3-yoon":{"rulingId":"yoon-arrest-3","caseId":"yoon-arrest","personId":"yoon","outcome":"유죄","sentence":"징역 7년 확정","requested":""},"yoon-drone-1-kimyd":{"rulingId":"yoon-drone-1","caseId":"yoon-drone","personId":"kimyd","outcome":"유죄","sentence":"징역 3년, 집행유예 5년","requested":""},"yoon-drone-1-kimyh":{"rulingId":"yoon-drone-1","caseId":"yoon-drone","personId":"kimyh","outcome":"유죄","sentence":"징역 30년","requested":"징역 25년"},"yoon-drone-1-yeoih":{"rulingId":"yoon-drone-1","caseId":"yoon-drone","personId":"yeoih","outcome":"유죄","sentence":"징역 15년","requested":""},"yoon-drone-1-yoon":{"rulingId":"yoon-drone-1","caseId":"yoon-drone","personId":"yoon","outcome":"유죄","sentence":"징역 30년","requested":"징역 30년"},"yoon-main-1-chojh":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"chojh","outcome":"유죄","sentence":"징역 12년","requested":""},"yoon-main-1-kimbs":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"kimbs","outcome":"유죄","sentence":"징역 10년","requested":"징역 15년"},"yoon-main-1-kimyg":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"kimyg","outcome":"무죄","sentence":"무죄","requested":""},"yoon-main-1-kimyh":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"kimyh","outcome":"유죄","sentence":"징역 30년","requested":"무기징역"},"yoon-main-1-mokht":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"mokht","outcome":"유죄","sentence":"징역 3년","requested":""},"yoon-main-1-nohsw":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"nohsw","outcome":"유죄","sentence":"징역 18년","requested":"징역 30년"},"yoon-main-1-yoon":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"yoon","outcome":"유죄","sentence":"무기징역","requested":"사형"},"yoon-main-1-yoonsy":{"rulingId":"yoon-main-1","caseId":"yoon-main","personId":"yoonsy","outcome":"무죄","sentence":"무죄","requested":""},"yoon-perjury-1-yoon":{"rulingId":"yoon-perjury-1","caseId":"yoon-perjury","personId":"yoon","outcome":"무죄","sentence":"무죄","requested":"징역 2년"},"yoon-perjury-2-yoon":{"rulingId":"yoon-perjury-2","caseId":"yoon-perjury","personId":"yoon","outcome":"무죄","sentence":"무죄","requested":"벌금 1,000만원"}},"people":{"anms":{"name":"안무성","role":"전 9공수특전여단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·9공수특전여단 현장 지휘","statusNote":"1심 무죄"},"bangjh":{"name":"방정환","role":"전 국방부 혁신기획관","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·국방부 혁신기획관 현장 관여","statusNote":"1심 무죄"},"chojh":{"name":"조지호","role":"전 경찰청장","category":"경찰","keyRole":"경찰청장으로서 경찰 기동대 국회 출입문 전면 봉쇄 지시","statusNote":"내란 1심 징역 12년"},"choogh":{"name":"추경호","role":"당시 국민의힘 원내대표(현 대구시장)","category":"국회·정계","keyRole":"비상계엄 해제 표결 방해 목적 의원총회 지연 및 표결 불참 유도","statusNote":"1심 선고 예정 (11.18, 특검 징역 20년 구형)","photo":"assets/photos/choogh","photoAlt":"추경호 당시 국민의힘 원내대표 프로필 사진","photoCredit":"국민의힘TV","photoLicense":"CC BY 3.0","photoSource":"https://commons.wikimedia.org/wiki/File:Choo_Kyung-ho%27s_Portrait_(2024.5).png","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/"},"choty":{"name":"조태용","role":"전 국가정보원장","category":"정부·국무위원","keyRole":"국정원 비상계엄 국회 미보고(직무유기), 헌재 위증, 허위공문서 작성","statusNote":"1심 징역 1년 6개월 → 2심 징역 2년 6개월","photo":"assets/photos/choty","photoAlt":"조태용 전 국가정보원장 프로필 사진","photoCredit":"U.S. Department of State","photoLicense":"Public domain","photoSource":"https://commons.wikimedia.org/wiki/File:Cho_Taeyong_in_2022_(cropped).jpg"},"gush":{"name":"구삼회","role":"전 육군 2기갑여단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·계엄군 현장 지휘 준비","statusNote":"1심 무죄"},"handc":{"name":"한덕수","role":"전 국무총리","category":"정부·국무위원","keyRole":"사후 계엄선포 국무회의 주재 및 사후 부서 의혹, 헌재·국회 위증","statusNote":"1심 징역 23년 → 2심 징역 15년 (대법원 심리 중)","photo":"assets/photos/handc","photoAlt":"한덕수 전 국무총리 프로필 사진","photoCredit":"제주특별자치도청 정책기획관","photoLicense":"공공누리 제1유형","photoSource":"https://commons.wikimedia.org/wiki/File:Prime_Minister_of_South_Korea_HAN_Duck-soo_20240516.jpg","photoLicenseUrl":"https://www.kogl.or.kr/info/licenseType1.do"},"jungsw":{"name":"정성우","role":"전 방첩사 1처장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·방첩사 1처 현장 관여","statusNote":"1심 무죄"},"kangeg":{"name":"강의구","role":"전 대통령실 제1부속실장","category":"대통령실","keyRole":"비상계엄 해제 가결 후 사후 계엄선포문 허위 작성·행사 및 폐기","statusNote":"징역 1년 6개월 대법원 확정 (수감)"},"kimbs":{"name":"김봉식","role":"전 서울경찰청장","category":"경찰","keyRole":"서울경찰청장으로서 서울 기동대 국회 봉쇄 현장 지휘","statusNote":"내란 1심 징역 10년"},"kimch":{"name":"김창학","role":"전 수방사 군사경찰단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·수방사 군사경찰단 현장 지휘","statusNote":"1심 무죄"},"kimjg":{"name":"김정근","role":"전 3공수특전여단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·3공수특전여단 현장 지휘","statusNote":"1심 무죄"},"kimsh":{"name":"김성훈","role":"전 대통령경호처 차장","category":"대통령실","keyRole":"대통령경호처 차장으로서 한남동 관저 영장 저지 현장 지휘","statusNote":"1·2심 징역 5년"},"kimshin":{"name":"김신","role":"전 가족경호부장","category":"대통령실","keyRole":"경호처 가족경호부장으로서 체포영장 집행 저지 가담","statusNote":"1·2심 징역 1년, 집행유예 2년"},"kimsw":{"name":"김세운","role":"전 특수작전항공단장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·특수작전항공단 헬기 동원 관여","statusNote":"1심 무죄"},"kimsy":{"name":"김상용","role":"전 국방부 조사본부 차장","category":"계엄군 현장 지휘관","keyRole":"롯데리아 회동·국방부 조사본부 현장 관여","statusNote":"1심 무죄"},"kimyd":{"name":"김용대","role":"전 드론작전사령관","category":"군 지휘부","keyRole":"평양 무인기 침투 작전 관여 (일반이적)","statusNote":"1심 징역 3년, 집행유예 5년"},"kimyg":{"name":"김용군","role":"전 제3야전군 헌병대장","category":"경찰","keyRole":"제3야전군 헌병대장 (내란 가담 혐의)","statusNote":"1심 무죄"},"kimyh":{"name":"김용현","role":"전 국방부 장관","category":"군 지휘부","keyRole":"비상계엄 건의 및 기획 주도, 특전사·수방사 국회·선관위 병력 투입 지시","statusNote":"내란 1심 징역 30년 / 비화폰 징역 3년 / 군기누설 징역 3년","photo":"assets/photos/kimyh","photoAlt":"김용현 전 국방부 장관 프로필 사진","photoCredit":"U.S. Department of Defense","photoLicense":"Public domain","photoSource":"https://commons.wikimedia.org/wiki/File:Kim_Yong-hyun_(%EA%B9%80%EC%9A%A9%ED%98%84)_(2024)_(cropped).jpg"},"kwakjg":{"name":"곽종근","role":"전 육군특수전사령관","category":"군 지휘부","keyRole":"특전사 공수여단 국회 헬기 강습 및 본회의장 침투 지시","statusNote":"1심 징역 9년 (보석 취소 후 재구속)","photo":"assets/photos/kwakjg","photoAlt":"곽종근 전 육군특수전사령관 프로필 사진","photoCredit":"MBC PD Note","photoLicense":"CC BY 3.0","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/","photoSource":"https://commons.wikimedia.org/wiki/File:Kwak_Jong-geun_in_November_2025.png"},"leejw":{"name":"이진우","role":"전 수도방위사령관","category":"군 지휘부","keyRole":"수도방위사령부 예하 부대 국회 본관 침투 및 본회의장 진입 지휘","statusNote":"1심 징역 15년 (보석 취소 후 재구속)","photo":"assets/photos/leejw","photoAlt":"이진우 전 수도방위사령관 프로필 사진","photoCredit":"MBC PD Note","photoLicense":"CC BY 3.0","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/","photoSource":"https://commons.wikimedia.org/wiki/File:Lieutenant_General_Lee_Jin-woo.png"},"leekw":{"name":"이광우","role":"전 경호본부장","category":"대통령실","keyRole":"대통령경호처 체포영장 집행 저지 가담","statusNote":"1심 징역 2년 6개월 → 2심 징역 2년"},"leesm":{"name":"이상민","role":"전 행정안전부 장관","category":"정부·국무위원","keyRole":"언론사·정당 단전·단수 지시, 소방·경찰 동원 지시 혐의, 사후 위증","statusNote":"1심 징역 7년 → 2심 징역 9년 (대법원 심리 중)","photo":"assets/photos/leesm","photoAlt":"이상민 전 행정안전부 장관 프로필 사진","photoCredit":"제주특별자치도청","photoLicense":"공공누리 제1유형","photoSource":"https://commons.wikimedia.org/wiki/File:Lee_Sang-min_20240531.jpg","photoLicenseUrl":"https://www.kogl.or.kr/info/licenseType1.do"},"mokht":{"name":"목현태","role":"전 국회경비대장","category":"경찰","keyRole":"국회경비대장으로서 계엄군의 국회 본관 진입 묵인 및 조력","statusNote":"내란 1심 징역 3년"},"munsh":{"name":"문상호","role":"전 국군정보사령관","category":"군 지휘부","keyRole":"정보사 요원 선관위 침투 및 전산 서버 확인 지휘","statusNote":"1심 징역 12년"},"nohsw":{"name":"노상원","role":"전 국군정보사령관","category":"군 지휘부","keyRole":"사조직 제2수사단 구성, 정치인 사찰 및 알선수재","statusNote":"개인정보보호법 위반 등 징역 2년 확정 / 내란 1심 징역 18년","photo":"assets/photos/nohsw","photoAlt":"노상원 전 국군정보사령관 프로필 사진","photoCredit":"MBC PD수첩","photoLicense":"CC BY 3.0","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/","photoSource":"https://commons.wikimedia.org/wiki/File:PD%EC%88%98%EC%B2%A9_%EB%85%B8%EC%83%81%EC%9B%90_%EC%82%AC%EC%A7%84.jpg"},"parkas":{"name":"박안수","role":"전 육군참모총장(계엄사령관)","category":"군 지휘부","keyRole":"계엄사령관 명의 포고령 제1호 발표, 계엄군 명목 지휘","statusNote":"1심 징역 10년 (보석 취소 후 재구속)","photo":"assets/photos/parkas","photoAlt":"박안수 전 육군참모총장(계엄사령관) 공식 사진","photoCredit":"U.S. Army (Sgt. Johanna Pullum)","photoLicense":"Public domain","photoSource":"https://commons.wikimedia.org/wiki/File:LANPAC_24_240515-A-MM617-1007.jpg"},"parkjj":{"name":"박종준","role":"전 대통령경호처장","category":"대통령실","keyRole":"대통령경호처 체포영장 집행 저지, 비화폰 통화기록 삭제 지시","statusNote":"체포방해 2심 징역 3년 / 비화폰 2심 징역 1년","photo":"assets/photos/parkjj","photoAlt":"박종준 전 대통령경호처장 프로필 사진","photoCredit":"Allurehomme","photoLicense":"CC BY-SA 4.0","photoLicenseUrl":"https://creativecommons.org/licenses/by-sa/4.0/","photoSource":"https://commons.wikimedia.org/wiki/File:%EB%B0%95%EC%A2%85%EC%A4%80.jpg"},"parksj":{"name":"박성재","role":"전 법무부 장관","category":"정부·국무위원","keyRole":"출국금지팀 대기 지시, 교정시설 수용여력 점검, 검사 파견 검토","statusNote":"1심 징역 25년 → 2심 징역 9년 (쌍방 상고)","photo":"assets/photos/parksj","photoAlt":"박성재 전 법무부 장관 프로필 사진","photoCredit":"법무부","photoLicense":"공공누리 제1유형","photoSource":"https://www.moj.go.kr/minister/2090/subview.do","photoLicenseUrl":"https://www.kogl.or.kr/info/licenseType1.do"},"yeoih":{"name":"여인형","role":"전 국군방첩사령관","category":"군 지휘부","keyRole":"방첩사 병력 국회·선관위 투입, 합동수사본부 가동 및 정치인 체포 계획 수립","statusNote":"군 지휘부 1심 징역 18년 / 일반이적 1심 징역 15년","photo":"assets/photos/yeoih","photoAlt":"여인형 전 국군방첩사령관 프로필 사진","photoCredit":"MBC PD Note","photoLicense":"CC BY 3.0","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/","photoSource":"https://commons.wikimedia.org/wiki/File:Lieutenant_General_Yeo_In-hyung.png"},"yoon":{"name":"윤석열","role":"전 대통령","category":"대통령실","keyRole":"12·3 비상계엄 선포 및 국회·선관위 무력 진입 지시, 체포영장 집행 저지","statusNote":"내란 1심 무기징역 / 일반이적 1심 징역 30년 / 체포방해 징역 7년 확정","photo":"assets/photos/yoon","photoAlt":"윤석열 전 대통령 공식 초상","photoCredit":"대한민국 대통령실","photoLicense":"CC BY 3.0","photoSource":"https://commons.wikimedia.org/wiki/File:South_Korea_President_Yoon_Suk_Yeol_portrait_(crop).jpg","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/"},"yoonsy":{"name":"윤승영","role":"전 국가수사본부 수사기획조정관","category":"경찰","keyRole":"국수본 수사기획조정관 (내란 가담 혐의)","statusNote":"1심 무죄"}},"judges":{"baekdh":{"name":"백대현","position":"서울중앙지법 부장판사"},"cheondy":{"name":"천대엽","position":"대법관"},"chohd":{"name":"조희대","position":"대법원장"},"chojg":{"name":"조진구","position":"서울고법 고법판사"},"chosp":{"name":"조순표","position":"서울중앙지법 부장판사"},"hansj":{"name":"한성진","position":"서울중앙지법 부장판사"},"jiky":{"name":"지귀연","position":"서울중앙지법 부장판사"},"jungsy":{"name":"정수영","position":"서울중앙지법 부장판사"},"kimma":{"name":"김민아","position":"서울고법 고법판사"},"leedh":{"name":"이동현","position":"서울고법 고법판사"},"leehb":{"name":"이현복","position":"서울중앙지법 부장판사"},"leehk":{"name":"이현경","position":"서울중앙지법 부장판사"},"leejk":{"name":"이진관","position":"서울중앙지법 부장판사"},"leejy":{"name":"이정엽","position":"서울중앙지법 부장판사"},"leesc":{"name":"이승철","position":"서울고법 고법판사"},"leesh":{"name":"이승한","position":"서울고법 부장판사"},"leesy":{"name":"이숙연","position":"대법관"},"minsc":{"name":"민성철","position":"서울고법 고법판사"},"parkoh":{"name":"박옥희","position":"서울중앙지법 부장판사"},"ryukj":{"name":"류경진","position":"서울중앙지법 부장판사"},"yoonss":{"name":"윤성식","position":"서울고법 부장판사"}},"meta":{"info":{"asOf":"2026-11-01","basis":"언론 보도 종합"}}};
 EMBEDDED.kim={
   "cases": {
     "kim-main": {
@@ -1635,6 +1922,11 @@ EMBEDDED.kim={
     },
     "kim-main-2": {
       "caseId": "kim-main",
+      "quote": {
+        "text": "대통령 배우자라는 지위를 이용해 부정한 정보로 주식을 처분하고 자본시장의 신뢰를 훼손한 권력형 경제범죄로서, 그 죄책에 상응하는 엄중한 처벌이 불가피하다.",
+        "speaker": "재판장 신종오 고법판사",
+        "context": "2심 양형 이유"
+      },
       "level": 2,
       "date": "2026-04-28",
       "kind": "ruling",
@@ -1737,6 +2029,11 @@ EMBEDDED.kim={
     },
     "oh-myung-2": {
       "caseId": "oh-myung",
+      "quote": {
+        "text": "명태균의 진술은 일관성이 결여되어 있고 객관적 물증과 배치되어 신빙성을 인정하기 어렵다.",
+        "speaker": "재판장 구회근 부장판사",
+        "context": "2심 무죄 판시"
+      },
       "level": 2,
       "date": "2026-10-23",
       "kind": "ruling",
@@ -1837,6 +2134,11 @@ EMBEDDED.kim={
     },
     "kweon-2": {
       "caseId": "kweon-tongil",
+      "quote": {
+        "text": "정치자금이 특정 종교단체가 국가권력에 접근하기 위한 수단으로 제공되어 정교분리 원칙을 침해하였다.",
+        "speaker": "재판장 백승엽 고법판사",
+        "context": "2심 유죄 판시 (대법원 확정)"
+      },
       "level": 2,
       "date": "2026-04-28",
       "kind": "ruling",
@@ -2307,6 +2609,7 @@ EMBEDDED.kim={
     }
   }
 };
+EMBEDDED.chae={"cases":{"chae-park-mutiny-1":{"order":1,"title":"박정훈 대령 항명 및 상관명예훼손","charge":"군형법상 항명, 정보통신망법상 명예훼손","status":"final","note":"국방부 검찰단이 집단 항명으로 입건·기소한 사건(2023.10.6 기소). 1심 무죄 후 서울고법 항소심이 진행되던 중, 채상병 특검이 군검찰의 항소를 공소권 남용으로 판단해 항소를 취하해 무죄가 확정됐습니다. 박정훈은 이후 준장으로 진급했습니다.","defendantIds":["parkjh"]},"chae-im-negligence-1":{"order":2,"title":"임성근 전 해병1사단장 업무상과실치사 및 구명 로비 의혹","charge":"업무상과실치사상, 군형법상 명령 위반","status":"final","note":"채상병 특검팀의 ‘1호 기소’ 사건(2025.11.10 구속기소). 경북경찰청과 대구지검이 임성근에 대한 수사를 불송치·불기소로 끝냈던 것을 특검이 뒤집은 사건입니다. 박상현 전 7여단장 등 현장 지휘관 4명과 통합 기소·심리됐으며, 현장 지휘관 재판은 ‘이용민 포병대대장 등 현장 지휘관’ 사건 카드로 정리했습니다. 구명 로비 의혹(이종호 경로)은 특검이 사실로 확인하지 못한 채 종결했고, 관련 국회 위증 재판은 ‘임성근 국회 위증’ 카드를 참고하세요.","defendantIds":["imsg"]},"chae-im-perjury-1":{"order":3,"title":"임성근 전 해병1사단장 국회 위증","charge":"국회증언감정법 위반(위증)","status":"app","note":"구명 로비 의혹의 핵심 인물 이종호 전 블랙펄인베스트 대표를 ‘만난 적 없다’고 증언하고, 휴대전화 비밀번호를 기억하지 못한다고 한 혐의. 2심은 이종호 관련·쌍룡훈련 초청 관련 증언을 이유 무죄로 판단하고 휴대전화 비밀번호 관련 위증만 유죄로 봤습니다. 상고 여부는 선고 직후 보도로 확인하지 못했습니다.","defendantIds":["imsg"]},"chae-lee-australia-1":{"order":4,"title":"이종섭 전 국방부장관 호주대사 도피 및 출국금지 해제 의혹","charge":"범인도피, 직권남용권리행사방해, 국가공무원법 위반","status":"app","note":"공수처 수사를 받던 이종섭 전 장관을 호주대사로 임명해 출국시킨 혐의로 윤석열·조태용·박성재·심우정·장호진·이시원 6명이 기소됐습니다. 1심은 대통령의 고유 인사권 행사로 보아 전원 무죄를 선고했고, 특검이 항소해 항소심이 진행 중입니다.","defendantIds":["yoon","choty","parksj","simwj","janghj","leesw"]},"chae-defense-pressure-1":{"order":5,"title":"국방부 수사외압 — 신범철 전 차관·유재은 법무관리관·박진희 군사보좌관 등 직권남용","charge":"직권남용권리행사방해, 공용·공전자기록무효·위작·변조·은닉·탈취, 모해위증, 허위공문서작성·행사, 공무상비밀누설 등","status":"trial","note":"‘VIP 격노’(2023.7.31 대통령 주재 회의) 이후 대통령실·국방부가 해병대 수사단의 수사 결과를 변경하기 위해 조직적으로 외압을 행사한 혐의. 2025.11.21 윤석열 전 대통령을 정점으로 조태용·이종섭·신범철·전하규·허태근·유재은·박진희·김동혁·김계환·유균혜와 조직총괄담당관 이모 씨 등 12명이 불구속 기소됐습니다.","defendantIds":["yoon","choty","leejsh","shinc","jeonhk","heotg","yooje","parkjhi","kimdh","kimkhw","yoogyh"]},"chae-presidential-vip-1":{"order":6,"title":"이시원 전 공직기강비서관·임기훈 전 국방비서관 대통령실 수사외압 및 VIP 격노 개입","charge":"공무상비밀누설 (2차 종합특검 기소)","status":"trial","note":"임기훈은 2023.7.31 수석비서관 회의에서 채상병 사건 초동수사 결과를 윤석열에 최초 보고해 ‘VIP 격노’를 촉발한 당사자이고, 이시원은 경찰에 이첩된 수사 기록의 국방부 회수 과정을 조율한 의혹을 받았습니다. 이명현 채상병 특검은 2025.11.21 수사 조력을 이유로 두 사람을 기소유예했고, 이후 권창영 2차 종합특검이 경북경찰청 압수수색 계획이 해병대에 사전 유출된 경로(이시원→임기훈→국방부)를 공무상비밀누설 혐의로 2026.8.13 불구속 기소했습니다.","defendantIds":["leesw","imkh"]},"chae-prosecution-illegal-1":{"order":7,"title":"김동혁 전 국방부 검찰단장 등 경찰 이첩 기록 불법 회수 및 허위 구속영장 사건","charge":"허위공문서작성·행사, 직권남용감금, 국회증언감정법 위반","status":"sup","note":"박정훈 전 수사단장의 구속영장 청구서에 ‘VIP 격노는 망상’이라는 취지의 허위 내용을 기재하고 영장실질심사 동안 약 6시간 46분 감금했다는 혐의로 재판에 넘겨진 군검사 2명의 재판입니다. 특검은 2026.9.17 상고했고, 대법원 판단이 남아 있습니다.","defendantIds":["yombh","kimminj"]},"chae-battalion-negligence-1":{"order":8,"title":"이용민 포병대대장 등 현장 지휘관 업무상과실치사 사건","charge":"업무상과실치사상","status":"final","note":"임성근 전 사단장과 통합 기소·심리된 현장 지휘부(박상현 전 제7여단장·최진규 전 포11대대장·이용민 전 포7대대장·장모 전 포7대대 본부중대장) 재판입니다. 안전장비 없는 수중수색으로 이어진 지시 하달에 대한 책임이 인정됐고, 대법원에서 모두 확정됐습니다.","defendantIds":["parksh","choejg","leeym","jang-m"]},"chae-leejh-phone-1":{"order":9,"title":"이종호 전 블랙펄인베스트 대표 증거인멸(휴대전화 파손) 사건","charge":"증거인멸교사","status":"final","note":"구명 로비 의혹 특검 수사 기간인 2025년 7월, 이종호 전 대표가 서초 잠원 한강공원에서 지인 차 씨에게 휴대전화를 던지고 파손·폐기하도록 한 혐의. 법원은 형사처벌 가능성을 염두에 둔 자기 이익을 위한 행위라 증거인멸죄가 성립하지 않는다는 법리로 무죄를 확정했습니다. 특검은 대법원 전원합의체 회부조차 없었다며 유감을 표했습니다.","defendantIds":["leeho"]}},"rulings":{"chae-park-mutiny-1":{"caseId":"chae-park-mutiny-1","quote":{"text":"피고인의 수사 서류 이첩 행위는 군사법원법에 따른 정당한 직무 수행이며, 국방부 장관의 이첩 보류 명령은 직권의 한계를 벗어난 부당한 지시로서 정당한 직무상 명령으로 볼 수 없다.","speaker":"주심 김종일 재판부장","context":"1심 무죄 판시"},"level":1,"date":"2025-01-09","kind":"ruling","court":"중앙지역군사법원","judgeIds":["kimji"],"caseNo":"2023고43","result":"무죄","summary":"해병대사령관이 이첩 보류를 개별적·구체적으로 명령했다고 보기 어렵고, 이첩 중단 명령은 국방장관 지시에 따라 수사 결과를 수정할 목적으로 한 권한 밖의 부당한 명령이라 항명이 성립하지 않음. 상관명예훼손도 무죄","requested":"징역 3년","sources":[["연합뉴스","https://www.yna.co.kr/view/AKR20250109062852504"],["뉴스핌","https://www.newspim.com/news/view/20250109000402"]],"judgeNote":"주심 김종일 재판부장"},"chae-park-mutiny-2":{"caseId":"chae-park-mutiny-1","level":2,"date":"2025-07-09","kind":"ruling","court":"서울고법 형사4-1부","judgeIds":["jiyn","kwonhj","hwangjg"],"caseNo":"","result":"특검 항소 취하 · 1심 무죄 확정","summary":"채상병 특검이 수사기록 경찰 이첩은 적법행위이고 군검찰의 집단 항명 입건·기소는 공소권 남용이라며 항소 취하. 항소심 심리 중(6.13 공소장 변경 허가, 6.27 김계환 증인신문)에 종결","requested":"","sources":[["법률신문","https://www.lawtimes.co.kr/news/articleView.html?idxno=209570"],["연합뉴스","https://www.yna.co.kr/view/AKR20250613078500004"]],"judgeNote":""},"chae-im-negligence-1":{"caseId":"chae-im-negligence-1","quote":{"text":"수중수색이 이뤄질 수 있음을 인식하고도 안전조치와 장비 지급을 하지 않은 업무상 과실이 인정되며, 피고인은 이번 사고에 가장 책임이 큰 인물이다.","speaker":"재판장 조형우 부장판사","context":"1심 유죄 판시"},"level":1,"date":"2026-05-08","kind":"ruling","court":"서울중앙지법 형사합의22부","judgeIds":["chohw"],"caseNo":"2025고합1510","result":"징역 3년 · 법정구속","summary":"수중수색 인식에도 안전조치·장비 지급을 하지 않은 업무상 주의의무 위반과 단편명령 위반이 모두 유죄. ‘이번 사고에 가장 책임이 큰 인물’이라고 판시","requested":"징역 5년","sources":[["법률신문","https://www.lawtimes.co.kr/news/articleView.html?idxno=220448"],["서울경제","https://www.sedaily.com/article/20041696"]],"judgeNote":"재판장 조형우"},"chae-im-negligence-2":{"caseId":"chae-im-negligence-1","level":2,"date":"2026-08-07","kind":"ruling","court":"서울고법 형사4-3부","judgeIds":["jeonjw","kimigs","seongjy"],"caseNo":"","result":"항소 기각 · 징역 3년","summary":"업무상과실치사상 유죄 유지. 명령위반 중 작전 철수 지침에도 작전 지속을 지시한 부분만 이유 무죄로 뒤집혔고 형량은 유지","requested":"징역 5년","sources":[["연합뉴스","https://www.yna.co.kr/view/AKR20260807065151004"]],"judgeNote":"북부장판사 전지원"},"chae-im-negligence-3":{"caseId":"chae-im-negligence-1","quote":{"text":"원심 판단에 자유심증주의의 한계를 벗어나거나 법리를 오해한 잘못이 없고, 형량이 현저히 부당하지도 않다.","speaker":"주심 신숙희 대법관","context":"대법원 상고 기각 · 확정"},"level":3,"date":"2026-10-27","kind":"ruling","court":"대법원 1부","judgeIds":["shinsh"],"caseNo":"","result":"상고 기각 · 징역 3년 확정","summary":"순직 1,196일 만의 확정. 자유심증주의 한계 위반·법리 오해가 없다는 대법원 판단","requested":"","sources":[["연합뉴스","https://www.yna.co.kr/view/AKR20261027075800004"],["파이낸셜뉴스","https://www.fnnews.com/news/202610271226043887"]],"judgeNote":"주심 신숙희"},"chae-im-perjury-1":{"caseId":"chae-im-perjury-1","level":1,"date":"2026-06-11","kind":"ruling","court":"서울중앙지법 형사합의22부","judgeIds":["chohw"],"caseNo":"2025고합1596","result":"징역 1년 6개월","summary":"위증 3건 전부 유죄. 국감 사흘 뒤 구속영장 청구가 임박하자 23자리 비밀번호를 ‘기적적으로 확인’했다는 주장과 이종호와의 만남 부인 진술을 모두 배척","requested":"징역 3년","sources":[["법률신문","https://www.lawtimes.co.kr/news/articleView.html?idxno=221905"],["한겨레","https://www.hani.co.kr/arti/society/society_general/1263083.html"]],"judgeNote":"재판장 조형우"},"chae-im-perjury-2":{"caseId":"chae-im-perjury-1","level":2,"date":"2026-09-22","kind":"ruling","court":"서울고법 형사2-3부","judgeIds":["kimyhy","baeksy","hwangst"],"caseNo":"","result":"징역 1년 6개월 파기 · 징역 1년, 집행유예 2년","summary":"이종호 관련·쌍룡훈련 초청 관련 증언은 이유 무죄. 휴대전화 비밀번호 위증만 유죄로 인정해 집행유예로 감형","requested":"징역 3년","sources":[["연합뉴스","https://www.yna.co.kr/view/AKR20260922150300004"],["뉴시스","https://www.newsis.com/view/NISX20260922_0003800623"]],"judgeNote":"재판장 김영현"},"chae-lee-australia-1":{"caseId":"chae-lee-australia-1","level":1,"date":"2026-09-11","kind":"ruling","court":"서울중앙지법 형사합의22부","judgeIds":["chohw"],"caseNo":"","result":"윤석열 등 6명 전원 무죄","summary":"호주대사 임명은 대통령의 고유 인사권 행사이고, 임명 시점에 이종섭에 대한 수사가 진행되지 않아 도피·방해 의도 인정 어려움. 출국금지 해제 개입도 증거 부족","requested":"윤석열 징역 5년","sources":[["한국경제","https://www.hankyung.com/article/202609119502i"],["노컷뉴스","https://www.nocutnews.co.kr/news/6576946"]],"judgeNote":"재판장 조형우"},"chae-lee-australia-2":{"caseId":"chae-lee-australia-1","level":2,"date":"2026-10-19","kind":"pending","court":"서울고법 형사10-1부","judgeIds":["leesgh","leejsn","leehl"],"caseNo":"","result":"항소심 진행 중 (공판준비기일)","summary":"특검이 공소장 변경·추가 증거를 예고, 11.16 두 번째 공판준비기일. 재판부는 신속 심리 방침과 공소사실·배경사실 구분을 주문","requested":"","sources":[["더팩트","https://news.tf.co.kr/read/life/2377662.htm"],["파이낸셜뉴스","https://www.fnnews.com/news/202610191131493646"]],"judgeNote":"북부장판사 이상호"},"chae-defense-pressure-1":{"caseId":"chae-defense-pressure-1","level":1,"date":"2026-04-29","kind":"pending","court":"서울중앙지법 형사합의27부","judgeIds":["wooin"],"caseNo":"","result":"1심 공판 진행 중","summary":"4.29 첫 공판 후 상반기 격주 진행. 10.14 김진락 전 국방부 조사본부 수사단장 증인신문에서 ‘재검토는 장관 하명’이라는 증언. 박정훈·임기훈·이시원 등 증인 채택, 특검은 재판중계 신청 예고","requested":"","sources":[["연합뉴스","https://www.yna.co.kr/view/AKR20260318120400004"],["더팩트","https://news.tf.co.kr/read/life/2376404.htm"]],"judgeNote":"재판장 우인성"},"chae-presidential-vip-1":{"caseId":"chae-presidential-vip-1","level":1,"date":"2026-08-13","kind":"pending","court":"서울중앙지법","judgeIds":[],"caseNo":"","result":"재판 진행 중 (2026.8.13 불구속 기소)","summary":"이명현 채상병 특검은 2025.11.21 수사 조력을 이유로 기소유예. 이후 권창영 2차 종합특검이 경북경찰청 압수수색 계획의 해병대 사전 유출 경로(이시원→임기훈→국방부)를 공무상비밀누설 혐의로 기소. 재판부·기일은 보도로 확인되는 대로 갱신 예정","requested":"","sources":[["매일경제","https://www.mk.co.kr/news/society/12126788"],["연합뉴스","https://www.yna.co.kr/view/AKR20260625094000004"]],"judgeNote":""},"chae-prosecution-illegal-1":{"caseId":"chae-prosecution-illegal-1","level":1,"date":"2026-06-12","kind":"ruling","court":"서울중앙지법 형사합의24부","judgeIds":["leeysh"],"caseNo":"2025고합1549","result":"염보현·김민정 허위공문서작성·행사 및 직권남용감금 무죄 · 염보현 국감 불출석 벌금 1,000만원","summary":"구속영장 청구서 기재는 의견·판단으로 허위공문서 작성 고의 인정 어려움. 동기·상급자와의 공모도 입증되지 않았다고 판단","requested":"염 징역 1년·자격정지 2년, 김 징역 2년·자격정지 3년","sources":[["연합뉴스","https://www.yna.co.kr/view/AKR20260612133700004"],["이데일리","https://www.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=05028246645481064"]],"judgeNote":"재판장 이영선"},"chae-prosecution-illegal-2":{"caseId":"chae-prosecution-illegal-1","level":2,"date":"2026-09-11","kind":"ruling","court":"서울고법 형사7부","judgeIds":["guhg"],"caseNo":"","result":"항소 기각 · 무죄 유지","summary":"구속영장 청구서는 검사의 판단·주장을 담은 문서로 증명적 기능의 공문서로 보기 어렵다고 판단. 염보현의 국감 불출석 벌금형도 유지","requested":"1심과 동일 구형","sources":[["MBC","https://imnews.imbc.com/news/2026/society/article/6851231_36918.html"]],"judgeNote":"북부장판사 구회근"},"chae-prosecution-illegal-3":{"caseId":"chae-prosecution-illegal-1","level":3,"date":"2026-09-17","kind":"pending","court":"대법원","judgeIds":[],"caseNo":"","result":"특검 상고","summary":"특검이 공소장 변경 2회 미수용은 공소사실 동일성 법리 오해, 진술 거부권 고지 누락 등을 상고 이유로 제시. ‘영장 청구서 허위 기재가 처벌 대상이 아니게 되는 법리’에 대한 대법원 판단을 요청","requested":"","sources":[["파이낸셜뉴스","https://www.fnnews.com/news/202610121942266425"]],"judgeNote":""},"chae-battalion-negligence-1":{"caseId":"chae-battalion-negligence-1","level":1,"date":"2026-05-08","kind":"ruling","court":"서울중앙지법 형사합의22부","judgeIds":["chohw"],"caseNo":"2025고합1510","result":"박상현·최진규 금고 1년 6개월(법정구속) · 이용민 금고 10개월 · 장모 금고 8개월, 집행유예 2년","summary":"위험한 수중수색 지시 하달과 안전조치 소홀의 책임 인정. ‘말단만 묻던 관행과 달리 상급 지휘관의 작위적 지시’라고 질책","requested":"금고 1년~2년 6개월","sources":[["법률신문","https://www.lawtimes.co.kr/news/articleView.html?idxno=220448"],["서울경제","https://www.sedaily.com/article/20041696"]],"judgeNote":"재판장 조형우"},"chae-battalion-negligence-2":{"caseId":"chae-battalion-negligence-1","level":2,"date":"2026-08-07","kind":"ruling","court":"서울고법 형사4-3부","judgeIds":["jeonjw","kimigs","seongjy"],"caseNo":"","result":"항소 기각 · 원심 형량 유지","summary":"지휘관들의 업무상 주의의무 위반이 유지됐고 형량도 1심과 같음","requested":"","sources":[["연합뉴스","https://www.yna.co.kr/view/AKR20260807065151004"]],"judgeNote":""},"chae-battalion-negligence-3":{"caseId":"chae-battalion-negligence-1","level":3,"date":"2026-10-27","kind":"ruling","court":"대법원 1부","judgeIds":["shinsh"],"caseNo":"","result":"상고 기각 · 확정","summary":"박상현·최진규·장모 형이 확정. 이용민은 쌍방 상고하지 않아 2심에서 이미 확정","requested":"","sources":[["연합뉴스","https://www.yna.co.kr/view/AKR20261027075800004"]],"judgeNote":"주심 신숙희"},"chae-leejh-phone-1":{"caseId":"chae-leejh-phone-1","level":3,"date":"2026-10-08","kind":"ruling","court":"대법원 2부","judgeIds":[],"caseNo":"","result":"무죄 확정","summary":"1·2심 무죄 판단이 유지돼 이종호의 증거인멸교사 혐의와 지인 차 씨의 벌금 300만원이 확정. 형사처벌 가능성을 염두에 둔 자기 이익을 위한 증거인멸은 처벌 대상이 아니라는 법리","requested":"","sources":[["YTN","https://www.ytn.co.kr/_ln/0103_202610081119141248"]],"judgeNote":""}},"sentences":{"chae-park-mutiny-1-parkjh":{"rulingId":"chae-park-mutiny-1","caseId":"chae-park-mutiny-1","personId":"parkjh","outcome":"무죄","sentence":"무죄 (항소 취하로 확정)","requested":"징역 3년"},"chae-im-negligence-1-imsg":{"rulingId":"chae-im-negligence-1","caseId":"chae-im-negligence-1","personId":"imsg","outcome":"유죄","sentence":"징역 3년","requested":"징역 5년"},"chae-im-negligence-2-imsg":{"rulingId":"chae-im-negligence-2","caseId":"chae-im-negligence-1","personId":"imsg","outcome":"유죄","sentence":"징역 3년","requested":"징역 5년"},"chae-im-negligence-3-imsg":{"rulingId":"chae-im-negligence-3","caseId":"chae-im-negligence-1","personId":"imsg","outcome":"유죄","sentence":"징역 3년 확정","requested":""},"chae-im-perjury-1-imsg":{"rulingId":"chae-im-perjury-1","caseId":"chae-im-perjury-1","personId":"imsg","outcome":"유죄","sentence":"징역 1년 6개월","requested":"징역 3년"},"chae-im-perjury-2-imsg":{"rulingId":"chae-im-perjury-2","caseId":"chae-im-perjury-1","personId":"imsg","outcome":"일부 유죄","sentence":"징역 1년, 집행유예 2년","requested":"징역 3년"},"chae-lee-australia-1-yoon":{"rulingId":"chae-lee-australia-1","caseId":"chae-lee-australia-1","personId":"yoon","outcome":"무죄","sentence":"무죄","requested":"징역 5년"},"chae-lee-australia-1-choty":{"rulingId":"chae-lee-australia-1","caseId":"chae-lee-australia-1","personId":"choty","outcome":"무죄","sentence":"무죄","requested":""},"chae-lee-australia-1-parksj":{"rulingId":"chae-lee-australia-1","caseId":"chae-lee-australia-1","personId":"parksj","outcome":"무죄","sentence":"무죄","requested":""},"chae-lee-australia-1-simwj":{"rulingId":"chae-lee-australia-1","caseId":"chae-lee-australia-1","personId":"simwj","outcome":"무죄","sentence":"무죄","requested":""},"chae-lee-australia-1-janghj":{"rulingId":"chae-lee-australia-1","caseId":"chae-lee-australia-1","personId":"janghj","outcome":"무죄","sentence":"무죄","requested":""},"chae-lee-australia-1-leesw":{"rulingId":"chae-lee-australia-1","caseId":"chae-lee-australia-1","personId":"leesw","outcome":"무죄","sentence":"무죄","requested":""},"chae-prosecution-illegal-1-yombh":{"rulingId":"chae-prosecution-illegal-1","caseId":"chae-prosecution-illegal-1","personId":"yombh","outcome":"일부 유죄","sentence":"벌금 1,000만원 (국감 불출석)","requested":"징역 1년·자격정지 2년"},"chae-prosecution-illegal-1-kimminj":{"rulingId":"chae-prosecution-illegal-1","caseId":"chae-prosecution-illegal-1","personId":"kimminj","outcome":"무죄","sentence":"무죄","requested":"징역 2년·자격정지 3년"},"chae-prosecution-illegal-2-yombh":{"rulingId":"chae-prosecution-illegal-2","caseId":"chae-prosecution-illegal-1","personId":"yombh","outcome":"일부 유죄","sentence":"벌금 1,000만원 (유지)","requested":"징역 1년·자격정지 2년"},"chae-prosecution-illegal-2-kimminj":{"rulingId":"chae-prosecution-illegal-2","caseId":"chae-prosecution-illegal-1","personId":"kimminj","outcome":"무죄","sentence":"무죄","requested":"징역 2년·자격정지 3년"},"chae-battalion-negligence-1-parksh":{"rulingId":"chae-battalion-negligence-1","caseId":"chae-battalion-negligence-1","personId":"parksh","outcome":"유죄","sentence":"금고 1년 6개월","requested":"금고 2년 6개월"},"chae-battalion-negligence-1-choejg":{"rulingId":"chae-battalion-negligence-1","caseId":"chae-battalion-negligence-1","personId":"choejg","outcome":"유죄","sentence":"금고 1년 6개월","requested":"금고 2년 6개월"},"chae-battalion-negligence-1-leeym":{"rulingId":"chae-battalion-negligence-1","caseId":"chae-battalion-negligence-1","personId":"leeym","outcome":"유죄","sentence":"금고 10개월","requested":"금고 2년"},"chae-battalion-negligence-1-jang-m":{"rulingId":"chae-battalion-negligence-1","caseId":"chae-battalion-negligence-1","personId":"jang-m","outcome":"유죄","sentence":"금고 8개월, 집행유예 2년","requested":"금고 1년"},"chae-battalion-negligence-2-parksh":{"rulingId":"chae-battalion-negligence-2","caseId":"chae-battalion-negligence-1","personId":"parksh","outcome":"유죄","sentence":"금고 1년 6개월","requested":""},"chae-battalion-negligence-2-choejg":{"rulingId":"chae-battalion-negligence-2","caseId":"chae-battalion-negligence-1","personId":"choejg","outcome":"유죄","sentence":"금고 1년 6개월","requested":""},"chae-battalion-negligence-2-leeym":{"rulingId":"chae-battalion-negligence-2","caseId":"chae-battalion-negligence-1","personId":"leeym","outcome":"유죄","sentence":"금고 10개월","requested":""},"chae-battalion-negligence-2-jang-m":{"rulingId":"chae-battalion-negligence-2","caseId":"chae-battalion-negligence-1","personId":"jang-m","outcome":"유죄","sentence":"금고 8개월, 집행유예 2년","requested":""},"chae-battalion-negligence-3-parksh":{"rulingId":"chae-battalion-negligence-3","caseId":"chae-battalion-negligence-1","personId":"parksh","outcome":"유죄","sentence":"금고 1년 6개월 확정","requested":""},"chae-battalion-negligence-3-choejg":{"rulingId":"chae-battalion-negligence-3","caseId":"chae-battalion-negligence-1","personId":"choejg","outcome":"유죄","sentence":"금고 1년 6개월 확정","requested":""},"chae-battalion-negligence-3-jang-m":{"rulingId":"chae-battalion-negligence-3","caseId":"chae-battalion-negligence-1","personId":"jang-m","outcome":"유죄","sentence":"금고 8개월, 집행유예 2년 확정","requested":""},"chae-leejh-phone-1-leeho":{"rulingId":"chae-leejh-phone-1","caseId":"chae-leejh-phone-1","personId":"leeho","outcome":"무죄","sentence":"무죄 확정","requested":""}},"people":{"yoon":{"name":"윤석열","role":"전 대통령","category":"대통령실","keyRole":"수사외압의 정점. 2023.7.31 대통령 주재 회의에서 임성근 등 지휘관 처벌에 ‘격노’하며 이첩 보류·기록 회수·수사 결과 변경 지시로 이어진 직권남용 공소(1심 진행 중), 이종섭 호주대사 임명으로 도피시킨 혐의(1심 무죄, 특검 항소)","statusNote":"수사외압(직권남용) 1심 진행 중 / 이종섭 도피 1심 무죄 (항소심 진행)","photo":"assets/photos/yoon","photoAlt":"윤석열 전 대통령 공식 초상","photoCredit":"대한민국 대통령실","photoLicense":"CC BY 3.0","photoSource":"https://commons.wikimedia.org/wiki/File:South_Korea_President_Yoon_Suk_Yeol_portrait_(crop).jpg","photoLicenseUrl":"https://creativecommons.org/licenses/by/3.0/"},"leejsh":{"name":"이종섭","role":"전 국방부 장관 · 전 호주대사","category":"국방부·군 수뇌부","keyRole":"해병대 수사단 결과 보고를 받고 결재한 뒤 이첩 보류 지시, 유재은·박진희를 통한 수사 결과 변경 압박, 조사본부 재검토 하명(1심 진행 중). 공수처 수사를 받던 중 호주대사로 임명돼 출국(임명 관련 재판은 별도)","statusNote":"수사외압 1심 진행 중 / 도피 의혹 사건은 피고인 아님(윤석열 등이 기소)"},"choty":{"name":"조태용","role":"전 대통령실 국가안보실장 · 전 국가정보원장","category":"대통령실","keyRole":"2023.7.31 수석비서관 회의에서 윤석열의 격노를 목격한 당사자로 수사외압 공범 기소(1심 진행 중), 이종섭 호주대사 임명·출국 과정 관여 혐의(1심 무죄)","statusNote":"수사외압 1심 진행 중 / 이종섭 도피 1심 무죄 (항소심 진행)","photo":"assets/photos/choty","photoAlt":"조태용 전 국가안보실장(전 국가정보원장) 프로필 사진","photoCredit":"U.S. Department of State","photoLicense":"Public domain","photoSource":"https://commons.wikimedia.org/wiki/File:Cho_Taeyong_in_2022_(cropped).jpg"},"imsg":{"name":"임성근","role":"전 해병대 1사단장","category":"해병대 지휘부","keyRole":"안전장비 없는 수중수색을 지시·묵인한 채상병 순직 사고 책임(업무상과실치사상 징역 3년 확정)과 단편명령 위반(유죄). 구명 로비 의혹 관련 국회 위증(2심 징역 1년, 집행유예 2년)","statusNote":"업무상과실치사상 징역 3년 확정 (수감) / 위증 2심 징역 1년, 집행유예 2년"},"parkjh":{"name":"박정훈","role":"해병대 준장 · 전 해병대 수사단장(당시 대령)","category":"해병대 지휘부","keyRole":"채상병 사건 초동수사 단장으로 임성근 등 8명을 혐의자로 적시하고 경북경찰청에 이첩. 이첩 보류 명령 불응으로 항명·상관명예훼손으로 기소됐으나 무죄 확정, 이후 VIP 격노설 공개. 수사외압 재판의 핵심 증인","statusNote":"항명·명예훼손 무죄 확정 (특검 항소 취하)"},"kimkhw":{"name":"김계환","role":"전 해병대사령관","category":"국방부·군 수뇌부","keyRole":"이종섭의 이첩 보류 지시를 박정훈에게 전달하고 이첩 중단 명령, 박정훈 보직해임 집행. 수사외압 직권남용과 모해위증·국회 위증 혐의로 기소(1심 진행 중)","statusNote":"수사외압 1심 진행 중"},"jungjb":{"name":"정종범","role":"전 해병대 부사령관","category":"해병대 지휘부","keyRole":"해병대 부사령관으로서 이종섭의 이첩 보류 명령을 수사단장에게 전달한 경로로 공소장 변경에 적시됨. 수사외압 재판에서 증인·관계인으로 다뤄짐","statusNote":"기소 아님 — 재판 관계자"},"shinc":{"name":"신범철","role":"전 국방부 차관","category":"국방부·군 수뇌부","keyRole":"박정훈 보직해임·항명 수사 지시 등 국방부 차원의 수사외압 실행(수사외압 1심 진행 중)","statusNote":"수사외압 1심 진행 중"},"yooje":{"name":"유재은","role":"전 국방부 법무관리관","category":"국방부·군 수뇌부","keyRole":"이종섭 지시로 박정훈에게 전화해 수사 결과 수정 압박(수사외압 1심 진행 중)","statusNote":"수사외압 1심 진행 중"},"parkjhi":{"name":"박진희","role":"전 국방부 장관 군사보좌관","category":"국방부·군 수뇌부","keyRole":"국방부 조사본부에 회수된 수사 결과를 다섯 차례 수정 지시해 임성근을 피혐의자에서 제외하도록 한 혐의(수사외압 1심 진행 중)","statusNote":"수사외압 1심 진행 중"},"kimdh":{"name":"김동혁","role":"전 국방부 검찰단장","category":"군검찰·수사기구","keyRole":"박정훈을 집단 항명 수괴로 입건·수사하고 경찰 이첩 기록 회수에 관여. 수사외압 직권남용 혐의로 기소(1심 진행 중)","statusNote":"수사외압 1심 진행 중 / 휘하 군검사 허위영장 재판은 별도 판결"},"kimjnl":{"name":"김진락","role":"전 국방부 조사본부 수사단장","category":"군검찰·수사기구","keyRole":"회수된 채상병 사건 기록의 국방부 조사본부 재검토 담당. 2026.10.14 수사외압 재판 증인신문에서 ‘재검토는 장관 하명’이었고 법리적으로 이해되지 않았다고 증언","statusNote":"피고인 아님 — 증인"},"jeonhk":{"name":"전하규","role":"전 국방부 대변인","category":"국방부·군 수뇌부","keyRole":"박정훈 항명 재판에서 모해위증한 혐의로 기소(수사외압 사건과 함께 재판)","statusNote":"수사외압 사건 1심 진행 중 (모해위증 포함)"},"heotg":{"name":"허태근","role":"전 대통령실 정책실장","category":"대통령실","keyRole":"박정훈 항명 재판에서 모해위증한 혐의로 기소(수사외압 사건과 함께 재판)","statusNote":"수사외압 사건 1심 진행 중 (모해위증 포함)"},"yoogyh":{"name":"유균혜","role":"전 국방부 기획관리관","category":"국방부·군 수뇌부","keyRole":"국회 전산망에 허위 답변 자료를 반복 업로드한 허위공문서 혐의로 기소(수사외압 사건과 함께 재판)","statusNote":"수사외압 사건 1심 진행 중"},"leesw":{"name":"이시원","role":"전 대통령실 공직기강비서관","category":"대통령실","keyRole":"경찰에 이첩된 수사 기록의 국방부 회수 과정 조율 의혹. 채상병 특검 기소유예 후 종합특검에 공무상비밀누설로 기소(재판 진행 중), 이종섭 도피 사건에서는 무죄","statusNote":"기밀누설 재판 진행 중 / 채상병 특검 기소유예 / 이종섭 도피 1심 무죄"},"imkh":{"name":"임기훈","role":"전 대통령실 국방비서관 (전 국가안보실 국방비서관)","category":"대통령실","keyRole":"2023.7.31 수석비서관 회의에서 채상병 사건 초동수사 결과를 윤석열에 최초 보고해 ‘VIP 격노’를 촉발. 채상병 특검 기소유예 후 종합특검에 공무상비밀누설로 기소(재판 진행 중)","statusNote":"기밀누설 재판 진행 중 / 채상병 특검 기소유예"},"parksj":{"name":"박성재","role":"전 법무부 장관","category":"정부·법무·민간","keyRole":"이종섭 호주대사 출국금지 해제 지시 혐의(1심 무죄, 특검 항소)","statusNote":"이종섭 도피 1심 무죄 (항소심 진행)","photo":"assets/photos/parksj","photoAlt":"박성재 전 법무부 장관 프로필 사진","photoCredit":"법무부","photoLicense":"공공누리 제1유형","photoSource":"https://www.moj.go.kr/minister/2090/subview.do","photoLicenseUrl":"https://www.kogl.or.kr/info/licenseType1.do"},"simwj":{"name":"심우정","role":"전 검찰총장 (당시 법무부 차관)","category":"정부·법무·민간","keyRole":"이종섭 출국금지 해제 과정 관여 혐의(1심 무죄, 특검 항소)","statusNote":"이종섭 도피 1심 무죄 (항소심 진행)"},"janghj":{"name":"장호진","role":"전 외교부 1차관 (전 국가안보실 차장)","category":"정부·법무·민간","keyRole":"이종섭 호주대사 임명·출국 과정 관여 혐의(1심 무죄, 특검 항소)","statusNote":"이종섭 도피 1심 무죄 (항소심 진행)"},"leeho":{"name":"이종호","role":"전 블랙펄인베스트 대표","category":"정부·법무·민간","keyRole":"구명 로비 의혹의 창구로 지목된 김건희 측근(‘멋쟁해병’ 대화방). 특검은 로비 사실을 확인하지 못했고, 수사 기간 중 휴대전화 파손 지시 혐의는 무죄 확정","statusNote":"증거인멸교사 무죄 확정"},"yombh":{"name":"염보현","role":"육군 소령 (전 국방부 검찰단 공공형사과장)","category":"군검찰·수사기구","keyRole":"박정훈 구속영장 청구서 작성 관여 혐의. 허위공문서·직권남용감금 무죄(1·2심), 국감 불출석만 벌금 1,000만원. 특검 상고로 대법원 계류","statusNote":"허위공문서 등 무죄 / 국감 불출석 벌금 1,000만원 / 특검 상고"},"kimminj":{"name":"김민정","role":"공군 중령 (전 국방부 감찰단 보통검찰부장)","category":"군검찰·수사기구","keyRole":"박정훈 구속영장 청구서 작성 관여 혐의. 1·2심 모두 무죄, 특검 상고로 대법원 계류","statusNote":"무죄 (1·2심) / 특검 상고"},"parksh":{"name":"박상현","role":"전 해병대 1사단 제7여단장","category":"해병대 지휘부","keyRole":"수해 현장 총괄 제2신속기동부대장으로 바둑판식 수색 등 지시 하달·대원 압박. 금고 1년 6개월 확정","statusNote":"금고 1년 6개월 확정"},"choejg":{"name":"최진규","role":"전 해병대 1사단 포병여단 포11대대장","category":"해병대 지휘부","keyRole":"상급 지시를 전달하며 ‘허리 깊이 입수’ 등 수중수색 지시. 금고 1년 6개월 확정","statusNote":"금고 1년 6개월 확정"},"leeym":{"name":"이용민","role":"전 해병대 1사단 포7대대장","category":"해병대 지휘부","keyRole":"채상병 소속 포7대대 대대장으로 지시를 부대원에게 하달해 사고 발생. 금고 10개월 (미상고로 2심 확정)","statusNote":"금고 10개월 확정"},"jang-m":{"name":"장 모 (장아무개)","role":"전 해병대 1사단 포7대대 본부중대장","category":"해병대 지휘부","keyRole":"채상병의 직속 중대장. 실명 미공개 피고인. 금고 8개월, 집행유예 2년 확정","statusNote":"금고 8개월, 집행유예 2년 확정"}},"judges":{"kimji":{"name":"김종일","position":"중앙지역군사법원 재판부장"},"jiyn":{"name":"지영난","position":"서울고법 부장판사"},"kwonhj":{"name":"권혁중","position":"서울고법 고법판사"},"hwangjg":{"name":"황진구","position":"서울고법 고법판사"},"jeonjw":{"name":"전지원","position":"서울고법 부장판사"},"kimigs":{"name":"김인겸","position":"서울고법 고법판사"},"seongjy":{"name":"성지용","position":"서울고법 고법판사"},"kimyhy":{"name":"김영현","position":"서울고법 부장판사"},"baeksy":{"name":"백승엽","position":"서울고법 고법판사"},"hwangst":{"name":"황승태","position":"서울고법 고법판사"},"leesgh":{"name":"이상호","position":"서울고법 부장판사"},"leejsn":{"name":"이재신","position":"서울고법 고법판사"},"leehl":{"name":"이혜란","position":"서울고법 고법판사"},"leeysh":{"name":"이영선","position":"서울중앙지법 부장판사"},"chohw":{"name":"조형우","position":"서울중앙지법 부장판사"},"wooin":{"name":"우인성","position":"서울중앙지법 부장판사"},"guhg":{"name":"구회근","position":"서울고법 부장판사"},"shinsh":{"name":"신숙희","position":"대법관"}},"meta":{"info":{"asOf":"2026-11-05","basis":"언론 보도 종합"},"graphLinks":{"label":"수사외압·지휘 계통","links":[{"source":"imkh","target":"yoon","kind":"cmd","note":"2023.7.31 수석비서관 회의에서 초동수사 결과 최초 보고 — ‘VIP 격노’ 촉발"},{"source":"yoon","target":"leejsh","kind":"cmd","note":"이첩 보류·기록 회수·수사 결과 변경 지시 (격노 직후 전화 질책)"},{"source":"yoon","target":"choty","kind":"cmd","note":"안보실 회의 격노 공동 목격자 · 수사외압 공범 기소"},{"source":"leejsh","target":"kimkhw","kind":"cmd","note":"이첩 보류 명령 전달 · 국회 보고 취소 지시"},{"source":"leejsh","target":"yooje","kind":"cmd","note":"수사 결과를 임성근 제외 방향으로 바꾸라 지시"},{"source":"yooje","target":"parkjh","kind":"cmd","note":"박정훈에 전화해 수사 결과 수정 압박"},{"source":"kimkhw","target":"parkjh","kind":"cmd","note":"이첩 중단 명령 (군사법원: 권한 밖의 부당한 명령)"},{"source":"jungjb","target":"parkjh","kind":"cmd","note":"부사령관 경유 장관 명령 전달 (항소심 공소장 변경 내용)"},{"source":"leejsh","target":"shinc","kind":"cmd","note":"박정훈 보직해임·항명 수사 지시"},{"source":"shinc","target":"kimkhw","kind":"cmd","note":"보직해임 집행 지시"},{"source":"leejsh","target":"parkjhi","kind":"cmd","note":"군사보좌관 경유 조사본부 수정 작업 지시"},{"source":"parkjhi","target":"kimjnl","kind":"cmd","note":"조사본부 수사 결과 다섯 차례 수정 지시"},{"source":"leejsh","target":"kimdh","kind":"cmd","note":"박정훈 집단 항명 입건·수사 지시"},{"source":"kimdh","target":"yombh","kind":"cmd","note":"구속영장 청구서 작성 지휘"},{"source":"kimdh","target":"kimminj","kind":"cmd","note":"구속영장 청구서 작성 지휘"},{"source":"leesw","target":"imkh","kind":"cmd","note":"경북경찰청 압수수색 계획 누설 경로 (이시원→임기훈→국방부)"},{"source":"yoon","target":"parksj","kind":"cmd","note":"이종섭 출국금지 해제 지시 (1심 무죄)"},{"source":"parksj","target":"simwj","kind":"cmd","note":"출국금지 해제 절차 관여 (1심 무죄)"},{"source":"imsg","target":"leeho","kind":"cmd","note":"구명 로비 의혹 — 특검이 사실로 확인하지 못함 (2심도 친분 부정)"}]}}};
 
 // ===== 링크 복사(공유) =====
 let toastTimer=null;
@@ -2367,6 +2670,127 @@ applyDataset(state.dataset,false,!!(initRoute&&initRoute.targetType));
 render();
 fetchRemote(state.dataset);
 
+// ===== 메타 타이틀 동기화 (OG·트위터 카드) =====
+// 문서 타이틀과 og:title·twitter:title 메타태그를 함께 갱신한다. 딥링크 진입·인물 모달·사건 카드 이동 시 호출된다.
+function updateMetaTitle(title){
+  const t=String(title==null?"":title);
+  document.title=t;
+  try{
+    const og=document.querySelector('meta[property="og:title"]');
+    const tw=document.querySelector('meta[name="twitter:title"]');
+    if(og)og.setAttribute("content",t);
+    if(tw)tw.setAttribute("content",t);
+  }catch(e){}
+}
+function syncCaseMetaTitle(caseId){
+  const c=(store.cases||{})[caseId];
+  if(c)updateMetaTitle(c.title+" — "+(DATASETS[state.dataset]||{}).title);
+}
+
+// ===== 데이터 내보내기 (CSV/JSON) =====
+const EXPORT_CASE_COLS=["사건번호","사건명","카테고리","주요피고인","적용죄명","1심선고","2심선고","대법원선고","담당재판부","진행상태"];
+const EXPORT_PEOPLE_COLS=["인물ID","이름","역할및직책","분류","주요사건","선고결과요약"];
+// CSV 셀 이스케이프: 쉼표·줄바꿈·쌍따옴표가 있으면 통째로 감싸고 내부 쌍따옴표는 두 배로 늘린다.
+function csvEscape(v){
+  const str=String(v==null?"":v);
+  return /[",\r\n]/.test(str)?'"'+str.replace(/"/g,'""')+'"':str;
+}
+// UTF-8 BOM(\uFEFF) 접두사로 Excel에서 한글이 바로 정상 표시되도록 한다.
+function csvRows(rows){return "\uFEFF"+rows.map(r=>r.map(csvEscape).join(",")).join("\r\n")}
+function rulingText(r){
+  if(!r)return "";
+  const d=fmt(r.date);
+  const parts=[];
+  if(d&&d!=="미정")parts.push(d);
+  if(r.result)parts.push(r.result);
+  return parts.join(" ");
+}
+function caseExportRecord(c){
+  const byLevel=l=>c.rulings.find(r=>r.level===l);
+  const uniq=a=>[...new Set(a.filter(Boolean))];
+  return {
+    "사건번호":uniq(c.rulings.map(r=>r.caseNo)).join(", "),
+    "사건명":c.title,
+    "카테고리":uniq(c.defendants.map(d=>d.category)).join(", "),
+    "주요피고인":c.defendants.map(d=>d.name).filter(Boolean).join(", "),
+    "적용죄명":c.charge||"",
+    "1심선고":rulingText(byLevel(1)),
+    "2심선고":rulingText(byLevel(2)),
+    "대법원선고":rulingText(byLevel(3)),
+    "담당재판부":uniq(c.rulings.map(r=>r.court)).join(", "),
+    "진행상태":(STATUS[c.status]||{}).label||c.status||""
+  };
+}
+function personExportRecord(id,p,cases){
+  const rel=(cases||[]).filter(c=>c.defendantIds&&c.defendantIds.includes(id)).map(c=>c.title);
+  return {
+    "인물ID":id,
+    "이름":(p&&p.name)||"",
+    "역할및직책":(p&&p.role)||"",
+    "분류":(p&&p.category)||"",
+    "주요사건":rel.join(", "),
+    "선고결과요약":(p&&p.statusNote)||""
+  };
+}
+function exportPayload(kind){
+  const {cases}=model();
+  if(kind.indexOf("cases")===0){
+    const records=cases.map(caseExportRecord);
+    return kind.endsWith("csv")
+      ? csvRows([EXPORT_CASE_COLS].concat(records.map(r=>EXPORT_CASE_COLS.map(k=>r[k]))))
+      : JSON.stringify(records,null,2);
+  }
+  const records=Object.entries(store.people||{}).map(([id,p])=>personExportRecord(id,p,cases));
+  return kind.endsWith("csv")
+    ? csvRows([EXPORT_PEOPLE_COLS].concat(records.map(r=>EXPORT_PEOPLE_COLS.map(k=>r[k]))))
+    : JSON.stringify(records,null,2);
+}
+function exportFileName(kind){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,"0");
+  const stamp=d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+  const parts=kind.split("-");
+  return state.dataset+"-"+parts[0]+"-"+stamp+"."+parts[1];
+}
+function downloadFile(name,content,mime){
+  const blob=new Blob([content],{type:mime+";charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download=name;a.style.display="none";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{try{document.body.removeChild(a);URL.revokeObjectURL(url)}catch(e){}},0);
+}
+function runExport(kind){
+  if(["cases-csv","cases-json","people-csv","people-json"].indexOf(kind)<0)return;
+  const isCsv=kind.endsWith("csv");
+  downloadFile(exportFileName(kind),exportPayload(kind),isCsv?"text/csv":"application/json");
+  closeExportMenu();
+}
+// 드롭다운 개폐: 버튼 토글, 메뉴 밖 클릭 시 닫기, ESC 닫기(초점 복귀)
+function closeExportMenu(){
+  const btn=document.getElementById("export-btn"),menu=document.getElementById("export-menu");
+  if(!btn||!menu)return;
+  menu.hidden=true;
+  btn.setAttribute("aria-expanded","false");
+}
+function toggleExportMenu(){
+  const btn=document.getElementById("export-btn"),menu=document.getElementById("export-menu");
+  if(!btn||!menu)return;
+  const willOpen=menu.hidden;
+  menu.hidden=!willOpen;
+  btn.setAttribute("aria-expanded",String(willOpen));
+}
+(function initExportDropdown(){
+  const btn=document.getElementById("export-btn"),menu=document.getElementById("export-menu"),dd=document.getElementById("export-dropdown");
+  if(!btn||!menu||!dd)return;
+  try{
+    btn.addEventListener("click",e=>{if(e&&e.stopPropagation)e.stopPropagation();toggleExportMenu()});
+    document.addEventListener("click",e=>{if(!menu.hidden&&!(e.target&&dd.contains(e.target)))closeExportMenu()});
+    document.addEventListener("keydown",e=>{if((e.key==="Escape"||e.key==="Esc")&&!menu.hidden){closeExportMenu();btn.focus()}});
+  }catch(e){}
+})();
+
 // 초기 진입 시 딥링크 처리: 인물 모달 자동 열기 / 사건·재판부 카드 스크롤·하이라이트
 if(initRoute&&initRoute.targetType){
   const t=initRoute;
@@ -2377,6 +2801,7 @@ if(initRoute&&initRoute.targetType){
     try{localStorage.setItem("ins-view","cases")}catch(e){}
     render();
     focusCard("case-"+t.targetId);
+    syncCaseMetaTitle(t.targetId);
   }else if(t.targetType==="panel"){
     const pid=t.targetId.startsWith("panel-")?t.targetId:"panel-"+t.targetId;
     state.view="judges";

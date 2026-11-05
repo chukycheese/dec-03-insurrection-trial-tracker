@@ -17,5 +17,6 @@
 | `leejw-*.webp` | 이진우 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lieutenant_General_Lee_Jin-woo.png) | MBC PD Note | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | `nohsw-*.webp` | 노상원 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:PD%EC%88%98%EC%B2%A9_%EB%85%B8%EC%83%81%EC%9B%90_%EC%82%AC%EC%A7%84.jpg) | MBC PD수첩 | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | `parkjj-*.webp` | 박종준 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:%EB%B0%95%EC%A2%85%EC%A4%80.jpg) | Allurehomme | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| `kimyd-*.webp` | 김용대 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:(PD%EC%88%98%EC%B2%A9_10%EB%B6%84_%EC%BB%B7)_%ED%8F%89%EC%96%91%EC%97%90_%EC%B6%94%EB%9D%BD%ED%95%9C_%EB%AC%B4%EC%9D%B8%EA%B8%B0,_%EA%B3%84%EC%97%84%EC%9D%84_%EC%9C%84%ED%95%9C_%EC%84%A4%EA%B3%84%EC%98%80%EB%82%98_-_2025%EB%85%84_8%EC%9B%94_5%EC%9D%BC_%EB%B0%A9%EC%86%A1.webm) | MBC PD Note | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 
 사진이 없는 인물은 이름 첫 글자를 사용한 이니셜 모노그램 아바타로 표시합니다.
