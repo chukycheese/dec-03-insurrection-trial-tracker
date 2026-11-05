@@ -8,6 +8,8 @@
 - `public/index.html` / `public/insurrection-trials-offline.html`: 타임라인·사건별·인물별 재판 기록부 웹 인터페이스
 - `public/insurrection-trials-data.json`: 사건, 피고인, 판결 및 재판부 데이터
 - `public/assets/photos/`: 인물사전 프로필 사진(WebP) 및 출처·라이선스 문서
+- `scripts/validate-data.mjs`: 데이터 구조·참조·사진 파일 무결성 검증 스크립트
+- `.github/workflows/deploy.yml`: `main` 푸시 시 검증 후 자동 배포하는 GitHub Actions 워크플로
 - `wrangler.jsonc`: Cloudflare Workers (Static Assets) 배포 설정
 
 ## 로컬 개발 및 실행
@@ -18,6 +20,9 @@ npm install
 # Cloudflare Wrangler 로컬 개발 서버 실행
 npm run dev
 # 또는 http.server 등으로 public/ 서빙
+
+# 데이터 무결성 검증 (JSON 구조·참조·사진 파일)
+npm run validate
 ```
 
 ## Cloudflare 배포
