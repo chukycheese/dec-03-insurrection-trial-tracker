@@ -1,0 +1,916 @@
+{
+  "cases": {
+    "chae-park-mutiny-1": {
+      "order": 1,
+      "title": "박정훈 대령 항명 및 상관명예훼손",
+      "charge": "군형법상 항명, 정보통신망법상 명예훼손",
+      "status": "final",
+      "note": "국방부 검찰단이 집단 항명으로 입건·기소한 사건(2023.10.6 기소). 1심 무죄 후 서울고법 항소심이 진행되던 중, 채상병 특검이 군검찰의 항소를 공소권 남용으로 판단해 항소를 취하해 무죄가 확정됐습니다. 박정훈은 이후 준장으로 진급했습니다.",
+      "defendantIds": ["parkjh"]
+    },
+    "chae-im-negligence-1": {
+      "order": 2,
+      "title": "임성근 전 해병1사단장 업무상과실치사 및 구명 로비 의혹",
+      "charge": "업무상과실치사상, 군형법상 명령 위반",
+      "status": "final",
+      "note": "채상병 특검팀의 ‘1호 기소’ 사건(2025.11.10 구속기소). 경북경찰청과 대구지검이 임성근에 대한 수사를 불송치·불기소로 끝냈던 것을 특검이 뒤집은 사건입니다. 박상현 전 7여단장 등 현장 지휘관 4명과 통합 기소·심리됐으며, 현장 지휘관 재판은 ‘이용민 포병대대장 등 현장 지휘관’ 사건 카드로 정리했습니다. 구명 로비 의혹(이종호 경로)은 특검이 사실로 확인하지 못한 채 종결했고, 관련 국회 위증 재판은 ‘임성근 국회 위증’ 카드를 참고하세요.",
+      "defendantIds": ["imsg"]
+    },
+    "chae-im-perjury-1": {
+      "order": 3,
+      "title": "임성근 전 해병1사단장 국회 위증",
+      "charge": "국회증언감정법 위반(위증)",
+      "status": "app",
+      "note": "구명 로비 의혹의 핵심 인물 이종호 전 블랙펄인베스트 대표를 ‘만난 적 없다’고 증언하고, 휴대전화 비밀번호를 기억하지 못한다고 한 혐의. 2심은 이종호 관련·쌍룡훈련 초청 관련 증언을 이유 무죄로 판단하고 휴대전화 비밀번호 관련 위증만 유죄로 봤습니다. 상고 여부는 선고 직후 보도로 확인하지 못했습니다.",
+      "defendantIds": ["imsg"]
+    },
+    "chae-lee-australia-1": {
+      "order": 4,
+      "title": "이종섭 전 국방부장관 호주대사 도피 및 출국금지 해제 의혹",
+      "charge": "범인도피, 직권남용권리행사방해, 국가공무원법 위반",
+      "status": "app",
+      "note": "공수처 수사를 받던 이종섭 전 장관을 호주대사로 임명해 출국시킨 혐의로 윤석열·조태용·박성재·심우정·장호진·이시원 6명이 기소됐습니다. 1심은 대통령의 고유 인사권 행사로 보아 전원 무죄를 선고했고, 특검이 항소해 항소심이 진행 중입니다.",
+      "defendantIds": ["yoon", "choty", "parksj", "simwj", "janghj", "leesw"]
+    },
+    "chae-defense-pressure-1": {
+      "order": 5,
+      "title": "국방부 수사외압 — 신범철 전 차관·유재은 법무관리관·박진희 군사보좌관 등 직권남용",
+      "charge": "직권남용권리행사방해, 공용·공전자기록무효·위작·변조·은닉·탈취, 모해위증, 허위공문서작성·행사, 공무상비밀누설 등",
+      "status": "trial",
+      "note": "‘VIP 격노’(2023.7.31 대통령 주재 회의) 이후 대통령실·국방부가 해병대 수사단의 수사 결과를 변경하기 위해 조직적으로 외압을 행사한 혐의. 2025.11.21 윤석열 전 대통령을 정점으로 조태용·이종섭·신범철·전하규·허태근·유재은·박진희·김동혁·김계환·유균혜와 조직총괄담당관 이모 씨 등 12명이 불구속 기소됐습니다.",
+      "defendantIds": ["yoon", "choty", "leejsh", "shinc", "jeonhk", "heotg", "yooje", "parkjhi", "kimdh", "kimkhw", "yoogyh"]
+    },
+    "chae-presidential-vip-1": {
+      "order": 6,
+      "title": "이시원 전 공직기강비서관·임기훈 전 국방비서관 대통령실 수사외압 및 VIP 격노 개입",
+      "charge": "공무상비밀누설 (2차 종합특검 기소)",
+      "status": "trial",
+      "note": "임기훈은 2023.7.31 수석비서관 회의에서 채상병 사건 초동수사 결과를 윤석열에 최초 보고해 ‘VIP 격노’를 촉발한 당사자이고, 이시원은 경찰에 이첩된 수사 기록의 국방부 회수 과정을 조율한 의혹을 받았습니다. 이명현 채상병 특검은 2025.11.21 수사 조력을 이유로 두 사람을 기소유예했고, 이후 권창영 2차 종합특검이 경북경찰청 압수수색 계획이 해병대에 사전 유출된 경로(이시원→임기훈→국방부)를 공무상비밀누설 혐의로 2026.8.13 불구속 기소했습니다.",
+      "defendantIds": ["leesw", "imkh"]
+    },
+    "chae-prosecution-illegal-1": {
+      "order": 7,
+      "title": "김동혁 전 국방부 검찰단장 등 경찰 이첩 기록 불법 회수 및 허위 구속영장 사건",
+      "charge": "허위공문서작성·행사, 직권남용감금, 국회증언감정법 위반",
+      "status": "sup",
+      "note": "박정훈 전 수사단장의 구속영장 청구서에 ‘VIP 격노는 망상’이라는 취지의 허위 내용을 기재하고 영장실질심사 동안 약 6시간 46분 감금했다는 혐의로 재판에 넘겨진 군검사 2명의 재판입니다. 특검은 2026.9.17 상고했고, 대법원 판단이 남아 있습니다.",
+      "defendantIds": ["yombh", "kimminj"]
+    },
+    "chae-battalion-negligence-1": {
+      "order": 8,
+      "title": "이용민 포병대대장 등 현장 지휘관 업무상과실치사 사건",
+      "charge": "업무상과실치사상",
+      "status": "final",
+      "note": "임성근 전 사단장과 통합 기소·심리된 현장 지휘부(박상현 전 제7여단장·최진규 전 포11대대장·이용민 전 포7대대장·장모 전 포7대대 본부중대장) 재판입니다. 안전장비 없는 수중수색으로 이어진 지시 하달에 대한 책임이 인정됐고, 대법원에서 모두 확정됐습니다.",
+      "defendantIds": ["parksh", "choejg", "leeym", "jang-m"]
+    },
+    "chae-leejh-phone-1": {
+      "order": 9,
+      "title": "이종호 전 블랙펄인베스트 대표 증거인멸(휴대전화 파손) 사건",
+      "charge": "증거인멸교사",
+      "status": "final",
+      "note": "구명 로비 의혹 특검 수사 기간인 2025년 7월, 이종호 전 대표가 서초 잠원 한강공원에서 지인 차 씨에게 휴대전화를 던지고 파손·폐기하도록 한 혐의. 법원은 형사처벌 가능성을 염두에 둔 자기 이익을 위한 행위라 증거인멸죄가 성립하지 않는다는 법리로 무죄를 확정했습니다. 특검은 대법원 전원합의체 회부조차 없었다며 유감을 표했습니다.",
+      "defendantIds": ["leeho"]
+    }
+  },
+  "rulings": {
+    "chae-park-mutiny-1": {
+      "caseId": "chae-park-mutiny-1",
+      "level": 1,
+      "date": "2025-01-09",
+      "kind": "ruling",
+      "court": "중앙지역군사법원",
+      "judgeIds": ["kimji"],
+      "caseNo": "2023고43",
+      "result": "무죄",
+      "summary": "해병대사령관이 이첩 보류를 개별적·구체적으로 명령했다고 보기 어렵고, 이첩 중단 명령은 국방장관 지시에 따라 수사 결과를 수정할 목적으로 한 권한 밖의 부당한 명령이라 항명이 성립하지 않음. 상관명예훼손도 무죄",
+      "requested": "징역 3년",
+      "sources": [
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20250109062852504"],
+        ["뉴스핌", "https://www.newspim.com/news/view/20250109000402"]
+      ],
+      "judgeNote": "주심 김종일 재판부장"
+    },
+    "chae-park-mutiny-2": {
+      "caseId": "chae-park-mutiny-1",
+      "level": 2,
+      "date": "2025-07-09",
+      "kind": "ruling",
+      "court": "서울고법 형사4-1부",
+      "judgeIds": ["jiyn", "kwonhj", "hwangjg"],
+      "caseNo": "",
+      "result": "특검 항소 취하 · 1심 무죄 확정",
+      "summary": "채상병 특검이 수사기록 경찰 이첩은 적법행위이고 군검찰의 집단 항명 입건·기소는 공소권 남용이라며 항소 취하. 항소심 심리 중(6.13 공소장 변경 허가, 6.27 김계환 증인신문)에 종결",
+      "requested": "",
+      "sources": [
+        ["법률신문", "https://www.lawtimes.co.kr/news/articleView.html?idxno=209570"],
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20250613078500004"]
+      ],
+      "judgeNote": ""
+    },
+    "chae-im-negligence-1": {
+      "caseId": "chae-im-negligence-1",
+      "level": 1,
+      "date": "2026-05-08",
+      "kind": "ruling",
+      "court": "서울중앙지법 형사합의22부",
+      "judgeIds": ["chohw"],
+      "caseNo": "2025고합1510",
+      "result": "징역 3년 · 법정구속",
+      "summary": "수중수색 인식에도 안전조치·장비 지급을 하지 않은 업무상 주의의무 위반과 단편명령 위반이 모두 유죄. ‘이번 사고에 가장 책임이 큰 인물’이라고 판시",
+      "requested": "징역 5년",
+      "sources": [
+        ["법률신문", "https://www.lawtimes.co.kr/news/articleView.html?idxno=220448"],
+        ["서울경제", "https://www.sedaily.com/article/20041696"]
+      ],
+      "judgeNote": "재판장 조형우"
+    },
+    "chae-im-negligence-2": {
+      "caseId": "chae-im-negligence-1",
+      "level": 2,
+      "date": "2026-08-07",
+      "kind": "ruling",
+      "court": "서울고법 형사4-3부",
+      "judgeIds": ["jeonjw", "kimigs", "seongjy"],
+      "caseNo": "",
+      "result": "항소 기각 · 징역 3년",
+      "summary": "업무상과실치사상 유죄 유지. 명령위반 중 작전 철수 지침에도 작전 지속을 지시한 부분만 이유 무죄로 뒤집혔고 형량은 유지",
+      "requested": "징역 5년",
+      "sources": [
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260807065151004"]
+      ],
+      "judgeNote": "북부장판사 전지원"
+    },
+    "chae-im-negligence-3": {
+      "caseId": "chae-im-negligence-1",
+      "level": 3,
+      "date": "2026-10-27",
+      "kind": "ruling",
+      "court": "대법원 1부",
+      "judgeIds": ["shinsh"],
+      "caseNo": "",
+      "result": "상고 기각 · 징역 3년 확정",
+      "summary": "순직 1,196일 만의 확정. 자유심증주의 한계 위반·법리 오해가 없다는 대법원 판단",
+      "requested": "",
+      "sources": [
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20261027075800004"],
+        ["파이낸셜뉴스", "https://www.fnnews.com/news/202610271226043887"]
+      ],
+      "judgeNote": "주심 신숙희"
+    },
+    "chae-im-perjury-1": {
+      "caseId": "chae-im-perjury-1",
+      "level": 1,
+      "date": "2026-06-11",
+      "kind": "ruling",
+      "court": "서울중앙지법 형사합의22부",
+      "judgeIds": ["chohw"],
+      "caseNo": "2025고합1596",
+      "result": "징역 1년 6개월",
+      "summary": "위증 3건 전부 유죄. 국감 사흘 뒤 구속영장 청구가 임박하자 23자리 비밀번호를 ‘기적적으로 확인’했다는 주장과 이종호와의 만남 부인 진술을 모두 배척",
+      "requested": "징역 3년",
+      "sources": [
+        ["법률신문", "https://www.lawtimes.co.kr/news/articleView.html?idxno=221905"],
+        ["한겨레", "https://www.hani.co.kr/arti/society/society_general/1263083.html"]
+      ],
+      "judgeNote": "재판장 조형우"
+    },
+    "chae-im-perjury-2": {
+      "caseId": "chae-im-perjury-1",
+      "level": 2,
+      "date": "2026-09-22",
+      "kind": "ruling",
+      "court": "서울고법 형사2-3부",
+      "judgeIds": ["kimyhy", "baeksy", "hwangst"],
+      "caseNo": "",
+      "result": "징역 1년 6개월 파기 · 징역 1년, 집행유예 2년",
+      "summary": "이종호 관련·쌍룡훈련 초청 관련 증언은 이유 무죄. 휴대전화 비밀번호 위증만 유죄로 인정해 집행유예로 감형",
+      "requested": "징역 3년",
+      "sources": [
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260922150300004"],
+        ["뉴시스", "https://www.newsis.com/view/NISX20260922_0003800623"]
+      ],
+      "judgeNote": "재판장 김영현"
+    },
+    "chae-lee-australia-1": {
+      "caseId": "chae-lee-australia-1",
+      "level": 1,
+      "date": "2026-09-11",
+      "kind": "ruling",
+      "court": "서울중앙지법 형사합의22부",
+      "judgeIds": ["chohw"],
+      "caseNo": "",
+      "result": "윤석열 등 6명 전원 무죄",
+      "summary": "호주대사 임명은 대통령의 고유 인사권 행사이고, 임명 시점에 이종섭에 대한 수사가 진행되지 않아 도피·방해 의도 인정 어려움. 출국금지 해제 개입도 증거 부족",
+      "requested": "윤석열 징역 5년",
+      "sources": [
+        ["한국경제", "https://www.hankyung.com/article/202609119502i"],
+        ["노컷뉴스", "https://www.nocutnews.co.kr/news/6576946"]
+      ],
+      "judgeNote": "재판장 조형우"
+    },
+    "chae-lee-australia-2": {
+      "caseId": "chae-lee-australia-1",
+      "level": 2,
+      "date": "2026-10-19",
+      "kind": "pending",
+      "court": "서울고법 형사10-1부",
+      "judgeIds": ["leesgh", "leejsn", "leehl"],
+      "caseNo": "",
+      "result": "항소심 진행 중 (공판준비기일)",
+      "summary": "특검이 공소장 변경·추가 증거를 예고, 11.16 두 번째 공판준비기일. 재판부는 신속 심리 방침과 공소사실·배경사실 구분을 주문",
+      "requested": "",
+      "sources": [
+        ["더팩트", "https://news.tf.co.kr/read/life/2377662.htm"],
+        ["파이낸셜뉴스", "https://www.fnnews.com/news/202610191131493646"]
+      ],
+      "judgeNote": "북부장판사 이상호"
+    },
+    "chae-defense-pressure-1": {
+      "caseId": "chae-defense-pressure-1",
+      "level": 1,
+      "date": "2026-04-29",
+      "kind": "pending",
+      "court": "서울중앙지법 형사합의27부",
+      "judgeIds": ["wooin"],
+      "caseNo": "",
+      "result": "1심 공판 진행 중",
+      "summary": "4.29 첫 공판 후 상반기 격주 진행. 10.14 김진락 전 국방부 조사본부 수사단장 증인신문에서 ‘재검토는 장관 하명’이라는 증언. 박정훈·임기훈·이시원 등 증인 채택, 특검은 재판중계 신청 예고",
+      "requested": "",
+      "sources": [
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260318120400004"],
+        ["더팩트", "https://news.tf.co.kr/read/life/2376404.htm"]
+      ],
+      "judgeNote": "재판장 우인성"
+    },
+    "chae-presidential-vip-1": {
+      "caseId": "chae-presidential-vip-1",
+      "level": 1,
+      "date": "2026-08-13",
+      "kind": "pending",
+      "court": "서울중앙지법",
+      "judgeIds": [],
+      "caseNo": "",
+      "result": "재판 진행 중 (2026.8.13 불구속 기소)",
+      "summary": "이명현 채상병 특검은 2025.11.21 수사 조력을 이유로 기소유예. 이후 권창영 2차 종합특검이 경북경찰청 압수수색 계획의 해병대 사전 유출 경로(이시원→임기훈→국방부)를 공무상비밀누설 혐의로 기소. 재판부·기일은 보도로 확인되는 대로 갱신 예정",
+      "requested": "",
+      "sources": [
+        ["매일경제", "https://www.mk.co.kr/news/society/12126788"],
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260625094000004"]
+      ],
+      "judgeNote": ""
+    },
+    "chae-prosecution-illegal-1": {
+      "caseId": "chae-prosecution-illegal-1",
+      "level": 1,
+      "date": "2026-06-12",
+      "kind": "ruling",
+      "court": "서울중앙지법 형사합의24부",
+      "judgeIds": ["leeysh"],
+      "caseNo": "2025고합1549",
+      "result": "염보현·김민정 허위공문서작성·행사 및 직권남용감금 무죄 · 염보현 국감 불출석 벌금 1,000만원",
+      "summary": "구속영장 청구서 기재는 의견·판단으로 허위공문서 작성 고의 인정 어려움. 동기·상급자와의 공모도 입증되지 않았다고 판단",
+      "requested": "염 징역 1년·자격정지 2년, 김 징역 2년·자격정지 3년",
+      "sources": [
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260612133700004"],
+        ["이데일리", "https://www.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=05028246645481064"]
+      ],
+      "judgeNote": "재판장 이영선"
+    },
+    "chae-prosecution-illegal-2": {
+      "caseId": "chae-prosecution-illegal-1",
+      "level": 2,
+      "date": "2026-09-11",
+      "kind": "ruling",
+      "court": "서울고법 형사7부",
+      "judgeIds": ["guhg"],
+      "caseNo": "",
+      "result": "항소 기각 · 무죄 유지",
+      "summary": "구속영장 청구서는 검사의 판단·주장을 담은 문서로 증명적 기능의 공문서로 보기 어렵다고 판단. 염보현의 국감 불출석 벌금형도 유지",
+      "requested": "1심과 동일 구형",
+      "sources": [
+        ["MBC", "https://imnews.imbc.com/news/2026/society/article/6851231_36918.html"]
+      ],
+      "judgeNote": "북부장판사 구회근"
+    },
+    "chae-prosecution-illegal-3": {
+      "caseId": "chae-prosecution-illegal-1",
+      "level": 3,
+      "date": "2026-09-17",
+      "kind": "pending",
+      "court": "대법원",
+      "judgeIds": [],
+      "caseNo": "",
+      "result": "특검 상고",
+      "summary": "특검이 공소장 변경 2회 미수용은 공소사실 동일성 법리 오해, 진술 거부권 고지 누락 등을 상고 이유로 제시. ‘영장 청구서 허위 기재가 처벌 대상이 아니게 되는 법리’에 대한 대법원 판단을 요청",
+      "requested": "",
+      "sources": [
+        ["파이낸셜뉴스", "https://www.fnnews.com/news/202610121942266425"]
+      ],
+      "judgeNote": ""
+    },
+    "chae-battalion-negligence-1": {
+      "caseId": "chae-battalion-negligence-1",
+      "level": 1,
+      "date": "2026-05-08",
+      "kind": "ruling",
+      "court": "서울중앙지법 형사합의22부",
+      "judgeIds": ["chohw"],
+      "caseNo": "2025고합1510",
+      "result": "박상현·최진규 금고 1년 6개월(법정구속) · 이용민 금고 10개월 · 장모 금고 8개월, 집행유예 2년",
+      "summary": "위험한 수중수색 지시 하달과 안전조치 소홀의 책임 인정. ‘말단만 묻던 관행과 달리 상급 지휘관의 작위적 지시’라고 질책",
+      "requested": "금고 1년~2년 6개월",
+      "sources": [
+        ["법률신문", "https://www.lawtimes.co.kr/news/articleView.html?idxno=220448"],
+        ["서울경제", "https://www.sedaily.com/article/20041696"]
+      ],
+      "judgeNote": "재판장 조형우"
+    },
+    "chae-battalion-negligence-2": {
+      "caseId": "chae-battalion-negligence-1",
+      "level": 2,
+      "date": "2026-08-07",
+      "kind": "ruling",
+      "court": "서울고법 형사4-3부",
+      "judgeIds": ["jeonjw", "kimigs", "seongjy"],
+      "caseNo": "",
+      "result": "항소 기각 · 원심 형량 유지",
+      "summary": "지휘관들의 업무상 주의의무 위반이 유지됐고 형량도 1심과 같음",
+      "requested": "",
+      "sources": [
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260807065151004"]
+      ],
+      "judgeNote": ""
+    },
+    "chae-battalion-negligence-3": {
+      "caseId": "chae-battalion-negligence-1",
+      "level": 3,
+      "date": "2026-10-27",
+      "kind": "ruling",
+      "court": "대법원 1부",
+      "judgeIds": ["shinsh"],
+      "caseNo": "",
+      "result": "상고 기각 · 확정",
+      "summary": "박상현·최진규·장모 형이 확정. 이용민은 쌍방 상고하지 않아 2심에서 이미 확정",
+      "requested": "",
+      "sources": [
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20261027075800004"]
+      ],
+      "judgeNote": "주심 신숙희"
+    },
+    "chae-leejh-phone-1": {
+      "caseId": "chae-leejh-phone-1",
+      "level": 3,
+      "date": "2026-10-08",
+      "kind": "ruling",
+      "court": "대법원 2부",
+      "judgeIds": [],
+      "caseNo": "",
+      "result": "무죄 확정",
+      "summary": "1·2심 무죄 판단이 유지돼 이종호의 증거인멸교사 혐의와 지인 차 씨의 벌금 300만원이 확정. 형사처벌 가능성을 염두에 둔 자기 이익을 위한 증거인멸은 처벌 대상이 아니라는 법리",
+      "requested": "",
+      "sources": [
+        ["YTN", "https://www.ytn.co.kr/_ln/0103_202610081119141248"]
+      ],
+      "judgeNote": ""
+    }
+  },
+  "sentences": {
+    "chae-park-mutiny-1-parkjh": {
+      "rulingId": "chae-park-mutiny-1",
+      "caseId": "chae-park-mutiny-1",
+      "personId": "parkjh",
+      "outcome": "무죄",
+      "sentence": "무죄 (항소 취하로 확정)",
+      "requested": "징역 3년"
+    },
+    "chae-im-negligence-1-imsg": {
+      "rulingId": "chae-im-negligence-1",
+      "caseId": "chae-im-negligence-1",
+      "personId": "imsg",
+      "outcome": "유죄",
+      "sentence": "징역 3년",
+      "requested": "징역 5년"
+    },
+    "chae-im-negligence-2-imsg": {
+      "rulingId": "chae-im-negligence-2",
+      "caseId": "chae-im-negligence-1",
+      "personId": "imsg",
+      "outcome": "유죄",
+      "sentence": "징역 3년",
+      "requested": "징역 5년"
+    },
+    "chae-im-negligence-3-imsg": {
+      "rulingId": "chae-im-negligence-3",
+      "caseId": "chae-im-negligence-1",
+      "personId": "imsg",
+      "outcome": "유죄",
+      "sentence": "징역 3년 확정",
+      "requested": ""
+    },
+    "chae-im-perjury-1-imsg": {
+      "rulingId": "chae-im-perjury-1",
+      "caseId": "chae-im-perjury-1",
+      "personId": "imsg",
+      "outcome": "유죄",
+      "sentence": "징역 1년 6개월",
+      "requested": "징역 3년"
+    },
+    "chae-im-perjury-2-imsg": {
+      "rulingId": "chae-im-perjury-2",
+      "caseId": "chae-im-perjury-1",
+      "personId": "imsg",
+      "outcome": "일부 유죄",
+      "sentence": "징역 1년, 집행유예 2년",
+      "requested": "징역 3년"
+    },
+    "chae-lee-australia-1-yoon": {
+      "rulingId": "chae-lee-australia-1",
+      "caseId": "chae-lee-australia-1",
+      "personId": "yoon",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": "징역 5년"
+    },
+    "chae-lee-australia-1-choty": {
+      "rulingId": "chae-lee-australia-1",
+      "caseId": "chae-lee-australia-1",
+      "personId": "choty",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "chae-lee-australia-1-parksj": {
+      "rulingId": "chae-lee-australia-1",
+      "caseId": "chae-lee-australia-1",
+      "personId": "parksj",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "chae-lee-australia-1-simwj": {
+      "rulingId": "chae-lee-australia-1",
+      "caseId": "chae-lee-australia-1",
+      "personId": "simwj",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "chae-lee-australia-1-janghj": {
+      "rulingId": "chae-lee-australia-1",
+      "caseId": "chae-lee-australia-1",
+      "personId": "janghj",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "chae-lee-australia-1-leesw": {
+      "rulingId": "chae-lee-australia-1",
+      "caseId": "chae-lee-australia-1",
+      "personId": "leesw",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "chae-prosecution-illegal-1-yombh": {
+      "rulingId": "chae-prosecution-illegal-1",
+      "caseId": "chae-prosecution-illegal-1",
+      "personId": "yombh",
+      "outcome": "일부 유죄",
+      "sentence": "벌금 1,000만원 (국감 불출석)",
+      "requested": "징역 1년·자격정지 2년"
+    },
+    "chae-prosecution-illegal-1-kimminj": {
+      "rulingId": "chae-prosecution-illegal-1",
+      "caseId": "chae-prosecution-illegal-1",
+      "personId": "kimminj",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": "징역 2년·자격정지 3년"
+    },
+    "chae-prosecution-illegal-2-yombh": {
+      "rulingId": "chae-prosecution-illegal-2",
+      "caseId": "chae-prosecution-illegal-1",
+      "personId": "yombh",
+      "outcome": "일부 유죄",
+      "sentence": "벌금 1,000만원 (유지)",
+      "requested": "징역 1년·자격정지 2년"
+    },
+    "chae-prosecution-illegal-2-kimminj": {
+      "rulingId": "chae-prosecution-illegal-2",
+      "caseId": "chae-prosecution-illegal-1",
+      "personId": "kimminj",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": "징역 2년·자격정지 3년"
+    },
+    "chae-battalion-negligence-1-parksh": {
+      "rulingId": "chae-battalion-negligence-1",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "parksh",
+      "outcome": "유죄",
+      "sentence": "금고 1년 6개월",
+      "requested": "금고 2년 6개월"
+    },
+    "chae-battalion-negligence-1-choejg": {
+      "rulingId": "chae-battalion-negligence-1",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "choejg",
+      "outcome": "유죄",
+      "sentence": "금고 1년 6개월",
+      "requested": "금고 2년 6개월"
+    },
+    "chae-battalion-negligence-1-leeym": {
+      "rulingId": "chae-battalion-negligence-1",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "leeym",
+      "outcome": "유죄",
+      "sentence": "금고 10개월",
+      "requested": "금고 2년"
+    },
+    "chae-battalion-negligence-1-jang-m": {
+      "rulingId": "chae-battalion-negligence-1",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "jang-m",
+      "outcome": "유죄",
+      "sentence": "금고 8개월, 집행유예 2년",
+      "requested": "금고 1년"
+    },
+    "chae-battalion-negligence-2-parksh": {
+      "rulingId": "chae-battalion-negligence-2",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "parksh",
+      "outcome": "유죄",
+      "sentence": "금고 1년 6개월",
+      "requested": ""
+    },
+    "chae-battalion-negligence-2-choejg": {
+      "rulingId": "chae-battalion-negligence-2",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "choejg",
+      "outcome": "유죄",
+      "sentence": "금고 1년 6개월",
+      "requested": ""
+    },
+    "chae-battalion-negligence-2-leeym": {
+      "rulingId": "chae-battalion-negligence-2",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "leeym",
+      "outcome": "유죄",
+      "sentence": "금고 10개월",
+      "requested": ""
+    },
+    "chae-battalion-negligence-2-jang-m": {
+      "rulingId": "chae-battalion-negligence-2",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "jang-m",
+      "outcome": "유죄",
+      "sentence": "금고 8개월, 집행유예 2년",
+      "requested": ""
+    },
+    "chae-battalion-negligence-3-parksh": {
+      "rulingId": "chae-battalion-negligence-3",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "parksh",
+      "outcome": "유죄",
+      "sentence": "금고 1년 6개월 확정",
+      "requested": ""
+    },
+    "chae-battalion-negligence-3-choejg": {
+      "rulingId": "chae-battalion-negligence-3",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "choejg",
+      "outcome": "유죄",
+      "sentence": "금고 1년 6개월 확정",
+      "requested": ""
+    },
+    "chae-battalion-negligence-3-jang-m": {
+      "rulingId": "chae-battalion-negligence-3",
+      "caseId": "chae-battalion-negligence-1",
+      "personId": "jang-m",
+      "outcome": "유죄",
+      "sentence": "금고 8개월, 집행유예 2년 확정",
+      "requested": ""
+    },
+    "chae-leejh-phone-1-leeho": {
+      "rulingId": "chae-leejh-phone-1",
+      "caseId": "chae-leejh-phone-1",
+      "personId": "leeho",
+      "outcome": "무죄",
+      "sentence": "무죄 확정",
+      "requested": ""
+    }
+  },
+  "people": {
+    "yoon": {
+      "name": "윤석열",
+      "role": "전 대통령",
+      "category": "대통령실",
+      "keyRole": "수사외압의 정점. 2023.7.31 대통령 주재 회의에서 임성근 등 지휘관 처벌에 ‘격노’하며 이첩 보류·기록 회수·수사 결과 변경 지시로 이어진 직권남용 공소(1심 진행 중), 이종섭 호주대사 임명으로 도피시킨 혐의(1심 무죄, 특검 항소)",
+      "statusNote": "수사외압(직권남용) 1심 진행 중 / 이종섭 도피 1심 무죄 (항소심 진행)",
+      "photo": "assets/photos/yoon",
+      "photoAlt": "윤석열 전 대통령 공식 초상",
+      "photoCredit": "대한민국 대통령실",
+      "photoLicense": "CC BY 3.0",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:South_Korea_President_Yoon_Suk_Yeol_portrait_(crop).jpg",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "leejsh": {
+      "name": "이종섭",
+      "role": "전 국방부 장관 · 전 호주대사",
+      "category": "국방부·군 수뇌부",
+      "keyRole": "해병대 수사단 결과 보고를 받고 결재한 뒤 이첩 보류 지시, 유재은·박진희를 통한 수사 결과 변경 압박, 조사본부 재검토 하명(1심 진행 중). 공수처 수사를 받던 중 호주대사로 임명돼 출국(임명 관련 재판은 별도)",
+      "statusNote": "수사외압 1심 진행 중 / 도피 의혹 사건은 피고인 아님(윤석열 등이 기소)"
+    },
+    "choty": {
+      "name": "조태용",
+      "role": "전 대통령실 국가안보실장 · 전 국가정보원장",
+      "category": "대통령실",
+      "keyRole": "2023.7.31 수석비서관 회의에서 윤석열의 격노를 목격한 당사자로 수사외압 공범 기소(1심 진행 중), 이종섭 호주대사 임명·출국 과정 관여 혐의(1심 무죄)",
+      "statusNote": "수사외압 1심 진행 중 / 이종섭 도피 1심 무죄 (항소심 진행)",
+      "photo": "assets/photos/choty",
+      "photoAlt": "조태용 전 국가안보실장(전 국가정보원장) 프로필 사진",
+      "photoCredit": "U.S. Department of State",
+      "photoLicense": "Public domain",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Cho_Taeyong_in_2022_(cropped).jpg"
+    },
+    "imsg": {
+      "name": "임성근",
+      "role": "전 해병대 1사단장",
+      "category": "해병대 지휘부",
+      "keyRole": "안전장비 없는 수중수색을 지시·묵인한 채상병 순직 사고 책임(업무상과실치사상 징역 3년 확정)과 단편명령 위반(유죄). 구명 로비 의혹 관련 국회 위증(2심 징역 1년, 집행유예 2년)",
+      "statusNote": "업무상과실치사상 징역 3년 확정 (수감) / 위증 2심 징역 1년, 집행유예 2년"
+    },
+    "parkjh": {
+      "name": "박정훈",
+      "role": "해병대 준장 · 전 해병대 수사단장(당시 대령)",
+      "category": "해병대 지휘부",
+      "keyRole": "채상병 사건 초동수사 단장으로 임성근 등 8명을 혐의자로 적시하고 경북경찰청에 이첩. 이첩 보류 명령 불응으로 항명·상관명예훼손으로 기소됐으나 무죄 확정, 이후 VIP 격노설 공개. 수사외압 재판의 핵심 증인",
+      "statusNote": "항명·명예훼손 무죄 확정 (특검 항소 취하)"
+    },
+    "kimkhw": {
+      "name": "김계환",
+      "role": "전 해병대사령관",
+      "category": "국방부·군 수뇌부",
+      "keyRole": "이종섭의 이첩 보류 지시를 박정훈에게 전달하고 이첩 중단 명령, 박정훈 보직해임 집행. 수사외압 직권남용과 모해위증·국회 위증 혐의로 기소(1심 진행 중)",
+      "statusNote": "수사외압 1심 진행 중"
+    },
+    "jungjb": {
+      "name": "정종범",
+      "role": "전 해병대 부사령관",
+      "category": "해병대 지휘부",
+      "keyRole": "해병대 부사령관으로서 이종섭의 이첩 보류 명령을 수사단장에게 전달한 경로로 공소장 변경에 적시됨. 수사외압 재판에서 증인·관계인으로 다뤄짐",
+      "statusNote": "기소 아님 — 재판 관계자"
+    },
+    "shinc": {
+      "name": "신범철",
+      "role": "전 국방부 차관",
+      "category": "국방부·군 수뇌부",
+      "keyRole": "박정훈 보직해임·항명 수사 지시 등 국방부 차원의 수사외압 실행(수사외압 1심 진행 중)",
+      "statusNote": "수사외압 1심 진행 중"
+    },
+    "yooje": {
+      "name": "유재은",
+      "role": "전 국방부 법무관리관",
+      "category": "국방부·군 수뇌부",
+      "keyRole": "이종섭 지시로 박정훈에게 전화해 수사 결과 수정 압박(수사외압 1심 진행 중)",
+      "statusNote": "수사외압 1심 진행 중"
+    },
+    "parkjhi": {
+      "name": "박진희",
+      "role": "전 국방부 장관 군사보좌관",
+      "category": "국방부·군 수뇌부",
+      "keyRole": "국방부 조사본부에 회수된 수사 결과를 다섯 차례 수정 지시해 임성근을 피혐의자에서 제외하도록 한 혐의(수사외압 1심 진행 중)",
+      "statusNote": "수사외압 1심 진행 중"
+    },
+    "kimdh": {
+      "name": "김동혁",
+      "role": "전 국방부 검찰단장",
+      "category": "군검찰·수사기구",
+      "keyRole": "박정훈을 집단 항명 수괴로 입건·수사하고 경찰 이첩 기록 회수에 관여. 수사외압 직권남용 혐의로 기소(1심 진행 중)",
+      "statusNote": "수사외압 1심 진행 중 / 휘하 군검사 허위영장 재판은 별도 판결"
+    },
+    "kimjnl": {
+      "name": "김진락",
+      "role": "전 국방부 조사본부 수사단장",
+      "category": "군검찰·수사기구",
+      "keyRole": "회수된 채상병 사건 기록의 국방부 조사본부 재검토 담당. 2026.10.14 수사외압 재판 증인신문에서 ‘재검토는 장관 하명’이었고 법리적으로 이해되지 않았다고 증언",
+      "statusNote": "피고인 아님 — 증인"
+    },
+    "jeonhk": {
+      "name": "전하규",
+      "role": "전 국방부 대변인",
+      "category": "국방부·군 수뇌부",
+      "keyRole": "박정훈 항명 재판에서 모해위증한 혐의로 기소(수사외압 사건과 함께 재판)",
+      "statusNote": "수사외압 사건 1심 진행 중 (모해위증 포함)"
+    },
+    "heotg": {
+      "name": "허태근",
+      "role": "전 대통령실 정책실장",
+      "category": "대통령실",
+      "keyRole": "박정훈 항명 재판에서 모해위증한 혐의로 기소(수사외압 사건과 함께 재판)",
+      "statusNote": "수사외압 사건 1심 진행 중 (모해위증 포함)"
+    },
+    "yoogyh": {
+      "name": "유균혜",
+      "role": "전 국방부 기획관리관",
+      "category": "국방부·군 수뇌부",
+      "keyRole": "국회 전산망에 허위 답변 자료를 반복 업로드한 허위공문서 혐의로 기소(수사외압 사건과 함께 재판)",
+      "statusNote": "수사외압 사건 1심 진행 중"
+    },
+    "leesw": {
+      "name": "이시원",
+      "role": "전 대통령실 공직기강비서관",
+      "category": "대통령실",
+      "keyRole": "경찰에 이첩된 수사 기록의 국방부 회수 과정 조율 의혹. 채상병 특검 기소유예 후 종합특검에 공무상비밀누설로 기소(재판 진행 중), 이종섭 도피 사건에서는 무죄",
+      "statusNote": "기밀누설 재판 진행 중 / 채상병 특검 기소유예 / 이종섭 도피 1심 무죄"
+    },
+    "imkh": {
+      "name": "임기훈",
+      "role": "전 대통령실 국방비서관 (전 국가안보실 국방비서관)",
+      "category": "대통령실",
+      "keyRole": "2023.7.31 수석비서관 회의에서 채상병 사건 초동수사 결과를 윤석열에 최초 보고해 ‘VIP 격노’를 촉발. 채상병 특검 기소유예 후 종합특검에 공무상비밀누설로 기소(재판 진행 중)",
+      "statusNote": "기밀누설 재판 진행 중 / 채상병 특검 기소유예"
+    },
+    "parksj": {
+      "name": "박성재",
+      "role": "전 법무부 장관",
+      "category": "정부·법무·민간",
+      "keyRole": "이종섭 호주대사 출국금지 해제 지시 혐의(1심 무죄, 특검 항소)",
+      "statusNote": "이종섭 도피 1심 무죄 (항소심 진행)",
+      "photo": "assets/photos/parksj",
+      "photoAlt": "박성재 전 법무부 장관 프로필 사진",
+      "photoCredit": "법무부",
+      "photoLicense": "공공누리 제1유형",
+      "photoSource": "https://www.moj.go.kr/minister/2090/subview.do",
+      "photoLicenseUrl": "https://www.kogl.or.kr/info/licenseType1.do"
+    },
+    "simwj": {
+      "name": "심우정",
+      "role": "전 검찰총장 (당시 법무부 차관)",
+      "category": "정부·법무·민간",
+      "keyRole": "이종섭 출국금지 해제 과정 관여 혐의(1심 무죄, 특검 항소)",
+      "statusNote": "이종섭 도피 1심 무죄 (항소심 진행)"
+    },
+    "janghj": {
+      "name": "장호진",
+      "role": "전 외교부 1차관 (전 국가안보실 차장)",
+      "category": "정부·법무·민간",
+      "keyRole": "이종섭 호주대사 임명·출국 과정 관여 혐의(1심 무죄, 특검 항소)",
+      "statusNote": "이종섭 도피 1심 무죄 (항소심 진행)"
+    },
+    "leeho": {
+      "name": "이종호",
+      "role": "전 블랙펄인베스트 대표",
+      "category": "정부·법무·민간",
+      "keyRole": "구명 로비 의혹의 창구로 지목된 김건희 측근(‘멋쟁해병’ 대화방). 특검은 로비 사실을 확인하지 못했고, 수사 기간 중 휴대전화 파손 지시 혐의는 무죄 확정",
+      "statusNote": "증거인멸교사 무죄 확정"
+    },
+    "yombh": {
+      "name": "염보현",
+      "role": "육군 소령 (전 국방부 검찰단 공공형사과장)",
+      "category": "군검찰·수사기구",
+      "keyRole": "박정훈 구속영장 청구서 작성 관여 혐의. 허위공문서·직권남용감금 무죄(1·2심), 국감 불출석만 벌금 1,000만원. 특검 상고로 대법원 계류",
+      "statusNote": "허위공문서 등 무죄 / 국감 불출석 벌금 1,000만원 / 특검 상고"
+    },
+    "kimminj": {
+      "name": "김민정",
+      "role": "공군 중령 (전 국방부 감찰단 보통검찰부장)",
+      "category": "군검찰·수사기구",
+      "keyRole": "박정훈 구속영장 청구서 작성 관여 혐의. 1·2심 모두 무죄, 특검 상고로 대법원 계류",
+      "statusNote": "무죄 (1·2심) / 특검 상고"
+    },
+    "parksh": {
+      "name": "박상현",
+      "role": "전 해병대 1사단 제7여단장",
+      "category": "해병대 지휘부",
+      "keyRole": "수해 현장 총괄 제2신속기동부대장으로 바둑판식 수색 등 지시 하달·대원 압박. 금고 1년 6개월 확정",
+      "statusNote": "금고 1년 6개월 확정"
+    },
+    "choejg": {
+      "name": "최진규",
+      "role": "전 해병대 1사단 포병여단 포11대대장",
+      "category": "해병대 지휘부",
+      "keyRole": "상급 지시를 전달하며 ‘허리 깊이 입수’ 등 수중수색 지시. 금고 1년 6개월 확정",
+      "statusNote": "금고 1년 6개월 확정"
+    },
+    "leeym": {
+      "name": "이용민",
+      "role": "전 해병대 1사단 포7대대장",
+      "category": "해병대 지휘부",
+      "keyRole": "채상병 소속 포7대대 대대장으로 지시를 부대원에게 하달해 사고 발생. 금고 10개월 (미상고로 2심 확정)",
+      "statusNote": "금고 10개월 확정"
+    },
+    "jang-m": {
+      "name": "장 모 (장아무개)",
+      "role": "전 해병대 1사단 포7대대 본부중대장",
+      "category": "해병대 지휘부",
+      "keyRole": "채상병의 직속 중대장. 실명 미공개 피고인. 금고 8개월, 집행유예 2년 확정",
+      "statusNote": "금고 8개월, 집행유예 2년 확정"
+    }
+  },
+  "judges": {
+    "kimji": {
+      "name": "김종일",
+      "position": "중앙지역군사법원 재판부장"
+    },
+    "jiyn": {
+      "name": "지영난",
+      "position": "서울고법 부장판사"
+    },
+    "kwonhj": {
+      "name": "권혁중",
+      "position": "서울고법 고법판사"
+    },
+    "hwangjg": {
+      "name": "황진구",
+      "position": "서울고법 고법판사"
+    },
+    "jeonjw": {
+      "name": "전지원",
+      "position": "서울고법 부장판사"
+    },
+    "kimigs": {
+      "name": "김인겸",
+      "position": "서울고법 고법판사"
+    },
+    "seongjy": {
+      "name": "성지용",
+      "position": "서울고법 고법판사"
+    },
+    "kimyhy": {
+      "name": "김영현",
+      "position": "서울고법 부장판사"
+    },
+    "baeksy": {
+      "name": "백승엽",
+      "position": "서울고법 고법판사"
+    },
+    "hwangst": {
+      "name": "황승태",
+      "position": "서울고법 고법판사"
+    },
+    "leesgh": {
+      "name": "이상호",
+      "position": "서울고법 부장판사"
+    },
+    "leejsn": {
+      "name": "이재신",
+      "position": "서울고법 고법판사"
+    },
+    "leehl": {
+      "name": "이혜란",
+      "position": "서울고법 고법판사"
+    },
+    "leeysh": {
+      "name": "이영선",
+      "position": "서울중앙지법 부장판사"
+    },
+    "chohw": {
+      "name": "조형우",
+      "position": "서울중앙지법 부장판사"
+    },
+    "wooin": {
+      "name": "우인성",
+      "position": "서울중앙지법 부장판사"
+    },
+    "guhg": {
+      "name": "구회근",
+      "position": "서울고법 부장판사"
+    },
+    "shinsh": {
+      "name": "신숙희",
+      "position": "대법관"
+    }
+  },
+  "meta": {
+    "info": {
+      "asOf": "2026-11-05",
+      "basis": "언론 보도 종합"
+    },
+    "graphLinks": {
+      "label": "수사외압·지휘 계통",
+      "links": [
+        {"source": "imkh", "target": "yoon", "kind": "cmd", "note": "2023.7.31 수석비서관 회의에서 초동수사 결과 최초 보고 — ‘VIP 격노’ 촉발"},
+        {"source": "yoon", "target": "leejsh", "kind": "cmd", "note": "이첩 보류·기록 회수·수사 결과 변경 지시 (격노 직후 전화 질책)"},
+        {"source": "yoon", "target": "choty", "kind": "cmd", "note": "안보실 회의 격노 공동 목격자 · 수사외압 공범 기소"},
+        {"source": "leejsh", "target": "kimkhw", "kind": "cmd", "note": "이첩 보류 명령 전달 · 국회 보고 취소 지시"},
+        {"source": "leejsh", "target": "yooje", "kind": "cmd", "note": "수사 결과를 임성근 제외 방향으로 바꾸라 지시"},
+        {"source": "yooje", "target": "parkjh", "kind": "cmd", "note": "박정훈에 전화해 수사 결과 수정 압박"},
+        {"source": "kimkhw", "target": "parkjh", "kind": "cmd", "note": "이첩 중단 명령 (군사법원: 권한 밖의 부당한 명령)"},
+        {"source": "jungjb", "target": "parkjh", "kind": "cmd", "note": "부사령관 경유 장관 명령 전달 (항소심 공소장 변경 내용)"},
+        {"source": "leejsh", "target": "shinc", "kind": "cmd", "note": "박정훈 보직해임·항명 수사 지시"},
+        {"source": "shinc", "target": "kimkhw", "kind": "cmd", "note": "보직해임 집행 지시"},
+        {"source": "leejsh", "target": "parkjhi", "kind": "cmd", "note": "군사보좌관 경유 조사본부 수정 작업 지시"},
+        {"source": "parkjhi", "target": "kimjnl", "kind": "cmd", "note": "조사본부 수사 결과 다섯 차례 수정 지시"},
+        {"source": "leejsh", "target": "kimdh", "kind": "cmd", "note": "박정훈 집단 항명 입건·수사 지시"},
+        {"source": "kimdh", "target": "yombh", "kind": "cmd", "note": "구속영장 청구서 작성 지휘"},
+        {"source": "kimdh", "target": "kimminj", "kind": "cmd", "note": "구속영장 청구서 작성 지휘"},
+        {"source": "leesw", "target": "imkh", "kind": "cmd", "note": "경북경찰청 압수수색 계획 누설 경로 (이시원→임기훈→국방부)"},
+        {"source": "yoon", "target": "parksj", "kind": "cmd", "note": "이종섭 출국금지 해제 지시 (1심 무죄)"},
+        {"source": "parksj", "target": "simwj", "kind": "cmd", "note": "출국금지 해제 절차 관여 (1심 무죄)"},
+        {"source": "imsg", "target": "leeho", "kind": "cmd", "note": "구명 로비 의혹 — 특검이 사실로 확인하지 못함 (2심도 친분 부정)"}
+      ]
+    }
+  }
+}
