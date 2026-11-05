@@ -367,10 +367,39 @@ body.graph-fs-open{overflow:hidden}
 
 /* 재판부 카드 판결 결과 배지 (무죄·가중·감형 대비 강조) */
 .badge-outcome{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid;display:inline-flex;align-items:center;gap:3px}
+
 .badge-outcome.aggravated{color:#B3261E;background:#FDECEA;border-color:#B3261E}
 .badge-outcome.mitigated{color:#1E5F8A;background:#E7F1F9;border-color:#1E5F8A}
 .badge-outcome.acquitted{color:var(--acq);background:var(--acq-bg);border-color:var(--acq)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .badge-outcome.aggravated{color:#FCA5A5;background:#351515;border-color:#7A2E2E}:root:not([data-theme="light"]) .badge-outcome.mitigated{color:#A8D0F0;background:#14293D;border-color:#2E5A85}}
+
+/* 형량비교 뷰 */
+.charts{display:grid;gap:14px}
+.chart-row .chart-person-btn{all:unset;cursor:pointer;font-weight:700}
+.chart-row .chart-person-btn:hover{text-decoration:underline}
+.chart-case{font-size:13px;margin:2px 0 8px}
+.chart-case a{color:var(--accent);text-decoration:none;font-weight:600}
+.chart-case a:hover{text-decoration:underline}
+.chart-bars{display:grid;gap:4px}
+.bar-line{display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:center}
+.bar-label{font-size:12px;font-weight:700;color:var(--muted);text-align:right;white-space:nowrap}
+.bar-track{position:relative;display:flex;align-items:center;min-height:24px;background:var(--surface);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.bar-fill{position:absolute;left:0;top:0;bottom:0;opacity:.8}
+.bar-fill.demand{background:#B3261E}
+.bar-fill.lv1{background:#64748B}
+.bar-fill.lv2{background:#1E5F8A}
+.bar-fill.final{background:#1B5E20;opacity:.95}
+.bar-fill.acq{background:transparent;border-right:2px solid var(--acq);opacity:1}
+.bar-txt{position:relative;z-index:1;padding:0 8px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-none{position:relative;z-index:1;padding:0 8px;font-size:12px;color:var(--muted)}
+.chart-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+:root[data-theme="dark"] .bar-fill.lv1{background:#94A3B8}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bar-fill.lv1{background:#94A3B8}}
+@media (max-width:560px){
+  .bar-line{grid-template-columns:34px 1fr;gap:6px}
+  .bar-label{font-size:11px}
+  .bar-txt,.bar-none{font-size:11px;padding:0 6px}
+}
 </style>
 </head>
 <body>
@@ -400,6 +429,7 @@ body.graph-fs-open{overflow:hidden}
       <button role="tab" id="tab-people" aria-selected="false" data-view="people">인물사전</button>
       <button role="tab" id="tab-graph" aria-selected="false" data-view="graph">관계도</button>
       <button type="button" class="tab-btn" data-view="judges" role="tab" id="tab-judges" aria-controls="view-judges">재판부</button>
+      <button type="button" class="tab-btn" data-view="charts" role="tab" id="tab-charts" aria-controls="view">형량비교</button>
     </div>
     <div class="search"><input id="q" type="search" placeholder="인물·직책·재판장 이름으로 찾기 (예: 김용현, 경호처)" aria-label="검색" autocomplete="off"><button type="button" id="q-clear" aria-label="검색어 지우기" hidden>×</button></div>
     <div class="export-dropdown" id="export-dropdown">
@@ -437,9 +467,9 @@ const COLLS=["cases","rulings","sentences","people","judges","meta"];
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt=d=>d?d.replace(/^(\d{4})-(\d{2})-(\d{2})$/,"$1.$2.$3"):"미정";
 const store={}; const loaded=new Set();
-const VIEWS=["timeline","cases","people","graph","judges"];
+const VIEWS=["timeline","cases","people","graph","judges","charts"];
 const TARGET_TYPES=["person","case","panel"];
-let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03",modalPerson:null,outcomeFilter:null,tlSched:false};
+let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03",modalPerson:null,outcomeFilter:null,tlSched:false,chartSort:"reduction",chartFilter:"all"};
 let initRoute=null;
 try{const v=localStorage.getItem("ins-view");if(v&&VIEWS.includes(v))state.view=v}catch(e){}
 try{
@@ -1131,7 +1161,12 @@ function render(){
     return;
   }
   const list=filterCases(cases);
-  view.innerHTML=state.view==="timeline"?renderTimeline(list):state.view==="cases"?renderCases(list):renderPeople(cases.filter(c=>!state.status||c.status===state.status),P);
+  view.innerHTML=state.view==="timeline"?renderTimeline(list):state.view==="cases"?renderCases(list):state.view==="charts"?renderCharts(cases.filter(c=>!state.status||c.status===state.status)):renderPeople(cases.filter(c=>!state.status||c.status===state.status),P);
+
+  if(state.view==="charts"){
+    document.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{state.chartSort=b.dataset.csort;render()});
+    document.querySelectorAll("[data-cfilter]").forEach(b=>b.onclick=()=>{state.chartFilter=state.chartFilter===b.dataset.cfilter?"all":b.dataset.cfilter;render()});
+  }
 
   // 이벤트 바인딩
   if(state.view==="timeline"){
@@ -1504,6 +1539,142 @@ function goToPerson(personId){
 }
 
 window.addEventListener("resize",()=>{if(state.view==="graph")renderGraph()});
+
+// ===== 형량비교 뷰: 특검 구형량 vs 심급별 선고 형량 수평 바 차트 =====
+// 스케일 상한: 사형·무기징역은 CHART_SCALE(480개월)로 환산해 바 길이가 무한대로 늘어나지 않게 한다.
+const CHART_SCALE=480;
+// sentenceMonths는 징역만 개월 환산하므로, 군 재판(금고형)을 위해 금고 파싱을 보강한다.
+function chartMonthsOf(txt){
+  const t=String(txt||"").replace(/\([^)]*\)/g,"");
+  // 사형이 무기징역보다 길게 보이도록 상한(CHART_SCALE) 아래에서 두 값을 구분해 환산한다.
+  if(t.includes("사형"))return CHART_SCALE;
+  if(t.includes("무기"))return Math.round(CHART_SCALE*0.85);
+  const m=sentenceMonths(txt);
+  if(m!=null)return m;
+  const g=t.match(/금고\s*(?:(\d+)\s*년)?\s*(?:(\d+)\s*개월)?/);
+  if(g&&(g[1]||g[2]))return parseInt(g[1]||"0",10)*12+parseInt(g[2]||"0",10);
+  return null;
+}
+// 피고인×사건 단위 행 구성: 구형(1심 특검 구형)·1심 선고·2심 선고·대법원 확정 형량을 모은다.
+function buildChartRows(cases){
+  const rows=[];
+  cases.forEach(c=>{
+    const single=(c.defendantIds||[]).length===1;
+    (c.defendants||[]).forEach(d=>{
+      const pid=d.id,p=store.people[pid];if(!p)return;
+      const byLv={};
+      c.rulings.forEach(r=>{(byLv[r.level]=byLv[r.level]||[]).push(r)});
+      const sentOf=r=>r.sentences.find(s=>s.personId===pid);
+      const r1=(byLv[1]||[]).find(r=>r.kind==="ruling");
+      const r2=(byLv[2]||[]).find(r=>r.kind==="ruling");
+      const r3=(byLv[3]||[]).find(r=>r.kind==="ruling");
+      const p1=(byLv[1]||[]).find(r=>r.kind==="pending");
+      const p2=(byLv[2]||[]).find(r=>r.kind==="pending");
+      const s1=r1?sentOf(r1):null,s2=r2?sentOf(r2):null,s3=r3?sentOf(r3):null;
+      // 구형: 피고인별 문장(선고 문장)의 requested를 우선하고, 단일 피고인 사건일 때만 판결문 requested로 대체한다.
+      //  다중 피고인 사건의 ruling.requested는 특정 피고인만 언급하는 경우("윤석열 사형" 등)가 있어 오배석을 막는다.
+      const demandTxt=(s1&&s1.requested)||(single&&r1&&r1.requested)||"";
+      // 해당 심급 선고 문장: 피고인별 선고가 없으면 단일 피고인 사건에 한해 판결 결과 텍스트를 쓴다.
+      const lvTxt=(r,s,pnd)=>s?s.sentence:(single&&r&&r.result?r.result:(pnd&&single&&r?r.result:""));
+      const t1Txt=lvTxt(r1,s1,false),t2Txt=lvTxt(r2,s2,false);
+      // 확정: 대법원 선고 문장 → 상고 기각이면 2심 형량이 확정
+      let finTxt=lvTxt(r3,s3,false),finFinal=false;
+      if(r3&&r3.kind==="ruling"&&r3.result&&/기각|확정/.test(r3.result)){finFinal=true;if(!finTxt&&s2)finTxt=s2.sentence+" (상고 기각)";}
+      if(!demandTxt&&!s1&&!s2&&!s3)return; // 구형·선고 정보가 전혀 없는 재판 진행 중 행은 제외
+      const row={pid,p,caseId:c.id,caseTitle:c.title,
+        demandTxt,demandM:chartMonthsOf(demandTxt),
+        t1:{txt:t1Txt,m:chartMonthsOf(t1Txt),acq:!!(s1&&s1.outcome==="무죄")},
+        t2:{txt:t2Txt,m:chartMonthsOf(t2Txt),acq:!!(s2&&s2.outcome==="무죄")},
+        fin:{txt:finTxt,m:chartMonthsOf(finTxt),acq:!!(s3&&s3.outcome==="무죄"),final:finFinal},
+        p1Txt:p1?p1.result:"",p2Txt:p2?p2.result:""};
+      // 최종 형량: 확정 → 2심 → 1심 순으로 사용 가능한 것
+      const last=row.fin.txt?row.fin:row.t2.txt?row.t2:row.t1;
+      row.lastM=last.m;row.lastTxt=last.txt;row.lastAcq=last.acq;
+      // 분류: 무죄 / 벌금형 / 가중 / 감형
+      let cat=null,changePct=null;
+      if(row.lastAcq||(row.lastTxt&&row.lastM===0&&/무죄/.test(row.lastTxt)))cat="acq";
+      else if(row.lastTxt&&/벌금/.test(row.lastTxt)&&!/징역|금고/.test(row.lastTxt))cat="fine";
+      else if(row.lastM!=null&&row.t1.m!=null){
+        if(row.t1.acq||row.t1.m===0){cat="agr"}
+        else if(row.lastM>row.t1.m){cat="agr";changePct=Math.round((row.lastM-row.t1.m)/row.t1.m*100)}
+        else if(row.lastM<row.t1.m){cat="mit";changePct=Math.round((row.t1.m-row.lastM)/row.t1.m*100)}
+      }
+      row.cat=cat;row.changePct=changePct;
+      // 구형 대비 감형률: 무죄는 100% 감형으로 환산
+      if(cat==="acq"&&row.demandM>0)row.reductionPct=100;
+      else if(row.demandM>0&&row.lastM!=null&&row.lastM<row.demandM)row.reductionPct=Math.round((row.demandM-row.lastM)/row.demandM*100);
+      rows.push(row);
+    });
+  });
+  return rows;
+}
+function renderCharts(cases){
+  let rows=buildChartRows(cases);
+  // 상단 검색어는 다른 뷰와 동일하게 형량비교에서도 피고인명·직책·사건명에 적용한다.
+  if(state.q)rows=rows.filter(r=>textMatches([r.p.name,r.p.role,r.p.category||"",r.caseTitle,r.demandTxt||"",r.lastTxt||""].join(" "),state.q));
+  const FLABELS={all:"전체",agr:"▲ 가중",mit:"▼ 감형",acq:"⚖️ 무죄"};
+  const counts={all:rows.length,agr:0,mit:0,acq:0};
+  rows.forEach(r=>{if(counts[r.cat]!=null)counts[r.cat]++});
+  if(state.chartFilter&&state.chartFilter!=="all")rows=rows.filter(r=>r.cat===state.chartFilter);
+  if(state.chartSort==="severity")rows.sort((a,b)=>(b.lastM??-1)-(a.lastM??-1)||a.p.name.localeCompare(b.p.name,"ko"));
+  else if(state.chartSort==="name")rows.sort((a,b)=>a.p.name.localeCompare(b.p.name,"ko"));
+  else rows.sort((a,b)=>(b.reductionPct??-1)-(a.reductionPct??-1)||a.p.name.localeCompare(b.p.name,"ko"));
+
+  const sortBtns=[["reduction","감형 폭 큰 순"],["severity","형량 높은 순"],["name","이름 순"]].map(([k,l])=>
+    `<button type="button" class="cat-btn" data-csort="${k}" aria-pressed="${state.chartSort===k}">${l}</button>`).join("");
+  const filterChips=Object.entries(FLABELS).map(([k,l])=>
+    `<button type="button" class="cat-btn" data-cfilter="${k}" aria-pressed="${state.chartFilter===k}">${l} <span class="mono">${counts[k]}</span></button>`).join("");
+  const headerHTML=`<div class="dict-nav"><div class="cat-chips">${filterChips}</div><div class="cat-chips">${sortBtns}</div></div>
+    <div class="dict-stats">피고인·사건 ${rows.length}건 표시 · 바 길이는 형량을 개월 수로 환산한 사건 내 상대값입니다 (사형·무기징역은 ${CHART_SCALE}개월 환산 상한)</div>`;
+  if(!rows.length)return headerHTML+empty();
+
+  const cap=m=>m==null?null:Math.min(m,CHART_SCALE);
+  const cards=rows.map(r=>{
+    const cands=[cap(r.demandM),cap(r.t1.m),cap(r.t2.m),cap(r.fin.m)].filter(v=>v!=null);
+    const maxC=Math.max(0,...cands);
+    const bar=(label,txt,m,cls,pndTxt)=>{
+      if(!txt&&!pndTxt)return "";
+      const cm=cap(m);
+      const acqNow=cm===0&&/무죄/.test(txt||"");
+      const w=cm==null?0:acqNow?2:Math.max(3,Math.round(cm/maxC*100));
+      const inner=cm==null
+        ?`<span class="bar-none">${esc(pndTxt||txt||"선고 전")}</span>`
+        :`<span class="bar-fill ${cls}${acqNow?" acq":""}" style="width:${w}%"></span><span class="bar-txt">${esc(txt)}</span>`;
+      return `<div class="bar-line" role="img" aria-label="${esc(label)} ${esc(txt||pndTxt||"")}"><span class="bar-label">${label}</span><span class="bar-track">${inner}</span></div>`;
+    };
+    const badges=[];
+    if(r.cat==="acq")badges.push(`<span class="badge-outcome acquitted">⚖️ 무죄</span>`);
+    else if(r.cat==="fine")badges.push(`<span class="badge-outcome mitigated">💰 벌금형</span>`);
+    else if(r.cat==="agr")badges.push(`<span class="badge-outcome aggravated" title="1심보다 형량이 늘어났거나 무죄가 뒤집혔습니다">▲ ${r.changePct!=null?r.changePct+"% ":""}가중</span>`);
+    else if(r.cat==="mit")badges.push(`<span class="badge-outcome mitigated" title="1심보다 형량이 줄었습니다">▼ ${r.changePct!=null?r.changePct+"% ":""}감형</span>`);
+    if(!r.cat&&r.t2.m!=null&&r.t1.m!=null&&r.t2.m===r.t1.m&&!r.t2.acq)badges.push(`<span class="cat-pill" title="2심이 1심 형량을 그대로 유지했습니다">2심 유지</span>`);
+    if(r.reductionPct!=null&&r.cat!=="acq")badges.push(`<span class="badge-outcome mitigated" title="특검 구형량 대비 감형률">구형 대비 ▼ ${r.reductionPct}%</span>`);
+    else if(r.cat!=="acq"&&r.demandM>0&&r.lastM===r.demandM)badges.push(`<span class="cat-pill" title="법원이 특검 구형량을 그대로 선고했습니다">구형 전량</span>`);
+    if(r.fin.final)badges.push(`<span class="pill st-final">확정</span>`);
+    if(!badges.length&&r.cat===null&&r.lastM!=null&&r.demandM!=null&&r.lastM===r.demandM)badges.push(`<span class="badge-outcome aggravated">구형 전량</span>`);
+    return `<article class="person chart-row" id="chart-${esc(r.caseId)}-${esc(r.pid)}">
+      <div class="person-header">
+        <div class="person-head">
+          <div class="person-head-main">
+            <div class="top-row">
+              <h3><button type="button" class="chart-person-btn" onclick="openPersonModal('${esc(r.pid)}')" title="인물 상세 프로필 열기">${esc(r.p.name)}</button> <small>${esc(r.p.role||"")}</small></h3>
+              <span class="cat-pill">${esc(r.p.category||"")}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-case"><a href="#case-${esc(r.caseId)}" onclick="goToCase('${esc(r.caseId)}');return false;" title="사건별 뷰에서 해당 사건 열기">${esc(r.caseTitle)}</a></div>
+      <div class="chart-bars">
+        ${bar("구형",r.demandTxt,r.demandM,"demand")}
+        ${bar("1심",r.t1.txt,r.t1.m,"lv1",r.p1Txt)}
+        ${bar("2심",r.t2.txt,r.t2.m,"lv2",r.p2Txt)}
+        ${bar("확정",r.fin.txt,r.fin.m,"final")}
+      </div>
+      ${badges.length?`<div class="chart-badges">${badges.join("")}</div>`:""}
+    </article>`;
+  }).join("");
+  return headerHTML+`<div class="charts">${cards}</div>`;
+}
 
 // ===== 재판부 탭 =====
 function renderJudges(cases){
