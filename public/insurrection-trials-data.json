@@ -1608,7 +1608,13 @@
       "role": "전 드론작전사령관",
       "category": "군 지휘부",
       "keyRole": "평양 무인기 침투 작전 관여 (일반이적)",
-      "statusNote": "1심 징역 3년, 집행유예 5년"
+      "statusNote": "1심 징역 3년, 집행유예 5년",
+      "photo": "assets/photos/kimyd",
+      "photoAlt": "김용대 전 드론작전사령관 프로필 사진",
+      "photoCredit": "MBC PD Note",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:(PD%EC%88%98%EC%B2%A9_10%EB%B6%84_%EC%BB%B7)_%ED%8F%89%EC%96%91%EC%97%90_%EC%B6%94%EB%9D%BD%ED%95%9C_%EB%AC%B4%EC%9D%B8%EA%B8%B0,_%EA%B3%84%EC%97%84%EC%9D%84_%EC%9C%84%ED%95%9C_%EC%84%A4%EA%B3%84%EC%98%80%EB%82%98_-_2025%EB%85%84_8%EC%9B%94_5%EC%9D%BC_%EB%B0%A9%EC%86%A1.webm"
     },
     "kimyg": {
       "name": "김용군",
