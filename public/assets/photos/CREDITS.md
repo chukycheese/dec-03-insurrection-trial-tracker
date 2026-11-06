@@ -27,5 +27,6 @@
 | `parkjh-*.webp` | 박정훈 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Colonel_Park_Jung-hun,_11_August_2023,_MBC_PD_Note_%28cropped%29.jpg) | MBC PD수첩 | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | `simwj-*.webp` | 심우정 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Prosecutor_General_Shim_Woo-jung_20240926.jpg) | 대한민국 국회 | [공공누리 제1유형](https://www.kogl.or.kr/info/licenseType1.do) |
 | `kimkhw-*.webp` | 김계환 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:SY_24_-_ROKMC_Hosts_Rehearsal_of_Concepts_Meeting_for_Allied_Partners_%288619828%29.jpg) | U.S. Marine Corps (Lance Cpl. Moses Lopez Franco) | Public domain |
+| `imsg-*.webp` | 임성근 | 사용자 제공 (출처 미확인) | 사용자 제공 | 사용자 제공 |
 
 사진이 없는 인물은 이름 첫 글자를 사용한 이니셜 모노그램 아바타로 표시합니다.
