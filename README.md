@@ -33,7 +33,7 @@ npm run validate
 데이터 무결성(JSON) 검증 후 Cloudflare Workers로 자동 배포됩니다.
 
 - **트리거**: `main` 브랜치 `push`, GitHub 웹 UI의 `workflow_dispatch` 수동 실행
-- **흐름**: `test` 잡(Node 20, 데이터 무결성 검증) → `deploy` 잡(`cloudflare/wrangler-action@v3`)
+- **흐름**: `test` 잡(Node 24, 데이터 무결성 검증) → `deploy` 잡(`cloudflare/wrangler-action@v4`)
 
 #### 필수 Secrets 설정
 
