@@ -635,7 +635,13 @@
       "role": "전 국방부 장관 · 전 호주대사",
       "category": "국방부·군 수뇌부",
       "keyRole": "해병대 수사단 결과 보고를 받고 결재한 뒤 이첩 보류 지시, 유재은·박진희를 통한 수사 결과 변경 압박, 조사본부 재검토 하명(1심 진행 중). 공수처 수사를 받던 중 호주대사로 임명돼 출국(임명 관련 재판은 별도)",
-      "statusNote": "수사외압 1심 진행 중 / 도피 의혹 사건은 피고인 아님(윤석열 등이 기소)"
+      "statusNote": "수사외압 1심 진행 중 / 도피 의혹 사건은 피고인 아님(윤석열 등이 기소)",
+      "photo": "assets/photos/leejsh",
+      "photoAlt": "이종섭 전 국방부 장관 프로필 사진",
+      "photoCredit": "U.S. Department of Defense (Lisa Ferdinando)",
+      "photoLicense": "CC BY 2.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Lee_Jong-sup_-_2022_(52250425030)_(cropped).jpg"
     },
     "choty": {
       "name": "조태용",
@@ -661,14 +667,25 @@
       "role": "해병대 준장 · 전 해병대 수사단장(당시 대령)",
       "category": "해병대 지휘부",
       "keyRole": "채상병 사건 초동수사 단장으로 임성근 등 8명을 혐의자로 적시하고 경북경찰청에 이첩. 이첩 보류 명령 불응으로 항명·상관명예훼손으로 기소됐으나 무죄 확정, 이후 VIP 격노설 공개. 수사외압 재판의 핵심 증인",
-      "statusNote": "항명·명예훼손 무죄 확정 (특검 항소 취하)"
+      "statusNote": "항명·명예훼손 무죄 확정 (특검 항소 취하)",
+      "photo": "assets/photos/parkjh",
+      "photoAlt": "박정훈 전 해병대 수사단장 프로필 사진",
+      "photoCredit": "MBC PD수첩",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Colonel_Park_Jung-hun,_11_August_2023,_MBC_PD_Note_(cropped).jpg"
     },
     "kimkhw": {
       "name": "김계환",
       "role": "전 해병대사령관",
       "category": "국방부·군 수뇌부",
       "keyRole": "이종섭의 이첩 보류 지시를 박정훈에게 전달하고 이첩 중단 명령, 박정훈 보직해임 집행. 수사외압 직권남용과 모해위증·국회 위증 혐의로 기소(1심 진행 중)",
-      "statusNote": "수사외압 1심 진행 중"
+      "statusNote": "수사외압 1심 진행 중",
+      "photo": "assets/photos/kimkhw",
+      "photoAlt": "김계환 전 해병대사령관 프로필 사진",
+      "photoCredit": "U.S. Marine Corps (Lance Cpl. Moses Lopez Franco)",
+      "photoLicense": "Public domain",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:SY_24_-_ROKMC_Hosts_Rehearsal_of_Concepts_Meeting_for_Allied_Partners_(8619828).jpg"
     },
     "jungjb": {
       "name": "정종범",
@@ -765,7 +782,13 @@
       "role": "전 검찰총장 (당시 법무부 차관)",
       "category": "정부·법무·민간",
       "keyRole": "이종섭 출국금지 해제 과정 관여 혐의(1심 무죄, 특검 항소)",
-      "statusNote": "이종섭 도피 1심 무죄 (항소심 진행)"
+      "statusNote": "이종섭 도피 1심 무죄 (항소심 진행)",
+      "photo": "assets/photos/simwj",
+      "photoAlt": "심우정 전 검찰총장 프로필 사진",
+      "photoCredit": "대한민국 국회",
+      "photoLicense": "공공누리 제1유형",
+      "photoLicenseUrl": "https://www.kogl.or.kr/info/licenseType1.do",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Prosecutor_General_Shim_Woo-jung_20240926.jpg"
     },
     "janghj": {
       "name": "장호진",

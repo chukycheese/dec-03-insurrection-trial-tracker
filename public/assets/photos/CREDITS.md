@@ -18,5 +18,14 @@
 | `nohsw-*.webp` | 노상원 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:PD%EC%88%98%EC%B2%A9_%EB%85%B8%EC%83%81%EC%9B%90_%EC%82%AC%EC%A7%84.jpg) | MBC PD수첩 | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | `parkjj-*.webp` | 박종준 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:%EB%B0%95%EC%A2%85%EC%A4%80.jpg) | Allurehomme | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | `kimyd-*.webp` | 김용대 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:(PD%EC%88%98%EC%B2%A9_10%EB%B6%84_%EC%BB%B7)_%ED%8F%89%EC%96%91%EC%97%90_%EC%B6%94%EB%9D%BD%ED%95%9C_%EB%AC%B4%EC%9D%B8%EA%B8%B0,_%EA%B3%84%EC%97%84%EC%9D%84_%EC%9C%84%ED%95%9C_%EC%84%A4%EA%B3%84%EC%98%80%EB%82%98_-_2025%EB%85%84_8%EC%9B%94_5%EC%9D%BC_%EB%B0%A9%EC%86%A1.webm) | MBC PD Note | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `kimkh-*.webp` | 김건희 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kim_Keon-hee_2023.jpg) | The White House | Public domain |
+| `myungtk-*.webp` | 명태균 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Myung_Tae-kyun,_8_November_2024.jpg) | MBC PD수첩 | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `ohsh-*.webp` | 오세훈 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Oh_Se-hoon_%282023%29.jpg) | 최상규·이지아 (경기도) | [공공누리 제1유형](https://www.kogl.or.kr/info/licenseType1.do) |
+| `kweonsd-*.webp` | 권성동 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kweon_Seong-dong%27s_Portrait_%282025.1%29.png) | 국민의힘TV | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `hanhj-*.webp` | 한학자 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Hak_ja_han.jpg) | hak_ja_han (WFWP) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| `leejsh-*.webp` | 이종섭 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lee_Jong-sup_-_2022_%2852250425030%29_%28cropped%29.jpg) | U.S. Department of Defense (Lisa Ferdinando) | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+| `parkjh-*.webp` | 박정훈 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Colonel_Park_Jung-hun,_11_August_2023,_MBC_PD_Note_%28cropped%29.jpg) | MBC PD수첩 | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `simwj-*.webp` | 심우정 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Prosecutor_General_Shim_Woo-jung_20240926.jpg) | 대한민국 국회 | [공공누리 제1유형](https://www.kogl.or.kr/info/licenseType1.do) |
+| `kimkhw-*.webp` | 김계환 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:SY_24_-_ROKMC_Hosts_Rehearsal_of_Concepts_Meeting_for_Allied_Partners_%288619828%29.jpg) | U.S. Marine Corps (Lance Cpl. Moses Lopez Franco) | Public domain |
 
 사진이 없는 인물은 이름 첫 글자를 사용한 이니셜 모노그램 아바타로 표시합니다.

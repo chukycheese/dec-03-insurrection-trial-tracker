@@ -612,28 +612,51 @@
       "role": "윤석열 전 대통령 배우자",
       "category": "전직 대통령 부부",
       "keyRole": "도이치모터스 주가조작에 계좌 제공·통정매매 가담(2심 일부 유죄), 건진법사를 통한 통일교 금품 수수(샤넬 가방·그라프 목걸이), 명태균 무상 여론조사 수수 공동정범 혐의(1·2심 무죄), 매관매직 알선수재",
-      "statusNote": "3대 의혹 2심 징역 4년·벌금 5,000만원 (대법 전합 심리) / 매관매직 2심 징역 5년 (대법원 심리)"
+      "statusNote": "3대 의혹 2심 징역 4년·벌금 5,000만원 (대법 전합 심리) / 매관매직 2심 징역 5년 (대법원 심리)",
+      "photo": "assets/photos/kimkh",
+      "photoAlt": "김건희 프로필 사진",
+      "photoCredit": "The White House",
+      "photoLicense": "Public domain",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Kim_Keon-hee_2023.jpg"
     },
     "yoon": {
       "name": "윤석열",
       "role": "전 대통령",
       "category": "전직 대통령 부부",
       "keyRole": "김건희와 공모해 명태균으로부터 대선 여론조사 58회(2억7,000만원 상당)를 무상으로 받은 혐의, 그 대가로 김영선 공천 개입(1심 인정). 12·3 내란 관련 재판은 ‘12·3 내란 재판’ 기록부 참조",
-      "statusNote": "여론조사 1심 징역 2년 → 2심 무죄 (특검 상고)"
+      "statusNote": "여론조사 1심 징역 2년 → 2심 무죄 (특검 상고)",
+      "photo": "assets/photos/yoon",
+      "photoAlt": "윤석열 전 대통령 공식 초상",
+      "photoCredit": "대한민국 대통령실",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:South_Korea_President_Yoon_Suk_Yeol_portrait_(crop).jpg"
     },
     "myungtk": {
       "name": "명태균",
       "role": "정치브로커(전 미래한국연구소 대표)",
       "category": "정계·선거",
       "keyRole": "윤석열 부부·오세훈 등 정치인에게 무상 여론조사 제공 의혹, 김영선 창원 의창 공천 개입 및 ‘세비 반띵’ 의혹, 수사 과정에서 황금폰 등 증거 은닉 지시",
-      "statusNote": "윤 부부 여론조사 1심 징역 1년 6개월 → 2심 무죄 / 김영선 사건 1심 무죄 (증거은닉교사 징역 6개월, 집행유예 1년)"
+      "statusNote": "윤 부부 여론조사 1심 징역 1년 6개월 → 2심 무죄 / 김영선 사건 1심 무죄 (증거은닉교사 징역 6개월, 집행유예 1년)",
+      "photo": "assets/photos/myungtk",
+      "photoAlt": "명태균 프로필 사진",
+      "photoCredit": "MBC PD수첩",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Myung_Tae-kyun,_8_November_2024.jpg"
     },
     "ohsh": {
       "name": "오세훈",
       "role": "서울시장",
       "category": "정계·선거",
       "keyRole": "2021년 4·7 서울시장 보궐선거를 앞두고 명태균에게 여론조사 10회를 의뢰하고 후원자 김한정에게 3,300만원을 대납하게 한 혐의",
-      "statusNote": "1심 벌금 1,000만원(시장직 상실형) → 2심 무죄 (특검 상고)"
+      "statusNote": "1심 벌금 1,000만원(시장직 상실형) → 2심 무죄 (특검 상고)",
+      "photo": "assets/photos/ohsh",
+      "photoAlt": "오세훈 서울시장 프로필 사진",
+      "photoCredit": "최상규·이지아 (경기도)",
+      "photoLicense": "공공누리 제1유형",
+      "photoLicenseUrl": "https://www.kogl.or.kr/info/licenseType1.do",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Oh_Se-hoon_(2023).jpg"
     },
     "kangcw": {
       "name": "강철원",
@@ -654,7 +677,13 @@
       "role": "국민의힘 의원(5선, 전 원내대표)",
       "category": "정계·선거",
       "keyRole": "2022년 1월 윤영호로부터 윤석열 정부의 교단 지원 청탁과 함께 불법 정치자금 1억원 수수",
-      "statusNote": "징역 2년·추징 1억원 대법원 확정 (의원직 상실, 2026.7.16)"
+      "statusNote": "징역 2년·추징 1억원 대법원 확정 (의원직 상실, 2026.7.16)",
+      "photo": "assets/photos/kweonsd",
+      "photoAlt": "권성동 국민의힘 의원 프로필 사진",
+      "photoCredit": "국민의힘TV",
+      "photoLicense": "CC BY 3.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Kweon_Seong-dong%27s_Portrait_(2025.1).png"
     },
     "jeonsb": {
       "name": "전성배(건진법사)",
@@ -675,7 +704,13 @@
       "role": "통일교 총재",
       "category": "통일교·청탁",
       "keyRole": "윤영호와 공모해 권성동에게 불법 정치자금 1억원 전달, 건진법사를 통한 김건희 청탁 주관, 교단 자금 1억4,400만원으로 국민의힘 의원들 쪼개기 후원",
-      "statusNote": "1심 총 징역 2년 (특검 항소, 2026.9.4)"
+      "statusNote": "1심 총 징역 2년 (특검 항소, 2026.9.4)",
+      "photo": "assets/photos/hanhj",
+      "photoAlt": "한학자 통일교 총재 프로필 사진",
+      "photoCredit": "hak_ja_han (WFWP)",
+      "photoLicense": "CC BY-SA 4.0",
+      "photoLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "photoSource": "https://commons.wikimedia.org/wiki/File:Hak_ja_han.jpg"
     },
     "jungwj": {
       "name": "정원주",
