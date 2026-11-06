@@ -724,7 +724,13 @@
       "role": "전 국민의힘 의원",
       "category": "정계·선거",
       "keyRole": "2022년 창원 의창 국회의원 보궐선거 공천을 놓고 명태균과 8,070만원을 주고받은 ‘세비 반띵’ 의혹. 윤석열이 명태균의 부탁으로 공천에 영향력을 행사한 사건의 당사자",
-      "statusNote": "공천 개입 본안 1심 무죄 (항소심 진행)"
+      "statusNote": "공천 개입 본안 1심 무죄 (항소심 진행)",
+      "photo": "assets/photos/kimys",
+      "photoAlt": "김영선 전 국민의힘 의원 프로필 사진",
+      "photoCredit": "대한민국 국회",
+      "photoLicense": "공공누리 제1유형",
+      "photoLicenseUrl": "https://www.kogl.or.kr/info/licenseType1.do",
+      "photoSource": "https://www.assembly.go.kr/portal/assm/assmMemb/memberProfile.do?monaCd=LBC8144B&st=21&viewType=CONTBODY"
     },
     "kwonos": {
       "name": "권오수",
