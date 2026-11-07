@@ -66,7 +66,7 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,46px);l
 .summary .n{font-family:var(--f-mono);font-size:26px;font-variant-numeric:tabular-nums;font-weight:500}
 .summary .l{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
 .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
-.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;min-width:0}
 .tabs{display:flex;gap:0;border:1px solid var(--ink);overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap;min-width:0;max-width:100%}
 .tabs::-webkit-scrollbar{display:none}
 .tabs button{all:unset;cursor:pointer;padding:12px 16px;font-size:14px;font-weight:600;line-height:20px;flex:0 0 auto;white-space:nowrap}
@@ -422,6 +422,102 @@ body.graph-fs-open{overflow:hidden}
   .bar-label{font-size:11px}
   .bar-txt,.bar-none{font-size:11px;padding:0 6px}
 }
+/* ===== 22대 국회 탄핵 표결 뷰 ===== */
+#view-impeachment[hidden],#summary[hidden],#outcome-insights[hidden],#search-feedback[hidden],.note[hidden]{display:none}
+.imp-wrap{display:grid;gap:18px;margin-top:6px}
+.imp-votes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.imp-vote-card{all:unset;cursor:pointer;display:block;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:14px 16px 12px;background:var(--surface);transition:border-color .15s,box-shadow .15s}
+.imp-vote-card:hover{border-color:var(--muted)}
+.imp-vote-card.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.imp-vote-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.imp-vote-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:700;font-size:15px;color:var(--ink)}
+.imp-vote-n{display:block}
+.imp-date{font-weight:500;font-size:12px;color:var(--muted);margin-left:4px;font-family:var(--f-mono)}
+.imp-tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.imp-tag-fail{background:#FBEAEA;color:#A32B25}
+.imp-tag-pass{background:#E4F0E7;color:#1F5B33}
+.imp-nums{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px}
+.imp-num{display:grid;gap:1px}
+.imp-num b{font-size:22px;line-height:1.1;font-variant-numeric:tabular-nums;font-family:var(--f-mono);font-weight:700}
+.imp-num span{font-size:11px;color:var(--muted)}
+.imp-bar{position:relative;display:flex;height:9px;border-radius:5px;overflow:hidden;margin-top:12px;background:var(--line)}
+.imp-bar i{display:block;height:100%}
+.imp-bar u{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--ink);opacity:.65}
+.imp-vote-n{display:block;margin:9px 0 0;font-size:12px;line-height:1.55;color:var(--muted)}
+.imp-note{margin:0;font-size:12.5px;line-height:1.7;color:var(--muted);border-left:3px solid var(--line);padding-left:12px}
+.imp-controls{display:grid;gap:10px;padding:14px 0 4px;border-top:1px solid var(--line)}
+.imp-row{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.imp-row-end{justify-content:space-between;align-items:center}
+.imp-lab{font-size:12px;font-weight:700;color:var(--muted);min-width:34px;line-height:28px}
+.imp-chips{display:flex;flex-wrap:wrap;gap:6px}
+.imp-chip{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:5px 10px;font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);line-height:18px}
+.imp-chip:hover{border-color:var(--muted)}
+.imp-chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.imp-chip b{font-family:var(--f-mono);font-weight:700;font-size:12px;color:var(--muted)}
+.imp-chip.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.imp-chip.on b{color:var(--bg);opacity:.75}
+.imp-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.imp-count{font-size:12px;color:var(--muted);font-weight:600}
+.imp-layout{display:flex;gap:6px}
+.imp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:10px}
+.imp-card{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface);display:grid;gap:9px;cursor:pointer;transition:border-color .15s,transform .15s}
+.imp-card:hover{border-color:var(--muted);transform:translateY(-1px)}
+.imp-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.imp-card-h{display:flex;align-items:center;gap:9px;min-width:0}
+.imp-ava{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px}
+.imp-ava.lg{width:64px;height:64px;font-size:26px}
+.imp-card-n{min-width:0;display:grid;gap:1px}
+.imp-card-n strong{font-size:15px;line-height:1.25}
+.imp-card-n small{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.imp-card-m{display:flex;justify-content:space-between;gap:6px;font-size:11.5px;font-weight:600;color:var(--muted);min-width:0}
+.imp-card-m span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.imp-badges{display:flex;flex-wrap:wrap;gap:5px}
+.imp-badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+.imp-badge.on{box-shadow:inset 0 0 0 1px currentColor}
+.b-yes{background:#E6EEFB;color:#1B4A9C}
+.b-no{background:#FBE9E9;color:#A32B25}
+.b-mid{background:#EDEFF2;color:#525A66}
+.b-none{background:#F6F0E3;color:#7A5A18}
+.b-abst{background:#F1ECF8;color:#5B3E8A}
+.imp-seatwrap{display:grid;gap:8px}
+.imp-seatwrap svg{width:100%;max-width:620px;height:auto;display:block;margin:0 auto}
+.imp-seat{cursor:pointer}
+.imp-seat:hover{stroke:var(--ink);stroke-width:1.6}
+.imp-lg-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;font-size:11.5px;color:var(--muted);font-weight:600}
+.imp-lg{display:inline-flex;align-items:center;gap:5px}
+.imp-lg i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.imp-lg b{font-family:var(--f-mono);color:var(--ink)}
+.imp-hint{margin:0;text-align:center;font-size:11.5px;color:var(--muted)}
+.imp-src{margin:2px 0 0;font-size:11.5px;line-height:1.8;color:var(--muted)}
+.imp-src a{color:var(--accent);text-decoration:none}
+.imp-src a:hover{text-decoration:underline}
+.imp-modal{display:grid;gap:12px}
+.imp-vrow{border:1px solid var(--line);border-radius:8px;padding:11px 13px}
+.imp-vrow-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;font-weight:700}
+.imp-vrow p{margin:7px 0 0;font-size:13px;line-height:1.65;color:var(--muted)}
+.imp-mnote{margin:0;font-size:12.5px;line-height:1.7;color:var(--muted);background:var(--surface);border-left:3px solid var(--line);padding:2px 0 2px 10px}
+:root[data-theme="dark"] .b-yes{background:#1C2C47;color:#9BC0F5}
+:root[data-theme="dark"] .b-no{background:#3A2222;color:#F0A9A3}
+:root[data-theme="dark"] .b-mid{background:#2A2E34;color:#B7BFC9}
+:root[data-theme="dark"] .b-none{background:#332C1C;color:#E0C784}
+:root[data-theme="dark"] .imp-tag-fail{background:#3A2222;color:#F0A9A3}
+:root[data-theme="dark"] .imp-tag-pass{background:#1C3324;color:#9BD3AE}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .b-yes{background:#1C2C47;color:#9BC0F5}
+  :root:not([data-theme="light"]) .b-no{background:#3A2222;color:#F0A9A3}
+  :root:not([data-theme="light"]) .b-mid{background:#2A2E34;color:#B7BFC9}
+  :root:not([data-theme="light"]) .b-none{background:#332C1C;color:#E0C784}
+  :root:not([data-theme="light"]) .imp-tag-fail{background:#3A2222;color:#F0A9A3}
+  :root:not([data-theme="light"]) .imp-tag-pass{background:#1C3324;color:#9BD3AE}
+}
+@media (max-width:720px){
+  .imp-votes{grid-template-columns:1fr}
+  .imp-grid{grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:8px}
+  .imp-card{padding:10px}
+  .imp-num b{font-size:19px}
+  .imp-lab{min-width:100%;line-height:1.4}
+}
+
 </style>
 </head>
 <body>
@@ -452,6 +548,7 @@ body.graph-fs-open{overflow:hidden}
       <button role="tab" id="tab-graph" aria-selected="false" data-view="graph">관계도</button>
       <button type="button" class="tab-btn" data-view="judges" role="tab" id="tab-judges" aria-controls="view-judges">재판부</button>
       <button type="button" class="tab-btn" data-view="charts" role="tab" id="tab-charts" aria-controls="view">형량비교</button>
+      <button type="button" class="tab-btn" data-view="impeachment" role="tab" id="tab-impeachment" aria-controls="view-impeachment">탄핵 표결</button>
     </div>
     <div class="search"><input id="q" type="search" placeholder="인물·직책·재판장 이름으로 찾기 (예: 김용현, 경호처)" aria-label="검색" autocomplete="off"><button type="button" id="q-clear" aria-label="검색어 지우기" hidden>×</button></div>
     <div class="export-dropdown" id="export-dropdown">
@@ -469,6 +566,7 @@ body.graph-fs-open{overflow:hidden}
   <main id="view"><div class="loading">재판 기록을 불러오는 중입니다.</div></main>
   <section id="view-graph" class="view" hidden></section>
   <div id="view-judges" class="view" role="tabpanel" aria-labelledby="tab-judges" hidden></div>
+  <div id="view-impeachment" class="view" role="tabpanel" aria-labelledby="tab-impeachment" hidden></div>
 
   <dialog id="person-dialog" aria-modal="true" aria-labelledby="modal-person-name">
     <div id="modal-content"></div>
@@ -497,7 +595,7 @@ function trackEvent(name,data){
     if(typeof window!=="undefined"&&window.umami&&typeof window.umami.track==="function")window.umami.track(name,data);
   }catch(e){}
 }
-const VIEWS=["timeline","cases","people","graph","judges","charts"];
+const VIEWS=["timeline","cases","people","graph","judges","charts","impeachment"];
 const TARGET_TYPES=["person","case","panel"];
 let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03",modalPerson:null,outcomeFilter:null,tlSched:false,chartSort:"reduction",chartFilter:"all"};
 let initRoute=null;
@@ -1205,9 +1303,13 @@ function render(){
   const DS=DATASETS[state.dataset];
   updateMetaTitle(DS.title);
   document.querySelectorAll(".switcher button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.ds===state.dataset)));
+  const impOn=state.view==="impeachment";
   document.getElementById("site-title").textContent=DS.title;
-  document.getElementById("site-lede").textContent=DS.lede;
-  document.getElementById("q").placeholder=DS.searchPh;
+  document.getElementById("site-lede").textContent=impOn?"22대 국회 300석 전원의 윤석열 대통령 탄핵소추안 1차(12.7)·2차(12.14) 표결 기록입니다. 의원별 참석·불참과 공개 입장을 정리했고, 무기명 비밀투표인 2차 표결은 공개된 입장만 표시했습니다.":DS.lede;
+  document.getElementById("q").placeholder=state.view==="impeachment"?"의원 이름·지역구·정당으로 찾기 (예: 안철수, 분당갑)":DS.searchPh;
+  ["summary","outcome-insights","search-feedback"].forEach(id=>{const n=document.getElementById(id);if(n)n.hidden=impOn});
+  const noteEl=document.querySelector(".note");
+  if(noteEl)noteEl.hidden=impOn;
   document.getElementById("note-court").innerHTML=DS.noteCourt;
   document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.view===state.view));
   if(lastTabScrollView!==state.view){lastTabScrollView=state.view;scrollActiveTabIntoView()}
@@ -1216,12 +1318,16 @@ function render(){
   const jview=document.getElementById("view-judges");
   const isGraph=state.view==="graph";
   const isJudges=state.view==="judges";
+  const isImp=state.view==="impeachment";
+  const iview=document.getElementById("view-impeachment");
   if(!isGraph&&graphState.fullscreen)graphSetFullscreen(false);
-  view.hidden=isGraph||isJudges;
+  view.hidden=isGraph||isJudges||isImp;
   gview.hidden=!isGraph;
   jview.hidden=!isJudges;
+  if(iview)iview.hidden=!isImp;
   if(state.err){gview.innerHTML="";jview.innerHTML="";view.innerHTML=`<div class="empty-state">${esc(state.err)}</div>`;return}
   const {cases,P}=model();
+  if(isImp){iview.innerHTML=renderImpeachment();impBind(iview);return}
   renderSummary(cases);
   renderInsights(cases);
   updateSearchUI(cases);
@@ -2699,6 +2805,304 @@ function fetchRemote(ds){
     .catch(()=>{});
 }
 document.querySelectorAll(".switcher button").forEach(b=>b.onclick=()=>{const ds=b.dataset.ds;if(ds===state.dataset)return;applyDataset(ds,true);render();fetchRemote(ds)});
+
+/* ===== 22대 국회 탄핵 표결 뷰 ===== */
+// 300석 명부 + 2024.12.7(1차)·12.14(2차) 표결 기록. 데이터는 impeachment-assembly-data.json.
+const IMP_PARTY_ORDER = ["더불어민주당", "국민의힘", "조국혁신당", "개혁신당", "진보당", "기본소득당", "사회민주당", "무소속"];
+const IMP_PARTY_COLOR = {"더불어민주당": "#1D5BBF", "국민의힘": "#DE4B4B", "조국혁신당": "#3A4378", "개혁신당": "#E8862E", "진보당": "#B43A6A", "기본소득당": "#12A5A0", "사회민주당": "#7A5AA6", "무소속": "#8A8F98"};
+const IMP = {data: null, loading: false, error: null, mode: "second", status: null, party: "all", layout: "cards", tracked: null};
+const IMP_STANCE = {support: {label: "공개 찬성", cls: "b-yes"}, oppose: {label: "공개 반대", cls: "b-no"}, undisclosed: {label: "입장 비공개", cls: "b-mid"}, none: {label: "원외", cls: "b-none"}};
+const IMP_V1 = {"참석": {label: "참석", cls: "b-yes"}, "불참": {label: "불참·퇴장", cls: "b-no"}, "미재임": {label: "미재임", cls: "b-none"}};
+
+// 초성 검색: 페이지의 chosungOf와 같은 규칙을 이 뷰 안에서도 쓸 수 있게 자체 정의한다.
+function impChosung(str) {
+  const CHO = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
+  return String(str || "").split("").map(ch => {
+    const code = ch.charCodeAt(0);
+    return (code >= 0xAC00 && code <= 0xD7A3) ? CHO[Math.floor((code - 0xAC00) / 588)] : ch;
+  }).join("");
+}
+function impNorm(s) { return String(s || "").toLowerCase().replace(/\s+/g, ""); }
+// 이름·지역구·정당은 공백을 무시한 부분 일치로 찾고, 자음만 입력한 초성 질의(ㅇㅊㅅ)나
+// 초성 섞인 질의(김ㅇㅎ)는 이름 필드의 초성과 비교한다. (긴 문자열 전체 초성 비교는 오탐이 많다)
+function impMatch(m, q) {
+  if (!q) return true;
+  const nq = impNorm(q);
+  if (!nq) return true;
+  const fields = [m.name, m.constituency, m.party, m.role || "", m.term || ""];
+  if (fields.some(f => impNorm(f).includes(nq))) return true;
+  // '분당갑'처럼 구·시·군을 줄여 쓴 지역구 검색도 받아들인다.
+  const loose = (s) => impNorm(s).replace(/[시군구]/g, "");
+  if (loose(nq) && fields.some(f => loose(f).includes(loose(nq)))) return true;
+  if (/^[ㄱ-ㅎ]+$/.test(nq)) return fields.some(f => impChosung(f).includes(nq));
+  if (/[ㄱ-ㅎ]/.test(nq)) return impChosung(m.name).includes(impChosung(nq));
+  return false;
+}
+function impKey(m) { return IMP.mode === "first" ? m.vote1 : m.stance2; }
+function impKeyMeta(k) { return IMP.mode === "first" ? (IMP_V1[k] || IMP_V1["미재임"]) : (IMP_STANCE[k] || IMP_STANCE.undisclosed); }
+function impTime(v) { return String(v || "").replace(/-/g, ".").replace(/^(\d{4})\.(\d{2})\.(\d{2})$/, "$1.$2.$3"); }
+function impNum(n) { return Number(n || 0).toLocaleString("ko-KR"); }
+function impColor(p) { return IMP_PARTY_COLOR[p] || "#8A8F98"; }
+
+function impLoad() {
+  if (IMP.data || IMP.loading) return;
+  if (typeof IMP_EMBEDDED !== "undefined" && IMP_EMBEDDED) { IMP.data = IMP_EMBEDDED; return; }
+  IMP.loading = true;
+  fetch("impeachment-assembly-data.json")
+    .then(res => { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
+    .then(d => { IMP.data = d; IMP.loading = false; render(); })
+    .catch(() => { IMP.loading = false; IMP.error = "탄핵 표결 데이터를 불러오지 못했습니다. 잠시 뒤 다시 열어 주세요."; render(); });
+}
+
+function impVoteCard(which) {
+  const v = IMP.data.meta.votes[which];
+  const on = IMP.mode === which ? " on" : "";
+  const attrs = `class="imp-vote-card${on}" type="button" data-imp-mode="${which}" aria-pressed="${IMP.mode === which}"`;
+  if (which === "first") {
+    const fail = Math.max(0, v.quorum - v.present);
+    return `<button ${attrs}>
+      <span class="imp-vote-h"><span>1차 표결 <span class="imp-date">${impTime(v.date)}</span></span><span class="imp-tag imp-tag-fail">${esc(v.result)}</span></span>
+      <span class="imp-nums">
+        <span class="imp-num"><b>${impNum(v.present)}</b><span>참석</span></span>
+        <span class="imp-num"><b>${impNum(v.absent)}</b><span>불참·퇴장</span></span>
+        <span class="imp-num"><b>${impNum(v.quorum)}</b><span>의결정족수</span></span>
+        <span class="imp-num"><b>−${fail}</b><span>정족수 대비</span></span>
+      </span>
+      <span class="imp-bar" aria-hidden="true">
+        <i style="width:${(v.present / 300 * 100).toFixed(1)}%;background:#1D5BBF"></i>
+        <i style="width:${(v.absent / 300 * 100).toFixed(1)}%;background:#C3CAD3"></i>
+        <u style="left:${(v.quorum / 300 * 100).toFixed(1)}%"></u>
+      </span>
+      <span class="imp-vote-n">${esc(v.resultNote)}</span>
+    </button>`;
+  }
+  const yes = v.yes / 300 * 100, no = v.no / 300 * 100, ab = v.abstain / 300 * 100, iv = v.invalid / 300 * 100;
+  return `<button ${attrs}>
+    <span class="imp-vote-h"><span>2차 표결 <span class="imp-date">${impTime(v.date)}</span></span><span class="imp-tag imp-tag-pass">${esc(v.result)}</span></span>
+    <span class="imp-nums">
+      <span class="imp-num"><b>${impNum(v.yes)}</b><span>찬성</span></span>
+      <span class="imp-num"><b>${impNum(v.no)}</b><span>반대</span></span>
+      <span class="imp-num"><b>${impNum(v.abstain)}</b><span>기권</span></span>
+      <span class="imp-num"><b>${impNum(v.invalid)}</b><span>무효</span></span>
+    </span>
+    <span class="imp-bar" aria-hidden="true">
+      <i style="width:${yes.toFixed(1)}%;background:#1D5BBF"></i>
+      <i style="width:${no.toFixed(1)}%;background:#DE4B4B"></i>
+      <i style="width:${ab.toFixed(1)}%;background:#7A5AA6"></i>
+      <i style="width:${iv.toFixed(1)}%;background:#C3CAD3"></i>
+      <u style="left:${(v.quorum / 300 * 100).toFixed(1)}%"></u>
+    </span>
+    <span class="imp-vote-n">${esc(v.resultNote)}</span>
+  </button>`;
+}
+
+function impLegendHTML() {
+  const grad = "background:linear-gradient(90deg,#1D5BBF 0 33%,#3A4378 33% 55%,#DE4B4B 55% 78%,#7A5AA6 78% 100%)";
+  const items = IMP.mode === "first"
+    ? [[grad, "참석(정당 색)"], ["background:#1D5BBF;opacity:.3", "불참·퇴장"], ["background:#FFFFFF;border:1px dashed #9AA2AC", "미재임"]]
+    : [[grad, "찬성(정당 색)"], ["background:#1D5BBF;opacity:.3", "입장 비공개"], ["background:#DE4B4B;border:2px solid #1A1A1A", "공개 반대"]];
+  return items.map(([style, label]) => `<span class="imp-lg"><i style="${style}"></i>${label}</span>`).join("");
+}
+
+// 반원 좌석 배치: 안쪽부터 8줄, 줄마다 좌석 수를 반지름에 비례해 나눈다.
+function impHemicycle(n, rows) {
+  const r0 = 84, dr = 27;
+  const radii = [];
+  for (let i = 0; i < rows; i++) radii.push(r0 + i * dr);
+  const counts = radii.map(r => Math.max(1, Math.round((Math.PI * r) / 15)));
+  let diff = n - counts.reduce((a, b) => a + b, 0);
+  let guard = 0;
+  while (diff !== 0 && guard++ < 500) {
+    let idx = 0;
+    if (diff > 0) { counts.forEach((c, i) => { if (c < counts[idx]) idx = i; }); counts[idx]++; diff--; }
+    else { counts.forEach((c, i) => { if (c > counts[idx]) idx = i; }); counts[idx]--; diff++; }
+  }
+  // 좌석을 각도 순으로 늘어놓고 정당 순서대로 채워, 정당이 왼쪽부터 세로 띠로 보이게 한다.
+  const pts = [];
+  counts.forEach((k, ri) => {
+    const r = radii[ri], step = Math.PI / k;
+    for (let j = 0; j < k; j++) {
+      const a = step * (j + 0.5);
+      pts.push({x: 283 + r * Math.cos(a), y: 285 - r * Math.sin(a), a});
+    }
+  });
+  pts.sort((p, q) => q.a - p.a);
+  return pts;
+}
+
+function impSeatsHTML(list) {
+  const ids = {};
+  list.forEach(m => { ids[m.id] = 1; });
+  const present = IMP.data.members.filter(m => IMP.mode === "first" ? m.vote1 !== "미재임" : m.stance2 !== "none");
+  const ordered = [];
+  IMP_PARTY_ORDER.forEach(p => present.filter(m => m.party === p).forEach(m => ordered.push(m)));
+  const pts = impHemicycle(ordered.length, 8);
+  const circles = ordered.map((m, i) => {
+    const p = pts[i] || {x: 0, y: 0};
+    const st = impKey(m);
+    const dim = ids[m.id] ? 1 : 0.12;
+    // 좌석 색은 소속 정당. 표결 상태는 진하기(미공개·불참은 옅게)와 테두리(공개 반대)로 표시한다.
+    const fill = impColor(m.party);
+    let op = 1, stroke = "none", sw = 0;
+    if (IMP.mode === "first") {
+      if (st === "불참") op = 0.3;
+      if (st === "미재임") { op = 0.15; stroke = "var(--muted)"; sw = 1; }
+    } else {
+      if (st === "undisclosed") op = 0.3;
+      if (st === "oppose") { stroke = "#1A1A1A"; sw = 2; }
+    }
+    const title = m.name + " · " + m.party + " · " + m.constituency + " · " + impKeyMeta(st).label;
+    return `<circle class="imp-seat" data-imp-id="${esc(m.id)}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6.2" fill="${fill}" fill-opacity="${op * dim}" stroke="${stroke}" stroke-width="${sw}"><title>${esc(title)}</title></circle>`;
+  }).join("");
+  const partyLegend = IMP_PARTY_ORDER.map(p => {
+    const n = present.filter(m => m.party === p).length;
+    if (!n) return "";
+    return `<span class="imp-lg"><i style="background:${impColor(p)}"></i>${p} <b>${n}</b></span>`;
+  }).join("");
+  return `<div class="imp-seatwrap">
+    <svg viewBox="0 0 566 300" role="img" aria-label="22대 국회 좌석 배치와 표결 상태">${circles}</svg>
+    <div class="imp-lg-row">${partyLegend}</div>
+    <div class="imp-lg-row">${impLegendHTML()}</div>
+    <p class="imp-hint">좌석을 누르면 의원별 기록을 볼 수 있습니다. 정당별로 왼쪽부터 배열했습니다.</p>
+  </div>`;
+}
+
+function impCardHTML(m) {
+  const s1 = IMP_V1[m.vote1] || IMP_V1["참석"];
+  const s2 = IMP_STANCE[m.stance2] || IMP_STANCE.undisclosed;
+  return `<article class="imp-card" data-imp-id="${esc(m.id)}" tabindex="0" role="button" aria-label="${esc(m.name)} 상세 보기">
+    <div class="imp-card-h">
+      <span class="imp-ava" style="background:${impColor(m.party)}">${esc((m.name || "?").slice(0, 1))}</span>
+      <div class="imp-card-n"><strong>${esc(m.name)}</strong><small>${esc(m.constituency)}</small></div>
+    </div>
+    <div class="imp-card-m"><span style="color:${impColor(m.party)}">● ${esc(m.party)}</span><span>${esc(m.term || "")}${m.role ? " · " + esc(m.role) : ""}</span></div>
+    <div class="imp-badges">
+      <span class="imp-badge ${s1.cls}${IMP.mode === "first" ? " on" : ""}">1차 ${s1.label}</span>
+      <span class="imp-badge ${s2.cls}${IMP.mode === "second" ? " on" : ""}">2차 ${s2.label}</span>
+    </div>
+  </article>`;
+}
+
+// 출처 라벨을 매체명 단위로 묶어 중복 없이 링크한다.
+function impSourceLinks(sources) {
+  const seen = {}, out = [];
+  (sources || []).forEach(([label, url]) => {
+    const name = String(label).split(" — ")[0];
+    if (seen[name]) return;
+    seen[name] = 1;
+    out.push(`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(name)}</a>`);
+  });
+  return out.join(" · ");
+}
+
+function renderImpeachment() {
+  if (!IMP.data) {
+    impLoad();
+    return `<div class="empty-state">${IMP.error ? esc(IMP.error) : "22대 국회의원 300석 명부를 불러오는 중입니다."}</div>`;
+  }
+  const meta = IMP.data.meta, ms = IMP.data.members;
+  if (IMP.tracked !== IMP.mode) { IMP.tracked = IMP.mode; trackEvent("view_impeachment", {tab: IMP.mode, layout: IMP.layout}); }
+  if (IMP.party !== "all" && IMP_PARTY_ORDER.indexOf(IMP.party) < 0) IMP.party = "all";
+  const pool = ms.filter(m => IMP.party === "all" || m.party === IMP.party);
+  const counts = {all: pool.length};
+  pool.forEach(m => { const k = impKey(m); counts[k] = (counts[k] || 0) + 1; });
+  const keys = IMP.mode === "first" ? ["참석", "불참", "미재임"] : ["support", "oppose", "undisclosed", "none"];
+  const list = pool.filter(m => impMatch(m, state.q) && (!IMP.status || impKey(m) === IMP.status));
+
+  const chips = [`<button type="button" class="imp-chip${!IMP.status ? " on" : ""}" data-imp-status="" aria-pressed="${!IMP.status}">전체 <b>${impNum(counts.all)}</b></button>`]
+    .concat(keys.map(k => {
+      const info = impKeyMeta(k);
+      const n = counts[k] || 0;
+      return `<button type="button" class="imp-chip ${info.cls}${IMP.status === k ? " on" : ""}" data-imp-status="${esc(k)}" aria-pressed="${IMP.status === k}">${info.label} <b>${impNum(n)}</b></button>`;
+    })).join("");
+
+  const partyChips = [`<button type="button" class="imp-chip${IMP.party === "all" ? " on" : ""}" data-imp-party="all" aria-pressed="${IMP.party === "all"}">전체 정당 <b>${impNum(ms.length)}</b></button>`]
+    .concat(IMP_PARTY_ORDER.filter(p => ms.some(m => m.party === p)).map(p => {
+      const n = ms.filter(m => m.party === p).length;
+      return `<button type="button" class="imp-chip${IMP.party === p ? " on" : ""}" data-imp-party="${esc(p)}" aria-pressed="${IMP.party === p}"><i class="imp-dot" style="background:${impColor(p)}"></i>${esc(p)} <b>${impNum(n)}</b></button>`;
+    })).join("");
+
+  const body = IMP.layout === "seats" ? impSeatsHTML(list)
+    : (list.length ? `<div class="imp-grid">${list.map(impCardHTML).join("")}</div>` : `<div class="empty-state"><p>조건에 맞는 의원이 없습니다.</p><button type="button" class="lk-btn" data-imp-reset>필터 초기화</button></div>`);
+
+  return `<div class="imp-wrap">
+    <div class="imp-votes">${impVoteCard("first")}${impVoteCard("second")}</div>
+    <p class="imp-note">${esc(meta.rosterNote)} 2차 표결은 무기명 비밀투표여서 개인별 표 내용은 공식 기록이 없고, 공개적으로 밝힌 입장만 표시했습니다.</p>
+    <div class="imp-controls">
+      <div class="imp-row"><span class="imp-lab">표결</span><div class="imp-chips">${chips}</div></div>
+      <div class="imp-row"><span class="imp-lab">정당</span><div class="imp-chips">${partyChips}</div></div>
+      <div class="imp-row imp-row-end">
+        <span class="imp-count">${impNum(list.length)}명 표시</span>
+        <div class="imp-layout">
+          <button type="button" class="imp-chip${IMP.layout === "cards" ? " on" : ""}" data-imp-layout="cards" aria-pressed="${IMP.layout === "cards"}">카드</button>
+          <button type="button" class="imp-chip${IMP.layout === "seats" ? " on" : ""}" data-imp-layout="seats" aria-pressed="${IMP.layout === "seats"}">좌석</button>
+        </div>
+      </div>
+    </div>
+    ${body}
+    <p class="imp-src">자료: ${impSourceLinks(meta.sources)} (${meta.sources.length}건). ${esc(meta.basis)}.</p>
+  </div>`;
+}
+
+function impBind(root) {
+  const el = root || document.getElementById("view-impeachment");
+  if (!el) return;
+  el.querySelectorAll("[data-imp-mode]").forEach(b => { b.onclick = () => { IMP.mode = b.dataset.impMode; IMP.status = null; render(); }; });
+  el.querySelectorAll("[data-imp-status]").forEach(b => { b.onclick = () => { IMP.status = b.dataset.impStatus || null; render(); }; });
+  el.querySelectorAll("[data-imp-party]").forEach(b => { b.onclick = () => { IMP.party = b.dataset.impParty; render(); }; });
+  el.querySelectorAll("[data-imp-layout]").forEach(b => { b.onclick = () => { IMP.layout = b.dataset.impLayout; render(); }; });
+  const reset = el.querySelector("[data-imp-reset]");
+  if (reset) reset.onclick = () => { IMP.status = null; IMP.party = "all"; state.q = ""; const q = document.getElementById("q"); if (q) q.value = ""; render(); };
+  el.querySelectorAll("[data-imp-id]").forEach(n => {
+    n.onclick = () => impOpen(n.dataset.impId);
+    n.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); impOpen(n.dataset.impId); } };
+  });
+}
+
+function impOpen(id) {
+  const m = (IMP.data && IMP.data.members || []).filter(x => x.id === id)[0];
+  if (!m) return;
+  const dlg = document.getElementById("person-dialog"), content = document.getElementById("modal-content");
+  if (!dlg || !content) return;
+  const s1 = IMP_V1[m.vote1] || IMP_V1["참석"], s2 = IMP_STANCE[m.stance2] || IMP_STANCE.undisclosed;
+  const basis1 = m.vote1 === "불참" ? "국민의힘 부결 당론에 따라 표결 전 본회의장에서 퇴장했습니다(105명)."
+    : m.vote1 === "미재임" ? "2024.12.13 조국 의원직 상실에 따른 승계로 1차 표결(12.7) 당시에는 의원이 아니었습니다."
+    : "본회의장에 남아 표결에 참여했습니다(195명).";
+  const basis2 = m.stance2 === "oppose" ? (m.publicStance || "공개적으로 반대 입장을 밝혔습니다.") + " 무기명 비밀투표라 실제 표 내용은 공식 기록으로 확인되지 않습니다."
+    : m.stance2 === "support" ? (m.publicStance ? m.publicStance + " " : "") + "2차 표결에 참석해 찬성했습니다(범야권 192명 전원 찬성 전제)."
+    : m.stance2 === "undisclosed" ? "국민의힘 부결 당론에 따라 표결에는 참석했으나 개인 입장은 공개하지 않았습니다."
+    : "2024.12.12 의원직 상실로 2차 표결(12.14)에는 참석하지 않았습니다.";
+  content.innerHTML = `
+    <div class="modal-header">
+      <div class="modal-person">
+        <span class="imp-ava lg" style="background:${impColor(m.party)}">${esc(m.name.slice(0, 1))}</span>
+        <div class="modal-person-text">
+          <h2 id="modal-person-name">${esc(m.name)} <small style="font-size:15px;color:var(--muted);font-weight:400">${esc(m.constituency)}</small></h2>
+          <div class="sub"><span class="cat-pill">${esc(m.party)}</span><span class="cat-pill">${esc(m.term || "")}${m.role ? " · " + esc(m.role) : ""}</span></div>
+        </div>
+      </div>
+      <button type="button" class="modal-close" onclick="impClose()" aria-label="닫기">✕</button>
+    </div>
+    <div class="modal-body imp-modal">
+      <div class="imp-vrow">
+        <div class="imp-vrow-h"><span>1차 표결 · 2024.12.7</span><span class="imp-badge ${s1.cls} on">${s1.label}</span></div>
+        <p>${esc(basis1)}</p>
+      </div>
+      <div class="imp-vrow">
+        <div class="imp-vrow-h"><span>2차 표결 · 2024.12.14</span><span class="imp-badge ${s2.cls} on">${s2.label}</span></div>
+        <p>${esc(basis2)}</p>
+      </div>
+      ${m.note ? `<p class="imp-mnote">${esc(m.note)}</p>` : ""}
+      ${m.propNo ? `<p class="imp-mnote">비례대표 ${m.propNo}번</p>` : ""}
+    </div>`;
+  dlg.showModal();
+  trackEvent("impeachment_member", {name: m.name, party: m.party, stance: m.stance2, vote1: m.vote1});
+}
+function impClose() {
+  const dlg = document.getElementById("person-dialog");
+  if (dlg && dlg.open) dlg.close();
+}
+
 
 applyDataset(state.dataset,false,!!(initRoute&&initRoute.targetType));
 render();

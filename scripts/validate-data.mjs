@@ -14,6 +14,10 @@ const datasets = [
   "chae-trials-data.json",
 ];
 const requiredSections = ["cases", "rulings", "sentences", "people", "judges", "meta"];
+const IMP_FILE = "impeachment-assembly-data.json";
+const IMP_PARTIES = ["더불어민주당", "국민의힘", "조국혁신당", "개혁신당", "진보당", "기본소득당", "사회민주당", "무소속"];
+const IMP_VOTE1 = ["참석", "불참", "미재임"];
+const IMP_STANCE = ["support", "oppose", "undisclosed", "none"];
 
 let errors = 0;
 let warnings = 0;
@@ -172,6 +176,109 @@ function validateOfflineHtml(file) {
   }
 }
 
+// 22대 국회 탄핵 표결 데이터: 300석 명부(승계 1명 포함 301명)와 1·2차 표결 집계가 서로 맞는지 확인한다.
+function validateImpeachment(file) {
+  let data;
+  try {
+    data = JSON.parse(readFileSync(file, "utf8"));
+  } catch (error) {
+    fail(IMP_FILE, `JSON 파싱 실패: ${error.message}`);
+    return null;
+  }
+  if (!isObject(data.meta)) fail(IMP_FILE, "meta 섹션이 없습니다");
+  if (!Array.isArray(data.members)) {
+    fail(IMP_FILE, "members 배열이 없습니다");
+    return data;
+  }
+  const members = data.members;
+  if (members.length !== 301) fail(IMP_FILE, `members 는 301명이어야 합니다(현재 ${members.length})`);
+
+  const ids = new Set();
+  const names = new Set();
+  const party = {};
+  const vote1 = {};
+  const stance = {};
+  for (const m of members) {
+    if (!isObject(m) || !m.name || !m.constituency) {
+      fail(IMP_FILE, `의원 항목에 name/constituency 가 없습니다: ${JSON.stringify(m).slice(0, 80)}`);
+      continue;
+    }
+    if (!m.id) fail(IMP_FILE, `${m.name}: id 가 없습니다`);
+    else if (ids.has(m.id)) fail(IMP_FILE, `중복 id: ${m.id}`);
+    ids.add(m.id);
+    if (names.has(m.name)) warn(IMP_FILE, `동명이인 또는 중복 이름: ${m.name}`);
+    names.add(m.name);
+    if (!IMP_PARTIES.includes(m.party)) fail(IMP_FILE, `${m.name}: 알 수 없는 정당 ${m.party}`);
+    if (!IMP_VOTE1.includes(m.vote1)) fail(IMP_FILE, `${m.name}: 1차 표결 값이 올바르지 않습니다: ${m.vote1}`);
+    if (!IMP_STANCE.includes(m.stance2)) fail(IMP_FILE, `${m.name}: 2차 입장 값이 올바르지 않습니다: ${m.stance2}`);
+    if (!m.district || !["지역구", "비례"].includes(m.district)) fail(IMP_FILE, `${m.name}: district 값 오류`);
+    party[m.party] = (party[m.party] || 0) + 1;
+    vote1[m.vote1] = (vote1[m.vote1] || 0) + 1;
+    stance[m.stance2] = (stance[m.stance2] || 0) + 1;
+  }
+
+  // 표결 집계와 명부가 맞아야 한다: 1차 195 참석·105 불참, 2차 300명(S=199 포함)
+  if (vote1["참석"] !== 195) fail(IMP_FILE, `1차 참석은 195명이어야 합니다(현재 ${vote1["참석"]})`);
+  if (vote1["불참"] !== 105) fail(IMP_FILE, `1차 불참은 105명이어야 합니다(현재 ${vote1["불참"]})`);
+  if (vote1["미재임"] !== 1) fail(IMP_FILE, `1차 미재임은 1명이어야 합니다(현재 ${vote1["미재임"]})`);
+  if (stance.support !== 199) fail(IMP_FILE, `2차 공개 찬성은 199명이어야 합니다(현재 ${stance.support})`);
+  if (stance.none !== 1) fail(IMP_FILE, `2차 불참(원외)은 1명이어야 합니다(현재 ${stance.none})`);
+
+  const meta = data.meta || {};
+  const votes = meta.votes || {};
+  const first = votes.first || {};
+  const second = votes.second || {};
+  if (first.present !== 195 || first.absent !== 105 || first.quorum !== 200) {
+    fail(IMP_FILE, `1차 표결 수치가 올바르지 않습니다: ${JSON.stringify(first)}`);
+  }
+  if (second.present !== 300 || second.yes !== 204 || second.no !== 85 || second.abstain !== 3 || second.invalid !== 8) {
+    fail(IMP_FILE, `2차 표결 수치가 올바르지 않습니다: ${JSON.stringify(second)}`);
+  }
+  if (second.yes + second.no + second.abstain + second.invalid !== 300) {
+    fail(IMP_FILE, `2차 표의 합이 300이 아닙니다: ${second.yes + second.no + second.abstain + second.invalid}`);
+  }
+  if (second.yes - 192 !== second.estimatedPeoplePowerYes) {
+    // 범야권 192명 전원 찬성 전제로 계산한 국민의힘 찬성 추정치와 어긋나면 데이터가 깨진 것
+    warn(IMP_FILE, "2차 찬성표에서 계산한 국민의힘 찬성 추정치가 meta 와 다릅니다");
+  }
+  const seatSum = Object.values(meta.partySeats || {}).reduce((a, b) => a + b, 0);
+  if (seatSum !== 300) fail(IMP_FILE, `정당별 의석 합이 300이 아닙니다(현재 ${seatSum})`);
+  if (meta.partySeatsBasis === undefined) warn(IMP_FILE, "partySeats 기준 설명이 없습니다");
+  if (!Array.isArray(meta.sources) || meta.sources.length < 5) warn(IMP_FILE, "출처 목록이 부족합니다");
+
+  return data;
+}
+
+// 객체 키 순서에 상관없이 비교하기 위한 정규화
+function stableJSON(value) {
+  if (Array.isArray(value)) return "[" + value.map(stableJSON).join(",") + "]";
+  if (isObject(value)) {
+    return "{" + Object.keys(value).sort().map((k) => JSON.stringify(k) + ":" + stableJSON(value[k])).join(",") + "}";
+  }
+  return JSON.stringify(value);
+}
+
+// 오프라인 HTML에 내장한 탄핵 표결 데이터가 원본 JSON과 같은지 확인한다.
+function validateOfflineImpeachment(file, source) {
+  const html = readFileSync(file, "utf8");
+  const match = html.match(/const IMP_EMBEDDED = (\{.*?\});\n/);
+  if (!match) {
+    fail(file, "IMP_EMBEDDED 내장 블록을 찾지 못했습니다");
+    return;
+  }
+  let embedded;
+  try {
+    embedded = JSON.parse(match[1]);
+  } catch (error) {
+    fail(file, `IMP_EMBEDDED 파싱 실패: ${error.message}`);
+    return;
+  }
+  if (stableJSON(embedded) !== stableJSON(source)) {
+    warn(file, "내장 탄핵 표결 데이터가 impeachment-assembly-data.json 과 다릅니다 (동기화 필요)");
+  }
+  if (!html.includes('data-view="impeachment"')) fail(file, "탄핵 표결 탭이 없습니다");
+}
+
 console.log("데이터 무결성 검증을 시작합니다.\n");
 
 for (const name of datasets) {
@@ -190,10 +297,25 @@ for (const name of datasets) {
   console.log(errors === before ? "통과" : "실패");
 }
 
+process.stdout.write(`- ${IMP_FILE} ... `);
+const impBefore = errors;
+const impData = validateImpeachment(join(publicDir, IMP_FILE));
+console.log(errors === impBefore ? "통과" : "실패");
+
 process.stdout.write("- insurrection-trials-offline.html ... ");
 const before = errors;
 validateOfflineHtml(join(publicDir, "insurrection-trials-offline.html"));
 console.log(errors === before ? "통과" : "실패");
+
+if (impData) validateOfflineImpeachment(join(publicDir, "insurrection-trials-offline.html"), impData);
+
+process.stdout.write("- index.html 탄핵 표결 뷰 ... ");
+const idxBefore = errors;
+const indexHtml = readFileSync(join(publicDir, "index.html"), "utf8");
+if (!indexHtml.includes('data-view="impeachment"')) fail("index.html", "탄핵 표결 탭이 없습니다");
+if (!indexHtml.includes('"impeachment-assembly-data.json"')) fail("index.html", "탄핵 표결 데이터 fetch 가 없습니다");
+if (!indexHtml.includes("function renderImpeachment")) fail("index.html", "renderImpeachment 함수가 없습니다");
+console.log(errors === idxBefore ? "통과" : "실패");
 
 console.log(`\n결과: 오류 ${errors}건, 경고 ${warnings}건`);
 if (errors > 0) process.exit(1);
