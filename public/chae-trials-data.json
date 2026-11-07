@@ -249,12 +249,29 @@
       "court": "서울중앙지법 형사합의27부",
       "judgeIds": ["wooin"],
       "caseNo": "",
-      "result": "1심 공판 진행 중",
-      "summary": "4.29 첫 공판 후 상반기 격주 진행. 10.14 김진락 전 국방부 조사본부 수사단장 증인신문에서 ‘재검토는 장관 하명’이라는 증언. 박정훈·임기훈·이시원 등 증인 채택, 특검은 재판중계 신청 예고",
+      "result": "1심 공판 진행 중 (11.6 유균혜·이모 선고유예)",
+      "summary": "4.29 첫 공판 후 상반기 격주 진행. 10.14 김진락 전 국방부 조사본부 수사단장 증인신문에서 ‘재검토는 장관 하명’이라는 증언. 11.6 공전자기록위작 혐의로 분리 기소된 유균혜·이모 선고유예. 윤석열·이종섭 등 본류 심리는 같은 재판부에서 계속",
       "requested": "",
       "sources": [
         ["연합뉴스", "https://www.yna.co.kr/view/AKR20260318120400004"],
         ["더팩트", "https://news.tf.co.kr/read/life/2376404.htm"]
+      ],
+      "judgeNote": "재판장 우인성"
+    },
+    "chae-defense-pressure-yoogyh-1": {
+      "caseId": "chae-defense-pressure-1",
+      "level": 1,
+      "date": "2026-11-06",
+      "kind": "ruling",
+      "court": "서울중앙지법 형사합의27부",
+      "judgeIds": ["wooin"],
+      "caseNo": "",
+      "result": "유균혜 징역 6개월 선고유예 · 이모 징역 4개월 선고유예",
+      "summary": "국회 의정자료 전자유통시스템에 군 수사조직 감축안을 부인하는 허위 답변자료를 수차례 올린 혐의(공전자기록 위작·행사). 재판장 우인성 부장판사는 유균혜 전 국방부 기획관리관에게 징역 6개월, 이모 전 조직총괄담당관에게 징역 4개월의 선고를 각각 유예. ‘없던 일로 하자’는 상부 지시와 감축안 폐기, 형사처벌 전력 없음 등을 참작. 수사외압 사건 피고인 12명 가운데 두 사람만 분리해 먼저 내린 사법부 첫 선고로, 윤석열·이종섭 등 본류 1심 재판은 같은 재판부에서 계속 진행 중",
+      "requested": "유균혜 징역 2년",
+      "sources": [
+        ["연합뉴스", "https://www.yna.co.kr/view/AKR20261106133300004"],
+        ["뉴시스", "https://mobile.newsis.com/view_amp.html?ar_id=NISX20261106_0003858158"]
       ],
       "judgeNote": "재판장 우인성"
     },
@@ -614,6 +631,14 @@
       "outcome": "무죄",
       "sentence": "무죄 확정",
       "requested": ""
+    },
+    "chae-defense-pressure-yoogyh-1-yoogyh": {
+      "rulingId": "chae-defense-pressure-yoogyh-1",
+      "caseId": "chae-defense-pressure-1",
+      "personId": "yoogyh",
+      "outcome": "유죄",
+      "sentence": "징역 6개월 선고유예",
+      "requested": "징역 2년"
     }
   },
   "people": {
@@ -752,7 +777,7 @@
       "role": "전 국방부 기획관리관",
       "category": "국방부·군 수뇌부",
       "keyRole": "국회 전산망에 허위 답변 자료를 반복 업로드한 허위공문서 혐의로 기소(수사외압 사건과 함께 재판)",
-      "statusNote": "수사외압 사건 1심 진행 중"
+      "statusNote": "1심 징역 6개월 선고유예 (공전자기록위작) / 수사외압 본류 재판 진행 중"
     },
     "leesw": {
       "name": "이시원",
@@ -927,9 +952,10 @@
   },
   "meta": {
     "info": {
-      "asOf": "2026-11-05",
+      "asOf": "2026-11-07",
       "basis": "언론 보도 종합"
     },
+    "updated": "2026-11-07T15:00:00+09:00",
     "graphLinks": {
       "label": "수사외압·지휘 계통",
       "links": [
