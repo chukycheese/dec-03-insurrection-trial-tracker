@@ -2,6 +2,7 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>12·3 내란 재판 기록부</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<script defer src="https://umami-gray-mu.vercel.app/script.js" data-website-id="0b3bfe9f-f41a-4ecc-947f-075101de9297"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -300,6 +301,13 @@ dialog#person-dialog::backdrop{background:rgba(0,0,0,0.55);backdrop-filter:blur(
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <script>
+// ===== Umami 사용자 행동 분석 =====
+// 커스텀 이벤트 전송 헬퍼. 트래커 스크립트가 차단·실패해 window.umami가 없어도 페이지 동작에는 영향이 없다.
+function trackEvent(name,data){
+  try{
+    if(typeof window!=="undefined"&&window.umami&&typeof window.umami.track==="function")window.umami.track(name,data);
+  }catch(e){}
+}
 const STATUS={final:{label:"확정",cls:"st-final"},sup:{label:"상고심 계류",cls:"st-sup"},app:{label:"항소심 진행",cls:"st-app"},trial:{label:"1심 선고",cls:"st-trial"},sched:{label:"1심 선고 예정",cls:"st-sched"}};
 const LV={1:"1심",2:"항소심",3:"상고심"};
 const PORTAL="https://portal.scourt.go.kr";

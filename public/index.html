@@ -10,6 +10,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="12·3 비상계엄 내란 및 특검 재판기록부">
 <meta name="twitter:description" content="12·3 비상계엄 내란 재판 및 김건희·명태균 특검 공판 진행 상황과 선고 내역을 정리하고 시각화하는 인터랙티브 재판기록부입니다.">
+<script defer src="https://umami-gray-mu.vercel.app/script.js" data-website-id="0b3bfe9f-f41a-4ecc-947f-075101de9297"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -484,6 +485,13 @@ const COLLS=["cases","rulings","sentences","people","judges","meta"];
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt=d=>d?d.replace(/^(\d{4})-(\d{2})-(\d{2})$/,"$1.$2.$3"):"미정";
 const store={}; const loaded=new Set();
+// ===== Umami 사용자 행동 분석 =====
+// 커스텀 이벤트 전송 헬퍼. 트래커 스크립트가 차단·실패해 window.umami가 없어도 페이지 동작에는 영향이 없다.
+function trackEvent(name,data){
+  try{
+    if(typeof window!=="undefined"&&window.umami&&typeof window.umami.track==="function")window.umami.track(name,data);
+  }catch(e){}
+}
 const VIEWS=["timeline","cases","people","graph","judges","charts"];
 const TARGET_TYPES=["person","case","panel"];
 let state={view:"timeline",status:null,q:"",personCat:"all",personSort:"cases",judgeCat:"all",err:null,stale:false,dataset:"dec03",modalPerson:null,outcomeFilter:null,tlSched:false,chartSort:"reduction",chartFilter:"all"};
@@ -695,6 +703,7 @@ function quoteHTML(r,opts){
 function copyRulingQuote(btn,id){
   const r=(store.rulings||{})[id];
   if(!r||!r.quote)return;
+  trackEvent('quote_copy',{rulingId:id,dataset:state.dataset});
   const text=quoteCopyText(r);
   const done=()=>{
     if(!btn)return;
@@ -1076,6 +1085,7 @@ function openPersonModal(personId,opts){
   const P=store.people||{};
   const person=P[personId];
   if(!person)return;
+  trackEvent('person_view',{personId:personId,name:person.name,dataset:state.dataset});
   const {cases}=model();
   const relCases=cases.filter(c=>c.defendantIds&&c.defendantIds.includes(personId));
 
@@ -1252,8 +1262,23 @@ function render(){
   }
 }
 
-document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{state.view=b.dataset.view;try{localStorage.setItem("ins-view",state.view)}catch(e){}replaceHash();render()});
-document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value.trim();render()});
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+  const prevView=state.view;
+  state.view=b.dataset.view;try{localStorage.setItem("ins-view",state.view)}catch(e){}replaceHash();render();
+  if(prevView!==state.view)trackEvent('view_change',{view:state.view,dataset:state.dataset});
+});
+// 검색 이벤트는 500ms 디바운스 후 2자 이상일 때만 보낸다 (타이핑 중 과다 전송 방지)
+let searchTrackTimer=null;
+function trackSearchDebounced(){
+  try{
+    if(searchTrackTimer)clearTimeout(searchTrackTimer);
+    searchTrackTimer=setTimeout(()=>{
+      const q=state.q;
+      if(q&&q.length>=2)trackEvent('search',{query:q,dataset:state.dataset});
+    },500);
+  }catch(e){}
+}
+document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value.trim();render();trackSearchDebounced()});
 document.getElementById("q").addEventListener("keydown",e=>{if(e.key==="Escape"&&state.q)clearSearch()});
 document.getElementById("q-clear").onclick=clearSearch;
 // 0건 empty state의 [검색어 초기화]·[필터 해제] 등 동적으로 렌더되는 버튼 위임 처리
@@ -2623,6 +2648,7 @@ function showToast(msg){
   toastTimer=setTimeout(()=>{t.classList.remove("show")},1500);
 }
 function copyText(text){
+  trackEvent('share_link_copy',{url:text});
   const ok=()=>showToast("복사됐어요! 링크를 공유하세요");
   try{
     if(typeof navigator!=="undefined"&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,()=>legacyCopy(text,ok));return}
@@ -2653,11 +2679,13 @@ function copyDeepLink(type,id){copyText(deepLinkURL(type,id))}
 
 function applyEmbedded(ds){Object.assign(store,EMBEDDED[ds]||{});COLLS.forEach(n=>loaded.add(n))}
 function applyDataset(ds,reset,skipURL){
+  const prevDs=state.dataset;
   state.dataset=ds;
   applyEmbedded(ds);
   if(reset){state.status=null;state.q="";document.getElementById("q").value="";state.personCat="all";state.judgeCat="all";state.outcomeFilter=null;state.tlSched=false;graphState.hiddenCats.clear();hideGraphCard()}
   try{localStorage.setItem("trials-dataset",ds)}catch(e){}
   if(!skipURL)replaceHash();
+  if(prevDs!==ds)trackEvent('dataset_change',{dataset:ds});
 }
 function fetchRemote(ds){
   fetch(DATASETS[ds].file)
@@ -2766,6 +2794,7 @@ function runExport(kind){
   if(["cases-csv","cases-json","people-csv","people-json"].indexOf(kind)<0)return;
   const isCsv=kind.endsWith("csv");
   downloadFile(exportFileName(kind),exportPayload(kind),isCsv?"text/csv":"application/json");
+  trackEvent('export_data',{format:kind,dataset:state.dataset});
   closeExportMenu();
 }
 // 드롭다운 개폐: 버튼 토글, 메뉴 밖 클릭 시 닫기, ESC 닫기(초점 복귀)
