@@ -374,6 +374,9 @@ dialog#person-dialog::backdrop{background:rgba(0,0,0,0.55);backdrop-filter:blur(
 .imp-quote{margin:0;padding:10px 13px;border-left:3px solid var(--accent);background:var(--cat-bg);border-radius:0 6px 6px 0;display:grid;gap:6px}
 .imp-quote blockquote{margin:0;font-family:var(--f-display);font-size:14px;line-height:1.68;color:var(--ink);text-wrap:pretty}
 .imp-quote cite{font-style:normal;font-size:11.5px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap;align-items:baseline}
+.imp-cite{margin:0;font-size:11.5px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap;align-items:baseline;border-left:3px solid var(--line);padding-left:10px}
+.imp-cite a{color:var(--accent);text-decoration:none}
+.imp-cite a:hover{text-decoration:underline}
 .imp-quote a{color:var(--accent);text-decoration:none}
 .imp-quote a:hover{text-decoration:underline}
 .imp-vtag{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px}
@@ -1451,7 +1454,12 @@ function impOpen(id) {
     : m.stance2 === "support" ? (m.publicStance ? m.publicStance + " " : "") + "2차 표결에 참석해 찬성했습니다(범야권 192명 전원 찬성 전제)."
     : m.stance2 === "undisclosed" ? "국민의힘 부결 당론에 따라 표결에는 참석했으나 개인 입장은 공개하지 않았습니다."
     : "2024.12.12 의원직 상실로 2차 표결(12.14)에는 참석하지 않았습니다.";
-  const quoteHTML = m.stanceQuote ? `<figure class="imp-quote"><blockquote>“${esc(m.stanceQuote)}”</blockquote><cite><span class="imp-vtag">${esc(m.stanceKind || "발언")}</span>${esc(impTime(m.stanceDate))}${m.stanceSource ? ` · <a href="${esc(m.stanceSource[1])}" target="_blank" rel="noopener">${esc(String(m.stanceSource[0]).split(" — ")[0])}</a>` : ""}</cite></figure>` : "";
+  // 발언 원문이 이미 위 설명문에 들어 있으면 인용구를 또 붙이지 않고 출처 줄만 남긴다.
+  const cite = `<span class="imp-vtag">${esc(m.stanceKind || "발언")}</span>${esc(impTime(m.stanceDate))}${m.stanceSource ? ` · <a href="${esc(m.stanceSource[1])}" target="_blank" rel="noopener">${esc(String(m.stanceSource[0]).split(" — ")[0])}</a>` : ""}`;
+  const dupQuote = m.stanceQuote && String(m.publicStance || "").indexOf(m.stanceQuote) >= 0;
+  const quoteHTML = !m.stanceQuote ? "" : (dupQuote
+    ? `<p class="imp-cite">${cite}</p>`
+    : `<figure class="imp-quote"><blockquote>“${esc(m.stanceQuote)}”</blockquote><cite>${cite}</cite></figure>`);
   const publicRow = m.publicStance && m.stance2 !== "oppose" ? `<div class="imp-vrow"><div class="imp-vrow-h"><span>표결 전 공개 발언</span></div><p>${esc(m.publicStance)}</p></div>` : "";
   content.innerHTML = `
     <div class="modal-header">
@@ -1478,8 +1486,8 @@ function impOpen(id) {
         <p>${esc(basis2)}</p>
       </div>
       ${m.note ? `<p class="imp-mnote">${esc(m.note)}</p>` : ""}
-      ${quoteHTML}
       ${publicRow}
+      ${quoteHTML}
       ${m.propNo ? `<p class="imp-mnote">비례대표 ${m.propNo}번</p>` : ""}
     </div>`;
   dlg.showModal();
