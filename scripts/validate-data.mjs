@@ -17,6 +17,7 @@ const requiredSections = ["cases", "rulings", "sentences", "people", "judges", "
 const IMP_FILE = "impeachment-assembly-data.json";
 const IMP_PARTIES = ["더불어민주당", "국민의힘", "조국혁신당", "개혁신당", "진보당", "기본소득당", "사회민주당", "무소속"];
 const IMP_VOTE1 = ["참석", "불참", "미재임"];
+const IMP_VOTE0 = ["참석", "불참", "미재임"];
 const IMP_STANCE = ["support", "oppose", "undisclosed", "none"];
 
 let errors = 0;
@@ -196,6 +197,7 @@ function validateImpeachment(file) {
   const ids = new Set();
   const names = new Set();
   const party = {};
+  const vote0 = {};
   const vote1 = {};
   const stance = {};
   for (const m of members) {
@@ -210,14 +212,26 @@ function validateImpeachment(file) {
     names.add(m.name);
     if (!IMP_PARTIES.includes(m.party)) fail(IMP_FILE, `${m.name}: 알 수 없는 정당 ${m.party}`);
     if (!IMP_VOTE1.includes(m.vote1)) fail(IMP_FILE, `${m.name}: 1차 표결 값이 올바르지 않습니다: ${m.vote1}`);
+    if (!IMP_VOTE0.includes(m.vote0)) fail(IMP_FILE, `${m.name}: 12.4 계엄해제 표결 값이 올바르지 않습니다: ${m.vote0}`);
     if (!IMP_STANCE.includes(m.stance2)) fail(IMP_FILE, `${m.name}: 2차 입장 값이 올바르지 않습니다: ${m.stance2}`);
+    // 공개 반대는 근거 발언이 있어야 하고, 출처가 있으면 링크 형식이어야 한다.
+    if (m.stance2 === "oppose" && !m.publicStance) fail(IMP_FILE, `${m.name}: 공개 반대인데 publicStance 가 없습니다`);
+    if (m.stanceSource !== undefined) {
+      if (!Array.isArray(m.stanceSource) || m.stanceSource.length < 2 || !/^https?:\/\//.test(String(m.stanceSource[1] || ""))) {
+        fail(IMP_FILE, `${m.name}: stanceSource 형식이 올바르지 않습니다`);
+      }
+    }
     if (!m.district || !["지역구", "비례"].includes(m.district)) fail(IMP_FILE, `${m.name}: district 값 오류`);
     party[m.party] = (party[m.party] || 0) + 1;
+    vote0[m.vote0] = (vote0[m.vote0] || 0) + 1;
     vote1[m.vote1] = (vote1[m.vote1] || 0) + 1;
     stance[m.stance2] = (stance[m.stance2] || 0) + 1;
   }
 
   // 표결 집계와 명부가 맞아야 한다: 1차 195 참석·105 불참, 2차 300명(S=199 포함)
+  if (vote0["참석"] !== 190) fail(IMP_FILE, `12.4 계엄해제 찬성은 190명이어야 합니다(현재 ${vote0["참석"]})`);
+  if (vote0["불참"] !== 110) fail(IMP_FILE, `12.4 계엄해제 불참은 110명이어야 합니다(현재 ${vote0["불참"]})`);
+  if (vote0["미재임"] !== 1) fail(IMP_FILE, `12.4 미재임은 1명이어야 합니다(현재 ${vote0["미재임"]})`);
   if (vote1["참석"] !== 195) fail(IMP_FILE, `1차 참석은 195명이어야 합니다(현재 ${vote1["참석"]})`);
   if (vote1["불참"] !== 105) fail(IMP_FILE, `1차 불참은 105명이어야 합니다(현재 ${vote1["불참"]})`);
   if (vote1["미재임"] !== 1) fail(IMP_FILE, `1차 미재임은 1명이어야 합니다(현재 ${vote1["미재임"]})`);
@@ -243,6 +257,37 @@ function validateImpeachment(file) {
   }
   const seatSum = Object.values(meta.partySeats || {}).reduce((a, b) => a + b, 0);
   if (seatSum !== 300) fail(IMP_FILE, `정당별 의석 합이 300이 아닙니다(현재 ${seatSum})`);
+  const pre = votes.preliminary || {};
+  if (pre.present !== 190 || pre.yes !== 190 || pre.date !== "2024-12-04") {
+    fail(IMP_FILE, `12.4 계엄해제 표결 수치가 올바르지 않습니다: ${JSON.stringify(pre)}`);
+  }
+  const countsMeta = meta.counts || {};
+  if (!isObject(countsMeta.vote0) || countsMeta.vote0["참석"] !== vote0["참석"]) {
+    fail(IMP_FILE, "meta.counts.vote0 가 명부 집계와 다릅니다");
+  }
+  if (!isObject(countsMeta.stance2) || countsMeta.stance2.oppose !== stance.oppose) {
+    fail(IMP_FILE, "meta.counts.stance2.oppose 가 명부 집계와 다릅니다");
+  }
+  // 반대 85표·1차 불참 105명 해설(meta.analysis): 그룹의 memberIds 는 실존 의원이어야 한다.
+  const analysis = meta.analysis;
+  if (!isObject(analysis)) {
+    fail(IMP_FILE, "meta.analysis 가 없습니다");
+  } else {
+    if (!Array.isArray(analysis.groups) || analysis.groups.length < 3) fail(IMP_FILE, "meta.analysis.groups 가 부족합니다");
+    else {
+      for (const g of analysis.groups) {
+        if (!g.id || !g.label || !Array.isArray(g.memberIds) || !g.memberIds.length) {
+          fail(IMP_FILE, `meta.analysis.groups 항목이 올바르지 않습니다: ${JSON.stringify(g).slice(0, 60)}`);
+          continue;
+        }
+        for (const id of g.memberIds) {
+          if (!ids.has(id)) fail(IMP_FILE, `meta.analysis.groups.${g.id} 가 없는 의원을 참조합니다: ${id}`);
+        }
+      }
+    }
+    if (!Array.isArray(analysis.points) || analysis.points.length < 3) fail(IMP_FILE, "meta.analysis.points 가 부족합니다");
+    if (!Array.isArray(analysis.readings) || analysis.readings.length < 1) fail(IMP_FILE, "meta.analysis.readings 가 없습니다");
+  }
   if (meta.partySeatsBasis === undefined) warn(IMP_FILE, "partySeats 기준 설명이 없습니다");
   if (!Array.isArray(meta.sources) || meta.sources.length < 5) warn(IMP_FILE, "출처 목록이 부족합니다");
 

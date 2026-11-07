@@ -425,7 +425,8 @@ body.graph-fs-open{overflow:hidden}
 /* ===== 22대 국회 탄핵 표결 뷰 ===== */
 #view-impeachment[hidden],#summary[hidden],#outcome-insights[hidden],#search-feedback[hidden],.note[hidden]{display:none}
 .imp-wrap{display:grid;gap:18px;margin-top:6px}
-.imp-votes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.imp-votes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:1040px){.imp-votes{grid-template-columns:1fr}}
 .imp-vote-card{all:unset;cursor:pointer;display:block;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:14px 16px 12px;background:var(--surface);transition:border-color .15s,box-shadow .15s}
 .imp-vote-card:hover{border-color:var(--muted)}
 .imp-vote-card.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
@@ -496,10 +497,35 @@ body.graph-fs-open{overflow:hidden}
 .imp-vrow-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;font-weight:700}
 .imp-vrow p{margin:7px 0 0;font-size:13px;line-height:1.65;color:var(--muted)}
 .imp-mnote{margin:0;font-size:12.5px;line-height:1.7;color:var(--muted);background:var(--surface);border-left:3px solid var(--line);padding:2px 0 2px 10px}
+/* 반대 85표·1차 불참 105명 추적 인사이트 */
+.imp-insight{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:14px 16px;display:grid;gap:12px}
+.imp-insight-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:var(--f-display);font-size:16px;font-weight:700;color:var(--ink)}
+.imp-insight-sum{margin:0;font-size:13px;line-height:1.72;color:var(--muted);text-wrap:pretty}
+.imp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:8px}
+.imp-stat{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:var(--bg);display:grid;gap:3px}
+.imp-stat i{font-style:normal;font-size:11px;font-weight:700;color:var(--muted)}
+.imp-stat b{font-family:var(--f-mono);font-size:20px;line-height:1.1;font-variant-numeric:tabular-nums}
+.imp-stat p{margin:0;font-size:11.5px;line-height:1.55;color:var(--muted)}
+.imp-groups{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.imp-groups .imp-lab{min-width:auto}
+.imp-readings{border-top:1px solid var(--line);padding-top:10px}
+.imp-readings summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--ink)}
+.imp-readings summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.imp-readings ul{margin:8px 0 0;padding-left:16px;display:grid;gap:7px}
+.imp-readings li{font-size:12.5px;line-height:1.68;color:var(--muted)}
+.imp-readings li b{color:var(--ink);font-weight:600}
+.imp-sw{font-size:10.5px;font-weight:700;color:#7A5A18;background:#F6F0E3;border-radius:999px;padding:1px 6px;white-space:nowrap}
+.imp-quote{margin:0;padding:10px 13px;border-left:3px solid var(--accent);background:var(--cat-bg);border-radius:0 6px 6px 0;display:grid;gap:6px}
+.imp-quote blockquote{margin:0;font-family:var(--f-display);font-size:14px;line-height:1.68;color:var(--ink);text-wrap:pretty}
+.imp-quote cite{font-style:normal;font-size:11.5px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap;align-items:baseline}
+.imp-quote a{color:var(--accent);text-decoration:none}
+.imp-quote a:hover{text-decoration:underline}
+.imp-vtag{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px}
 :root[data-theme="dark"] .b-yes{background:#1C2C47;color:#9BC0F5}
 :root[data-theme="dark"] .b-no{background:#3A2222;color:#F0A9A3}
 :root[data-theme="dark"] .b-mid{background:#2A2E34;color:#B7BFC9}
 :root[data-theme="dark"] .b-none{background:#332C1C;color:#E0C784}
+:root[data-theme="dark"] .imp-sw{background:#332C1C;color:#E0C784}
 :root[data-theme="dark"] .imp-tag-fail{background:#3A2222;color:#F0A9A3}
 :root[data-theme="dark"] .imp-tag-pass{background:#1C3324;color:#9BD3AE}
 @media (prefers-color-scheme: dark){
@@ -1305,7 +1331,7 @@ function render(){
   document.querySelectorAll(".switcher button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.ds===state.dataset)));
   const impOn=state.view==="impeachment";
   document.getElementById("site-title").textContent=DS.title;
-  document.getElementById("site-lede").textContent=impOn?"22대 국회 300석 전원의 윤석열 대통령 탄핵소추안 1차(12.7)·2차(12.14) 표결 기록입니다. 의원별 참석·불참과 공개 입장을 정리했고, 무기명 비밀투표인 2차 표결은 공개된 입장만 표시했습니다.":DS.lede;
+  document.getElementById("site-lede").textContent=impOn?"22대 국회 300석 전원의 윤석열 대통령 탄핵 표결 기록입니다. 12.4 비상계엄해제 요구안과 1차(12.7)·2차(12.14) 탄핵소추안 표결의 의원별 참석·불참과 공개 입장을 정리했고, 무기명 비밀투표인 2차 표결은 공개된 입장만 표시했습니다.":DS.lede;
   document.getElementById("q").placeholder=state.view==="impeachment"?"의원 이름·지역구·정당으로 찾기 (예: 안철수, 분당갑)":DS.searchPh;
   ["summary","outcome-insights","search-feedback"].forEach(id=>{const n=document.getElementById(id);if(n)n.hidden=impOn});
   const noteEl=document.querySelector(".note");
@@ -2810,9 +2836,14 @@ document.querySelectorAll(".switcher button").forEach(b=>b.onclick=()=>{const ds
 // 300석 명부 + 2024.12.7(1차)·12.14(2차) 표결 기록. 데이터는 impeachment-assembly-data.json.
 const IMP_PARTY_ORDER = ["더불어민주당", "국민의힘", "조국혁신당", "개혁신당", "진보당", "기본소득당", "사회민주당", "무소속"];
 const IMP_PARTY_COLOR = {"더불어민주당": "#1D5BBF", "국민의힘": "#DE4B4B", "조국혁신당": "#3A4378", "개혁신당": "#E8862E", "진보당": "#B43A6A", "기본소득당": "#12A5A0", "사회민주당": "#7A5AA6", "무소속": "#8A8F98"};
-const IMP = {data: null, loading: false, error: null, mode: "second", status: null, party: "all", layout: "cards", tracked: null};
+const IMP = {data: null, loading: false, error: null, mode: "second", status: null, party: "all", layout: "cards", group: null, tracked: null};
 const IMP_STANCE = {support: {label: "공개 찬성", cls: "b-yes"}, oppose: {label: "공개 반대", cls: "b-no"}, undisclosed: {label: "입장 비공개", cls: "b-mid"}, none: {label: "원외", cls: "b-none"}};
+const IMP_STANCE_SHORT = {support: "찬성", oppose: "반대", undisclosed: "비공개", none: "원외"};
 const IMP_V1 = {"참석": {label: "참석", cls: "b-yes"}, "불참": {label: "불참·퇴장", cls: "b-no"}, "미재임": {label: "미재임", cls: "b-none"}};
+const IMP_V1_SHORT = {"참석": "참석", "불참": "퇴장", "미재임": "미재임"};
+// 12.4 비상계엄해제요구 결의안은 명패 전자투표여서 의원별 찬반이 회의록에 이름으로 남아 있다. (vote0)
+const IMP_V0 = {"참석": {label: "계엄해제 찬성", cls: "b-yes"}, "불참": {label: "불참", cls: "b-no"}, "미재임": {label: "미재임", cls: "b-none"}};
+const IMP_V0_SHORT = {"참석": "찬성", "불참": "불참", "미재임": "미재임"};
 
 // 초성 검색: 페이지의 chosungOf와 같은 규칙을 이 뷰 안에서도 쓸 수 있게 자체 정의한다.
 function impChosung(str) {
@@ -2838,8 +2869,14 @@ function impMatch(m, q) {
   if (/[ㄱ-ㅎ]/.test(nq)) return impChosung(m.name).includes(impChosung(nq));
   return false;
 }
-function impKey(m) { return IMP.mode === "first" ? m.vote1 : m.stance2; }
-function impKeyMeta(k) { return IMP.mode === "first" ? (IMP_V1[k] || IMP_V1["미재임"]) : (IMP_STANCE[k] || IMP_STANCE.undisclosed); }
+function impKey(m) { return IMP.mode === "first" ? m.vote1 : IMP.mode === "preliminary" ? m.vote0 : m.stance2; }
+function impKeyMeta(k) { return IMP.mode === "first" ? (IMP_V1[k] || IMP_V1["미재임"]) : IMP.mode === "preliminary" ? (IMP_V0[k] || IMP_V0["미재임"]) : (IMP_STANCE[k] || IMP_STANCE.undisclosed); }
+// 인사이트 카드의 명단 묶음(meta.analysis.groups)을 현재 선택으로 읽는다.
+function impGroupSet() {
+  const groups = (IMP.data && IMP.data.meta.analysis && IMP.data.meta.analysis.groups) || [];
+  const hit = groups.filter(g => g.id === IMP.group)[0];
+  return hit ? new Set(hit.memberIds) : null;
+}
 function impTime(v) { return String(v || "").replace(/-/g, ".").replace(/^(\d{4})\.(\d{2})\.(\d{2})$/, "$1.$2.$3"); }
 function impNum(n) { return Number(n || 0).toLocaleString("ko-KR"); }
 function impColor(p) { return IMP_PARTY_COLOR[p] || "#8A8F98"; }
@@ -2858,6 +2895,22 @@ function impVoteCard(which) {
   const v = IMP.data.meta.votes[which];
   const on = IMP.mode === which ? " on" : "";
   const attrs = `class="imp-vote-card${on}" type="button" data-imp-mode="${which}" aria-pressed="${IMP.mode === which}"`;
+  if (which === "preliminary") {
+    const yes = v.yes / 300 * 100, absent = (300 - v.present) / 300 * 100;
+    return `<button ${attrs}>
+      <span class="imp-vote-h"><span>계엄해제 표결 <span class="imp-date">${impTime(v.date)}</span></span><span class="imp-tag imp-tag-pass">${esc(v.result)}</span></span>
+      <span class="imp-nums">
+        <span class="imp-num"><b>${impNum(v.yes)}</b><span>찬성</span></span>
+        <span class="imp-num"><b>${impNum(v.breakdown.peoplePower)}</b><span>국민의힘 참석</span></span>
+        <span class="imp-num"><b>${impNum(300 - v.present)}</b><span>불참</span></span>
+      </span>
+      <span class="imp-bar" aria-hidden="true">
+        <i style="width:${yes.toFixed(1)}%;background:#1D5BBF"></i>
+        <i style="width:${absent.toFixed(1)}%;background:#C3CAD3"></i>
+      </span>
+      <span class="imp-vote-n">${esc(v.resultNote)}</span>
+    </button>`;
+  }
   if (which === "first") {
     const fail = Math.max(0, v.quorum - v.present);
     return `<button ${attrs}>
@@ -2898,9 +2951,9 @@ function impVoteCard(which) {
 
 function impLegendHTML() {
   const grad = "background:linear-gradient(90deg,#1D5BBF 0 33%,#3A4378 33% 55%,#DE4B4B 55% 78%,#7A5AA6 78% 100%)";
-  const items = IMP.mode === "first"
-    ? [[grad, "참석(정당 색)"], ["background:#1D5BBF;opacity:.3", "불참·퇴장"], ["background:#FFFFFF;border:1px dashed #9AA2AC", "미재임"]]
-    : [[grad, "찬성(정당 색)"], ["background:#1D5BBF;opacity:.3", "입장 비공개"], ["background:#DE4B4B;border:2px solid #1A1A1A", "공개 반대"]];
+  const items = IMP.mode === "second"
+    ? [[grad, "찬성(정당 색)"], ["background:#1D5BBF;opacity:.3", "입장 비공개"], ["background:#DE4B4B;border:2px solid #1A1A1A", "공개 반대"]]
+    : [[grad, IMP.mode === "preliminary" ? "찬성(정당 색)" : "참석(정당 색)"], ["background:#1D5BBF;opacity:.3", IMP.mode === "preliminary" ? "불참" : "불참·퇴장"], ["background:#FFFFFF;border:1px dashed #9AA2AC", "미재임"]];
   return items.map(([style, label]) => `<span class="imp-lg"><i style="${style}"></i>${label}</span>`).join("");
 }
 
@@ -2933,7 +2986,7 @@ function impHemicycle(n, rows) {
 function impSeatsHTML(list) {
   const ids = {};
   list.forEach(m => { ids[m.id] = 1; });
-  const present = IMP.data.members.filter(m => IMP.mode === "first" ? m.vote1 !== "미재임" : m.stance2 !== "none");
+  const present = IMP.data.members.filter(m => IMP.mode === "first" ? m.vote1 !== "미재임" : IMP.mode === "preliminary" ? m.vote0 !== "미재임" : m.stance2 !== "none");
   const ordered = [];
   IMP_PARTY_ORDER.forEach(p => present.filter(m => m.party === p).forEach(m => ordered.push(m)));
   const pts = impHemicycle(ordered.length, 8);
@@ -2944,7 +2997,7 @@ function impSeatsHTML(list) {
     // 좌석 색은 소속 정당. 표결 상태는 진하기(미공개·불참은 옅게)와 테두리(공개 반대)로 표시한다.
     const fill = impColor(m.party);
     let op = 1, stroke = "none", sw = 0;
-    if (IMP.mode === "first") {
+    if (IMP.mode !== "second") {
       if (st === "불참") op = 0.3;
       if (st === "미재임") { op = 0.15; stroke = "var(--muted)"; sw = 1; }
     } else {
@@ -2968,8 +3021,10 @@ function impSeatsHTML(list) {
 }
 
 function impCardHTML(m) {
+  const s0 = IMP_V0[m.vote0] || IMP_V0["불참"];
   const s1 = IMP_V1[m.vote1] || IMP_V1["참석"];
   const s2 = IMP_STANCE[m.stance2] || IMP_STANCE.undisclosed;
+  const swing = m.vote0 === "참석" && m.stance2 === "oppose";
   return `<article class="imp-card" data-imp-id="${esc(m.id)}" tabindex="0" role="button" aria-label="${esc(m.name)} 상세 보기">
     <div class="imp-card-h">
       <span class="imp-ava" style="background:${impColor(m.party)}">${esc((m.name || "?").slice(0, 1))}</span>
@@ -2977,10 +3032,31 @@ function impCardHTML(m) {
     </div>
     <div class="imp-card-m"><span style="color:${impColor(m.party)}">● ${esc(m.party)}</span><span>${esc(m.term || "")}${m.role ? " · " + esc(m.role) : ""}</span></div>
     <div class="imp-badges">
-      <span class="imp-badge ${s1.cls}${IMP.mode === "first" ? " on" : ""}">1차 ${s1.label}</span>
-      <span class="imp-badge ${s2.cls}${IMP.mode === "second" ? " on" : ""}">2차 ${s2.label}</span>
+      <span class="imp-badge ${s0.cls}${IMP.mode === "preliminary" ? " on" : ""}" title="2024.12.4 비상계엄해제 요구안 · ${esc(s0.label)}">12.4 ${esc(IMP_V0_SHORT[m.vote0] || "불참")}</span>
+      <span class="imp-badge ${s1.cls}${IMP.mode === "first" ? " on" : ""}" title="2024.12.7 1차 탄핵 표결 · ${esc(s1.label)}">12.7 ${esc(IMP_V1_SHORT[m.vote1] || "참석")}</span>
+      <span class="imp-badge ${s2.cls}${IMP.mode === "second" ? " on" : ""}" title="2024.12.14 2차 탄핵 표결 · ${esc(s2.label)}">12.14 ${esc(IMP_STANCE_SHORT[m.stance2] || "비공개")}</span>
+      ${swing ? `<span class="imp-sw">계엄해제 찬성→탄핵 반대</span>` : ""}
     </div>
   </article>`;
+}
+
+// 반대 85표·1차 불참 105명을 설명하는 인사이트 카드. 숫자와 명단 묶음(그룹)은 meta.analysis에서 온다.
+function impInsightHTML() {
+  const a = (IMP.data && IMP.data.meta.analysis) || null;
+  if (!a) return "";
+  const chips = (a.groups || []).map(g => {
+    const on = IMP.group === g.id;
+    return `<button type="button" class="imp-chip${on ? " on" : ""}" data-imp-group="${esc(g.id)}" aria-pressed="${on}" title="${esc(g.desc)}">${esc(g.label)}</button>`;
+  }).join("");
+  const stats = (a.points || []).map(p => `<div class="imp-stat"><i>${esc(p.label)}</i><b>${esc(p.value)}</b><p>${esc(p.detail)}</p></div>`).join("");
+  const readings = (a.readings || []).map(r => `<li>${esc(r.text)} <b>— ${esc((r.source || []).join(" · "))}</b></li>`).join("");
+  return `<section class="imp-insight">
+    <div class="imp-insight-h"><span>${esc(a.title)}</span><span class="imp-vtag">무기명 비밀투표 · 일부는 추정</span></div>
+    <p class="imp-insight-sum">${esc(a.summary)}</p>
+    <div class="imp-stats">${stats}</div>
+    <div class="imp-groups"><span class="imp-lab">명단 묶어 보기</span>${chips}${IMP.group ? `<button type="button" class="imp-chip" data-imp-group="">해제</button>` : ""}</div>
+    <details class="imp-readings"><summary>당시 보도로 본 반대 85표 해설</summary><ul>${readings}</ul></details>
+  </section>`;
 }
 
 // 출처 라벨을 매체명 단위로 묶어 중복 없이 링크한다.
@@ -3006,8 +3082,9 @@ function renderImpeachment() {
   const pool = ms.filter(m => IMP.party === "all" || m.party === IMP.party);
   const counts = {all: pool.length};
   pool.forEach(m => { const k = impKey(m); counts[k] = (counts[k] || 0) + 1; });
-  const keys = IMP.mode === "first" ? ["참석", "불참", "미재임"] : ["support", "oppose", "undisclosed", "none"];
-  const list = pool.filter(m => impMatch(m, state.q) && (!IMP.status || impKey(m) === IMP.status));
+  const keys = IMP.mode === "second" ? ["support", "oppose", "undisclosed", "none"] : ["참석", "불참", "미재임"];
+  const gset = impGroupSet();
+  const list = pool.filter(m => impMatch(m, state.q) && (!IMP.status || impKey(m) === IMP.status) && (!gset || gset.has(m.id)));
 
   const chips = [`<button type="button" class="imp-chip${!IMP.status ? " on" : ""}" data-imp-status="" aria-pressed="${!IMP.status}">전체 <b>${impNum(counts.all)}</b></button>`]
     .concat(keys.map(k => {
@@ -3026,7 +3103,8 @@ function renderImpeachment() {
     : (list.length ? `<div class="imp-grid">${list.map(impCardHTML).join("")}</div>` : `<div class="empty-state"><p>조건에 맞는 의원이 없습니다.</p><button type="button" class="lk-btn" data-imp-reset>필터 초기화</button></div>`);
 
   return `<div class="imp-wrap">
-    <div class="imp-votes">${impVoteCard("first")}${impVoteCard("second")}</div>
+    <div class="imp-votes">${impVoteCard("preliminary")}${impVoteCard("first")}${impVoteCard("second")}</div>
+    ${impInsightHTML()}
     <p class="imp-note">${esc(meta.rosterNote)} 2차 표결은 무기명 비밀투표여서 개인별 표 내용은 공식 기록이 없고, 공개적으로 밝힌 입장만 표시했습니다.</p>
     <div class="imp-controls">
       <div class="imp-row"><span class="imp-lab">표결</span><div class="imp-chips">${chips}</div></div>
@@ -3050,9 +3128,10 @@ function impBind(root) {
   el.querySelectorAll("[data-imp-mode]").forEach(b => { b.onclick = () => { IMP.mode = b.dataset.impMode; IMP.status = null; render(); }; });
   el.querySelectorAll("[data-imp-status]").forEach(b => { b.onclick = () => { IMP.status = b.dataset.impStatus || null; render(); }; });
   el.querySelectorAll("[data-imp-party]").forEach(b => { b.onclick = () => { IMP.party = b.dataset.impParty; render(); }; });
+  el.querySelectorAll("[data-imp-group]").forEach(b => { b.onclick = () => { IMP.group = b.dataset.impGroup || null; render(); }; });
   el.querySelectorAll("[data-imp-layout]").forEach(b => { b.onclick = () => { IMP.layout = b.dataset.impLayout; render(); }; });
   const reset = el.querySelector("[data-imp-reset]");
-  if (reset) reset.onclick = () => { IMP.status = null; IMP.party = "all"; state.q = ""; const q = document.getElementById("q"); if (q) q.value = ""; render(); };
+  if (reset) reset.onclick = () => { IMP.status = null; IMP.party = "all"; IMP.group = null; state.q = ""; const q = document.getElementById("q"); if (q) q.value = ""; render(); };
   el.querySelectorAll("[data-imp-id]").forEach(n => {
     n.onclick = () => impOpen(n.dataset.impId);
     n.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); impOpen(n.dataset.impId); } };
@@ -3064,7 +3143,11 @@ function impOpen(id) {
   if (!m) return;
   const dlg = document.getElementById("person-dialog"), content = document.getElementById("modal-content");
   if (!dlg || !content) return;
-  const s1 = IMP_V1[m.vote1] || IMP_V1["참석"], s2 = IMP_STANCE[m.stance2] || IMP_STANCE.undisclosed;
+  const s0 = IMP_V0[m.vote0] || IMP_V0["불참"], s1 = IMP_V1[m.vote1] || IMP_V1["참석"], s2 = IMP_STANCE[m.stance2] || IMP_STANCE.undisclosed;
+  const basis0 = m.vote0 === "참석"
+    ? (m.party === "국민의힘" ? "국민의힘에서 18명만 들어간 계엄해제 요구안 표결에 참석해 찬성표를 던졌습니다." : "계엄해제 요구안 표결에 참석해 찬성표를 던졌습니다(재석 190명 전원 찬성).")
+    : m.vote0 === "미재임" ? "2024.12.13 승계로 12.4 표결 당시에는 의원이 아니었습니다."
+    : (m.party === "국민의힘" ? "당 지도부의 집단 불참 방침에 따라 계엄해제 요구안 표결에 들어가지 않았습니다(국민의힘 90명 불참)." : "계엄해제 요구안 표결에 참석하지 않았습니다(불참 110명).");
   const basis1 = m.vote1 === "불참" ? "국민의힘 부결 당론에 따라 표결 전 본회의장에서 퇴장했습니다(105명)."
     : m.vote1 === "미재임" ? "2024.12.13 조국 의원직 상실에 따른 승계로 1차 표결(12.7) 당시에는 의원이 아니었습니다."
     : "본회의장에 남아 표결에 참여했습니다(195명).";
@@ -3072,6 +3155,8 @@ function impOpen(id) {
     : m.stance2 === "support" ? (m.publicStance ? m.publicStance + " " : "") + "2차 표결에 참석해 찬성했습니다(범야권 192명 전원 찬성 전제)."
     : m.stance2 === "undisclosed" ? "국민의힘 부결 당론에 따라 표결에는 참석했으나 개인 입장은 공개하지 않았습니다."
     : "2024.12.12 의원직 상실로 2차 표결(12.14)에는 참석하지 않았습니다.";
+  const quoteHTML = m.stanceQuote ? `<figure class="imp-quote"><blockquote>“${esc(m.stanceQuote)}”</blockquote><cite><span class="imp-vtag">${esc(m.stanceKind || "발언")}</span>${esc(impTime(m.stanceDate))}${m.stanceSource ? ` · <a href="${esc(m.stanceSource[1])}" target="_blank" rel="noopener">${esc(String(m.stanceSource[0]).split(" — ")[0])}</a>` : ""}</cite></figure>` : "";
+  const publicRow = m.publicStance && m.stance2 !== "oppose" ? `<div class="imp-vrow"><div class="imp-vrow-h"><span>표결 전 공개 발언</span></div><p>${esc(m.publicStance)}</p></div>` : "";
   content.innerHTML = `
     <div class="modal-header">
       <div class="modal-person">
@@ -3085,6 +3170,10 @@ function impOpen(id) {
     </div>
     <div class="modal-body imp-modal">
       <div class="imp-vrow">
+        <div class="imp-vrow-h"><span>계엄해제 표결 · 2024.12.4</span><span class="imp-badge ${s0.cls} on">${s0.label}</span></div>
+        <p>${esc(basis0)}</p>
+      </div>
+      <div class="imp-vrow">
         <div class="imp-vrow-h"><span>1차 표결 · 2024.12.7</span><span class="imp-badge ${s1.cls} on">${s1.label}</span></div>
         <p>${esc(basis1)}</p>
       </div>
@@ -3093,6 +3182,8 @@ function impOpen(id) {
         <p>${esc(basis2)}</p>
       </div>
       ${m.note ? `<p class="imp-mnote">${esc(m.note)}</p>` : ""}
+      ${quoteHTML}
+      ${publicRow}
       ${m.propNo ? `<p class="imp-mnote">비례대표 ${m.propNo}번</p>` : ""}
     </div>`;
   dlg.showModal();

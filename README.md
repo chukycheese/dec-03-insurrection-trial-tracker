@@ -7,7 +7,7 @@
 ## 파일 구성
 - `public/index.html` / `public/insurrection-trials-offline.html`: 타임라인·사건별·인물별 재판 기록부와 [탄핵 표결] 뷰를 담은 웹 인터페이스
 - `public/insurrection-trials-data.json`: 사건, 피고인, 판결 및 재판부 데이터
-- `public/impeachment-assembly-data.json`: 22대 국회의원 300석 명부(승계 1명 포함 301명)와 윤석열 대통령 탄핵소추안 1차(2024.12.7)·2차(2024.12.14) 표결 기록
+- `public/impeachment-assembly-data.json`: 22대 국회의원 300석 명부(승계 1명 포함 301명)와 12.4 비상계엄해제 요구안·1차(2024.12.7)·2차(2024.12.14) 탄핵소추안 표결 기록. 탄핵 반대를 공개한 19명의 발언·출처와 반대 85표·1차 불참 105명 해설(`meta.analysis`) 포함
 - `public/assets/photos/`: 인물사전 프로필 사진(WebP) 및 출처·라이선스 문서
 - `scripts/validate-data.mjs`: 데이터 구조·참조·사진 파일 무결성 검증 스크립트
 - `.github/workflows/deploy.yml`: `main` 푸시 시 검증 후 자동 배포하는 GitHub Actions 워크플로
