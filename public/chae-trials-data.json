@@ -721,77 +721,132 @@
       "role": "전 해병대 부사령관",
       "category": "해병대 지휘부",
       "keyRole": "해병대 부사령관으로서 이종섭의 이첩 보류 명령을 수사단장에게 전달한 경로로 공소장 변경에 적시됨. 수사외압 재판에서 증인·관계인으로 다뤄짐",
-      "statusNote": "기소 아님 — 재판 관계자"
+      "statusNote": "기소 아님 — 재판 관계자",
+      "photo": "assets/photos/jungjb",
+      "photoAlt": "정종범 전 해병대 부사령관 사진",
+      "photoCredit": "뉴스1 허고운 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/politics/diplomacy-defense/5488020"
     },
     "shinc": {
       "name": "신범철",
       "role": "전 국방부 차관",
       "category": "국방부·군 수뇌부",
       "keyRole": "박정훈 보직해임·항명 수사 지시 등 국방부 차원의 수사외압 실행(수사외압 1심 진행 중)",
-      "statusNote": "수사외압 1심 진행 중"
+      "statusNote": "수사외압 1심 진행 중",
+      "photo": "assets/photos/shinc",
+      "photoAlt": "신범철 전 국방부 차관 사진",
+      "photoCredit": "뉴스1 김기성 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/society/general-society/5911564"
     },
     "yooje": {
       "name": "유재은",
       "role": "전 국방부 법무관리관",
       "category": "국방부·군 수뇌부",
       "keyRole": "이종섭 지시로 박정훈에게 전화해 수사 결과 수정 압박(수사외압 1심 진행 중)",
-      "statusNote": "수사외압 1심 진행 중"
+      "statusNote": "수사외압 1심 진행 중",
+      "photo": "assets/photos/yooje",
+      "photoAlt": "유재은 전 국방부 법무관리관 사진",
+      "photoCredit": "더팩트 이새롬 기자",
+      "photoLicense": "© 더팩트 (출처 표시)",
+      "photoSource": "https://news.tf.co.kr/read/photomovie/2254979.htm"
     },
     "parkjhi": {
       "name": "박진희",
       "role": "전 국방부 장관 군사보좌관",
       "category": "국방부·군 수뇌부",
       "keyRole": "국방부 조사본부에 회수된 수사 결과를 다섯 차례 수정 지시해 임성근을 피혐의자에서 제외하도록 한 혐의(수사외압 1심 진행 중)",
-      "statusNote": "수사외압 1심 진행 중"
+      "statusNote": "수사외압 1심 진행 중",
+      "photo": "assets/photos/parkjhi",
+      "photoAlt": "박진희 전 국방부 장관 군사보좌관 사진",
+      "photoCredit": "뉴시스 최진석 기자",
+      "photoLicense": "© 뉴시스 (출처 표시)",
+      "photoSource": "https://www.newsis.com/view/NISI20250916_0020977198"
     },
     "kimdh": {
       "name": "김동혁",
       "role": "전 국방부 검찰단장",
       "category": "군검찰·수사기구",
       "keyRole": "박정훈을 집단 항명 수괴로 입건·수사하고 경찰 이첩 기록 회수에 관여. 수사외압 직권남용 혐의로 기소(1심 진행 중)",
-      "statusNote": "수사외압 1심 진행 중 / 휘하 군검사 허위영장 재판은 별도 판결"
+      "statusNote": "수사외압 1심 진행 중 / 휘하 군검사 허위영장 재판은 별도 판결",
+      "photo": "assets/photos/kimdh",
+      "photoAlt": "김동혁 전 국방부 검찰단장 사진",
+      "photoCredit": "이데일리 김한영 기자",
+      "photoLicense": "© 이데일리 (출처 표시)",
+      "photoSource": "https://www.edaily.co.kr/News/Read?newsId=04391926645549616"
     },
     "kimjnl": {
       "name": "김진락",
       "role": "전 국방부 조사본부 수사단장",
       "category": "군검찰·수사기구",
       "keyRole": "회수된 채상병 사건 기록의 국방부 조사본부 재검토 담당. 2026.10.14 수사외압 재판 증인신문에서 ‘재검토는 장관 하명’이었고 법리적으로 이해되지 않았다고 증언",
-      "statusNote": "피고인 아님 — 증인"
+      "statusNote": "피고인 아님 — 증인",
+      "photo": "assets/photos/kimjnl",
+      "photoAlt": "김진락 전 국방부 조사본부 수사단장 사진",
+      "photoCredit": "더팩트 이다빈 기자",
+      "photoLicense": "© 더팩트 (출처 표시)",
+      "photoSource": "https://news.tf.co.kr/read/life/2376404.htm"
     },
     "jeonhk": {
       "name": "전하규",
       "role": "전 국방부 대변인",
       "category": "국방부·군 수뇌부",
       "keyRole": "박정훈 항명 재판에서 모해위증한 혐의로 기소(수사외압 사건과 함께 재판)",
-      "statusNote": "수사외압 사건 1심 진행 중 (모해위증 포함)"
+      "statusNote": "수사외압 사건 1심 진행 중 (모해위증 포함)",
+      "photo": "assets/photos/jeonhk",
+      "photoAlt": "전하규 전 국방부 대변인 사진",
+      "photoCredit": "뉴스1 김진환 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/photos/view/?6697780"
     },
     "heotg": {
       "name": "허태근",
       "role": "전 대통령실 정책실장",
       "category": "대통령실",
       "keyRole": "박정훈 항명 재판에서 모해위증한 혐의로 기소(수사외압 사건과 함께 재판)",
-      "statusNote": "수사외압 사건 1심 진행 중 (모해위증 포함)"
+      "statusNote": "수사외압 사건 1심 진행 중 (모해위증 포함)",
+      "photo": "assets/photos/heotg",
+      "photoAlt": "허태근 전 대통령실 정책실장 사진",
+      "photoCredit": "일요시사 천재율 기자",
+      "photoLicense": "© 일요시사 (출처 표시)",
+      "photoSource": "https://www.ilyosisa.co.kr/news/article.html?no=255230"
     },
     "yoogyh": {
       "name": "유균혜",
       "role": "전 국방부 기획관리관",
       "category": "국방부·군 수뇌부",
       "keyRole": "국회 전산망에 허위 답변 자료를 반복 업로드한 허위공문서 혐의로 기소(수사외압 사건과 함께 재판)",
-      "statusNote": "1심 징역 6개월 선고유예 (공전자기록위작) / 수사외압 본류 재판 진행 중"
+      "statusNote": "1심 징역 6개월 선고유예 (공전자기록위작) / 수사외압 본류 재판 진행 중",
+      "photo": "assets/photos/yoogyh",
+      "photoAlt": "유균혜 전 국방부 기획관리관 사진",
+      "photoCredit": "국방일보",
+      "photoLicense": "© 국방일보 (출처 표시)",
+      "photoSource": "http://kookbang.dema.mil.kr/newsWeb/20221020/6/BBSMSTR_000000010021/view.do"
     },
     "leesw": {
       "name": "이시원",
       "role": "전 대통령실 공직기강비서관",
       "category": "대통령실",
       "keyRole": "경찰에 이첩된 수사 기록의 국방부 회수 과정 조율 의혹. 채상병 특검 기소유예 후 종합특검에 공무상비밀누설로 기소(재판 진행 중), 이종섭 도피 사건에서는 무죄",
-      "statusNote": "기밀누설 재판 진행 중 / 채상병 특검 기소유예 / 이종섭 도피 1심 무죄"
+      "statusNote": "기밀누설 재판 진행 중 / 채상병 특검 기소유예 / 이종섭 도피 1심 무죄",
+      "photo": "assets/photos/leesw",
+      "photoAlt": "이시원 전 대통령실 공직기강비서관 사진",
+      "photoCredit": "뉴스1 이승배 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/photos/7868096"
     },
     "imkh": {
       "name": "임기훈",
       "role": "전 대통령실 국방비서관 (전 국가안보실 국방비서관)",
       "category": "대통령실",
       "keyRole": "2023.7.31 수석비서관 회의에서 채상병 사건 초동수사 결과를 윤석열에 최초 보고해 ‘VIP 격노’를 촉발. 채상병 특검 기소유예 후 종합특검에 공무상비밀누설로 기소(재판 진행 중)",
-      "statusNote": "기밀누설 재판 진행 중 / 채상병 특검 기소유예"
+      "statusNote": "기밀누설 재판 진행 중 / 채상병 특검 기소유예",
+      "photo": "assets/photos/imkh",
+      "photoAlt": "임기훈 전 대통령실 국방비서관 사진",
+      "photoCredit": "SBS",
+      "photoLicense": "© SBS (출처 표시)",
+      "photoSource": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008581981"
     },
     "parksj": {
       "name": "박성재",
@@ -824,49 +879,84 @@
       "role": "전 외교부 1차관 (전 국가안보실 차장)",
       "category": "정부·법무·민간",
       "keyRole": "이종섭 호주대사 임명·출국 과정 관여 혐의(1심 무죄, 특검 항소)",
-      "statusNote": "이종섭 도피 1심 무죄 (항소심 진행)"
+      "statusNote": "이종섭 도피 1심 무죄 (항소심 진행)",
+      "photo": "assets/photos/janghj",
+      "photoAlt": "장호진 전 국가안보실 차장 사진",
+      "photoCredit": "뉴스1 오대일 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/photos/7589504"
     },
     "leeho": {
       "name": "이종호",
       "role": "전 블랙펄인베스트 대표",
       "category": "정부·법무·민간",
       "keyRole": "구명 로비 의혹의 창구로 지목된 김건희 측근(‘멋쟁해병’ 대화방). 특검은 로비 사실을 확인하지 못했고, 수사 기간 중 휴대전화 파손 지시 혐의는 무죄 확정",
-      "statusNote": "증거인멸교사 무죄 확정"
+      "statusNote": "증거인멸교사 무죄 확정",
+      "photo": "assets/photos/leeho",
+      "photoAlt": "이종호 전 블랙펄인베스트 대표 사진",
+      "photoCredit": "연합뉴스",
+      "photoLicense": "© 연합뉴스 (출처 표시)",
+      "photoSource": "https://www.yna.co.kr/view/AKR20260716078400004"
     },
     "yombh": {
       "name": "염보현",
       "role": "육군 소령 (전 국방부 검찰단 공공형사과장)",
       "category": "군검찰·수사기구",
       "keyRole": "박정훈 구속영장 청구서 작성 관여 혐의. 허위공문서·직권남용감금 무죄(1·2심), 국감 불출석만 벌금 1,000만원. 특검 상고로 대법원 계류",
-      "statusNote": "허위공문서 등 무죄 / 국감 불출석 벌금 1,000만원 / 특검 상고"
+      "statusNote": "허위공문서 등 무죄 / 국감 불출석 벌금 1,000만원 / 특검 상고",
+      "photo": "assets/photos/yombh",
+      "photoAlt": "염보현 육군 소령 사진",
+      "photoCredit": "뉴스1 이승배 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/photos/7561777"
     },
     "kimminj": {
       "name": "김민정",
       "role": "공군 중령 (전 국방부 감찰단 보통검찰부장)",
       "category": "군검찰·수사기구",
       "keyRole": "박정훈 구속영장 청구서 작성 관여 혐의. 1·2심 모두 무죄, 특검 상고로 대법원 계류",
-      "statusNote": "무죄 (1·2심) / 특검 상고"
+      "statusNote": "무죄 (1·2심) / 특검 상고",
+      "photo": "assets/photos/kimminj",
+      "photoAlt": "김민정 공군 중령 사진",
+      "photoCredit": "뉴스1 이승배 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/photos/7561780"
     },
     "parksh": {
       "name": "박상현",
       "role": "전 해병대 1사단 제7여단장",
       "category": "해병대 지휘부",
       "keyRole": "수해 현장 총괄 제2신속기동부대장으로 바둑판식 수색 등 지시 하달·대원 압박. 금고 1년 6개월 확정",
-      "statusNote": "금고 1년 6개월 확정"
+      "statusNote": "금고 1년 6개월 확정",
+      "photo": "assets/photos/parksh",
+      "photoAlt": "박상현 전 해병대 1사단 제7여단장 사진",
+      "photoCredit": "오마이뉴스",
+      "photoLicense": "© 오마이뉴스 (출처 표시)",
+      "photoSource": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003232943"
     },
     "choejg": {
       "name": "최진규",
       "role": "전 해병대 1사단 포병여단 포11대대장",
       "category": "해병대 지휘부",
       "keyRole": "상급 지시를 전달하며 ‘허리 깊이 입수’ 등 수중수색 지시. 금고 1년 6개월 확정",
-      "statusNote": "금고 1년 6개월 확정"
+      "statusNote": "금고 1년 6개월 확정",
+      "photo": "assets/photos/choejg",
+      "photoAlt": "최진규 전 해병대 1사단 포11대대장 사진",
+      "photoCredit": "오마이뉴스 시민기자",
+      "photoLicense": "© 오마이뉴스 (출처 표시)",
+      "photoSource": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003159697"
     },
     "leeym": {
       "name": "이용민",
       "role": "전 해병대 1사단 포7대대장",
       "category": "해병대 지휘부",
       "keyRole": "채상병 소속 포7대대 대대장으로 지시를 부대원에게 하달해 사고 발생. 금고 10개월 (미상고로 2심 확정)",
-      "statusNote": "금고 10개월 확정"
+      "statusNote": "금고 10개월 확정",
+      "photo": "assets/photos/leeym",
+      "photoAlt": "이용민 전 해병대 1사단 포7대대장 사진",
+      "photoCredit": "뉴스핌 류기찬 기자",
+      "photoLicense": "© 뉴스핌 (출처 표시)",
+      "photoSource": "https://www.newspim.com/news/view/20250828000586"
     },
     "jang-m": {
       "name": "장 모 (장아무개)",

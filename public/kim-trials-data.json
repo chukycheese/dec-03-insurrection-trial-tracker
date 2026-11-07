@@ -663,7 +663,12 @@
       "role": "전 서울시 정무부시장",
       "category": "정계·선거",
       "keyRole": "오세훈 지시로 명태균과 연락하며 설문지를 주고받는 등 여론조사 진행 관여, 조사 결과 전달",
-      "statusNote": "1심 벌금 300만원 → 2심 무죄"
+      "statusNote": "1심 벌금 300만원 → 2심 무죄",
+      "photo": "assets/photos/kangcw",
+      "photoAlt": "강철원 전 서울시 정무부시장 프로필 사진",
+      "photoCredit": "서울시",
+      "photoLicense": "© 서울시 (출처 표시)",
+      "photoSource": "https://www.inews24.com/view/1595352"
     },
     "kimhj": {
       "name": "김한정",
@@ -690,7 +695,12 @@
       "role": "건진법사",
       "category": "통일교·청탁",
       "keyRole": "김건희와 공모해 윤영호로부터 교단 지원 청탁과 함께 샤넬 가방·그라프 목걸이 등 8,000여만원을 수수해 김건희에게 전달. 통일그룹 고문 자리 대가 3,000만원 수수, 기업 청탁 2억원 수수 등",
-      "statusNote": "징역 5년 대법원 확정 (2026.7.9)"
+      "statusNote": "징역 5년 대법원 확정 (2026.7.9)",
+      "photo": "assets/photos/jeonsb",
+      "photoAlt": "전성배(건진법사) 사진",
+      "photoCredit": "뉴스1 권진영 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/society/court-prosecution/6222206"
     },
     "yunyh": {
       "name": "윤영호",
@@ -727,52 +737,81 @@
       "statusNote": "공천 개입 본안 1심 무죄 (항소심 진행)",
       "photo": "assets/photos/kimys",
       "photoAlt": "김영선 전 국민의힘 의원 프로필 사진",
-      "photoCredit": "대한민국 국회",
-      "photoLicense": "공공누리 제1유형",
-      "photoLicenseUrl": "https://www.kogl.or.kr/info/licenseType1.do",
-      "photoSource": "https://www.assembly.go.kr/portal/assm/assmMemb/memberProfile.do?monaCd=LBC8144B&st=21&viewType=CONTBODY"
+      "photoCredit": "뉴스1 황기선 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/photos/7560646"
     },
     "kwonos": {
       "name": "권오수",
       "role": "전 도이치모터스 회장",
       "category": "도이치모터스",
       "keyRole": "2009~2012년 시세조종 세력을 섭외해 도이치모터스 주가를 인위적으로 부양한 주모자. 김건희의 증권 계좌가 시세조종에 동원됨",
-      "statusNote": "검찰 수사 재판 징역 3년, 집행유예 4년 확정 (2025.4.3)"
+      "statusNote": "검찰 수사 재판 징역 3년, 집행유예 4년 확정 (2025.4.3)",
+      "photo": "assets/photos/kwonos",
+      "photoAlt": "권오수 전 도이치모터스 회장 사진",
+      "photoCredit": "메가경제 박제성 기자",
+      "photoLicense": "© 메가경제 (출처 표시)",
+      "photoSource": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065614751323735"
     },
     "leejh": {
       "name": "이종호",
       "role": "전 블랙펄인베스트 대표",
       "category": "도이치모터스",
       "keyRole": "시세조종의 컨트롤 타워 역할, 김건희의 증권 계좌를 위탁받아 운영한 ‘계좌 관리인’. 김건희에게 건진법사를 소개한 인물이기도 함",
-      "statusNote": "도이치 관련 혐의 무죄·면소, 횡령·배임 징역 2년, 집행유예 3년 확정 (2025.4.3)"
+      "statusNote": "도이치 관련 혐의 무죄·면소, 횡령·배임 징역 2년, 집행유예 3년 확정 (2025.4.3)",
+      "photo": "assets/photos/leejh",
+      "photoAlt": "이종호 전 블랙펄인베스트 대표 사진",
+      "photoCredit": "연합뉴스",
+      "photoLicense": "© 연합뉴스 (출처 표시)",
+      "photoSource": "https://www.yna.co.kr/view/AKR20260716078400004"
     },
     "choijy": {
       "name": "최재영",
       "role": "목사",
       "category": "인사·금품청탁",
       "keyRole": "공무원 직무 관련 청탁을 반복하며 디올 가방 등 540만원 상당 금품을 김건희에게 제공",
-      "statusNote": "벌금 800만원 확정 (항소하지 않음)"
+      "statusNote": "벌금 800만원 확정 (항소하지 않음)",
+      "photo": "assets/photos/choijy",
+      "photoAlt": "최재영 목사 사진",
+      "photoCredit": "뉴데일리 정상윤 기자",
+      "photoLicense": "© 뉴데일리 (출처 표시)",
+      "photoSource": "https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600178.html"
     },
     "leebj": {
       "name": "이배용",
       "role": "전 국가교육위원장",
       "category": "인사·금품청탁",
       "keyRole": "국가교육위원장 임명 청탁 명목으로 금거북이·세한도를 김건희에게 제공. 수사가 시작되자 비서·운전기사에게 증거인멸 지시",
-      "statusNote": "증거인멸교사 징역 10개월, 집행유예 2년 (1·2심)"
+      "statusNote": "증거인멸교사 징역 10개월, 집행유예 2년 (1·2심)",
+      "photo": "assets/photos/leebj",
+      "photoAlt": "이배용 전 국가교육위원장 사진",
+      "photoCredit": "뉴스1 이종수 기자",
+      "photoLicense": "© 뉴스1 (출처 표시)",
+      "photoSource": "https://www.news1.kr/photos/8121681"
     },
     "seosb": {
       "name": "서성빈",
       "role": "드롬돈 대표(로봇개 사업가)",
       "category": "인사·금품청탁",
       "keyRole": "로봇개 사업 지원 청탁 명목으로 바쉐론콘스탄틴 손목시계(3,990만원 상당)를 김건희에게 제공. 2심에서 이 수수 부분은 무죄로 뒤집힘",
-      "statusNote": "징역 10개월, 집행유예 2년 확정 (항소하지 않음)"
+      "statusNote": "징역 10개월, 집행유예 2년 확정 (항소하지 않음)",
+      "photo": "assets/photos/seosb",
+      "photoAlt": "서성빈 드론돔 대표 사진",
+      "photoCredit": "뉴데일리 정상윤 기자",
+      "photoLicense": "© 뉴데일리 (출처 표시)",
+      "photoSource": "https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600175.html"
     },
     "leebg": {
       "name": "이봉관",
       "role": "서희건설 회장",
       "category": "인사·금품청탁",
       "keyRole": "맏사위(박성근 전 국무총리 비서실장)의 공직 임명 청탁과 함께 반클리프 아펠 목걸이 등 1억380만원 상당 귀금속을 김건희에게 제공",
-      "statusNote": "징역 1년, 집행유예 2년 확정 (항소하지 않음)"
+      "statusNote": "징역 1년, 집행유예 2년 확정 (항소하지 않음)",
+      "photo": "assets/photos/leebg",
+      "photoAlt": "이봉관 서희건설 회장 사진",
+      "photoCredit": "뉴데일리 정상윤 기자",
+      "photoLicense": "© 뉴데일리 (출처 표시)",
+      "photoSource": "https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600177.html"
     }
   },
   "judges": {

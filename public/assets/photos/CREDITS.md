@@ -28,6 +28,32 @@
 | `simwj-*.webp` | 심우정 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Prosecutor_General_Shim_Woo-jung_20240926.jpg) | 대한민국 국회 | [공공누리 제1유형](https://www.kogl.or.kr/info/licenseType1.do) |
 | `kimkhw-*.webp` | 김계환 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:SY_24_-_ROKMC_Hosts_Rehearsal_of_Concepts_Meeting_for_Allied_Partners_%288619828%29.jpg) | U.S. Marine Corps (Lance Cpl. Moses Lopez Franco) | Public domain |
 | `imsg-*.webp` | 임성근 | 사용자 제공 (출처 미확인) | 사용자 제공 | 사용자 제공 |
-| `kimys-*.webp` | 김영선 | [대한민국 국회 의원소개](https://www.assembly.go.kr/portal/assm/assmMemb/memberProfile.do?monaCd=LBC8144B&st=21&viewType=CONTBODY) | 대한민국 국회 | [공공누리 제1유형](https://www.kogl.or.kr/info/licenseType1.do) |
+| `kimys-*.webp` | 김영선 | [뉴스1 포토](https://www.news1.kr/photos/7560646) | 뉴스1 황기선 기자 | © 뉴스1 (출처 표시) |
+| `kangcw-*.webp` | 강철원 | [인뉴스24](https://www.inews24.com/view/1595352) | 서울시 | © 서울시 (출처 표시) |
+| `jeonsb-*.webp` | 전성배 | [뉴스1](https://www.news1.kr/society/court-prosecution/6222206) | 뉴스1 권진영 기자 | © 뉴스1 (출처 표시) |
+| `kwonos-*.webp` | 권오수 | [메가경제](https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065614751323735) | 메가경제 박제성 기자 | © 메가경제 (출처 표시) |
+| `leejh-*.webp` | 이종호 | [연합뉴스](https://www.yna.co.kr/view/AKR20260716078400004) | 연합뉴스 | © 연합뉴스 (출처 표시) |
+| `choijy-*.webp` | 최재영 | [뉴데일리](https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600178.html) | 뉴데일리 정상윤 기자 | © 뉴데일리 (출처 표시) |
+| `leebj-*.webp` | 이배용 | [뉴스1 포토](https://www.news1.kr/photos/8121681) | 뉴스1 이종수 기자 | © 뉴스1 (출처 표시) |
+| `seosb-*.webp` | 서성빈 | [뉴데일리](https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600175.html) | 뉴데일리 정상윤 기자 | © 뉴데일리 (출처 표시) |
+| `leebg-*.webp` | 이봉관 | [뉴데일리](https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600177.html) | 뉴데일리 정상윤 기자 | © 뉴데일리 (출처 표시) |
+| `jungjb-*.webp` | 정종범 | [뉴스1](https://www.news1.kr/politics/diplomacy-defense/5488020) | 뉴스1 허고운 기자 | © 뉴스1 (출처 표시) |
+| `shinc-*.webp` | 신범철 | [뉴스1](https://www.news1.kr/society/general-society/5911564) | 뉴스1 김기성 기자 | © 뉴스1 (출처 표시) |
+| `yooje-*.webp` | 유재은 | [더팩트](https://news.tf.co.kr/read/photomovie/2254979.htm) | 더팩트 이새롬 기자 | © 더팩트 (출처 표시) |
+| `parkjhi-*.webp` | 박진희 | [뉴시스](https://www.newsis.com/view/NISI20250916_0020977198) | 뉴시스 최진석 기자 | © 뉴시스 (출처 표시) |
+| `kimdh-*.webp` | 김동혁 | [이데일리](https://www.edaily.co.kr/News/Read?newsId=04391926645549616) | 이데일리 김한영 기자 | © 이데일리 (출처 표시) |
+| `kimjnl-*.webp` | 김진락 | [더팩트](https://news.tf.co.kr/read/life/2376404.htm) | 더팩트 이다빈 기자 | © 더팩트 (출처 표시) |
+| `jeonhk-*.webp` | 전하규 | [뉴스1 포토](https://www.news1.kr/photos/view/?6697780) | 뉴스1 김진환 기자 | © 뉴스1 (출처 표시) |
+| `heotg-*.webp` | 허태근 | [일요시사](https://www.ilyosisa.co.kr/news/article.html?no=255230) | 일요시사 천재율 기자 | © 일요시사 (출처 표시) |
+| `yoogyh-*.webp` | 유균혜 | [국방일보](http://kookbang.dema.mil.kr/newsWeb/20221020/6/BBSMSTR_000000010021/view.do) | 국방일보 | © 국방일보 (출처 표시) |
+| `leesw-*.webp` | 이시원 | [뉴스1 포토](https://www.news1.kr/photos/7868096) | 뉴스1 이승배 기자 | © 뉴스1 (출처 표시) |
+| `imkh-*.webp` | 임기훈 | [SBS](https://news.sbs.co.kr/news/endPage.do?news_id=N1008581981) | SBS | © SBS (출처 표시) |
+| `janghj-*.webp` | 장호진 | [뉴스1 포토](https://www.news1.kr/photos/7589504) | 뉴스1 오대일 기자 | © 뉴스1 (출처 표시) |
+| `leeho-*.webp` | 이종호 | [연합뉴스](https://www.yna.co.kr/view/AKR20260716078400004) | 연합뉴스 | © 연합뉴스 (출처 표시) |
+| `yombh-*.webp` | 염보현 | [뉴스1 포토](https://www.news1.kr/photos/7561777) | 뉴스1 이승배 기자 | © 뉴스1 (출처 표시) |
+| `kimminj-*.webp` | 김민정 | [뉴스1 포토](https://www.news1.kr/photos/7561780) | 뉴스1 이승배 기자 | © 뉴스1 (출처 표시) |
+| `parksh-*.webp` | 박상현 | [오마이뉴스](https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003232943) | 오마이뉴스 | © 오마이뉴스 (출처 표시) |
+| `choejg-*.webp` | 최진규 | [오마이뉴스](https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003159697) | 오마이뉴스 시민기자 | © 오마이뉴스 (출처 표시) |
+| `leeym-*.webp` | 이용민 | [뉴스핌](https://www.newspim.com/news/view/20250828000586) | 뉴스핌 류기찬 기자 | © 뉴스핌 (출처 표시) |
 
 사진이 없는 인물은 이름 첫 글자를 사용한 이니셜 모노그램 아바타로 표시합니다.
