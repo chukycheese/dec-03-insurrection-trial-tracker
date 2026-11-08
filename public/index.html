@@ -525,6 +525,22 @@ body.graph-fs-open{overflow:hidden}
 .imp-readings li{font-size:12.5px;line-height:1.68;color:var(--muted)}
 .imp-readings li b{color:var(--ink);font-weight:600}
 .imp-sw{font-size:10.5px;font-weight:700;color:#7A5A18;background:#F6F0E3;border-radius:999px;padding:1px 6px;white-space:nowrap}
+/* 2026년 현재 근황: 카드 배지와 모달 섹션 */
+.imp-now-badge{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+.k-mayor{background:#EDE7FB;color:#452B93;border-color:#D6C9F5}
+.k-party{background:#E1F3EB;color:#1A6650;border-color:#BCE2D3}
+.k-leader{background:#E4EDFA;color:#1B4485;border-color:#C6D9F2}
+.k-vacant{background:#EDEFF2;color:#4A5260;border-color:#D6DBE2}
+.k-warn{background:#FBE9E9;color:#A32B25;border-color:#F1CDCB}
+.k-note{background:#F6F0E3;color:#7A5A18;border-color:#E7DCC0}
+.imp-now{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:14px 16px;display:grid;gap:11px}
+.imp-now-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:var(--f-display);font-size:16px;font-weight:700;color:var(--ink)}
+.imp-now-meta{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.imp-now-meta b{color:var(--ink);font-weight:600}
+.imp-now p{margin:0;font-size:13px;line-height:1.72;color:var(--muted);text-wrap:pretty}
+.imp-now li{font-size:12.5px;line-height:1.68;color:var(--muted)}
+.imp-mnow{border-left:3px solid #B79BF0}
+.imp-mnow p{font-size:13px;line-height:1.7}
 .imp-quote{margin:0;padding:10px 13px;border-left:3px solid var(--accent);background:var(--cat-bg);border-radius:0 6px 6px 0;display:grid;gap:6px}
 .imp-quote blockquote{margin:0;font-family:var(--f-display);font-size:14px;line-height:1.68;color:var(--ink);text-wrap:pretty}
 .imp-quote cite{font-style:normal;font-size:11.5px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap;align-items:baseline}
@@ -539,6 +555,13 @@ body.graph-fs-open{overflow:hidden}
 :root[data-theme="dark"] .b-mid{background:#2A2E34;color:#B7BFC9}
 :root[data-theme="dark"] .b-none{background:#332C1C;color:#E0C784}
 :root[data-theme="dark"] .imp-sw{background:#332C1C;color:#E0C784}
+:root[data-theme="dark"] .k-mayor{background:#2B2350;color:#C8B5FF;border-color:#413473}
+:root[data-theme="dark"] .k-party{background:#16342B;color:#8AD9B6;border-color:#245141}
+:root[data-theme="dark"] .k-leader{background:#1C2C47;color:#9BC0F5;border-color:#2C4570}
+:root[data-theme="dark"] .k-vacant{background:#2A2E34;color:#B7BFC9;border-color:#3A4048}
+:root[data-theme="dark"] .k-warn{background:#3A2222;color:#F0A9A3;border-color:#553231}
+:root[data-theme="dark"] .k-note{background:#332C1C;color:#E0C784;border-color:#4A3F27}
+:root[data-theme="dark"] .imp-mnow{border-left-color:#8B6FD0}
 :root[data-theme="dark"] .imp-tag-fail{background:#3A2222;color:#F0A9A3}
 :root[data-theme="dark"] .imp-tag-pass{background:#1C3324;color:#9BD3AE}
 @media (prefers-color-scheme: dark){
@@ -548,6 +571,13 @@ body.graph-fs-open{overflow:hidden}
   :root:not([data-theme="light"]) .b-none{background:#332C1C;color:#E0C784}
   :root:not([data-theme="light"]) .imp-tag-fail{background:#3A2222;color:#F0A9A3}
   :root:not([data-theme="light"]) .imp-tag-pass{background:#1C3324;color:#9BD3AE}
+  :root:not([data-theme="light"]) .k-mayor{background:#2B2350;color:#C8B5FF;border-color:#413473}
+  :root:not([data-theme="light"]) .k-party{background:#16342B;color:#8AD9B6;border-color:#245141}
+  :root:not([data-theme="light"]) .k-leader{background:#1C2C47;color:#9BC0F5;border-color:#2C4570}
+  :root:not([data-theme="light"]) .k-vacant{background:#2A2E34;color:#B7BFC9;border-color:#3A4048}
+  :root:not([data-theme="light"]) .k-warn{background:#3A2222;color:#F0A9A3;border-color:#553231}
+  :root:not([data-theme="light"]) .k-note{background:#332C1C;color:#E0C784;border-color:#4A3F27}
+  :root:not([data-theme="light"]) .imp-mnow{border-left-color:#8B6FD0}
 }
 @media (max-width:720px){
   .imp-votes{grid-template-columns:1fr}
@@ -2197,7 +2227,7 @@ document.querySelectorAll(".switcher button").forEach(b=>b.onclick=()=>{const ds
 // 300석 명부 + 2024.12.7(1차)·12.14(2차) 표결 기록. 데이터는 impeachment-assembly-data.json.
 const IMP_PARTY_ORDER = ["더불어민주당", "국민의힘", "조국혁신당", "개혁신당", "진보당", "기본소득당", "사회민주당", "무소속"];
 const IMP_PARTY_COLOR = {"더불어민주당": "#1D5BBF", "국민의힘": "#DE4B4B", "조국혁신당": "#3A4378", "개혁신당": "#E8862E", "진보당": "#B43A6A", "기본소득당": "#12A5A0", "사회민주당": "#7A5AA6", "무소속": "#8A8F98"};
-const IMP = {data: null, loading: false, error: null, mode: "second", status: null, party: "all", layout: "cards", group: null, tracked: null};
+const IMP = {data: null, loading: false, error: null, mode: "second", status: null, party: "all", layout: "cards", group: null, now: null, tracked: null};
 const IMP_STANCE = {support: {label: "공개 찬성", cls: "b-yes"}, oppose: {label: "공개 반대", cls: "b-no"}, undisclosed: {label: "입장 비공개", cls: "b-mid"}, none: {label: "원외", cls: "b-none"}};
 const IMP_STANCE_SHORT = {support: "찬성", oppose: "반대", undisclosed: "비공개", none: "원외"};
 const IMP_V1 = {"참석": {label: "참석", cls: "b-yes"}, "불참": {label: "불참·퇴장", cls: "b-no"}, "미재임": {label: "미재임", cls: "b-none"}};
@@ -2237,6 +2267,18 @@ function impGroupSet() {
   const groups = (IMP.data && IMP.data.meta.analysis && IMP.data.meta.analysis.groups) || [];
   const hit = groups.filter(g => g.id === IMP.group)[0];
   return hit ? new Set(hit.memberIds) : null;
+}
+// 2026년 현재 근황(meta.current): 요약 카드와 필터 묶음
+function impNow() { return (IMP.data && IMP.data.meta.current) || null; }
+function impNowGroups() { const n = impNow(); return (n && n.groups) || []; }
+function impNowSet() {
+  const hit = impNowGroups().filter(g => g.id === IMP.now)[0];
+  return hit ? new Set(hit.memberIds) : null;
+}
+function impNowBadge(m) {
+  if (!m.currentStatusBadge) return "";
+  const kind = m.currentBadgeKind || "note";
+  return `<span class="imp-now-badge k-${esc(kind)}" title="2026년 현재 · ${esc(m.currentTitle || "")}">${esc(m.currentStatusBadge)}</span>`;
 }
 function impTime(v) { return String(v || "").replace(/-/g, ".").replace(/^(\d{4})\.(\d{2})\.(\d{2})$/, "$1.$2.$3"); }
 function impNum(n) { return Number(n || 0).toLocaleString("ko-KR"); }
@@ -2388,13 +2430,18 @@ function impCardHTML(m) {
   const s1 = IMP_V1[m.vote1] || IMP_V1["참석"];
   const s2 = IMP_STANCE[m.stance2] || IMP_STANCE.undisclosed;
   const swing = m.vote0 === "참석" && m.stance2 === "oppose";
+  // 당적이 바뀐 의원은 카드에서도 "2024 정당 → 2026 정당"으로 보여준다(카드 폭에 맞춰 줄임).
+  const partyCell = m.currentPartyShort && m.currentPartyShort !== m.party
+    ? `<span title="2024년 표결 당시 ${esc(m.party)} · 2026년 현재 ${esc(m.currentParty || m.currentPartyShort)}" style="color:${impColor(m.currentPartyShort)}">● ${esc(m.party)} → ${esc(m.currentPartyShort)}</span>`
+    : `<span style="color:${impColor(m.party)}">● ${esc(m.party)}</span>`;
   return `<article class="imp-card" data-imp-id="${esc(m.id)}" tabindex="0" role="button" aria-label="${esc(m.name)} 상세 보기">
     <div class="imp-card-h">
-      <span class="imp-ava" style="background:${impColor(m.party)}">${esc((m.name || "?").slice(0, 1))}${m.photo ? `<img class="imp-ava-img" src="${esc(m.photo)}" alt="${esc(m.name)}" width="34" height="34" loading="lazy" decoding="async" onerror="this.remove()">` : ""}</span>
+      <span class="imp-ava" style="background:${impColor(m.currentPartyShort || m.party)}">${esc((m.name || "?").slice(0, 1))}${m.photo ? `<img class="imp-ava-img" src="${esc(m.photo)}" alt="${esc(m.name)}" width="34" height="34" loading="lazy" decoding="async" onerror="this.remove()">` : ""}</span>
       <div class="imp-card-n"><strong>${esc(m.name)}</strong><small>${esc(m.constituency)}</small></div>
     </div>
-    <div class="imp-card-m"><span style="color:${impColor(m.party)}">● ${esc(m.party)}</span><span>${esc(m.term || "")}${m.role ? " · " + esc(m.role) : ""}</span></div>
+    <div class="imp-card-m">${partyCell}<span>${esc(m.term || "")}${m.role ? " · " + esc(m.role) : ""}</span></div>
     <div class="imp-badges">
+      ${impNowBadge(m)}
       <span class="imp-badge ${s0.cls}${IMP.mode === "preliminary" ? " on" : ""}" title="2024.12.4 비상계엄해제 요구안 · ${esc(s0.label)}">12.4 ${esc(IMP_V0_SHORT[m.vote0] || "불참")}</span>
       <span class="imp-badge ${s1.cls}${IMP.mode === "first" ? " on" : ""}" title="2024.12.7 1차 탄핵 표결 · ${esc(s1.label)}">12.7 ${esc(IMP_V1_SHORT[m.vote1] || "참석")}</span>
       <span class="imp-badge ${s2.cls}${IMP.mode === "second" ? " on" : ""}" title="2024.12.14 2차 탄핵 표결 · ${esc(s2.label)}">12.14 ${esc(IMP_STANCE_SHORT[m.stance2] || "비공개")}</span>
@@ -2419,6 +2466,21 @@ function impInsightHTML() {
     <div class="imp-stats">${stats}</div>
     <div class="imp-groups"><span class="imp-lab">명단 묶어 보기</span>${chips}${IMP.group ? `<button type="button" class="imp-chip" data-imp-group="">해제</button>` : ""}</div>
     <details class="imp-readings"><summary>당시 보도로 본 반대 85표 해설</summary><ul>${readings}</ul></details>
+  </section>`;
+}
+
+// 2026년 현재 근황 카드: 2년 사이 무엇이 바뀌었는지 숫자와 배경으로 먼저 보여준다.
+// 의원별 문구는 members[].currentNote, 집계와 묶음은 meta.current 에서 온다.
+function impNowHTML() {
+  const n = impNow();
+  if (!n) return "";
+  const stats = (n.stats || []).map(s => `<div class="imp-stat"><i>${esc(s.label)}</i><b>${esc(s.value)}</b><p>${esc(s.detail)}</p></div>`).join("");
+  const ctx = (n.context || []).map(t => `<li>${esc(t)}</li>`).join("");
+  return `<section class="imp-now">
+    <div class="imp-now-h"><span>🏛️ ${esc(n.title || "2026년 현재 근황")}</span><span class="imp-vtag">${esc(impTime(n.asOf))} 기준</span></div>
+    <p>${esc(n.summary || "")}</p>
+    <div class="imp-stats">${stats}</div>
+    ${ctx ? `<details class="imp-readings"><summary>2024.12 이후 무슨 일이 있었나</summary><ul>${ctx}</ul></details>` : ""}
   </section>`;
 }
 
@@ -2447,7 +2509,8 @@ function renderImpeachment() {
   pool.forEach(m => { const k = impKey(m); counts[k] = (counts[k] || 0) + 1; });
   const keys = IMP.mode === "second" ? ["support", "oppose", "undisclosed", "none"] : ["참석", "불참", "미재임"];
   const gset = impGroupSet();
-  const list = pool.filter(m => impMatch(m, state.q) && (!IMP.status || impKey(m) === IMP.status) && (!gset || gset.has(m.id)));
+  const nset = impNowSet();
+  const list = pool.filter(m => impMatch(m, state.q) && (!IMP.status || impKey(m) === IMP.status) && (!gset || gset.has(m.id)) && (!nset || nset.has(m.id)));
 
   const chips = [`<button type="button" class="imp-chip${!IMP.status ? " on" : ""}" data-imp-status="" aria-pressed="${!IMP.status}">전체 <b>${impNum(counts.all)}</b></button>`]
     .concat(keys.map(k => {
@@ -2462,16 +2525,25 @@ function renderImpeachment() {
       return `<button type="button" class="imp-chip${IMP.party === p ? " on" : ""}" data-imp-party="${esc(p)}" aria-pressed="${IMP.party === p}"><i class="imp-dot" style="background:${impColor(p)}"></i>${esc(p)} <b>${impNum(n)}</b></button>`;
     })).join("");
 
+  const nowGroups = impNowGroups();
+  const nowChips = nowGroups.length ? [`<button type="button" class="imp-chip${!IMP.now ? " on" : ""}" data-imp-now="" aria-pressed="${!IMP.now}">전체 2026</button>`]
+    .concat(nowGroups.map(g => {
+      const on = IMP.now === g.id;
+      return `<button type="button" class="imp-chip${on ? " on" : ""}" data-imp-now="${esc(g.id)}" aria-pressed="${on}" title="${esc(g.desc || "")}">${esc(g.label)} <b>${g.memberIds.length}</b></button>`;
+    })).join("") : "";
+
   const body = IMP.layout === "seats" ? impSeatsHTML(list)
     : (list.length ? `<div class="imp-grid">${list.map(impCardHTML).join("")}</div>` : `<div class="empty-state"><p>조건에 맞는 의원이 없습니다.</p><button type="button" class="lk-btn" data-imp-reset>필터 초기화</button></div>`);
 
   return `<div class="imp-wrap">
     <div class="imp-votes">${impVoteCard("preliminary")}${impVoteCard("first")}${impVoteCard("second")}</div>
     ${impInsightHTML()}
+    ${impNowHTML()}
     <p class="imp-note">${esc(meta.rosterNote)} 2차 표결은 무기명 비밀투표여서 개인별 표 내용은 공식 기록이 없고, 공개적으로 밝힌 입장만 표시했습니다.</p>
     <div class="imp-controls">
+      ${nowChips ? `<div class="imp-row"><span class="imp-lab">2026</span><div class="imp-chips">${nowChips}</div></div>` : ""}
       <div class="imp-row"><span class="imp-lab">표결</span><div class="imp-chips">${chips}</div></div>
-      <div class="imp-row"><span class="imp-lab">정당</span><div class="imp-chips">${partyChips}</div></div>
+      <div class="imp-row"><span class="imp-lab">당시 정당</span><div class="imp-chips">${partyChips}</div></div>
       <div class="imp-row imp-row-end">
         <span class="imp-count">${impNum(list.length)}명 표시</span>
         <div class="imp-layout">
@@ -2492,9 +2564,10 @@ function impBind(root) {
   el.querySelectorAll("[data-imp-status]").forEach(b => { b.onclick = () => { IMP.status = b.dataset.impStatus || null; render(); }; });
   el.querySelectorAll("[data-imp-party]").forEach(b => { b.onclick = () => { IMP.party = b.dataset.impParty; render(); }; });
   el.querySelectorAll("[data-imp-group]").forEach(b => { b.onclick = () => { IMP.group = b.dataset.impGroup || null; render(); }; });
+  el.querySelectorAll("[data-imp-now]").forEach(b => { b.onclick = () => { IMP.now = b.dataset.impNow || null; render(); }; });
   el.querySelectorAll("[data-imp-layout]").forEach(b => { b.onclick = () => { IMP.layout = b.dataset.impLayout; render(); }; });
   const reset = el.querySelector("[data-imp-reset]");
-  if (reset) reset.onclick = () => { IMP.status = null; IMP.party = "all"; IMP.group = null; state.q = ""; const q = document.getElementById("q"); if (q) q.value = ""; render(); };
+  if (reset) reset.onclick = () => { IMP.status = null; IMP.party = "all"; IMP.group = null; IMP.now = null; state.q = ""; const q = document.getElementById("q"); if (q) q.value = ""; render(); };
   el.querySelectorAll("[data-imp-id]").forEach(n => {
     n.onclick = () => impOpen(n.dataset.impId);
     n.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); impOpen(n.dataset.impId); } };
@@ -2525,18 +2598,29 @@ function impOpen(id) {
     ? `<p class="imp-cite">${cite}</p>`
     : `<figure class="imp-quote"><blockquote>“${esc(m.stanceQuote)}”</blockquote><cite>${cite}</cite></figure>`);
   const publicRow = m.publicStance && m.stance2 !== "oppose" ? `<div class="imp-vrow"><div class="imp-vrow-h"><span>표결 전 공개 발언</span></div><p>${esc(m.publicStance)}</p></div>` : "";
+  // 2024.12.14 이후부터 2026년 현재까지의 행적: 데이터에 currentNote 가 있는 의원만 보여준다.
+  const nowAsOf = impTime((impNow() || {}).asOf || "");
+  const nowHTML = m.currentNote ? `<section class="imp-now imp-mnow">
+      <div class="imp-now-h"><span>🏛️ 2026년 현재 근황 및 행적</span><span class="imp-vtag">${esc(nowAsOf)} 기준</span></div>
+      <div class="imp-now-meta">
+        <span>현재 직책 <b>${esc(m.currentTitle || "국회의원")}</b></span>
+        <span>현재 당적 <b>${esc(m.currentParty || m.party)}</b></span>
+      </div>
+      <p>${esc(m.currentNote)}</p>
+    </section>` : "";
   content.innerHTML = `
     <div class="modal-header">
       <div class="modal-person">
-        <span class="imp-ava lg" style="background:${impColor(m.party)}">${esc(m.name.slice(0, 1))}${m.photo ? `<img class="imp-ava-img" src="${esc(m.photo)}" alt="${esc(m.name)}" width="64" height="64" decoding="async" onerror="this.remove()">` : ""}</span>
+        <span class="imp-ava lg" style="background:${impColor(m.currentPartyShort || m.party)}">${esc(m.name.slice(0, 1))}${m.photo ? `<img class="imp-ava-img" src="${esc(m.photo)}" alt="${esc(m.name)}" width="64" height="64" decoding="async" onerror="this.remove()">` : ""}</span>
         <div class="modal-person-text">
           <h2 id="modal-person-name">${esc(m.name)} <small style="font-size:15px;color:var(--muted);font-weight:400">${esc(m.constituency)}</small></h2>
-          <div class="sub"><span class="cat-pill">${esc(m.party)}</span><span class="cat-pill">${esc(m.term || "")}${m.role ? " · " + esc(m.role) : ""}</span></div>
+          <div class="sub"><span class="cat-pill">${esc(m.party)}</span><span class="cat-pill">${esc(m.term || "")}${m.role ? " · " + esc(m.role) : ""}</span>${impNowBadge(m)}</div>
         </div>
       </div>
       <button type="button" class="modal-close" onclick="impClose()" aria-label="닫기">✕</button>
     </div>
     <div class="modal-body imp-modal">
+      ${nowHTML}
       <div class="imp-vrow">
         <div class="imp-vrow-h"><span>계엄해제 표결 · 2024.12.4</span><span class="imp-badge ${s0.cls} on">${s0.label}</span></div>
         <p>${esc(basis0)}</p>
