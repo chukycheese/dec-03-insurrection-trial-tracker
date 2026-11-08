@@ -1483,21 +1483,36 @@
       "role": "전 9공수특전여단장",
       "category": "계엄군 현장 지휘관",
       "keyRole": "롯데리아 회동·9공수특전여단 현장 지휘",
-      "statusNote": "1심 무죄"
+      "statusNote": "1심 무죄",
+      "photo": "assets/photos/anms",
+      "photoAlt": "안무성 전 9공수특전여단장 사진",
+      "photoCredit": "뉴스핌 (윤창빈 기자)",
+      "photoLicense": "© 뉴스핌 (출처 표시)",
+      "photoSource": "https://newspim.com/news/view/20250122000529"
     },
     "bangjh": {
       "name": "방정환",
       "role": "전 국방부 혁신기획관",
       "category": "계엄군 현장 지휘관",
       "keyRole": "롯데리아 회동·국방부 혁신기획관 현장 관여",
-      "statusNote": "1심 무죄"
+      "statusNote": "1심 무죄",
+      "photo": "assets/photos/bangjh",
+      "photoAlt": "방정환 전 국방부 혁신기획관 사진",
+      "photoCredit": "연합뉴스",
+      "photoLicense": "© 연합뉴스 (출처 표시)",
+      "photoSource": "https://www.yna.co.kr/view/AKR20261103028100061"
     },
     "chojh": {
       "name": "조지호",
       "role": "전 경찰청장",
       "category": "경찰",
       "keyRole": "경찰청장으로서 경찰 기동대 국회 출입문 전면 봉쇄 지시",
-      "statusNote": "내란 1심 징역 12년"
+      "statusNote": "내란 1심 징역 12년",
+      "photo": "assets/photos/chojh",
+      "photoAlt": "조지호 전 경찰청장 사진",
+      "photoCredit": "연합뉴스 (촬영 윤동진)",
+      "photoLicense": "© 연합뉴스 (출처 표시)",
+      "photoSource": "https://www.yna.co.kr/view/AKR20260219070300004"
     },
     "choogh": {
       "name": "추경호",
@@ -1549,21 +1564,36 @@
       "role": "전 방첩사 1처장",
       "category": "계엄군 현장 지휘관",
       "keyRole": "롯데리아 회동·방첩사 1처 현장 관여",
-      "statusNote": "1심 무죄"
+      "statusNote": "1심 무죄",
+      "photo": "assets/photos/jungsw",
+      "photoAlt": "정성우 전 방첩사 1처장 사진",
+      "photoCredit": "연합뉴스 (촬영 김주성)",
+      "photoLicense": "© 연합뉴스 (출처 표시)",
+      "photoSource": "https://www.yna.co.kr/view/AKR20250710174200004"
     },
     "kangeg": {
       "name": "강의구",
       "role": "전 대통령실 제1부속실장",
       "category": "대통령실",
       "keyRole": "비상계엄 해제 가결 후 사후 계엄선포문 허위 작성·행사 및 폐기",
-      "statusNote": "징역 1년 6개월 대법원 확정 (수감)"
+      "statusNote": "징역 1년 6개월 대법원 확정 (수감)",
+      "photo": "assets/photos/kangeg",
+      "photoAlt": "강의구 전 대통령실 제1부속실장 사진",
+      "photoCredit": "더팩트 (박헌우 기자)",
+      "photoLicense": "© 더팩트 (출처 표시)",
+      "photoSource": "https://news.tf.co.kr/read/photomovie/2310966.htm"
     },
     "kimbs": {
       "name": "김봉식",
       "role": "전 서울경찰청장",
       "category": "경찰",
       "keyRole": "서울경찰청장으로서 서울 기동대 국회 봉쇄 현장 지휘",
-      "statusNote": "내란 1심 징역 10년"
+      "statusNote": "내란 1심 징역 10년",
+      "photo": "assets/photos/kimbs",
+      "photoAlt": "김봉식 전 서울경찰청장 사진",
+      "photoCredit": "헌법재판소 제공 / 연합뉴스",
+      "photoLicense": "© 연합뉴스 (출처 표시)",
+      "photoSource": "https://www.yna.co.kr/view/AKR20260605061800004"
     },
     "kimch": {
       "name": "김창학",
@@ -1577,14 +1607,24 @@
       "role": "전 3공수특전여단장",
       "category": "계엄군 현장 지휘관",
       "keyRole": "롯데리아 회동·3공수특전여단 현장 지휘",
-      "statusNote": "1심 무죄"
+      "statusNote": "1심 무죄",
+      "photo": "assets/photos/kimjg",
+      "photoAlt": "김정근 전 3공수특전여단장 사진",
+      "photoCredit": "연합뉴스 (촬영 임헌정)",
+      "photoLicense": "© 연합뉴스 (출처 표시)",
+      "photoSource": "https://www.yna.co.kr/view/PYH20241213058200013"
     },
     "kimsh": {
       "name": "김성훈",
       "role": "전 대통령경호처 차장",
       "category": "대통령실",
       "keyRole": "대통령경호처 차장으로서 한남동 관저 영장 저지 현장 지휘",
-      "statusNote": "1·2심 징역 5년"
+      "statusNote": "1·2심 징역 5년",
+      "photo": "assets/photos/kimsh",
+      "photoAlt": "김성훈 전 대통령경호처 차장 사진",
+      "photoCredit": "뉴데일리 (정상윤 기자)",
+      "photoLicense": "© 뉴데일리 (출처 표시)",
+      "photoSource": "https://www.newdaily.co.kr/site/data/html/2026/07/09/2026070900278.html"
     },
     "kimshin": {
       "name": "김신",
@@ -1670,7 +1710,12 @@
       "role": "전 경호본부장",
       "category": "대통령실",
       "keyRole": "대통령경호처 체포영장 집행 저지 가담",
-      "statusNote": "1심 징역 2년 6개월 → 2심 징역 2년"
+      "statusNote": "1심 징역 2년 6개월 → 2심 징역 2년",
+      "photo": "assets/photos/leekw",
+      "photoAlt": "이광우 전 대통령경호처 경호본부장 사진",
+      "photoCredit": "뉴데일리 (서성진 기자)",
+      "photoLicense": "© 뉴데일리 (출처 표시)",
+      "photoSource": "https://www.newdaily.co.kr/site/data/html/2026/04/23/2026042300234.html"
     },
     "leesm": {
       "name": "이상민",
@@ -1697,7 +1742,12 @@
       "role": "전 국군정보사령관",
       "category": "군 지휘부",
       "keyRole": "정보사 요원 선관위 침투 및 전산 서버 확인 지휘",
-      "statusNote": "1심 징역 12년"
+      "statusNote": "1심 징역 12년",
+      "photo": "assets/photos/munsh",
+      "photoAlt": "문상호 전 국군정보사령관 사진",
+      "photoCredit": "연합뉴스 (촬영 김주성)",
+      "photoLicense": "© 연합뉴스 (출처 표시)",
+      "photoSource": "https://www.hani.co.kr/arti/politics/defense/1172130.html"
     },
     "nohsw": {
       "name": "노상원",
@@ -1781,7 +1831,12 @@
       "role": "전 국가수사본부 수사기획조정관",
       "category": "경찰",
       "keyRole": "국수본 수사기획조정관 (내란 가담 혐의)",
-      "statusNote": "1심 무죄"
+      "statusNote": "1심 무죄",
+      "photo": "assets/photos/yoonsy",
+      "photoAlt": "윤승영 전 국가수사본부 수사기획조정관 사진",
+      "photoCredit": "연합뉴스 (촬영 황광모)",
+      "photoLicense": "© 연합뉴스 (출처 표시)",
+      "photoSource": "https://www.yna.co.kr/view/PYH20250416059000013"
     }
   },
   "judges": {
