@@ -307,6 +307,55 @@ function validateImpeachment(file) {
     if (!Array.isArray(analysis.points) || analysis.points.length < 3) fail(IMP_FILE, "meta.analysis.points 가 부족합니다");
     if (!Array.isArray(analysis.readings) || analysis.readings.length < 1) fail(IMP_FILE, "meta.analysis.readings 가 없습니다");
   }
+  // 2026년 현재 근황(meta.current): 통계·묶음·의원별 current* 필드가 서로 맞아야 한다.
+  const cur = meta.current;
+  if (!isObject(cur)) {
+    fail(IMP_FILE, "meta.current(2026년 현재 근황)이 없습니다");
+  } else {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(cur.asOf || ""))) fail(IMP_FILE, "meta.current.asOf 날짜 형식이 올바르지 않습니다");
+    if (!Array.isArray(cur.stats) || cur.stats.length < 2) fail(IMP_FILE, "meta.current.stats 가 부족합니다");
+    else cur.stats.forEach((s, i) => { if (!s.label || !s.value) fail(IMP_FILE, `meta.current.stats[${i}] 에 label/value 가 없습니다`); });
+    if (!Array.isArray(cur.groups) || cur.groups.length < 2) {
+      fail(IMP_FILE, "meta.current.groups 가 부족합니다");
+    } else {
+      const seen = new Set();
+      for (const g of cur.groups) {
+        if (!g.id || !g.label || !Array.isArray(g.memberIds) || !g.memberIds.length) {
+          fail(IMP_FILE, `meta.current.groups 항목이 올바르지 않습니다: ${JSON.stringify(g).slice(0, 60)}`);
+          continue;
+        }
+        if (seen.has(g.id)) fail(IMP_FILE, `meta.current.groups id 중복: ${g.id}`);
+        seen.add(g.id);
+        for (const id of g.memberIds) {
+          if (!ids.has(id)) fail(IMP_FILE, `meta.current.groups.${g.id} 가 없는 의원을 참조합니다: ${id}`);
+        }
+      }
+    }
+    if (!Array.isArray(cur.sources) || cur.sources.length < 5) {
+      warn(IMP_FILE, "meta.current.sources 가 부족합니다");
+    } else {
+      cur.sources.forEach((s, i) => {
+        if (!Array.isArray(s) || s.length < 2 || !/^https?:\/\//.test(String(s[1] || ""))) {
+          fail(IMP_FILE, `meta.current.sources[${i}] 링크 형식이 올바르지 않습니다`);
+        }
+      });
+    }
+  }
+  const CURRENT_KINDS = ["mayor", "party", "leader", "vacant", "warn", "note"];
+  let currentCount = 0;
+  for (const m of members) {
+    if (m.currentNote === undefined) continue;
+    currentCount += 1;
+    if (typeof m.currentNote !== "string" || m.currentNote.length < 20) fail(IMP_FILE, `${m.name}: currentNote 가 너무 짧습니다`);
+    if (!m.currentTitle) fail(IMP_FILE, `${m.name}: currentTitle 이 없습니다`);
+    if (m.currentStatusBadge && !m.currentBadgeKind) warn(IMP_FILE, `${m.name}: currentBadgeKind 가 없습니다`);
+    if (m.currentBadgeKind && !CURRENT_KINDS.includes(m.currentBadgeKind)) fail(IMP_FILE, `${m.name}: currentBadgeKind 값 오류: ${m.currentBadgeKind}`);
+    if (m.currentParty && !IMP_PARTIES.includes(String(m.currentParty).split(" ")[0])) {
+      fail(IMP_FILE, `${m.name}: currentParty 가 알 수 없는 정당으로 시작합니다: ${m.currentParty}`);
+    }
+  }
+  if (currentCount < 20) fail(IMP_FILE, `2026년 현재 근황이 채워진 의원이 너무 적습니다(현재 ${currentCount}명)`);
+
   if (meta.partySeatsBasis === undefined) warn(IMP_FILE, "partySeats 기준 설명이 없습니다");
   if (!Array.isArray(meta.sources) || meta.sources.length < 5) warn(IMP_FILE, "출처 목록이 부족합니다");
 
