@@ -1,2 +1,4 @@
 node_modules/
 .wrangler/
+scripts/models/*.onnx
+__pycache__/

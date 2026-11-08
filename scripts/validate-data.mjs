@@ -228,6 +228,24 @@ function validateImpeachment(file) {
     stance[m.stance2] = (stance[m.stance2] || 0) + 1;
   }
 
+  // 프로필 사진 파일: 경로 형식과 실제 파일 존재를 확인하고, 빠진 의원은 이니셜 폴백으로 알린다.
+  let photoCount = 0;
+  for (const m of members) {
+    if (m.photo === undefined) continue;
+    if (!/^assets\/members\/[a-z0-9-]+\.webp$/.test(m.photo)) {
+      fail(IMP_FILE, `${m.name}: photo 경로 형식이 올바르지 않습니다: ${m.photo}`);
+      continue;
+    }
+    if (!existsSync(join(publicDir, m.photo))) {
+      fail(IMP_FILE, `${m.name}: 사진 파일이 없습니다: public/${m.photo}`);
+      continue;
+    }
+    photoCount += 1;
+  }
+  if (photoCount < members.length) {
+    warn(IMP_FILE, `프로필 사진이 없는 의원 ${members.length - photoCount}명은 이니셜 아바타로 표시됩니다`);
+  }
+
   // 표결 집계와 명부가 맞아야 한다: 1차 195 참석·105 불참, 2차 300명(S=199 포함)
   if (vote0["참석"] !== 190) fail(IMP_FILE, `12.4 계엄해제 찬성은 190명이어야 합니다(현재 ${vote0["참석"]})`);
   if (vote0["불참"] !== 110) fail(IMP_FILE, `12.4 계엄해제 불참은 110명이어야 합니다(현재 ${vote0["불참"]})`);

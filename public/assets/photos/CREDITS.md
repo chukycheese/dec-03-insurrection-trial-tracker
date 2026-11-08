@@ -57,3 +57,7 @@
 | `leeym-*.webp` | 이용민 | [뉴스핌](https://www.newspim.com/news/view/20250828000586) | 뉴스핌 류기찬 기자 | © 뉴스핌 (출처 표시) |
 
 사진이 없는 인물은 이름 첫 글자를 사용한 이니셜 모노그램 아바타로 표시합니다.
+
+## 22대 국회의원 301명 프로필 사진
+
+탄핵 표결 탭의 의원 사진은 **대한민국 국회 열린국회정보(Open API `ALLNAMEMBER` · `NAAS_PIC`)** 공식 프로필 사진을 1:1 크롭해 120×120 WebP로 축소한 것입니다. 이용허락은 [공공누리 제1유형(출처 표시)](https://www.kogl.or.kr/info/licenseType1.do)입니다. 의원별 원본 URL과 수집·가공 방법은 [`../members/CREDITS.md`](../members/CREDITS.md)에 정리했습니다.
