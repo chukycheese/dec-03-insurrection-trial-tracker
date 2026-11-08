@@ -79,6 +79,14 @@
       "status": "final",
       "note": "검찰이 2021.10 기소한 주범 재판으로, 김건희 특검 재판이 아닙니다. 1차 시세조종 구간은 공소시효 만료로 면소됐습니다. 이종호는 도이치모터스 관련 자본시장법 혐의에 무죄·면소, 회사 자금 횡령·배임 혐의에 유죄입니다.",
       "defendantIds": ["kwonos", "leejh"]
+    },
+    "gwanjeo": {
+      "order": 11,
+      "title": "김건희·윤한홍 대통령 관저 이전 부당개입",
+      "charge": "특가법상 알선수재(김건희), 직권남용 권리행사방해, 건설산업기본법 위반, 청탁금지법·조세범처벌법 위반 등",
+      "status": "trial",
+      "note": "2차 종합특검(권창영)이 2026.8.18 김 여사·윤한홍 의원·21그램 김태영 대표 부부 등 6명을 불구속 기소했습니다. 관저 후보지를 세 차례 답사해 외교부 장관 공관으로 바꾸고 무자격 업체 21그램에 공사를 맡기도록 개입한 혐의, 공사 수주 대가로 디올 의류 등 1,012만원 상당 금품을 수수한 혐의입니다.",
+      "defendantIds": ["kimkh", "yoonhh", "kimty", "chomo"]
     }
   },
   "rulings": {
@@ -564,6 +572,24 @@
       ],
       "requested": "",
       "judgeNote": "주심 이숙연"
+    },
+    "gwanjeo-1": {
+      "caseId": "gwanjeo",
+      "level": 1,
+      "date": "2026-11-09",
+      "kind": "pending",
+      "court": "서울중앙지법 형사합의22부",
+      "judgeIds": ["chohw"],
+      "result": "3차 공판준비기일 예정 (11.9 오전 10시)",
+      "summary": "10.2 1차·10.19 2차 공판준비기일에서 김 여사·윤 의원 측이 혐의를 전면 부인. 재판부는 직권남용 공범 성립 법조와 증거목록 입증취지 보완을 요구하고 첫 공판을 11.23 오전 10시로 지정했습니다.",
+      "requested": "",
+      "sources": [
+        ["파이낸셜뉴스", "https://www.fnnews.com/news/202610191414157842"],
+        ["뉴스핌", "https://www.newspim.com/news/view/20261002000642"],
+        ["법률신문", "https://www.lawtimes.co.kr/news/articleViewAmp.html?idxno=229046"]
+      ],
+      "caseNo": "",
+      "judgeNote": "재판장 조형우"
     }
   },
   "sentences": {
@@ -812,6 +838,27 @@
       "photoCredit": "뉴데일리 정상윤 기자",
       "photoLicense": "© 뉴데일리 (출처 표시)",
       "photoSource": "https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600177.html"
+    },
+    "yoonhh": {
+      "name": "윤한홍",
+      "role": "국민의힘 의원 (당시 대통령직인수위 청와대 이전 TF 팀장)",
+      "category": "정계·선거",
+      "keyRole": "무자격 업체 21그램이 관저 공사를 수주하도록 개입, 김오진 전 국토부 차관에 명의대여 교섭 지시",
+      "statusNote": "관저 이전 부당개입 1심 진행 (11.9 3차 공판준비기일)"
+    },
+    "kimty": {
+      "name": "김태영",
+      "role": "21그램 대표",
+      "category": "인사·금품청탁",
+      "keyRole": "종합건설 면허 없이 관저 공사 수주, 배우자 조 씨를 통해 김 여사에 명품 제공",
+      "statusNote": "관저 이전 부당개입 1심 진행"
+    },
+    "chomo": {
+      "name": "조 모",
+      "role": "21그램 대표 김태영의 배우자",
+      "category": "인사·금품청탁",
+      "keyRole": "관저 공사 수주 대가로 김 여사에게 디올 의류 등 688만원 상당 금품 제공 혐의",
+      "statusNote": "관저 이전 부당개입 1심 진행"
     }
   },
   "judges": {
@@ -845,7 +892,7 @@
   },
   "meta": {
     "info": {
-      "asOf": "2026-11-04",
+      "asOf": "2026-11-09",
       "basis": "언론 보도 종합"
     },
     "graphLinks": {
@@ -865,6 +912,7 @@
         {"source": "choijy", "target": "kimkh", "note": "직무 청탁 · 디올 가방 제공"},
         {"source": "kwonos", "target": "leejh", "note": "도이치모터스 시세조종 공모"}
       ]
-    }
+    },
+    "updated": "2026-11-09T08:00:00+09:00"
   }
 }
