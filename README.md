@@ -5,13 +5,14 @@
 - **웹사이트**: https://dec-03-insurrection-trial-tracker.inkstone.workers.dev/
 
 ## 파일 구성
-- `public/index.html` / `public/insurrection-trials-offline.html`: 타임라인·사건별·인물별 재판 기록부와 [탄핵 표결] 뷰를 담은 웹 인터페이스
+- `public/index.html` / `public/insurrection-trials-offline.html`: 상단 스위처로 네 기록부(12·3 내란 재판 · 윤석열 탄핵 표결 · 김건희·명태균 특검 · 채상병 특검)를 오가는 웹 인터페이스. 오프라인 사본은 같은 앱에 탄핵 표결 데이터를 내장한 단일 파일
 - `public/insurrection-trials-data.json`: 사건, 피고인, 판결 및 재판부 데이터
 - `public/impeachment-assembly-data.json`: 22대 국회의원 300석 명부(승계 1명 포함 301명)와 12.4 비상계엄해제 요구안·1차(2024.12.7)·2차(2024.12.14) 탄핵소추안 표결 기록. 탄핵 반대를 공개한 19명의 발언·출처와 반대 85표·1차 불참 105명 해설(`meta.analysis`) 포함
 - `public/assets/photos/`: 인물사전 프로필 사진(WebP) 및 출처·라이선스 문서
 - `public/assets/members/`: 22대 국회의원 301명 공식 프로필 사진(120×120 WebP, 열린국회정보 `NAAS_PIC`)과 출처 문서(`CREDITS.md`)
 - `scripts/fetch-member-photos.py`: 의원 사진 수집·크롭(얼굴 검출)·WebP 변환 파이프라인 (수집 기록 `scripts/member-photos.json`)
 - `scripts/validate-data.mjs`: 데이터 구조·참조·사진 파일 무결성 검증 스크립트
+- `scripts/build-offline.py`: JSON 을 index.html 내장 데이터(`EMBEDDED.*`)에 맞추고 오프라인 단일 파일을 만드는 스크립트
 - `.github/workflows/deploy.yml`: `main` 푸시 시 검증 후 자동 배포하는 GitHub Actions 워크플로
 - `wrangler.jsonc`: Cloudflare Workers (Static Assets) 배포 설정
 
@@ -26,6 +27,9 @@ npm run dev
 
 # 데이터 무결성 검증 (JSON 구조·참조·사진 파일)
 npm run validate
+
+# index.html·JSON 을 고친 뒤: 내장 데이터 동기화 + 오프라인 단일 파일 재생성
+python3 scripts/build-offline.py
 ```
 
 ## Cloudflare 배포

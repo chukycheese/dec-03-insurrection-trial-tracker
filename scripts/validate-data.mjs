@@ -145,9 +145,10 @@ function validateDataset(file, data) {
 
 function validateOfflineHtml(file) {
   const html = readFileSync(file, "utf8");
-  const match = html.match(/Object\.assign\(store, (\{.*?\})\);\nCOLLS/s);
+  // 오프라인 사본은 index.html 과 같은 앱이며, 재판 데이터는 EMBEDDED.* 로 내장되어 있다.
+  const match = html.match(/^EMBEDDED\.dec03=(\{.*\});$/m);
   if (!match) {
-    warn(file, "내장 데이터 블록을 찾지 못했습니다 (형식이 바뀌었다면 스크립트를 갱신하세요)");
+    warn(file, "내장 데이터 블록(EMBEDDED.dec03)을 찾지 못했습니다 (scripts/build-offline.py 로 다시 생성하세요)");
     return;
   }
   let embedded;
@@ -339,7 +340,8 @@ function validateOfflineImpeachment(file, source) {
   if (stableJSON(embedded) !== stableJSON(source)) {
     warn(file, "내장 탄핵 표결 데이터가 impeachment-assembly-data.json 과 다릅니다 (동기화 필요)");
   }
-  if (!html.includes('data-view="impeachment"')) fail(file, "탄핵 표결 탭이 없습니다");
+  if (!html.includes('data-ds="impeachment"')) fail(file, "상단 스위처에 탄핵 표결 기록부가 없습니다");
+  if (html.includes('data-view="impeachment"')) fail(file, "하단 탭에 탄핵 표결이 남아 있습니다");
 }
 
 console.log("데이터 무결성 검증을 시작합니다.\n");
@@ -372,10 +374,11 @@ console.log(errors === before ? "통과" : "실패");
 
 if (impData) validateOfflineImpeachment(join(publicDir, "insurrection-trials-offline.html"), impData);
 
-process.stdout.write("- index.html 탄핵 표결 뷰 ... ");
+process.stdout.write("- index.html 탄핵 표결 스위처 ... ");
 const idxBefore = errors;
 const indexHtml = readFileSync(join(publicDir, "index.html"), "utf8");
-if (!indexHtml.includes('data-view="impeachment"')) fail("index.html", "탄핵 표결 탭이 없습니다");
+if (!indexHtml.includes('data-ds="impeachment"')) fail("index.html", "상단 스위처에 탄핵 표결 기록부가 없습니다");
+if (indexHtml.includes('data-view="impeachment"')) fail("index.html", "하단 탭에 탄핵 표결이 남아 있습니다");
 if (!indexHtml.includes('"impeachment-assembly-data.json"')) fail("index.html", "탄핵 표결 데이터 fetch 가 없습니다");
 if (!indexHtml.includes("function renderImpeachment")) fail("index.html", "renderImpeachment 함수가 없습니다");
 console.log(errors === idxBefore ? "통과" : "실패");
