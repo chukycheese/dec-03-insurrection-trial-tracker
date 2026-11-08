@@ -114,6 +114,10 @@ def main() -> int:
         pid = item["id"]
         if args.only and pid not in args.only:
             continue
+        if not item.get("photoUrl"):
+            # 사용자 제공 이미지(원본 URL 없음)는 다시 받을 수 없으므로 건너뛴다.
+            print(f"  {pid} {item['name']}: 사용자 제공 이미지 — 원본 URL 이 없어 건너뜁니다")
+            continue
         try:
             im = Image.open(io.BytesIO(fetch(item["photoUrl"], args.cached)))
             im.load()

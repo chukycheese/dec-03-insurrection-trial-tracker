@@ -1669,7 +1669,12 @@
       "role": "전 육군 2기갑여단장",
       "category": "계엄군 현장 지휘관",
       "keyRole": "롯데리아 회동·계엄군 현장 지휘 준비",
-      "statusNote": "1심 무죄"
+      "statusNote": "1심 무죄",
+      "photo": "assets/photos/gush",
+      "photoAlt": "구삼회 전 육군 2기갑여단장 사진",
+      "photoCredit": "대한민국 육군 / 나무위키 문서 이미지 (사용자 제공)",
+      "photoLicense": "사용자 제공",
+      "photoSource": "https://namu.wiki/w/%EA%B5%AC%EC%82%BC%ED%9A%8C"
     },
     "handc": {
       "name": "한덕수",
@@ -1725,7 +1730,12 @@
       "role": "전 수방사 군사경찰단장",
       "category": "계엄군 현장 지휘관",
       "keyRole": "롯데리아 회동·수방사 군사경찰단 현장 지휘",
-      "statusNote": "1심 무죄"
+      "statusNote": "1심 무죄",
+      "photo": "assets/photos/kimch",
+      "photoAlt": "김창학 전 수방사 군사경찰단장 사진",
+      "photoCredit": "뉴시스 / 나무위키 문서 이미지 (사용자 제공)",
+      "photoLicense": "사용자 제공",
+      "photoSource": "https://namu.wiki/w/%EA%B9%80%EC%B0%BD%ED%95%99(%EA%B5%B0%EC%9D%B8)"
     },
     "kimjg": {
       "name": "김정근",
@@ -1763,7 +1773,12 @@
       "role": "전 특수작전항공단장",
       "category": "계엄군 현장 지휘관",
       "keyRole": "롯데리아 회동·특수작전항공단 헬기 동원 관여",
-      "statusNote": "1심 무죄"
+      "statusNote": "1심 무죄",
+      "photo": "assets/photos/kimsw",
+      "photoAlt": "김세운 전 특수작전항공단장 사진",
+      "photoCredit": "오마이뉴스 / 나무위키 문서 이미지 (사용자 제공)",
+      "photoLicense": "사용자 제공",
+      "photoSource": "https://namu.wiki/w/%EA%B9%80%EC%84%B8%EC%9A%B4(%EA%B5%B0%EC%9D%B8)"
     },
     "kimsy": {
       "name": "김상용",
@@ -1790,7 +1805,12 @@
       "role": "전 제3야전군 헌병대장",
       "category": "경찰",
       "keyRole": "제3야전군 헌병대장 (내란 가담 혐의)",
-      "statusNote": "1심 무죄"
+      "statusNote": "1심 무죄",
+      "photo": "assets/photos/kimyg",
+      "photoAlt": "김용군 전 제3야전군 헌병대장 사진",
+      "photoCredit": "언론 보도 사진 / 나무위키 문서 이미지 (사용자 제공)",
+      "photoLicense": "사용자 제공",
+      "photoSource": "https://namu.wiki/w/%EA%B9%80%EC%9A%A9%EA%B5%B0"
     },
     "kimyh": {
       "name": "김용현",
@@ -1860,7 +1880,12 @@
       "role": "전 국회경비대장",
       "category": "경찰",
       "keyRole": "국회경비대장으로서 계엄군의 국회 본관 진입 묵인 및 조력",
-      "statusNote": "내란 1심 징역 3년"
+      "statusNote": "내란 1심 징역 3년",
+      "photo": "assets/photos/mokht",
+      "photoAlt": "목현태 전 국회경비대장 사진",
+      "photoCredit": "경찰청 / 나무위키 문서 이미지 (사용자 제공)",
+      "photoLicense": "사용자 제공",
+      "photoSource": "https://namu.wiki/w/%EB%AA%A9%ED%98%84%ED%83%9C"
     },
     "munsh": {
       "name": "문상호",
