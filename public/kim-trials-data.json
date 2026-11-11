@@ -6,7 +6,9 @@
       "charge": "자본시장법 위반, 정치자금법 위반, 특가법상 알선수재",
       "status": "sup",
       "note": "도이치모터스 주가조작·통일교 금품수수·명태균 여론조사 무상 수수 세 혐의가 하나의 공판으로 진행된 단일 사건입니다(대법원 2026도6826). 윤석열은 같은 여론조사 혐의로 별도 기소되어 ‘윤석열·명태균 여론조사 무상제공’ 사건으로 진행됩니다. 2심 선고 직후 김건희는 상고심에서 구속 중이며, 구속 기간이 10.31 만료되자 특검이 10.15 직권 구속영장을 재판부에 요청했습니다.",
-      "defendantIds": ["kimkh"]
+      "defendantIds": [
+        "kimkh"
+      ]
     },
     "yoon-myung": {
       "order": 2,
@@ -14,7 +16,10 @@
       "charge": "정치자금법 위반",
       "status": "sup",
       "note": "김건희는 같은 공소사실로 별도 기소되어 1·2심 모두 무죄를 선고받았고, 상고심은 대법원 전원합의체에 회부돼 있습니다.",
-      "defendantIds": ["yoon", "myungtk"]
+      "defendantIds": [
+        "yoon",
+        "myungtk"
+      ]
     },
     "oh-myung": {
       "order": 3,
@@ -22,7 +27,11 @@
       "charge": "정치자금법 위반",
       "status": "sup",
       "note": "",
-      "defendantIds": ["ohsh", "kangcw", "kimhj"]
+      "defendantIds": [
+        "ohsh",
+        "kangcw",
+        "kimhj"
+      ]
     },
     "kim-bribe": {
       "order": 4,
@@ -30,7 +39,13 @@
       "charge": "특가법상 알선수재, 청탁금지법 위반 등",
       "status": "sup",
       "note": "이우환 화백 그림의 공여자로 지목된 김상민 전 부장검사는 별도 재판에서 징역형 집행유예가 확정됐습니다(2026.7).",
-      "defendantIds": ["kimkh", "leebg", "leebj", "seosb", "choijy"]
+      "defendantIds": [
+        "kimkh",
+        "leebg",
+        "leebj",
+        "seosb",
+        "choijy"
+      ]
     },
     "kweon-tongil": {
       "order": 5,
@@ -38,7 +53,9 @@
       "charge": "정치자금법 위반",
       "status": "final",
       "note": "정치자금법상 벌금 100만원 이상 형이 확정돼 의원직을 상실하고 10년간 피선거권이 제한됩니다.",
-      "defendantIds": ["kweonsd"]
+      "defendantIds": [
+        "kweonsd"
+      ]
     },
     "geonjin-tongil": {
       "order": 6,
@@ -46,7 +63,9 @@
       "charge": "특가법상 알선수재, 정치자금법 위반 등",
       "status": "final",
       "note": "2022년 지방선거 공천 관련 1억원 수수 정치자금법 혐의는 1·2심 모두 무죄입니다. 금품을 건넨 윤영호의 재판은 별도 사건입니다.",
-      "defendantIds": ["jeonsb"]
+      "defendantIds": [
+        "jeonsb"
+      ]
     },
     "yunyh-tongil": {
       "order": 7,
@@ -54,7 +73,9 @@
       "charge": "업무상 횡령, 정치자금법 위반, 청탁금지법 위반",
       "status": "final",
       "note": "통일교 임원 비리 관련 증거인멸 혐의는 김건희특검법상 수사 대상이 아니라는 이유로 1심에서 공소기각됐습니다.",
-      "defendantIds": ["yunyh"]
+      "defendantIds": [
+        "yunyh"
+      ]
     },
     "tongil-group": {
       "order": 8,
@@ -62,7 +83,11 @@
       "charge": "정치자금법 위반, 청탁금지법 위반, 특경법상 횡령 등",
       "status": "trial",
       "note": "통일교는 범행 지시·승인 판단에 대해 항소하겠다고 밝혔고, 특검은 9.4 양형부당·법리오해를 이유로 항소했습니다. 한학자 측 항소장 제출 여부는 보도로 직접 확인하지 못했습니다.",
-      "defendantIds": ["hanhj", "jungwj", "yunyh"]
+      "defendantIds": [
+        "hanhj",
+        "jungwj",
+        "yunyh"
+      ]
     },
     "myung-kimys": {
       "order": 9,
@@ -70,7 +95,10 @@
       "charge": "정치자금법 위반, 증거인멸교사(명태균)",
       "status": "app",
       "note": "명태균·김영선의 별도 사건(안동 재력가 정치자금, 국가산업단지 정보 누설 등) 1심은 2026.9.10 선고됐습니다(김영선 징역 1년, 집행유예 2년·벌금 100만원).",
-      "defendantIds": ["myungtk", "kimys"]
+      "defendantIds": [
+        "myungtk",
+        "kimys"
+      ]
     },
     "deutsch-members": {
       "order": 10,
@@ -78,7 +106,10 @@
       "charge": "자본시장법 위반 등",
       "status": "final",
       "note": "검찰이 2021.10 기소한 주범 재판으로, 김건희 특검 재판이 아닙니다. 1차 시세조종 구간은 공소시효 만료로 면소됐습니다. 이종호는 도이치모터스 관련 자본시장법 혐의에 무죄·면소, 회사 자금 횡령·배임 혐의에 유죄입니다.",
-      "defendantIds": ["kwonos", "leejh"]
+      "defendantIds": [
+        "kwonos",
+        "leejh"
+      ]
     },
     "gwanjeo": {
       "order": 11,
@@ -86,7 +117,12 @@
       "charge": "특가법상 알선수재(김건희), 직권남용 권리행사방해, 건설산업기본법 위반, 청탁금지법·조세범처벌법 위반 등",
       "status": "trial",
       "note": "2차 종합특검(권창영)이 2026.8.18 김 여사·윤한홍 의원·21그램 김태영 대표 부부 등 6명을 불구속 기소했습니다. 관저 후보지를 세 차례 답사해 외교부 장관 공관으로 바꾸고 무자격 업체 21그램에 공사를 맡기도록 개입한 혐의, 공사 수주 대가로 디올 의류 등 1,012만원 상당 금품을 수수한 혐의입니다.",
-      "defendantIds": ["kimkh", "yoonhh", "kimty", "chomo"]
+      "defendantIds": [
+        "kimkh",
+        "yoonhh",
+        "kimty",
+        "chomo"
+      ]
     }
   },
   "rulings": {
@@ -96,14 +132,22 @@
       "date": "2026-01-28",
       "kind": "ruling",
       "court": "서울중앙지법 형사합의27부",
-      "judgeIds": ["wooin"],
+      "judgeIds": [
+        "wooin"
+      ],
       "caseNo": "",
       "result": "김건희 징역 1년 8개월 · 추징 1,281만원",
       "summary": "통일교 금품수수(특가법 알선수재) 일부만 유죄. 도이치모터스 주가조작과 명태균 여론조사 수수는 무죄. 그라프 목걸이 몰수",
       "requested": "징역 15년",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260128095100004"],
-        ["머니투데이", "https://www.mt.co.kr/society/2026/01/28/2026012810324877424"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260128095100004"
+        ],
+        [
+          "머니투데이",
+          "https://www.mt.co.kr/society/2026/01/28/2026012810324877424"
+        ]
       ],
       "judgeNote": ""
     },
@@ -118,14 +162,24 @@
       "date": "2026-04-28",
       "kind": "ruling",
       "court": "서울고법 형사15-2부",
-      "judgeIds": ["shinto", "seonge", "wonik"],
+      "judgeIds": [
+        "shinto",
+        "seonge",
+        "wonik"
+      ],
       "caseNo": "",
       "result": "김건희 징역 4년 · 벌금 5,000만원",
       "summary": "주가조작 일부(블랙펄 측 지정 시점·가격의 주식 18만주 매도를 통정매매로 인정)와 샤넬 가방 알선수재가 유죄로 뒤집혀 가중. 명태균 여론조사 수수 무죄는 유지",
       "requested": "",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260428183000004"],
-        ["한겨레", "https://www.hani.co.kr/arti/society/society_general/1256364.html"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260428183000004"
+        ],
+        [
+          "한겨레",
+          "https://www.hani.co.kr/arti/society/society_general/1256364.html"
+        ]
       ],
       "judgeNote": ""
     },
@@ -140,9 +194,18 @@
       "result": "전원합의체 심리 중",
       "summary": "7.23 선고를 하루 앞두고 전원합의체에 회부돼 선고 연기. 합의기일은 8월과 9.29·10.22. 엇갈린 하급심의 ‘명태균 여론조사’ 법리 정리가 쟁점",
       "sources": [
-        ["법률신문", "https://www.lawtimes.co.kr/news/articleView.html?idxno=223906"],
-        ["더팩트", "https://news.tf.co.kr/read/life/2370495.htm"],
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20261022102300004"]
+        [
+          "법률신문",
+          "https://www.lawtimes.co.kr/news/articleView.html?idxno=223906"
+        ],
+        [
+          "더팩트",
+          "https://news.tf.co.kr/read/life/2370495.htm"
+        ],
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20261022102300004"
+        ]
       ],
       "requested": "",
       "judgeNote": ""
@@ -153,14 +216,22 @@
       "date": "2026-07-13",
       "kind": "ruling",
       "court": "서울중앙지법 형사합의33부",
-      "judgeIds": ["leejk"],
+      "judgeIds": [
+        "leejk"
+      ],
       "caseNo": "",
       "result": "윤석열 징역 2년 · 추징 1,396만원",
       "summary": "여론조사 58회 중 직접 전달된 14회만 유죄(재산상 이익 2,792만원 산정). 명태균 징역 1년 6개월, 증거인멸 우려로 법정구속",
       "requested": "윤석열 징역 4년 · 명태균 징역 3년",
       "sources": [
-        ["뉴시스", "https://www.newsis.com/view/NISX20260713_0003707308"],
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260713119000004"]
+        [
+          "뉴시스",
+          "https://www.newsis.com/view/NISX20260713_0003707308"
+        ],
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260713119000004"
+        ]
       ],
       "judgeNote": ""
     },
@@ -170,14 +241,22 @@
       "date": "2026-10-07",
       "kind": "ruling",
       "court": "서울고법 형사7부",
-      "judgeIds": ["guhg"],
+      "judgeIds": [
+        "guhg"
+      ],
       "caseNo": "",
       "result": "전원 무죄",
       "summary": "여론조사는 재산상 이익으로 환산할 수 없는 정치적 조언의 수단이고, 의뢰·의사합치의 증거가 없다며 1심 파기",
       "requested": "",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20261007120300004"],
-        ["한겨레", "https://www.hani.co.kr/arti/society/society_general/1281369.html"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20261007120300004"
+        ],
+        [
+          "한겨레",
+          "https://www.hani.co.kr/arti/society/society_general/1281369.html"
+        ]
       ],
       "judgeNote": ""
     },
@@ -192,7 +271,10 @@
       "result": "특검 상고",
       "summary": "10.13 특검이 의사합치·부부 공모관계 부정 판단에 불복해 상고장 제출. 같은 공소사실의 김건희 상고심 재판부(전원합의체)에도 의견서 제출 예정",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20261013165400004"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20261013165400004"
+        ]
       ],
       "requested": "",
       "judgeNote": ""
@@ -203,14 +285,22 @@
       "date": "2026-07-22",
       "kind": "ruling",
       "court": "서울중앙지법 형사합의22부",
-      "judgeIds": ["chohw"],
+      "judgeIds": [
+        "chohw"
+      ],
       "caseNo": "",
       "result": "오세훈 벌금 1,000만원 · 추징 2,100만원",
       "summary": "여론조사 10회 중 5회(2,100만원) 의뢰·대납 유죄. 확정 시 시장직 상실. 강철원 벌금 300만원, 김한정 벌금 500만원",
       "requested": "오세훈 징역 1년 6개월",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260722128752004"],
-        ["뉴시스", "https://www.newsis.com/view/NISX20260722_0003719039"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260722128752004"
+        ],
+        [
+          "뉴시스",
+          "https://www.newsis.com/view/NISX20260722_0003719039"
+        ]
       ],
       "judgeNote": ""
     },
@@ -225,14 +315,22 @@
       "date": "2026-10-23",
       "kind": "ruling",
       "court": "서울고법 형사7부",
-      "judgeIds": ["guhg"],
+      "judgeIds": [
+        "guhg"
+      ],
       "caseNo": "",
       "result": "전원 무죄",
       "summary": "핵심 쟁점의 직접 증거는 명태균 진술이 유일한데 ‘전체적으로 그대로 믿기 어렵다’며 신빙성을 배척, 1심 파기",
       "requested": "",
       "sources": [
-        ["파이낸셜뉴스", "https://www.fnnews.com/news/202610231528543052"],
-        ["뉴스핌", "https://www.newspim.com/news/view/20261023000941"]
+        [
+          "파이낸셜뉴스",
+          "https://www.fnnews.com/news/202610231528543052"
+        ],
+        [
+          "뉴스핌",
+          "https://www.newspim.com/news/view/20261023000941"
+        ]
       ],
       "judgeNote": ""
     },
@@ -247,7 +345,10 @@
       "result": "특검 상고",
       "summary": "10.30 특검이 명태균 진술을 뒷받침하는 증거를 비합리적으로 배척했다며 상고장 제출. 특검법 6·3·3 원칙상 이르면 내년 1월 말 대법 선고 전망",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20261030084351004"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20261030084351004"
+        ]
       ],
       "requested": "",
       "judgeNote": ""
@@ -258,14 +359,22 @@
       "date": "2026-06-26",
       "kind": "ruling",
       "court": "서울중앙지법 형사합의21부",
-      "judgeIds": ["chosp"],
+      "judgeIds": [
+        "chosp"
+      ],
       "caseNo": "",
       "result": "김건희 징역 7년",
       "summary": "혐의 전부 유죄. 이우환 그림·반클리프 목걸이 등 몰수, 6,480만원 추징. 이봉관 징역 1년·집유, 서성빈 징역 10개월·집유, 최재영 벌금 800만원, 이배용(증거인멸교사) 징역 10개월·집유",
       "requested": "징역 7년 6개월",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260626124552004"],
-        ["뉴스핌", "https://www.newspim.com/news/view/20260626000852"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260626124552004"
+        ],
+        [
+          "뉴스핌",
+          "https://www.newspim.com/news/view/20260626000852"
+        ]
       ],
       "judgeNote": ""
     },
@@ -275,14 +384,24 @@
       "date": "2026-09-22",
       "kind": "ruling",
       "court": "서울고법 형사15-3부",
-      "judgeIds": ["seonge", "wonik", "leehj"],
+      "judgeIds": [
+        "seonge",
+        "wonik",
+        "leehj"
+      ],
       "caseNo": "",
       "result": "김건희 징역 5년",
       "summary": "바쉐론 시계·세한도 수수가 대가성 입증 부족으로 무죄로 뒤집혀 감형. 몰수·2,440만원 추징. 이배용 항소 기각. 쌍방 상고 예고",
       "requested": "",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260922138352004"],
-        ["서울경제", "https://www.sedaily.com/article/20094000"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260922138352004"
+        ],
+        [
+          "서울경제",
+          "https://www.sedaily.com/article/20094000"
+        ]
       ],
       "judgeNote": ""
     },
@@ -292,12 +411,17 @@
       "date": "",
       "kind": "pending",
       "court": "대법원 2부",
-      "judgeIds": ["ohkm"],
+      "judgeIds": [
+        "ohkm"
+      ],
       "caseNo": "",
       "result": "심리 중",
       "summary": "10.22 대법원 2부(주심 오경미)에 배당",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20261022102300004"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20261022102300004"
+        ]
       ],
       "requested": "",
       "judgeNote": "주심 오경미"
@@ -308,14 +432,22 @@
       "date": "2026-01-28",
       "kind": "ruling",
       "court": "서울중앙지법 형사합의27부",
-      "judgeIds": ["wooin"],
+      "judgeIds": [
+        "wooin"
+      ],
       "caseNo": "",
       "result": "징역 2년 · 추징 1억원",
       "summary": "윤영호 다이어리 기재·메시지 등으로 1억원 수수를 인정. 특검법상 수사 대상·증거 수집 적법성 주장은 배척",
       "requested": "징역 4년",
       "sources": [
-        ["연합뉴스TV", "https://www.yonhapnewstv.co.kr/news/MYH20260129000700038"],
-        ["뉴스웍스", "https://www.newsworks.co.kr/news/articleView.html?idxno=839202"]
+        [
+          "연합뉴스TV",
+          "https://www.yonhapnewstv.co.kr/news/MYH20260129000700038"
+        ],
+        [
+          "뉴스웍스",
+          "https://www.newsworks.co.kr/news/articleView.html?idxno=839202"
+        ]
       ],
       "judgeNote": ""
     },
@@ -330,14 +462,24 @@
       "date": "2026-04-28",
       "kind": "ruling",
       "court": "서울고법 형사2-1부",
-      "judgeIds": ["baeksy", "hwangst", "kimyhy"],
+      "judgeIds": [
+        "baeksy",
+        "hwangst",
+        "kimyhy"
+      ],
       "caseNo": "",
       "result": "쌍방 항소 기각 · 징역 2년",
       "summary": "정치자금이 특정 종교단체가 국가권력에 접근하기 위한 수단으로 제공돼 정교분리 원칙을 침해했다고 질책",
       "requested": "징역 4년",
       "sources": [
-        ["중앙일보", "https://www.joongang.co.kr/article/25423924"],
-        ["한겨레", "https://www.hani.co.kr/arti/society/society_general/1256207.html"]
+        [
+          "중앙일보",
+          "https://www.joongang.co.kr/article/25423924"
+        ],
+        [
+          "한겨레",
+          "https://www.hani.co.kr/arti/society/society_general/1256207.html"
+        ]
       ],
       "judgeNote": ""
     },
@@ -347,13 +489,21 @@
       "date": "2026-07-16",
       "kind": "ruling",
       "court": "대법원 2부",
-      "judgeIds": ["eumsf"],
+      "judgeIds": [
+        "eumsf"
+      ],
       "caseNo": "2026도7033",
       "result": "상고 기각 · 징역 2년 확정",
       "summary": "김건희 특검 기소 9개월 만에 확정. 의원직 상실",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260716070751004"],
-        ["법원 언론보도판결", "https://lawclerk.scourt.go.kr/portal/news/NewsViewAction.work?gubun=2&seqnum=6218"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260716070751004"
+        ],
+        [
+          "법원 언론보도판결",
+          "https://lawclerk.scourt.go.kr/portal/news/NewsViewAction.work?gubun=2&seqnum=6218"
+        ]
       ],
       "requested": "",
       "judgeNote": "주심 엄상필"
@@ -364,14 +514,22 @@
       "date": "2026-02-24",
       "kind": "ruling",
       "court": "서울중앙지법 형사합의33부",
-      "judgeIds": ["leejk"],
+      "judgeIds": [
+        "leejk"
+      ],
       "caseNo": "2025고합1254",
       "result": "징역 6년 · 추징 1억8,078만원",
       "summary": "특검 구형(5년)보다 무거운 형. 알선수재 전부 유죄, 공천 관련 정치자금법은 무죄. 그라프 목걸이 압수",
       "requested": "징역 5년",
       "sources": [
-        ["법률신문", "https://www.lawtimes.co.kr/news/articleView.html?idxno=216779"],
-        ["이데일리", "https://www.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=04759286645353800"]
+        [
+          "법률신문",
+          "https://www.lawtimes.co.kr/news/articleView.html?idxno=216779"
+        ],
+        [
+          "이데일리",
+          "https://www.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=04759286645353800"
+        ]
       ],
       "judgeNote": ""
     },
@@ -381,14 +539,24 @@
       "date": "2026-05-21",
       "kind": "ruling",
       "court": "서울고법 형사13부",
-      "judgeIds": ["kimms", "leewh", "yoodg"],
+      "judgeIds": [
+        "kimms",
+        "leewh",
+        "yoodg"
+      ],
       "caseNo": "2026노682",
       "result": "징역 5년",
       "summary": "자백과 샤넬백 등 증거물 제출을 김건희특검법 필요적 감면 사유로 인정해 1년 감형",
       "requested": "징역 6년 (정치자금법 추가 구형)",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260521129800004"],
-        ["법률신문", "https://www.lawtimes.co.kr/news/articleView.html?idxno=221003"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260521129800004"
+        ],
+        [
+          "법률신문",
+          "https://www.lawtimes.co.kr/news/articleView.html?idxno=221003"
+        ]
       ],
       "judgeNote": ""
     },
@@ -398,13 +566,21 @@
       "date": "2026-07-09",
       "kind": "ruling",
       "court": "대법원 3부",
-      "judgeIds": ["nogp"],
+      "judgeIds": [
+        "nogp"
+      ],
       "caseNo": "2026도8525",
       "result": "상고 기각 · 징역 5년 확정",
       "summary": "특검과 피고인의 상고를 모두 기각. 대법원 보도자료로 공개",
       "sources": [
-        ["대법원 보도자료", "https://www.scourt.go.kr/portal/news/NewsViewAction.work?gubun=6&pageIndex=1&searchOption=&searchWord=&seqnum=3013"],
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260709101051004"]
+        [
+          "대법원 보도자료",
+          "https://www.scourt.go.kr/portal/news/NewsViewAction.work?gubun=6&pageIndex=1&searchOption=&searchWord=&seqnum=3013"
+        ],
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260709101051004"
+        ]
       ],
       "requested": "",
       "judgeNote": "주심 노경필"
@@ -421,7 +597,10 @@
       "summary": "김건희·권성동에 금품 전달과 교단 자금 횡령 등 유죄. 통일교 임원 비리 증거인멸 혐의는 공소기각",
       "requested": "",
       "sources": [
-        ["연합뉴스TV", "https://www.yonhapnewstv.co.kr/news/MYH20260129000700038"]
+        [
+          "연합뉴스TV",
+          "https://www.yonhapnewstv.co.kr/news/MYH20260129000700038"
+        ]
       ],
       "judgeNote": ""
     },
@@ -431,13 +610,20 @@
       "date": "2026-04-27",
       "kind": "ruling",
       "court": "서울고법 형사6-1부",
-      "judgeIds": ["kimjw", "parkjz", "mindg"],
+      "judgeIds": [
+        "kimjw",
+        "parkjz",
+        "mindg"
+      ],
       "caseNo": "",
       "result": "징역 1년 6개월",
       "summary": "샤넬 가방·목걸이 구매를 위한 교단 자금 횡령이 전부 유죄로 뒤집혀 형량 가중",
       "requested": "",
       "sources": [
-        ["뉴스웍스", "https://www.newsworks.co.kr/news/articleView.html?idxno=839202"]
+        [
+          "뉴스웍스",
+          "https://www.newsworks.co.kr/news/articleView.html?idxno=839202"
+        ]
       ],
       "judgeNote": ""
     },
@@ -447,13 +633,21 @@
       "date": "2026-07-09",
       "kind": "ruling",
       "court": "대법원 3부",
-      "judgeIds": ["ohsk"],
+      "judgeIds": [
+        "ohsk"
+      ],
       "caseNo": "",
       "result": "상고 기각 · 징역 1년 6개월 확정",
       "summary": "특검과 피고인의 상고를 모두 기각",
       "sources": [
-        ["디지털타임스", "https://www.dt.co.kr/article/12072028"],
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260709101051004"]
+        [
+          "디지털타임스",
+          "https://www.dt.co.kr/article/12072028"
+        ],
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260709101051004"
+        ]
       ],
       "requested": "",
       "judgeNote": "주심 오석준"
@@ -470,8 +664,14 @@
       "summary": "정치자금법 징역 1년, 청탁금지법·횡령 징역 1년 합산. 정원주 징역 1년 4개월·집유 2년, 윤영호 징역 6개월. 증거인멸교사 등 일부 혐의는 특검법상 수사 대상 밖이라 공소기각",
       "requested": "한학자 징역 13년",
       "sources": [
-        ["BBC 뉴스 코리아", "https://www.bbc.com/korean/articles/c93ellzle7yo"],
-        ["YTN", "https://www.ytn.co.kr/_ln/0103_202608311529128087"]
+        [
+          "BBC 뉴스 코리아",
+          "https://www.bbc.com/korean/articles/c93ellzle7yo"
+        ],
+        [
+          "YTN",
+          "https://www.ytn.co.kr/_ln/0103_202608311529128087"
+        ]
       ],
       "judgeNote": ""
     },
@@ -486,7 +686,10 @@
       "result": "항소심 계류",
       "summary": "9.4 특검이 양형부당·수사 대상 법리 오해를 이유로 항소. 한학자의 구속집행정지 연장 결정에도 항고",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260904114000004"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260904114000004"
+        ]
       ],
       "requested": "",
       "judgeNote": ""
@@ -497,14 +700,22 @@
       "date": "2026-02-05",
       "kind": "ruling",
       "court": "창원지법 형사4부",
-      "judgeIds": ["kimint"],
+      "judgeIds": [
+        "kimint"
+      ],
       "caseNo": "",
       "result": "공천 대가 혐의 전원 무죄",
       "summary": "‘세비 반띵’ 8,070만원은 총괄본부장 급여·채무 변제로 정치자금이 아니고 공천 대가 약속도 없음. 명태균 증거은닉교사만 유죄(징역 6개월, 집행유예 1년)",
       "requested": "징역 5년",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260205121652052"],
-        ["주간조선", "http://weekly.chosun.com/news/articleView.html?idxno=48490"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260205121652052"
+        ],
+        [
+          "주간조선",
+          "http://weekly.chosun.com/news/articleView.html?idxno=48490"
+        ]
       ],
       "judgeNote": ""
     },
@@ -514,12 +725,17 @@
       "date": "",
       "kind": "pending",
       "court": "부산고법 창원재판부 형사2부",
-      "judgeIds": ["kimgn"],
+      "judgeIds": [
+        "kimgn"
+      ],
       "caseNo": "",
       "result": "항소심 진행 중",
       "summary": "여론조사업체 미래한국연구소의 실소유주가 누구인지가 쟁점. 4.20 첫 공판준비기일 후 검찴이 김태열·강혜경·김한정 등 증인 신청",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20260511147300052"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260511147300052"
+        ]
       ],
       "requested": "",
       "judgeNote": ""
@@ -530,13 +746,18 @@
       "date": "2023-02-10",
       "kind": "ruling",
       "court": "서울중앙지법 형사합의23부",
-      "judgeIds": ["chobg"],
+      "judgeIds": [
+        "chobg"
+      ],
       "caseNo": "",
       "result": "권오수 징역 2년, 집행유예 3년 · 벌금 3억원",
       "summary": "1단계 시세조작은 공소시효 만료로 면소, 2단계 이후만 유죄. 주가조작 가담자 5명 집유·벌금형",
       "requested": "",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20230210073352004"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20230210073352004"
+        ]
       ],
       "judgeNote": ""
     },
@@ -546,14 +767,22 @@
       "date": "2024-09-12",
       "kind": "ruling",
       "court": "서울고법 형사5부",
-      "judgeIds": ["kwonsy"],
+      "judgeIds": [
+        "kwonsy"
+      ],
       "caseNo": "",
       "result": "권오수 징역 3년, 집행유예 4년 · 벌금 5억원",
       "summary": "형량 가중. 이종호는 도이치모터스 관련 혐의 무죄·면소, 횡령·배임 혐의에 징역 2년",
       "requested": "",
       "sources": [
-        ["연합뉴스", "https://www.yna.co.kr/view/AKR20240912150700004"],
-        ["뉴스핌", "https://www.newspim.com/news/view/20240912001117"]
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20240912150700004"
+        ],
+        [
+          "뉴스핌",
+          "https://www.newspim.com/news/view/20240912001117"
+        ]
       ],
       "judgeNote": ""
     },
@@ -563,12 +792,17 @@
       "date": "2025-04-03",
       "kind": "ruling",
       "court": "대법원 3부",
-      "judgeIds": ["leesy"],
+      "judgeIds": [
+        "leesy"
+      ],
       "caseNo": "",
       "result": "상고 기각 · 확정",
       "summary": "권오수 징역 3년·집유 4년·벌금 5억, 이종호 징역 2년·집유 3년·벌금 4억 확정",
       "sources": [
-        ["뉴스핌", "https://search.newspim.com/news/view/20250403000532"]
+        [
+          "뉴스핌",
+          "https://search.newspim.com/news/view/20250403000532"
+        ]
       ],
       "requested": "",
       "judgeNote": "주심 이숙연"
@@ -579,59 +813,339 @@
       "date": "2026-11-09",
       "kind": "pending",
       "court": "서울중앙지법 형사합의22부",
-      "judgeIds": ["chohw"],
+      "judgeIds": [
+        "chohw"
+      ],
       "result": "3차 공판준비기일 완료 (11.9) · 첫 공판 11.23 오전 10시",
       "summary": "10.2 1차·10.19 2차 공판준비기일에서 김 여사·윤 의원 측이 혐의를 전면 부인. 11.9 3차 준비기일에서는 21그램의 건설업체 명의대여 여부가 핵심 쟁점으로 부상했습니다. 특검은 21그램이 원담종합건설 등 명의로 관저 공사를 총괄했다고 주장했고, 김태영 대표 측은 실제 하도급 계약이라며 명의대여와 구분해야 한다고 반박했습니다. 재판부는 계약당사자 확정과 별건 판결·관련자 진술을 검토하겠다고 밝혔으며, 첫 공판은 11.23 오전 10시, 12.7부터 세금계산서 관련 증인신문을 진행합니다.",
       "requested": "",
       "sources": [
-        ["파이낸셜뉴스", "https://www.fnnews.com/news/202610191414157842"],
-        ["뉴스핌", "https://www.newspim.com/news/view/20261002000642"],
-        ["법률신문", "https://www.lawtimes.co.kr/news/articleViewAmp.html?idxno=229046"],
-        ["뉴스핌", "https://www.newspim.com/news/view/20261109000612"]
+        [
+          "파이낸셜뉴스",
+          "https://www.fnnews.com/news/202610191414157842"
+        ],
+        [
+          "뉴스핌",
+          "https://www.newspim.com/news/view/20261002000642"
+        ],
+        [
+          "법률신문",
+          "https://www.lawtimes.co.kr/news/articleViewAmp.html?idxno=229046"
+        ],
+        [
+          "뉴스핌",
+          "https://www.newspim.com/news/view/20261109000612"
+        ]
       ],
       "caseNo": "",
       "judgeNote": "재판장 조형우"
     }
   },
   "sentences": {
-    "kim-main-1-kimkh": {"rulingId": "kim-main-1", "caseId": "kim-main", "personId": "kimkh", "outcome": "일부 유죄", "sentence": "징역 1년 8개월", "requested": "징역 15년"},
-    "kim-main-2-kimkh": {"rulingId": "kim-main-2", "caseId": "kim-main", "personId": "kimkh", "outcome": "일부 유죄", "sentence": "징역 4년 · 벌금 5,000만원", "requested": ""},
-    "yoon-myung-1-yoon": {"rulingId": "yoon-myung-1", "caseId": "yoon-myung", "personId": "yoon", "outcome": "일부 유죄", "sentence": "징역 2년", "requested": "징역 4년"},
-    "yoon-myung-1-myungtk": {"rulingId": "yoon-myung-1", "caseId": "yoon-myung", "personId": "myungtk", "outcome": "유죄", "sentence": "징역 1년 6개월", "requested": "징역 3년"},
-    "yoon-myung-2-yoon": {"rulingId": "yoon-myung-2", "caseId": "yoon-myung", "personId": "yoon", "outcome": "무죄", "sentence": "무죄", "requested": ""},
-    "yoon-myung-2-myungtk": {"rulingId": "yoon-myung-2", "caseId": "yoon-myung", "personId": "myungtk", "outcome": "무죄", "sentence": "무죄", "requested": ""},
-    "oh-myung-1-ohsh": {"rulingId": "oh-myung-1", "caseId": "oh-myung", "personId": "ohsh", "outcome": "일부 유죄", "sentence": "벌금 1,000만원", "requested": "징역 1년 6개월"},
-    "oh-myung-1-kangcw": {"rulingId": "oh-myung-1", "caseId": "oh-myung", "personId": "kangcw", "outcome": "유죄", "sentence": "벌금 300만원", "requested": ""},
-    "oh-myung-1-kimhj": {"rulingId": "oh-myung-1", "caseId": "oh-myung", "personId": "kimhj", "outcome": "유죄", "sentence": "벌금 500만원", "requested": ""},
-    "oh-myung-2-ohsh": {"rulingId": "oh-myung-2", "caseId": "oh-myung", "personId": "ohsh", "outcome": "무죄", "sentence": "무죄", "requested": ""},
-    "oh-myung-2-kangcw": {"rulingId": "oh-myung-2", "caseId": "oh-myung", "personId": "kangcw", "outcome": "무죄", "sentence": "무죄", "requested": ""},
-    "oh-myung-2-kimhj": {"rulingId": "oh-myung-2", "caseId": "oh-myung", "personId": "kimhj", "outcome": "무죄", "sentence": "무죄", "requested": ""},
-    "kim-bribe-1-kimkh": {"rulingId": "kim-bribe-1", "caseId": "kim-bribe", "personId": "kimkh", "outcome": "유죄", "sentence": "징역 7년", "requested": "징역 7년 6개월"},
-    "kim-bribe-1-leebg": {"rulingId": "kim-bribe-1", "caseId": "kim-bribe", "personId": "leebg", "outcome": "유죄", "sentence": "징역 1년, 집행유예 2년", "requested": ""},
-    "kim-bribe-1-seosb": {"rulingId": "kim-bribe-1", "caseId": "kim-bribe", "personId": "seosb", "outcome": "유죄", "sentence": "징역 10개월, 집행유예 2년", "requested": ""},
-    "kim-bribe-1-choijy": {"rulingId": "kim-bribe-1", "caseId": "kim-bribe", "personId": "choijy", "outcome": "유죄", "sentence": "벌금 800만원", "requested": ""},
-    "kim-bribe-1-leebj": {"rulingId": "kim-bribe-1", "caseId": "kim-bribe", "personId": "leebj", "outcome": "유죄", "sentence": "징역 10개월, 집행유예 2년", "requested": ""},
-    "kim-bribe-2-kimkh": {"rulingId": "kim-bribe-2", "caseId": "kim-bribe", "personId": "kimkh", "outcome": "일부 유죄", "sentence": "징역 5년", "requested": ""},
-    "kim-bribe-2-leebj": {"rulingId": "kim-bribe-2", "caseId": "kim-bribe", "personId": "leebj", "outcome": "유죄", "sentence": "징역 10개월, 집행유예 2년", "requested": ""},
-    "kweon-1-kweonsd": {"rulingId": "kweon-1", "caseId": "kweon-tongil", "personId": "kweonsd", "outcome": "유죄", "sentence": "징역 2년 · 추징 1억원", "requested": "징역 4년"},
-    "kweon-2-kweonsd": {"rulingId": "kweon-2", "caseId": "kweon-tongil", "personId": "kweonsd", "outcome": "유죄", "sentence": "징역 2년 · 추징 1억원", "requested": ""},
-    "kweon-3-kweonsd": {"rulingId": "kweon-3", "caseId": "kweon-tongil", "personId": "kweonsd", "outcome": "유죄", "sentence": "징역 2년 확정 (의원직 상실)", "requested": ""},
-    "geonjin-1-jeonsb": {"rulingId": "geonjin-1", "caseId": "geonjin-tongil", "personId": "jeonsb", "outcome": "일부 유죄", "sentence": "징역 6년", "requested": "징역 5년"},
-    "geonjin-2-jeonsb": {"rulingId": "geonjin-2", "caseId": "geonjin-tongil", "personId": "jeonsb", "outcome": "일부 유죄", "sentence": "징역 5년", "requested": ""},
-    "geonjin-3-jeonsb": {"rulingId": "geonjin-3", "caseId": "geonjin-tongil", "personId": "jeonsb", "outcome": "유죄", "sentence": "징역 5년 확정", "requested": ""},
-    "yunyh-1-yunyh": {"rulingId": "yunyh-1", "caseId": "yunyh-tongil", "personId": "yunyh", "outcome": "유죄", "sentence": "징역 1년 2개월", "requested": ""},
-    "yunyh-2-yunyh": {"rulingId": "yunyh-2", "caseId": "yunyh-tongil", "personId": "yunyh", "outcome": "유죄", "sentence": "징역 1년 6개월", "requested": ""},
-    "yunyh-3-yunyh": {"rulingId": "yunyh-3", "caseId": "yunyh-tongil", "personId": "yunyh", "outcome": "유죄", "sentence": "징역 1년 6개월 확정", "requested": ""},
-    "tongil-group-1-hanhj": {"rulingId": "tongil-group-1", "caseId": "tongil-group", "personId": "hanhj", "outcome": "일부 유죄", "sentence": "징역 2년 (합계)", "requested": "징역 13년"},
-    "tongil-group-1-jungwj": {"rulingId": "tongil-group-1", "caseId": "tongil-group", "personId": "jungwj", "outcome": "일부 유죄", "sentence": "징역 1년 4개월, 집행유예 2년", "requested": "징역 10년"},
-    "tongil-group-1-yunyh": {"rulingId": "tongil-group-1", "caseId": "tongil-group", "personId": "yunyh", "outcome": "일부 유죄", "sentence": "징역 6개월", "requested": "징역 3년 6개월"},
-    "myung-kimys-1-myungtk": {"rulingId": "myung-kimys-1", "caseId": "myung-kimys", "personId": "myungtk", "outcome": "일부 유죄", "sentence": "정치자금법 무죄 · 증거은닉교사 징역 6개월, 집행유예 1년", "requested": "징역 5년"},
-    "myung-kimys-1-kimys": {"rulingId": "myung-kimys-1", "caseId": "myung-kimys", "personId": "kimys", "outcome": "무죄", "sentence": "무죄", "requested": "징역 5년"},
-    "deutsch-1-kwonos": {"rulingId": "deutsch-1", "caseId": "deutsch-members", "personId": "kwonos", "outcome": "일부 유죄", "sentence": "징역 2년, 집행유예 3년 · 벌금 3억원", "requested": ""},
-    "deutsch-2-kwonos": {"rulingId": "deutsch-2", "caseId": "deutsch-members", "personId": "kwonos", "outcome": "유죄", "sentence": "징역 3년, 집행유예 4년 · 벌금 5억원", "requested": ""},
-    "deutsch-2-leejh": {"rulingId": "deutsch-2", "caseId": "deutsch-members", "personId": "leejh", "outcome": "일부 유죄", "sentence": "도이치 관련 무죄·면소 · 횡령·배임 징역 2년, 집행유예 3년 · 벌금 4억원", "requested": ""},
-    "deutsch-3-kwonos": {"rulingId": "deutsch-3", "caseId": "deutsch-members", "personId": "kwonos", "outcome": "유죄", "sentence": "징역 3년, 집행유예 4년 확정", "requested": ""},
-    "deutsch-3-leejh": {"rulingId": "deutsch-3", "caseId": "deutsch-members", "personId": "leejh", "outcome": "일부 유죄", "sentence": "징역 2년, 집행유예 3년 확정", "requested": ""}
+    "kim-main-1-kimkh": {
+      "rulingId": "kim-main-1",
+      "caseId": "kim-main",
+      "personId": "kimkh",
+      "outcome": "일부 유죄",
+      "sentence": "징역 1년 8개월",
+      "requested": "징역 15년"
+    },
+    "kim-main-2-kimkh": {
+      "rulingId": "kim-main-2",
+      "caseId": "kim-main",
+      "personId": "kimkh",
+      "outcome": "일부 유죄",
+      "sentence": "징역 4년 · 벌금 5,000만원",
+      "requested": ""
+    },
+    "yoon-myung-1-yoon": {
+      "rulingId": "yoon-myung-1",
+      "caseId": "yoon-myung",
+      "personId": "yoon",
+      "outcome": "일부 유죄",
+      "sentence": "징역 2년",
+      "requested": "징역 4년"
+    },
+    "yoon-myung-1-myungtk": {
+      "rulingId": "yoon-myung-1",
+      "caseId": "yoon-myung",
+      "personId": "myungtk",
+      "outcome": "유죄",
+      "sentence": "징역 1년 6개월",
+      "requested": "징역 3년"
+    },
+    "yoon-myung-2-yoon": {
+      "rulingId": "yoon-myung-2",
+      "caseId": "yoon-myung",
+      "personId": "yoon",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "yoon-myung-2-myungtk": {
+      "rulingId": "yoon-myung-2",
+      "caseId": "yoon-myung",
+      "personId": "myungtk",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "oh-myung-1-ohsh": {
+      "rulingId": "oh-myung-1",
+      "caseId": "oh-myung",
+      "personId": "ohsh",
+      "outcome": "일부 유죄",
+      "sentence": "벌금 1,000만원",
+      "requested": "징역 1년 6개월"
+    },
+    "oh-myung-1-kangcw": {
+      "rulingId": "oh-myung-1",
+      "caseId": "oh-myung",
+      "personId": "kangcw",
+      "outcome": "유죄",
+      "sentence": "벌금 300만원",
+      "requested": ""
+    },
+    "oh-myung-1-kimhj": {
+      "rulingId": "oh-myung-1",
+      "caseId": "oh-myung",
+      "personId": "kimhj",
+      "outcome": "유죄",
+      "sentence": "벌금 500만원",
+      "requested": ""
+    },
+    "oh-myung-2-ohsh": {
+      "rulingId": "oh-myung-2",
+      "caseId": "oh-myung",
+      "personId": "ohsh",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "oh-myung-2-kangcw": {
+      "rulingId": "oh-myung-2",
+      "caseId": "oh-myung",
+      "personId": "kangcw",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "oh-myung-2-kimhj": {
+      "rulingId": "oh-myung-2",
+      "caseId": "oh-myung",
+      "personId": "kimhj",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": ""
+    },
+    "kim-bribe-1-kimkh": {
+      "rulingId": "kim-bribe-1",
+      "caseId": "kim-bribe",
+      "personId": "kimkh",
+      "outcome": "유죄",
+      "sentence": "징역 7년",
+      "requested": "징역 7년 6개월"
+    },
+    "kim-bribe-1-leebg": {
+      "rulingId": "kim-bribe-1",
+      "caseId": "kim-bribe",
+      "personId": "leebg",
+      "outcome": "유죄",
+      "sentence": "징역 1년, 집행유예 2년",
+      "requested": ""
+    },
+    "kim-bribe-1-seosb": {
+      "rulingId": "kim-bribe-1",
+      "caseId": "kim-bribe",
+      "personId": "seosb",
+      "outcome": "유죄",
+      "sentence": "징역 10개월, 집행유예 2년",
+      "requested": ""
+    },
+    "kim-bribe-1-choijy": {
+      "rulingId": "kim-bribe-1",
+      "caseId": "kim-bribe",
+      "personId": "choijy",
+      "outcome": "유죄",
+      "sentence": "벌금 800만원",
+      "requested": ""
+    },
+    "kim-bribe-1-leebj": {
+      "rulingId": "kim-bribe-1",
+      "caseId": "kim-bribe",
+      "personId": "leebj",
+      "outcome": "유죄",
+      "sentence": "징역 10개월, 집행유예 2년",
+      "requested": ""
+    },
+    "kim-bribe-2-kimkh": {
+      "rulingId": "kim-bribe-2",
+      "caseId": "kim-bribe",
+      "personId": "kimkh",
+      "outcome": "일부 유죄",
+      "sentence": "징역 5년",
+      "requested": ""
+    },
+    "kim-bribe-2-leebj": {
+      "rulingId": "kim-bribe-2",
+      "caseId": "kim-bribe",
+      "personId": "leebj",
+      "outcome": "유죄",
+      "sentence": "징역 10개월, 집행유예 2년",
+      "requested": ""
+    },
+    "kweon-1-kweonsd": {
+      "rulingId": "kweon-1",
+      "caseId": "kweon-tongil",
+      "personId": "kweonsd",
+      "outcome": "유죄",
+      "sentence": "징역 2년 · 추징 1억원",
+      "requested": "징역 4년"
+    },
+    "kweon-2-kweonsd": {
+      "rulingId": "kweon-2",
+      "caseId": "kweon-tongil",
+      "personId": "kweonsd",
+      "outcome": "유죄",
+      "sentence": "징역 2년 · 추징 1억원",
+      "requested": ""
+    },
+    "kweon-3-kweonsd": {
+      "rulingId": "kweon-3",
+      "caseId": "kweon-tongil",
+      "personId": "kweonsd",
+      "outcome": "유죄",
+      "sentence": "징역 2년 확정 (의원직 상실)",
+      "requested": ""
+    },
+    "geonjin-1-jeonsb": {
+      "rulingId": "geonjin-1",
+      "caseId": "geonjin-tongil",
+      "personId": "jeonsb",
+      "outcome": "일부 유죄",
+      "sentence": "징역 6년",
+      "requested": "징역 5년"
+    },
+    "geonjin-2-jeonsb": {
+      "rulingId": "geonjin-2",
+      "caseId": "geonjin-tongil",
+      "personId": "jeonsb",
+      "outcome": "일부 유죄",
+      "sentence": "징역 5년",
+      "requested": ""
+    },
+    "geonjin-3-jeonsb": {
+      "rulingId": "geonjin-3",
+      "caseId": "geonjin-tongil",
+      "personId": "jeonsb",
+      "outcome": "유죄",
+      "sentence": "징역 5년 확정",
+      "requested": ""
+    },
+    "yunyh-1-yunyh": {
+      "rulingId": "yunyh-1",
+      "caseId": "yunyh-tongil",
+      "personId": "yunyh",
+      "outcome": "유죄",
+      "sentence": "징역 1년 2개월",
+      "requested": ""
+    },
+    "yunyh-2-yunyh": {
+      "rulingId": "yunyh-2",
+      "caseId": "yunyh-tongil",
+      "personId": "yunyh",
+      "outcome": "유죄",
+      "sentence": "징역 1년 6개월",
+      "requested": ""
+    },
+    "yunyh-3-yunyh": {
+      "rulingId": "yunyh-3",
+      "caseId": "yunyh-tongil",
+      "personId": "yunyh",
+      "outcome": "유죄",
+      "sentence": "징역 1년 6개월 확정",
+      "requested": ""
+    },
+    "tongil-group-1-hanhj": {
+      "rulingId": "tongil-group-1",
+      "caseId": "tongil-group",
+      "personId": "hanhj",
+      "outcome": "일부 유죄",
+      "sentence": "징역 2년 (합계)",
+      "requested": "징역 13년"
+    },
+    "tongil-group-1-jungwj": {
+      "rulingId": "tongil-group-1",
+      "caseId": "tongil-group",
+      "personId": "jungwj",
+      "outcome": "일부 유죄",
+      "sentence": "징역 1년 4개월, 집행유예 2년",
+      "requested": "징역 10년"
+    },
+    "tongil-group-1-yunyh": {
+      "rulingId": "tongil-group-1",
+      "caseId": "tongil-group",
+      "personId": "yunyh",
+      "outcome": "일부 유죄",
+      "sentence": "징역 6개월",
+      "requested": "징역 3년 6개월"
+    },
+    "myung-kimys-1-myungtk": {
+      "rulingId": "myung-kimys-1",
+      "caseId": "myung-kimys",
+      "personId": "myungtk",
+      "outcome": "일부 유죄",
+      "sentence": "정치자금법 무죄 · 증거은닉교사 징역 6개월, 집행유예 1년",
+      "requested": "징역 5년"
+    },
+    "myung-kimys-1-kimys": {
+      "rulingId": "myung-kimys-1",
+      "caseId": "myung-kimys",
+      "personId": "kimys",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": "징역 5년"
+    },
+    "deutsch-1-kwonos": {
+      "rulingId": "deutsch-1",
+      "caseId": "deutsch-members",
+      "personId": "kwonos",
+      "outcome": "일부 유죄",
+      "sentence": "징역 2년, 집행유예 3년 · 벌금 3억원",
+      "requested": ""
+    },
+    "deutsch-2-kwonos": {
+      "rulingId": "deutsch-2",
+      "caseId": "deutsch-members",
+      "personId": "kwonos",
+      "outcome": "유죄",
+      "sentence": "징역 3년, 집행유예 4년 · 벌금 5억원",
+      "requested": ""
+    },
+    "deutsch-2-leejh": {
+      "rulingId": "deutsch-2",
+      "caseId": "deutsch-members",
+      "personId": "leejh",
+      "outcome": "일부 유죄",
+      "sentence": "도이치 관련 무죄·면소 · 횡령·배임 징역 2년, 집행유예 3년 · 벌금 4억원",
+      "requested": ""
+    },
+    "deutsch-3-kwonos": {
+      "rulingId": "deutsch-3",
+      "caseId": "deutsch-members",
+      "personId": "kwonos",
+      "outcome": "유죄",
+      "sentence": "징역 3년, 집행유예 4년 확정",
+      "requested": ""
+    },
+    "deutsch-3-leejh": {
+      "rulingId": "deutsch-3",
+      "caseId": "deutsch-members",
+      "personId": "leejh",
+      "outcome": "일부 유죄",
+      "sentence": "징역 2년, 집행유예 3년 확정",
+      "requested": ""
+    }
   },
   "people": {
     "kimkh": {
@@ -863,57 +1377,190 @@
     }
   },
   "judges": {
-    "wooin": {"name": "우인성", "position": "서울중앙지법 부장판사"},
-    "leejk": {"name": "이진관", "position": "서울중앙지법 부장판사"},
-    "chohw": {"name": "조형우", "position": "서울중앙지법 부장판사"},
-    "chobg": {"name": "조병구", "position": "서울중앙지법 부장판사"},
-    "chosp": {"name": "조순표", "position": "서울중앙지법 부장판사"},
-    "kimint": {"name": "김인택", "position": "창원지법 부장판사"},
-    "shinto": {"name": "신종오", "position": "서울고법 고법판사"},
-    "seonge": {"name": "성언주", "position": "서울고법 고법판사"},
-    "wonik": {"name": "원익선", "position": "서울고법 고법판사"},
-    "guhg": {"name": "구회근", "position": "서울고법 부장판사"},
-    "baeksy": {"name": "백승엽", "position": "서울고법 고법판사"},
-    "hwangst": {"name": "황승태", "position": "서울고법 고법판사"},
-    "kimyhy": {"name": "김영현", "position": "서울고법 고법판사"},
-    "kimms": {"name": "김무신", "position": "서울고법 고법판사"},
-    "leewh": {"name": "이우희", "position": "서울고법 고법판사"},
-    "yoodg": {"name": "유동균", "position": "서울고법 고법판사"},
-    "kimjw": {"name": "김종우", "position": "서울고법 고법판사"},
-    "parkjz": {"name": "박정제", "position": "서울고법 고법판사"},
-    "mindg": {"name": "민달기", "position": "서울고법 고법판사"},
-    "leehj": {"name": "이희준", "position": "서울고법 고법판사"},
-    "kimgn": {"name": "김구년", "position": "부산고법 창원재판부 고법판사"},
-    "kwonsy": {"name": "권순형", "position": "서울고법 부장판사"},
-    "eumsf": {"name": "엄상필", "position": "대법관"},
-    "nogp": {"name": "노경필", "position": "대법관"},
-    "ohsk": {"name": "오석준", "position": "대법관"},
-    "ohkm": {"name": "오경미", "position": "대법관"},
-    "leesy": {"name": "이숙연", "position": "대법관"}
+    "wooin": {
+      "name": "우인성",
+      "position": "서울중앙지법 부장판사"
+    },
+    "leejk": {
+      "name": "이진관",
+      "position": "서울중앙지법 부장판사"
+    },
+    "chohw": {
+      "name": "조형우",
+      "position": "서울중앙지법 부장판사"
+    },
+    "chobg": {
+      "name": "조병구",
+      "position": "서울중앙지법 부장판사"
+    },
+    "chosp": {
+      "name": "조순표",
+      "position": "서울중앙지법 부장판사"
+    },
+    "kimint": {
+      "name": "김인택",
+      "position": "창원지법 부장판사"
+    },
+    "shinto": {
+      "name": "신종오",
+      "position": "서울고법 고법판사"
+    },
+    "seonge": {
+      "name": "성언주",
+      "position": "서울고법 고법판사"
+    },
+    "wonik": {
+      "name": "원익선",
+      "position": "서울고법 고법판사"
+    },
+    "guhg": {
+      "name": "구회근",
+      "position": "서울고법 부장판사"
+    },
+    "baeksy": {
+      "name": "백승엽",
+      "position": "서울고법 고법판사"
+    },
+    "hwangst": {
+      "name": "황승태",
+      "position": "서울고법 고법판사"
+    },
+    "kimyhy": {
+      "name": "김영현",
+      "position": "서울고법 고법판사"
+    },
+    "kimms": {
+      "name": "김무신",
+      "position": "서울고법 고법판사"
+    },
+    "leewh": {
+      "name": "이우희",
+      "position": "서울고법 고법판사"
+    },
+    "yoodg": {
+      "name": "유동균",
+      "position": "서울고법 고법판사"
+    },
+    "kimjw": {
+      "name": "김종우",
+      "position": "서울고법 고법판사"
+    },
+    "parkjz": {
+      "name": "박정제",
+      "position": "서울고법 고법판사"
+    },
+    "mindg": {
+      "name": "민달기",
+      "position": "서울고법 고법판사"
+    },
+    "leehj": {
+      "name": "이희준",
+      "position": "서울고법 고법판사"
+    },
+    "kimgn": {
+      "name": "김구년",
+      "position": "부산고법 창원재판부 고법판사"
+    },
+    "kwonsy": {
+      "name": "권순형",
+      "position": "서울고법 부장판사"
+    },
+    "eumsf": {
+      "name": "엄상필",
+      "position": "대법관"
+    },
+    "nogp": {
+      "name": "노경필",
+      "position": "대법관"
+    },
+    "ohsk": {
+      "name": "오석준",
+      "position": "대법관"
+    },
+    "ohkm": {
+      "name": "오경미",
+      "position": "대법관"
+    },
+    "leesy": {
+      "name": "이숙연",
+      "position": "대법관"
+    }
   },
   "meta": {
     "info": {
-      "asOf": "2026-11-09",
+      "asOf": "2026-11-12",
       "basis": "언론 보도 종합"
     },
     "graphLinks": {
       "label": "청탁·금품 제공 계통",
       "links": [
-        {"source": "myungtk", "target": "yoon", "note": "대선 여론조사 58회 무상 제공 · 공천 개입 청탁"},
-        {"source": "myungtk", "target": "kimkh", "note": "무상 여론조사 제공 (1·2심 무죄 판단)"},
-        {"source": "myungtk", "target": "kimys", "note": "창원 의창 공천 대가 의혹 금원"},
-        {"source": "ohsh", "target": "myungtk", "note": "여론조사 의뢰 · 비용 대납 지시"},
-        {"source": "hanhj", "target": "yunyh", "note": "교단 자금 동원 지시"},
-        {"source": "yunyh", "target": "jeonsb", "note": "샤넬 가방·그라프 목걸이 전달 지시"},
-        {"source": "jeonsb", "target": "kimkh", "note": "통일교 청탁 금품 전달"},
-        {"source": "yunyh", "target": "kweonsd", "note": "불법 정치자금 1억원 제공"},
-        {"source": "leebg", "target": "kimkh", "note": "맏사위 인사 청탁 · 귀금속 제공"},
-        {"source": "leebj", "target": "kimkh", "note": "임명 청탁 · 금거북이 제공"},
-        {"source": "seosb", "target": "kimkh", "note": "사업 지원 청탁 · 바쉐론 시계 제공"},
-        {"source": "choijy", "target": "kimkh", "note": "직무 청탁 · 디올 가방 제공"},
-        {"source": "kwonos", "target": "leejh", "note": "도이치모터스 시세조종 공모"}
+        {
+          "source": "myungtk",
+          "target": "yoon",
+          "note": "대선 여론조사 58회 무상 제공 · 공천 개입 청탁"
+        },
+        {
+          "source": "myungtk",
+          "target": "kimkh",
+          "note": "무상 여론조사 제공 (1·2심 무죄 판단)"
+        },
+        {
+          "source": "myungtk",
+          "target": "kimys",
+          "note": "창원 의창 공천 대가 의혹 금원"
+        },
+        {
+          "source": "ohsh",
+          "target": "myungtk",
+          "note": "여론조사 의뢰 · 비용 대납 지시"
+        },
+        {
+          "source": "hanhj",
+          "target": "yunyh",
+          "note": "교단 자금 동원 지시"
+        },
+        {
+          "source": "yunyh",
+          "target": "jeonsb",
+          "note": "샤넬 가방·그라프 목걸이 전달 지시"
+        },
+        {
+          "source": "jeonsb",
+          "target": "kimkh",
+          "note": "통일교 청탁 금품 전달"
+        },
+        {
+          "source": "yunyh",
+          "target": "kweonsd",
+          "note": "불법 정치자금 1억원 제공"
+        },
+        {
+          "source": "leebg",
+          "target": "kimkh",
+          "note": "맏사위 인사 청탁 · 귀금속 제공"
+        },
+        {
+          "source": "leebj",
+          "target": "kimkh",
+          "note": "임명 청탁 · 금거북이 제공"
+        },
+        {
+          "source": "seosb",
+          "target": "kimkh",
+          "note": "사업 지원 청탁 · 바쉐론 시계 제공"
+        },
+        {
+          "source": "choijy",
+          "target": "kimkh",
+          "note": "직무 청탁 · 디올 가방 제공"
+        },
+        {
+          "source": "kwonos",
+          "target": "leejh",
+          "note": "도이치모터스 시세조종 공모"
+        }
       ]
     },
-    "updated": "2026-11-09T22:45:00+09:00"
+    "updated": "2026-11-12T07:35:00+09:00"
   }
 }
