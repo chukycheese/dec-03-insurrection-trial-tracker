@@ -49,7 +49,7 @@
       "title": "강의구 사후 계엄선포문 작성",
       "charge": "허위공문서 작성·행사, 공용서류손상, 대통령기록물법 위반",
       "status": "final",
-      "note": "",
+      "note": "2026-10-27 대법원 확정판결(징역 1년 6개월)에 불복해 2026-11-12 헌법재판소에 재판소원을 청구했습니다(11-13 보도, 연합뉴스 등).",
       "defendantIds": [
         "kangeg"
       ]
@@ -340,16 +340,27 @@
     "cho-3": {
       "caseId": "cho",
       "level": 3,
-      "date": "",
+      "date": "2026-11-18",
       "kind": "pending",
-      "court": "대법원",
-      "judgeIds": [],
-      "result": "상고심",
-      "summary": "상고 접수 여부는 보도로 직접 확인하지 못했습니다",
-      "sources": [],
+      "court": "대법원 3부",
+      "judgeIds": [
+        "osj"
+      ],
+      "result": "상고심 선고 예정 (11.18 오전 11시)",
+      "summary": "대법원 3부, 11.18 선고기일 지정",
+      "sources": [
+        [
+          "뉴시스",
+          "https://www.newsis.com/view/NISX20261112_0003866009"
+        ],
+        [
+          "파이낸셜뉴스",
+          "https://www.fnnews.com/news/202611121643222887"
+        ]
+      ],
       "caseNo": "",
       "requested": "",
-      "judgeNote": ""
+      "judgeNote": "주심 오석준"
     },
     "choo-1": {
       "caseId": "choo",
@@ -2582,6 +2593,10 @@
     },
     "kimdh": {
       "name": "김동현"
+    },
+    "osj": {
+      "name": "오석준",
+      "position": "대법관"
     }
   },
   "meta": {
@@ -2589,6 +2604,6 @@
       "asOf": "2026-11-16",
       "basis": "언론 보도 종합"
     },
-    "updated": "2026-11-16T15:25:00+09:00"
+    "updated": "2026-11-17T00:15:00+09:00"
   }
 }
