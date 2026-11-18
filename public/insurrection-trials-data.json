@@ -4,8 +4,8 @@
       "order": 12,
       "title": "조태용 국회 위증·정치관여",
       "charge": "직무유기, 국정원법 위반, 국회증언감정법 위반, 증거인멸, 위증 등",
-      "status": "sup",
-      "note": "2심 재판부를 세계일보는 형사6-3부(민달기 재판장)로 보도했습니다. 결심 공판 보도는 형사1부로 일치합니다.",
+      "status": "final",
+      "note": "2심 재판부를 세계일보는 형사6-3부(민달기 재판장)로 보도했습니다. 결심 공판 보도는 형사1부로 일치합니다. 2026-11-18 대법원 3부(주심 오석준)가 특검·피고인 측 상고를 모두 기각해 원심이 확정됐습니다.",
       "defendantIds": [
         "choty"
       ]
@@ -14,8 +14,8 @@
       "order": 9,
       "title": "추경호 계엄 해제 표결 방해",
       "charge": "내란 중요임무 종사",
-      "status": "sched",
-      "note": "",
+      "status": "trial",
+      "note": "선고 직후라 특검의 항소 여부는 보도로 확인되지 않았습니다. 1심 무죄로 대구시장직은 유지됩니다.",
       "defendantIds": [
         "choogh"
       ]
@@ -345,47 +345,56 @@
       "caseId": "cho",
       "level": 3,
       "date": "2026-11-18",
-      "kind": "pending",
+      "kind": "ruling",
       "court": "대법원 3부",
       "judgeIds": [
         "osj"
       ],
-      "result": "상고심 선고 예정 (11.18 오전 11시)",
-      "summary": "대법원 3부, 11.18 선고기일 지정",
+      "result": "상고 기각 · 징역 2년 6개월·자격정지 2년 6개월 확정",
+      "summary": "대법원 3부(주심 오석준)가 특검과 조 전 원장 측 상고를 모두 기각해 원심이 확정됐습니다. 홍장원 전 1차장의 '정치인 체포 지시 보고'를 받고도 이를 부인한 기자회견·인터뷰·문자 발송은 윤석열 탄핵 저지 목적의 국정원법상 정치관여 행위로 유죄 확정. 국회 국조특위·헌재 위증과 홍 전 차장 비화폰 통화기록 삭제(증거인멸)도 유죄 확정. 대법원은 \"국정원법상 정치관여 금지 규정은 국정원의 조직적·집단적 역량이 국내정치 개입에 전용되는 것을 차단해 국정원의 정치적 중립성을 보장하고 정보기관으로서 본연의 기능을 충실하게 수행하도록 하는 데 그 취지가 있다\"고 판시했습니다. 국회 미보고 직무유기, 국정원 CCTV 영상 편향 제공(국정원법 위반), 계엄 관련 문건 부인 부분의 위증·허위공문서 작성·행사 일부는 무죄 확정.",
+      "requested": "",
       "sources": [
         [
-          "뉴시스",
-          "https://www.newsis.com/view/NISX20261112_0003866009"
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20261118082451004"
         ],
         [
-          "파이낸셜뉴스",
-          "https://www.fnnews.com/news/202611121643222887"
+          "시사저널",
+          "https://www.sisajournal.com/news/articleView.html?idxno=394440"
         ]
       ],
       "caseNo": "",
-      "requested": "",
       "judgeNote": "주심 오석준"
     },
     "choo-1": {
       "caseId": "choo",
+      "quote": {
+        "text": "윤석열이 당시 피고인에게 계엄 해제 표결 저지를 요청했다고 보기 어렵다. 설령 윤석열의 요청이 있었다고 하더라도, 특검이 제출한 증거만으로는 이 요청을 피고인이 승낙했다고 보기도 어렵다.",
+        "speaker": "재판장 한성진 부장판사",
+        "context": "1심 무죄 판시"
+      },
       "level": 1,
       "date": "2026-11-18",
-      "kind": "pending",
+      "kind": "ruling",
       "court": "서울중앙지법 형사합의34부",
       "judgeIds": [
         "hansj"
       ],
-      "result": "선고 예정 (11.18 오후 2시)",
-      "summary": "9.30 결심",
+      "result": "무죄",
+      "summary": "내란중요임무종사 혐의 무죄. 재판부는 윤석열 전 대통령이 피고인에게 계엄 해제 표결 저지를 요청했다고 보기 어렵고, 설령 요청이 있었더라도 특검 제출 증거만으로는 피고인이 이를 승낙했다고 보기 어렵다며, 의원총회 장소를 국회→당사→국회→당사로 세 차례 바꾼 표결 방해 고의와 내란 가담을 인정하지 않았습니다. 당시 국민의힘 의원 108명 중 90명이 계엄 해제 표결에 참여하지 못했고, 결의안은 재석 190명 전원 찬성으로 가결됐습니다.",
       "requested": "징역 20년",
       "sources": [
         [
-          "뉴시스",
-          "https://www.newsis.com/view/NISX20260930_0003809440"
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20261118118400004"
+        ],
+        [
+          "한겨레",
+          "https://www.hani.co.kr/arti/society/society_general/1287915.html"
         ]
       ],
       "caseNo": "",
-      "judgeNote": ""
+      "judgeNote": "재판장 한성진"
     },
     "generals-1": {
       "caseId": "generals",
@@ -2019,6 +2028,22 @@
       "outcome": "무죄",
       "sentence": "무죄",
       "requested": ""
+    },
+    "cho-3-choty": {
+      "rulingId": "cho-3",
+      "caseId": "cho",
+      "personId": "choty",
+      "outcome": "일부 유죄",
+      "sentence": "징역 2년 6개월·자격정지 2년 6개월 확정",
+      "requested": ""
+    },
+    "choo-1-choogh": {
+      "rulingId": "choo-1",
+      "caseId": "choo",
+      "personId": "choogh",
+      "outcome": "무죄",
+      "sentence": "무죄",
+      "requested": "징역 20년"
     }
   },
   "people": {
@@ -2063,7 +2088,7 @@
       "role": "당시 국민의힘 원내대표(현 대구시장)",
       "category": "국회·정계",
       "keyRole": "비상계엄 해제 표결 방해 목적 의원총회 지연 및 표결 불참 유도",
-      "statusNote": "1심 선고 예정 (11.18, 특검 징역 20년 구형)",
+      "statusNote": "1심 무죄 (11.18 선고 · 특검 징역 20년 구형)",
       "photo": "assets/photos/choogh",
       "photoAlt": "추경호 당시 국민의힘 원내대표 프로필 사진",
       "photoCredit": "국민의힘TV",
@@ -2076,7 +2101,7 @@
       "role": "전 국가정보원장",
       "category": "정부·국무위원",
       "keyRole": "국정원 비상계엄 국회 미보고(직무유기), 헌재 위증, 허위공문서 작성",
-      "statusNote": "1심 징역 1년 6개월 → 2심 징역 2년 6개월",
+      "statusNote": "1심 징역 1년 6개월 → 2심 징역 2년 6개월 → 징역 2년 6개월·자격정지 2년 6개월 대법원 확정",
       "photo": "assets/photos/choty",
       "photoAlt": "조태용 전 국가정보원장 프로필 사진",
       "photoCredit": "U.S. Department of State",
@@ -2677,9 +2702,9 @@
   },
   "meta": {
     "info": {
-      "asOf": "2026-11-17",
+      "asOf": "2026-11-18",
       "basis": "언론 보도 종합"
     },
-    "updated": "2026-11-17T15:20:00+09:00"
+    "updated": "2026-11-18T15:35:00+09:00"
   }
 }
