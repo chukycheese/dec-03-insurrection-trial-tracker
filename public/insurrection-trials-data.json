@@ -361,9 +361,13 @@
         [
           "시사저널",
           "https://www.sisajournal.com/news/articleView.html?idxno=394440"
+        ],
+        [
+          "법률신문",
+          "https://www.lawtimes.co.kr/news/articleView.html?idxno=229628"
         ]
       ],
-      "caseNo": "",
+      "caseNo": "2026도13473",
       "judgeNote": "주심 오석준"
     },
     "choo-1": {
