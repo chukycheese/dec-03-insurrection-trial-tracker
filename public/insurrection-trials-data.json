@@ -438,8 +438,8 @@
           "https://khan.co.kr/article/202609212126015"
         ],
         [
-          "허프포스트",
-          "https://www.huffingtonpost.kr/article/260689"
+          "MBC",
+          "https://imnews.imbc.com/news/2026/society/article/6853309_36918.html"
         ]
       ],
       "caseNo": "",
@@ -520,10 +520,6 @@
         [
           "뉴스핌(주문)",
           "https://search.newspim.com/news/view/20261119001308"
-        ],
-        [
-          "인사이트(속보)",
-          "https://web.insight.co.kr/news/582814"
         ],
         [
           "연합뉴스(속보)",
@@ -1187,7 +1183,7 @@
     "yoon-drone-1": {
       "caseId": "yoon-drone",
       "quote": {
-        "text": "피고인들은 비상계엄 상황을 조성할 목적으로 군사작전의 외형을 이용해 북한의 도발을 유도했다. 군사작전이라는 외형을 만들어 군인들을 사적 목적으로 이용한 것은 대통령과 국방부 장관이 국가의 안전보장과 국토방위 등 정당한 목적으로만 군사력을 사용할 것이라는 국민의 기본적인 믿음을 배신한 행위다.",
+        "text": "피고인들은 비상계엄 선포 상황을 조성할 목적으로 북한의 도발을 유도했다. 군사작전이란 외형으로 군인들을 사적 목적으로 이용한 것은 대통령과 국방부 장관이 정당한 목적으로만 군사력을 사용할 것이란 국민의 기본적인 믿음을 배신한 행위다.",
         "speaker": "재판장 이정엽 부장판사",
         "context": "1심 양형 이유"
       },
@@ -1203,12 +1199,12 @@
       "requested": "윤석열 30년 · 김용현 25년",
       "sources": [
         [
-          "위키트리",
-          "https://www.wikitree.co.kr/articles/1141065"
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20260612072852004"
         ],
         [
-          "인사이트",
-          "https://www.insight.co.kr/news/558326"
+          "서울신문",
+          "https://www.seoul.co.kr/news/society/2026/06/12/20260612500130"
         ]
       ],
       "caseNo": "",
@@ -1340,8 +1336,8 @@
       "requested": "벌금 1,000만원",
       "sources": [
         [
-          "위키트리",
-          "https://www.wikitree.co.kr/articles/1159872"
+          "한국경제",
+          "https://www.hankyung.com/article/2026091682817"
         ],
         [
           "연합뉴스",
