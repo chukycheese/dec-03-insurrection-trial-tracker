@@ -15,6 +15,12 @@ const datasets = [
 ];
 const requiredSections = ["cases", "rulings", "sentences", "people", "judges", "meta"];
 const IMP_FILE = "impeachment-assembly-data.json";
+// 오프라인 사본이 내장하는 재판 데이터: [EMBEDDED.<이름>, 원본 JSON]
+const OFFLINE_EMBEDDED = [
+  ["dec03", "insurrection-trials-data.json"],
+  ["kim", "kim-trials-data.json"],
+  ["chae", "chae-trials-data.json"],
+];
 const IMP_PARTIES = ["더불어민주당", "국민의힘", "조국혁신당", "개혁신당", "진보당", "기본소득당", "사회민주당", "무소속"];
 const IMP_VOTE1 = ["참석", "불참", "미재임"];
 const IMP_VOTE0 = ["참석", "불참", "미재임"];
@@ -146,34 +152,36 @@ function validateDataset(file, data) {
 function validateOfflineHtml(file) {
   const html = readFileSync(file, "utf8");
   // 오프라인 사본은 index.html 과 같은 앱이며, 재판 데이터는 EMBEDDED.* 로 내장되어 있다.
-  const match = html.match(/^EMBEDDED\.dec03=(\{.*\});$/m);
-  if (!match) {
-    warn(file, "내장 데이터 블록(EMBEDDED.dec03)을 찾지 못했습니다 (scripts/build-offline.py 로 다시 생성하세요)");
-    return;
-  }
-  let embedded;
-  try {
-    embedded = JSON.parse(match[1]);
-  } catch (error) {
-    fail(file, `내장 데이터 JSON 파싱 실패: ${error.message}`);
-    return;
-  }
-  for (const section of requiredSections) {
-    if (!isObject(embedded[section])) {
-      fail(file, `내장 데이터에 "${section}" 섹션이 없습니다`);
+  for (const [name, source] of OFFLINE_EMBEDDED) {
+    const match = html.match(new RegExp(`^EMBEDDED\\.${name}=(\\{.*\\});$`, "m"));
+    if (!match) {
+      warn(file, `내장 데이터 블록(EMBEDDED.${name})을 찾지 못했습니다 (scripts/build-offline.py 로 다시 생성하세요)`);
+      continue;
     }
-  }
-  const current = JSON.parse(readFileSync(join(publicDir, "insurrection-trials-data.json"), "utf8"));
-  for (const section of ["cases", "rulings", "people", "judges"]) {
-    const embeddedIds = new Set(Object.keys(embedded[section] || {}));
-    const currentIds = new Set(Object.keys(current[section] || {}));
-    const missing = [...currentIds].filter((id) => !embeddedIds.has(id));
-    const extra = [...embeddedIds].filter((id) => !currentIds.has(id));
-    if (missing.length) {
-      warn(file, `내장 ${section} 에 현재 데이터의 항목이 없습니다: ${missing.slice(0, 5).join(", ")}`);
+    let embedded;
+    try {
+      embedded = JSON.parse(match[1]);
+    } catch (error) {
+      fail(file, `EMBEDDED.${name} 내장 데이터 JSON 파싱 실패: ${error.message}`);
+      continue;
     }
-    if (extra.length) {
-      warn(file, `내장 ${section} 에 현재 데이터에 없는 항목이 있습니다: ${extra.slice(0, 5).join(", ")}`);
+    for (const section of requiredSections) {
+      if (!isObject(embedded[section])) {
+        fail(file, `EMBEDDED.${name} 내장 데이터에 "${section}" 섹션이 없습니다`);
+      }
+    }
+    const current = JSON.parse(readFileSync(join(publicDir, source), "utf8"));
+    for (const section of ["cases", "rulings", "people", "judges"]) {
+      const embeddedIds = new Set(Object.keys(embedded[section] || {}));
+      const currentIds = new Set(Object.keys(current[section] || {}));
+      const missing = [...currentIds].filter((id) => !embeddedIds.has(id));
+      const extra = [...embeddedIds].filter((id) => !currentIds.has(id));
+      if (missing.length) {
+        warn(file, `${name} 내장 ${section} 에 현재 데이터의 항목이 없습니다: ${missing.slice(0, 5).join(", ")}`);
+      }
+      if (extra.length) {
+        warn(file, `${name} 내장 ${section} 에 현재 데이터에 없는 항목이 있습니다: ${extra.slice(0, 5).join(", ")}`);
+      }
     }
   }
 }
@@ -431,6 +439,21 @@ if (indexHtml.includes('data-view="impeachment"')) fail("index.html", "하단 �
 if (!indexHtml.includes('"impeachment-assembly-data.json"')) fail("index.html", "탄핵 표결 데이터 fetch 가 없습니다");
 if (!indexHtml.includes("function renderImpeachment")) fail("index.html", "renderImpeachment 함수가 없습니다");
 console.log(errors === idxBefore ? "통과" : "실패");
+
+process.stdout.write("- index.html fetch 전용(내장 JSON 없음) ... ");
+const liteBefore = errors;
+for (const [name, source] of OFFLINE_EMBEDDED) {
+  if (indexHtml.includes(`EMBEDDED.${name}=`)) {
+    fail("index.html", `내장 데이터(EMBEDDED.${name})가 남아 있습니다. 온라인 배포본은 fetch 로만 데이터를 읽습니다`);
+  }
+  if (!indexHtml.includes(`"${source}"`)) {
+    fail("index.html", `데이터셋 fetch 경로가 없습니다: ${source}`);
+  }
+}
+if (!indexHtml.includes("const EMBEDDED={};")) {
+  fail("index.html", "오프라인 내장 지점(const EMBEDDED={};)이 없습니다 (scripts/build-offline.py 가 여기에 주입합니다)");
+}
+console.log(errors === liteBefore ? "통과" : "실패");
 
 console.log(`\n결과: 오류 ${errors}건, 경고 ${warnings}건`);
 if (errors > 0) process.exit(1);
