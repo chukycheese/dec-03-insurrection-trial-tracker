@@ -431,29 +431,87 @@ console.log(errors === before ? "통과" : "실패");
 
 if (impData) validateOfflineImpeachment(join(publicDir, "insurrection-trials-offline.html"), impData);
 
-process.stdout.write("- index.html 탄핵 표결 스위처 ... ");
-const idxBefore = errors;
+// ── CSS/JS 분리 구조: index.html 은 마크업, styles.css · core.js · app.js 는 바깥 파일 ──────
+process.stdout.write("- index.html CSS/JS 분리 링크 ... ");
+const splitBefore = errors;
 const indexHtml = readFileSync(join(publicDir, "index.html"), "utf8");
+const appJs = readFileSync(join(publicDir, "app.js"), "utf8");
+const coreJs = readFileSync(join(publicDir, "core.js"), "utf8");
+readFileSync(join(publicDir, "styles.css"), "utf8");   // 존재 확인
+if (!indexHtml.includes('<link rel="stylesheet" href="styles.css">')) {
+  fail("index.html", "styles.css 스타일시트 링크가 없습니다");
+}
+if (!indexHtml.includes('<script src="core.js"></script>')) {
+  fail("index.html", "core.js 스크립트가 없습니다 (app.js 보다 먼저 로드해야 합니다)");
+}
+if (!indexHtml.includes('<script src="app.js"></script>')) {
+  fail("index.html", "app.js 스크립트가 없습니다");
+}
+const coreAt = indexHtml.indexOf('<script src="core.js">');
+const appAt = indexHtml.indexOf('<script src="app.js">');
+if (coreAt >= 0 && appAt >= 0 && coreAt > appAt) {
+  fail("index.html", "core.js 가 app.js 뒤에 로드됩니다 (core.js 가 먼저여야 합니다)");
+}
+if (indexHtml.includes("<style>")) fail("index.html", "인라인 <style> 블록이 남아 있습니다");
+const inlineScript = indexHtml.match(/<script>(?!\s*<\/script>)([\s\S]*?)<\/script>/);
+if (inlineScript && inlineScript[1].trim()) fail("index.html", "인라인 <script> 블록이 남아 있습니다");
+for (const tag of ['href="styles.css"', 'src="core.js"', 'src="app.js"']) {
+  if (coreJs.includes(tag)) fail("core.js", `다른 파일 참조가 남아 있습니다: ${tag}`);
+}
+console.log(errors === splitBefore ? "통과" : "실패");
+
+process.stdout.write("- app.js 문법·모듈 경계 ... ");
+const appBefore = errors;
+try {
+  new Function(appJs);   // 실행하지 않고 문법만 검사한다
+} catch (error) {
+  fail("app.js", `문법 오류: ${error.message}`);
+}
+for (const pattern of ["document.getElementById", "localStorage.", "window.", "fetch("]) {
+  if (coreJs.includes(pattern)) fail("core.js", `순수 모듈에 브라우저 API(${pattern})가 들어 있습니다 (app.js 로 옮기세요)`);
+}
+if (!coreJs.includes("module.exports")) fail("core.js", "Node 단위 테스트용 module.exports 가 없습니다");
+console.log(errors === appBefore ? "통과" : "실패");
+
+process.stdout.write("- app.js 탄핵 표결 스위처 ... ");
+const idxBefore = errors;
 if (!indexHtml.includes('data-ds="impeachment"')) fail("index.html", "상단 스위처에 탄핵 표결 기록부가 없습니다");
 if (indexHtml.includes('data-view="impeachment"')) fail("index.html", "하단 탭에 탄핵 표결이 남아 있습니다");
-if (!indexHtml.includes('"impeachment-assembly-data.json"')) fail("index.html", "탄핵 표결 데이터 fetch 가 없습니다");
-if (!indexHtml.includes("function renderImpeachment")) fail("index.html", "renderImpeachment 함수가 없습니다");
+if (!appJs.includes('"impeachment-assembly-data.json"')) fail("app.js", "탄핵 표결 데이터 fetch 가 없습니다");
+if (!appJs.includes("function renderImpeachment")) fail("app.js", "renderImpeachment 함수가 없습니다");
 console.log(errors === idxBefore ? "통과" : "실패");
 
-process.stdout.write("- index.html fetch 전용(내장 JSON 없음) ... ");
+process.stdout.write("- app.js fetch 전용(내장 JSON 없음) ... ");
 const liteBefore = errors;
 for (const [name, source] of OFFLINE_EMBEDDED) {
-  if (indexHtml.includes(`EMBEDDED.${name}=`)) {
-    fail("index.html", `내장 데이터(EMBEDDED.${name})가 남아 있습니다. 온라인 배포본은 fetch 로만 데이터를 읽습니다`);
+  if (appJs.includes(`EMBEDDED.${name}=`)) {
+    fail("app.js", `내장 데이터(EMBEDDED.${name})가 남아 있습니다. 온라인 배포본은 fetch 로만 데이터를 읽습니다`);
   }
-  if (!indexHtml.includes(`"${source}"`)) {
-    fail("index.html", `데이터셋 fetch 경로가 없습니다: ${source}`);
+  if (!appJs.includes(`"${source}"`)) {
+    fail("app.js", `데이터셋 fetch 경로가 없습니다: ${source}`);
   }
 }
-if (!indexHtml.includes("const EMBEDDED={};")) {
-  fail("index.html", "오프라인 내장 지점(const EMBEDDED={};)이 없습니다 (scripts/build-offline.py 가 여기에 주입합니다)");
+if (!appJs.includes("const EMBEDDED={};")) {
+  fail("app.js", "오프라인 내장 지점(const EMBEDDED={};)이 없습니다 (scripts/build-offline.py 가 여기에 주입합니다)");
 }
 console.log(errors === liteBefore ? "통과" : "실패");
+
+process.stdout.write("- 오프라인 사본 단일 파일(외부 CSS/JS 없음) ... ");
+const singleBefore = errors;
+const offlineHtml = readFileSync(join(publicDir, "insurrection-trials-offline.html"), "utf8");
+for (const tag of ['href="styles.css"', 'src="core.js"', 'src="app.js"']) {
+  if (offlineHtml.includes(tag)) fail("insurrection-trials-offline.html", `외부 참조가 남아 있습니다: ${tag} (scripts/build-offline.py 로 다시 생성하세요)`);
+}
+if (!offlineHtml.includes("let OFFLINE_ONLY=true;")) {
+  fail("insurrection-trials-offline.html", "OFFLINE_ONLY 플래그가 켜져 있지 않습니다 (scripts/build-offline.py 로 다시 생성하세요)");
+}
+if (!offlineHtml.includes("const IMP_EMBEDDED =")) {
+  fail("insurrection-trials-offline.html", "IMP_EMBEDDED 내장 탄핵 데이터가 없습니다");
+}
+if (!offlineHtml.includes("// ===== core.js =====")) {
+  warn("insurrection-trials-offline.html", "core.js 인라인 표식을 찾지 못했습니다 (주석이 바뀌었는지 확인하세요)");
+}
+console.log(errors === singleBefore ? "통과" : "실패");
 
 console.log(`\n결과: 오류 ${errors}건, 경고 ${warnings}건`);
 if (errors > 0) process.exit(1);
