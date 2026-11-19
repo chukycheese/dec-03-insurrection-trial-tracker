@@ -933,13 +933,51 @@ function graphSetFullscreen(on){
 function graphToggleFullscreen(){graphSetFullscreen(!graphState.fullscreen)}
 window.addEventListener("keydown",e=>{if(e.key==="Escape"&&graphState.fullscreen)graphSetFullscreen(false)});
 
-function renderGraph(){
+// d3 는 관계도 뷰에서만 쓰므로 <head> 에서 미리 받지 않고, 관계도를 처음 열 때 한 번만 주입한다.
+// 같은 스크립트를 동시에 여러 번 요청하지 않도록 진행 중인 로딩 Promise 를 공유하고(ensureD3),
+// 실패하면 캐시를 비워 다음 시도(탭 재진입·새로고침)에서 다시 불러올 수 있게 한다.
+const D3_CDN="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js";
+let d3Loading=null;
+function ensureD3(){
+  if(window.d3)return Promise.resolve(window.d3);
+  if(d3Loading)return d3Loading;
+  d3Loading=new Promise((resolve,reject)=>{
+    const s=document.createElement("script");
+    s.src=D3_CDN;
+    s.async=true;
+    s.onload=()=>{window.d3?resolve(window.d3):reject(new Error("d3 스크립트를 불러왔지만 전역 d3 가 없습니다"))};
+    s.onerror=()=>{s.remove();reject(new Error("d3 스크립트를 불러오지 못했습니다"))};
+    document.head.appendChild(s);
+  }).catch(err=>{d3Loading=null;throw err});
+  return d3Loading;
+}
+
+// 관계도 렌더 순서: d3 로딩을 기다리는 사이 다시 렌더가 걸리면(탭 이동·리사이즈) 마지막 렌더만 반영한다.
+let graphRenderSeq=0;
+function graphLoadingHTML(){
+  return `<div class="graph-loading" role="status">관계도 그래프(d3.js)를 불러오는 중입니다…</div>`;
+}
+async function renderGraph(){
   const outer=document.getElementById("graph-canvas-outer");
   if(!outer)return;
+  const seq=++graphRenderSeq;
   if(!window.d3){
-    outer.innerHTML=`<div class="empty-state" style="margin:16px">관계도 라이브러리(D3.js)를 불러오지 못했습니다. 네트워크 연결 상태를 확인한 뒤 새로고침해 주세요.</div>`;
     renderGraphFilters(0);
-    return;
+    if(!outer.querySelector(".graph-loading"))outer.insertAdjacentHTML("beforeend",graphLoadingHTML());
+    try{
+      await ensureD3();
+    }catch(err){
+      if(seq!==graphRenderSeq)return;
+      outer.querySelectorAll(".graph-loading").forEach(msg=>{
+        msg.className="graph-loading graph-loading-error";
+        msg.textContent="관계도 라이브러리(D3.js)를 불러오지 못했습니다. 네트워크 연결 상태를 확인한 뒤 [관계도] 탭을 다시 눌러 주세요.";
+      });
+      return;
+    }
+    if(seq!==graphRenderSeq)return;
+    // 불러오는 동안 다른 기록부·탭으로 이동했으면 그리지 않는다(이미 감춰진 뷰를 건드리지 않기 위해).
+    if(state.view!=="graph"||state.dataset==="impeachment"||document.getElementById("graph-canvas-outer")!==outer)return;
+    outer.querySelectorAll(".graph-loading").forEach(msg=>msg.remove());
   }
   const {nodes,links}=buildGraphData();
   renderGraphFilters(nodes.length);
