@@ -5,6 +5,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildOfflineHtml } from "./offline-build.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const publicDir = join(root, "public");
@@ -41,6 +42,15 @@ function warn(file, message) {
 
 function isObject(value) {
   return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+// 두 문자열이 처음으로 달라지는 위치(0부터). 같으면 -1
+function firstDifference(a, b) {
+  const limit = Math.min(a.length, b.length);
+  for (let i = 0; i < limit; i += 1) {
+    if (a[i] !== b[i]) return i;
+  }
+  return a.length === b.length ? -1 : limit;
 }
 
 function checkDate(file, label, value) {
@@ -512,6 +522,43 @@ if (!offlineHtml.includes("// ===== core.js =====")) {
   warn("insurrection-trials-offline.html", "core.js 인라인 표식을 찾지 못했습니다 (주석이 바뀌었는지 확인하세요)");
 }
 console.log(errors === singleBefore ? "통과" : "실패");
+
+// ── 오프라인 사본 동기화: 현재 소스로 다시 만들어 커밋된 사본과 바이트 단위로 비교한다 ────────
+// index.html · styles.css · core.js · app.js · JSON 4종 중 하나라도 바뀌고 사본을 다시 만들지 않으면 실패한다.
+process.stdout.write("- 오프라인 사본 동기화(HTML·CSS·JS·JSON) ... ");
+const syncBefore = errors;
+try {
+  const regenerated = buildOfflineHtml();
+  if (regenerated !== offlineHtml) {
+    const at = firstDifference(regenerated, offlineHtml);
+    fail(
+      "insurrection-trials-offline.html",
+      `현재 소스로 다시 만든 사본과 다릅니다 (첫 차이 ${at.toLocaleString("en-US")}번째 글자 · 커밋된 사본 ` +
+        `${offlineHtml.length.toLocaleString("en-US")}자 · 생성본 ${regenerated.length.toLocaleString("en-US")}자) ` +
+        "— npm run build:offline 으로 다시 생성하세요",
+    );
+  }
+} catch (error) {
+  fail("insurrection-trials-offline.html", `현재 소스로 다시 만들지 못했습니다: ${error.message}`);
+}
+console.log(errors === syncBefore ? "통과" : "실패");
+
+// ── d3 지연 로딩: d3@7 은 관계도 뷰를 처음 열 때 app.js 가 한 번만 주입한다 ────────────────
+process.stdout.write("- d3 지연 로딩(관계도 진입 시 1회) ... ");
+const d3Before = errors;
+if (/<script[^>]+d3[^>]*\.js/i.test(indexHtml)) {
+  fail("index.html", "d3 스크립트를 즉시 불러오고 있습니다 (관계도 뷰에서만 지연 로딩해야 합니다)");
+}
+if (!/function ensureD3\(/.test(appJs)) {
+  fail("app.js", "ensureD3 지연 로더가 없습니다");
+}
+if (!appJs.includes("await ensureD3()")) {
+  fail("app.js", "renderGraph 가 d3 로딩을 기다리지 않습니다");
+}
+if (indexHtml.includes("d3@7") || offlineHtml.includes('src="https://cdn.jsdelivr.net/npm/d3@7')) {
+  fail("index.html", "d3 CDN 주소가 HTML 에 남아 있습니다 (app.js 의 D3_CDN 하나로 관리하세요)");
+}
+console.log(errors === d3Before ? "통과" : "실패");
 
 console.log(`\n결과: 오류 ${errors}건, 경고 ${warnings}건`);
 if (errors > 0) process.exit(1);
