@@ -211,6 +211,11 @@
     },
     "chae-im-negligence-2": {
       "caseId": "chae-im-negligence-1",
+      "quote": {
+        "text": "임 전 사단장은 수해 현장에서 순직한 채상병의 상급 부대장으로서 대원들의 생명·신체의 안전을 보호할 의무를 저버렸고, 이런 지시들이 순차 전달돼 결국 위험한 수중수색으로 이어지게 됐다. 다만 박 전 여단장이 작전을 지속한 것이 임 전 사단장이 작전통제권을 행사한 결과라고 단정하기는 어렵다.",
+        "speaker": "부장판사 전지원·김인겸·성지용",
+        "context": "항소심 판시"
+      },
       "level": 2,
       "date": "2026-08-07",
       "kind": "ruling",
@@ -264,6 +269,11 @@
     },
     "chae-im-perjury-1": {
       "caseId": "chae-im-perjury-1",
+      "quote": {
+        "text": "국회에서의 위증은 국민을 상대로 거짓말을 하는 것으로 볼 수 있고, 국민을 대표하는 국회에서 국민의 신뢰를 훼손한 것은 비난 가능성이 결코 적지 않으며 범행 이후의 정황도 좋지 않다.",
+        "speaker": "재판장 조형우 부장판사",
+        "context": "1심 양형 이유"
+      },
       "level": 1,
       "date": "2026-06-11",
       "kind": "ruling",
@@ -289,6 +299,11 @@
     },
     "chae-im-perjury-2": {
       "caseId": "chae-im-perjury-1",
+      "quote": {
+        "text": "국회에서 기억에 반하는 허위 사실을 증언하는 것은 국회의 권위를 훼손하고 다수 국민에게 광범위한 영향을 미칠 수 있어 엄정한 처벌이 필요하다. 다만 이종호를 통한 구명로비 의혹이 결국 사실로 밝혀지지 않았고, 국가를 위해 헌신해온 점 등을 고려했다.",
+        "speaker": "고법판사 김영현·백승엽·황승태",
+        "context": "항소심 양형 이유"
+      },
       "level": 2,
       "date": "2026-09-22",
       "kind": "ruling",
@@ -316,6 +331,11 @@
     },
     "chae-lee-australia-1": {
       "caseId": "chae-lee-australia-1",
+      "quote": {
+        "text": "대사 임명 논의 및 절차가 진행되던 약 4개월간 이 전 장관은 공수처에 고발만 됐을 뿐 수사가 진행되지 않아 윤 전 대통령이 수사를 저지·방해하려는 의도를 인정하기 어렵고, 대사로 임명되면 활동이 공개되고 대사관을 통해 상시 연락이 가능하기 때문에 소재가 오히려 더 명확해진다.",
+        "speaker": "재판장 조형우 부장판사",
+        "context": "1심 무죄 판시"
+      },
       "level": 1,
       "date": "2026-09-11",
       "kind": "ruling",
@@ -397,6 +417,11 @@
     },
     "chae-defense-pressure-yoogyh-1": {
       "caseId": "chae-defense-pressure-1",
+      "quote": {
+        "text": "자료 제출 요구가 법적 요건을 충족하지 않는 것이라 해도 행정부처가 이에 답변하기로 한 이상 사실대로 해야 하고, 이 사건 범행의 죄질이 가볍지는 않다. 다만 군사경찰 감축안을 없던 것으로 하자는 상부 지시가 있었고 국방부가 감축안 검토 의혹을 부인하는 입장을 발표한 상황에서 사실대로 답하는 것이 쉬운 일은 아니었을 것으로 보인다.",
+        "speaker": "재판장 우인성 부장판사",
+        "context": "1심 양형 이유"
+      },
       "level": 1,
       "date": "2026-11-06",
       "kind": "ruling",
@@ -445,6 +470,11 @@
     },
     "chae-prosecution-illegal-1": {
       "caseId": "chae-prosecution-illegal-1",
+      "quote": {
+        "text": "구속영장 청구서에 적은 망상 관련 부분은 의견이나 판단을 기재한 것으로 보이고, 다소 과격한 표현이 사용됐더라도 허위공문서 작성죄로 보기 어렵다.",
+        "speaker": "재판장 이영선 부장판사",
+        "context": "1심 무죄 판시"
+      },
       "level": 1,
       "date": "2026-06-12",
       "kind": "ruling",
@@ -470,6 +500,11 @@
     },
     "chae-prosecution-illegal-2": {
       "caseId": "chae-prosecution-illegal-1",
+      "quote": {
+        "text": "구속영장 청구서는 검사가 수사 사항에 대한 판단 및 주장을 담은 문서인 만큼 증명적 기능을 가진 공문서로 보기 어렵고, 이들이 고의로 허위 내용을 기재했다고 보기 어렵다.",
+        "speaker": "재판장 구회근 부장판사",
+        "context": "항소심 무죄 판시"
+      },
       "level": 2,
       "date": "2026-09-11",
       "kind": "ruling",
@@ -510,6 +545,11 @@
     },
     "chae-battalion-negligence-1": {
       "caseId": "chae-battalion-negligence-1",
+      "quote": {
+        "text": "피고인의 지시로 위험이 커졌고, 수중수색 사실을 알면서도 적절한 지휘권을 행사해 수색을 금지하거나 안전 장비를 지급하는 등 업무상 의무를 다하지 않았다. 상급 지휘관이 책무를 소홀히 한 부작위에 그치는 게 아니라 구체적인 위험을 인지한 상황에서 이를 가중하는 지시를 한 작위의 결과의 성격이 강하다.",
+        "speaker": "재판장 조형우 부장판사",
+        "context": "1심 판시"
+      },
       "level": 1,
       "date": "2026-05-08",
       "kind": "ruling",
@@ -535,6 +575,11 @@
     },
     "chae-battalion-negligence-2": {
       "caseId": "chae-battalion-negligence-1",
+      "quote": {
+        "text": "박 전 여단장과 최 전 대대장 등 피고인들은 지시를 명확하게 전파하지 않거나 안전사고 방지 의무를 다하지 않은 책임이 있고, 이런 지시들이 순차 전달돼 결국 위험한 수중수색으로 이어지게 됐다.",
+        "speaker": "부장판사 전지원·김인겸·성지용",
+        "context": "항소심 판시"
+      },
       "level": 2,
       "date": "2026-08-07",
       "kind": "ruling",
@@ -558,6 +603,11 @@
     },
     "chae-battalion-negligence-3": {
       "caseId": "chae-battalion-negligence-1",
+      "quote": {
+        "text": "원심 판단에 논리와 경험의 법칙을 위반해 자유심증주의의 한계를 벗어나거나 업무상과실치사상죄, 명령위반죄 등에 관한 법리를 오해한 잘못이 없다.",
+        "speaker": "주심 신숙희 대법관",
+        "context": "상고심 판시"
+      },
       "level": 3,
       "date": "2026-10-27",
       "kind": "ruling",
@@ -579,6 +629,11 @@
     },
     "chae-leejh-phone-1": {
       "caseId": "chae-leejh-phone-1",
+      "quote": {
+        "text": "자신의 형사사건에 관한 증거를 없앤 행위는 원칙적으로 처벌할 수 없고, 수사에 중대한 지장을 초래한 방어권 남용에도 해당하지 않는다. 원심 판단에 자유심증주의의 한계를 벗어나거나 증거인멸교사죄의 성립, 공동정범과 교사범 등에 관한 법리를 오해한 잘못이 없다.",
+        "speaker": "주심 권영준 대법관",
+        "context": "상고심 판시"
+      },
       "level": 3,
       "date": "2026-10-08",
       "kind": "ruling",
@@ -592,12 +647,25 @@
         [
           "YTN",
           "https://www.ytn.co.kr/_ln/0103_202610081119141248"
+        ],
+        [
+          "법률신문",
+          "https://www.lawtimes.co.kr/news/articleView.html?idxno=227439"
+        ],
+        [
+          "연합뉴스",
+          "https://www.yna.co.kr/view/AKR20261008070951004"
         ]
       ],
       "judgeNote": ""
     },
     "chae-kimhw-perjury-1": {
       "caseId": "chae-kimhw-perjury-1",
+      "quote": {
+        "text": "김 전 사령관의 이첩 보류 지시가 있었단 김 대령의 증언이 기억에 반하는 허위 진술로 보이지 않고, 조사본부 이첩을 김 전 사령관이 먼저 제안한 것처럼 증언한 부분도 허위 진술로 인정되지 않는다.",
+        "speaker": "재판장 우인성 부장판사",
+        "context": "1심 무죄 판시"
+      },
       "level": 1,
       "date": "2026-11-17",
       "kind": "ruling",
