@@ -262,6 +262,33 @@ function updateURL(push){
   }catch(e){}
 }
 function replaceHash(){updateURL(false)}
+// 사건·재판부 딥링크: 대상 탭을 열고, 카드를 가릴 수 있는 필터·검색을 푼 뒤 스크롤·강조한다.
+// 최초 진입(applyInitRoute)과 이미 열린 화면의 해시 변경(applyRoute)이 이 한 곳을 함께 쓴다.
+// (예전에는 최초 진입만 탭을 바꿔서, 이미 열린 화면에서 해시만 바뀌면 숨은 뷰에서 카드를 찾다 실패했다)
+function followTarget(t){
+  const view=targetViewOf(t.targetType);
+  const cardId=targetCardIdOf(t.targetType,t.targetId);
+  if(!view||!cardId)return;
+  // 대상 카드가 화면에 있어야 딥링크가 목적을 이룬다: 다른 법원 칩·상태 필터·검색어가 가리고 있으면 푼다.
+  // 재판부 뷰도 상태 필터를 거친 사건으로 패널을 만들기 때문에 상태 필터를 함께 푼다.
+  if(state.q){state.q="";const q=document.getElementById("q");if(q)q.value=""}
+  state.status=null;
+  if(t.targetType==="panel")state.judgeCat="all";
+  else state.outcomeFilter=null;
+  state.view=view;
+  try{localStorage.setItem("ins-view",view)}catch(e){}
+  render();
+  focusCard(cardId);
+  if(t.targetType==="case")syncCaseMetaTitle(t.targetId);
+}
+// 해시 라우트의 사건·재판부 타깃을 따른다. 데이터를 기다리는 사이 다른 해시로 이동했으면 그 타깃은 버린다.
+function followHashTarget(r){
+  whenDataReady(()=>{
+    const now=parseHash(location.hash);
+    if(!now||now.dataset!==r.dataset||now.targetType!==r.targetType||now.targetId!==r.targetId)return;
+    followTarget(now);
+  });
+}
 // popstate(브라우저 뒤로/앞으로 가기): 해시를 해석해 모달·데이터셋·뷰·타깃을 동기화한다.
 function applyRoute(){
   const r=parseHash(location.hash);
@@ -277,13 +304,8 @@ function applyRoute(){
   if(r&&r.view&&r.view!==state.view){state.view=r.view;try{localStorage.setItem("ins-view",r.view)}catch(e){}}
   if(r&&r.legacy)replaceHash();
   render();
-  if(r&&r.targetType&&r.targetType!=="person"){
-    whenDataReady(()=>{
-      if(r.targetType==="case")syncCaseMetaTitle(r.targetId);
-      const id=r.targetType==="panel"?(r.targetId.startsWith("panel-")?r.targetId:"panel-"+r.targetId):r.targetId;
-      focusCard((r.targetType==="case"?"case-":"")+id);
-    });
-  }
+  // 사건·재판부 딥링크는 대상 탭 전환까지 함께 해야 하므로 followTarget 이 담당한다(사람은 위에서 모달로 처리).
+  if(r&&r.targetType&&r.targetType!=="person")followHashTarget(r);
 }
 window.addEventListener("popstate",applyRoute);
 // 주소창에서 해시를 직접 고친 경우(popstate와 함께/단독으로 발화) — applyRoute는 멱등하므로 중복 실행 무해
@@ -1937,29 +1959,12 @@ function toggleExportMenu(){
   }catch(e){}
 })();
 
-// 초기 진입 시 딥링크 처리: 인물 모달 자동 열기 / 사건·재판부 카드 스크롤·하이라이트.
+// 초기 진입 시 딥링크 처리: 인물 모달 자동 열기 / 사건·재판부 카드의 탭 전환·스크롤·하이라이트.
 // 온라인은 데이터를 fetch 로 받으므로 도착한 뒤에 열고, 오프라인(내장 데이터)은 그 자리에서 연다.
 function applyInitRoute(){
   if(!initRoute||!initRoute.targetType)return;
   const t=initRoute;initRoute=null;
-  if(t.targetType==="person"){
-    whenDataReady(()=>openPersonModal(t.targetId,{fromHistory:true}));
-  }else if(t.targetType==="case"){
-    whenDataReady(()=>{
-      state.view="cases";
-      try{localStorage.setItem("ins-view","cases")}catch(e){}
-      render();
-      focusCard("case-"+t.targetId);
-      syncCaseMetaTitle(t.targetId);
-    });
-  }else if(t.targetType==="panel"){
-    whenDataReady(()=>{
-      const pid=t.targetId.startsWith("panel-")?t.targetId:"panel-"+t.targetId;
-      state.view="judges";
-      try{localStorage.setItem("ins-view","judges")}catch(e){}
-      render();
-      focusCard(pid);
-    });
-  }
+  if(t.targetType==="person")whenDataReady(()=>openPersonModal(t.targetId,{fromHistory:true}));
+  else followHashTarget(t);
 }
 applyInitRoute();
