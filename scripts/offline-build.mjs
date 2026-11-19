@@ -9,6 +9,7 @@
 //   2. `const EMBEDDED={};` 뒤에 EMBEDDED.dec03 / kim / chae 세 재판 기록부 JSON 을 넣는다.
 //   3. 탄핵 표결 뷰 JS 주석 앞에 `const IMP_EMBEDDED = {...};` 를 넣는다.
 //   4. `let OFFLINE_ONLY=false;` → true (fetch 를 시도하지 않는다)
+//   5. 파비콘 링크(외부 파일 참조)는 SVG data URI 한 줄로 줄인다(단일 파일 유지).
 //
 // 결과물은 file:// 로 열어도 외부 CSS/JS 요청 없이 스위처의 네 기록부가 모두 동작한다.
 // 원본(index.html · styles.css · core.js · app.js · JSON)은 읽기만 하고 수정하지 않는다.
@@ -28,12 +29,19 @@ const INDEX = join(PUBLIC, "index.html");
 const STYLES = join(PUBLIC, "styles.css");
 const CORE = join(PUBLIC, "core.js");
 const APP = join(PUBLIC, "app.js");
+const FAVICON_SVG = join(PUBLIC, "favicon.svg");
 export const OFFLINE_FILE = join(PUBLIC, "insurrection-trials-offline.html");
 
 // index.html 이 링크하는 태그 → 인라인할 파일
 const CSS_TAG = '<link rel="stylesheet" href="styles.css">';
 const CORE_TAG = '<script src="core.js"></script>';
 const APP_TAG = '<script src="app.js"></script>';
+// index.html 이 링크하는 아이콘. 사본은 단일 파일이어야 하므로 첫 태그만 SVG data URI 로 남기고 나머지는 지운다.
+const ICON_TAGS = [
+  '<link rel="icon" href="favicon.svg" type="image/svg+xml">',
+  '<link rel="icon" href="favicon.ico" sizes="32x32">',
+  '<link rel="apple-touch-icon" href="apple-touch-icon.png">',
+];
 
 // 스위처 순서대로. [내장 블록 이름, 원본 JSON]
 const DATASETS = [
@@ -128,6 +136,16 @@ export function buildOfflineHtml() {
   // 2) CSS·JS 를 HTML 에 인라인한다.
   let out = inline(html, CSS_TAG, STYLES, "style");
   out = inline(out, CORE_TAG, CORE, "script");
+  // 2-1) 아이콘 링크는 파일 참조 대신 SVG data URI 한 줄로 바꾼다(오프라인 사본은 바깥 파일을 가리키지 않는다).
+  const iconUri =
+    '<link rel="icon" href="data:image/svg+xml;base64,' + readFileSync(FAVICON_SVG).toString("base64") + '">';
+  ICON_TAGS.forEach((tag, index) => {
+    const found = count(out, tag);
+    if (found !== 1) {
+      throw new Error(`index.html 에서 아이콘 태그를 한 곳에서 찾지 못했습니다 (${found}곳): ${tag}`);
+    }
+    out = replaceOnce(out, tag, index === 0 ? iconUri : "");
+  });
   if (count(out, APP_TAG) !== 1) {
     throw new Error(`index.html 에서 ${APP_TAG} 를 한 곳에서 찾지 못했습니다 (${count(out, APP_TAG)}곳)`);
   }
@@ -138,7 +156,7 @@ export function buildOfflineHtml() {
   out = replaceOnce(out, APP_TAG, `<script>\n${body}\n</script>`);
 
   // 3) 인라인 후에도 바깥 파일을 가리키는 참조가 남아 있으면 단일 파일이 아니다.
-  for (const leftover of ['href="styles.css"', 'src="core.js"', 'src="app.js"', 'href="app.js"', 'href="core.js"']) {
+  for (const leftover of ['href="styles.css"', 'src="core.js"', 'src="app.js"', 'href="app.js"', 'href="core.js"', 'href="favicon', 'apple-touch-icon.png"']) {
     if (out.includes(leftover)) {
       throw new Error(`오프라인 사본에 외부 참조가 남아 있습니다: ${leftover}`);
     }

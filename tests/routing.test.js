@@ -2,7 +2,7 @@
 //   npm test  (node --test tests/)
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { parseHash, VIEWS, DATASET_KEYS, TARGET_TYPES } = require("../public/core.js");
+const { parseHash, targetViewOf, targetCardIdOf, VIEWS, DATASET_KEYS, TARGET_TYPES } = require("../public/core.js");
 
 const empty = { dataset: null, view: null, targetType: null, targetId: null };
 
@@ -89,4 +89,43 @@ test("parseHash: 모든 탭·타깃 이름이 core.js 선언과 일치", () => {
   assert.deepEqual(VIEWS, ["timeline", "cases", "people", "graph", "judges", "charts"]);
   assert.deepEqual(DATASET_KEYS, ["dec03", "impeachment", "kim", "chae"]);
   assert.deepEqual(TARGET_TYPES, ["person", "case", "panel"]);
+});
+
+// ===== 딥링크 타깃 → 탭 전환 (이미 열린 화면의 해시 변경 버그의 회귀 가드) =====
+test("targetViewOf: 재판부는 재판부 탭, 사건은 사건별 탭, 인물은 탭 없음(모달)", () => {
+  assert.equal(targetViewOf("panel"), "judges");
+  assert.equal(targetViewOf("case"), "cases");
+  assert.equal(targetViewOf("person"), null);
+  assert.equal(targetViewOf(null), null);
+  assert.equal(targetViewOf(undefined), null);
+  assert.equal(targetViewOf("nope"), null);
+});
+
+test("targetCardIdOf: 재판부 panel- 접두사 정규화·사건 case- 접두사", () => {
+  assert.equal(targetCardIdOf("panel", "서울고법-형사1부"), "panel-서울고법-형사1부");
+  assert.equal(targetCardIdOf("panel", "panel-대법원-전원합의체"), "panel-대법원-전원합의체");
+  assert.equal(targetCardIdOf("case", "yoon-main"), "case-yoon-main");
+  assert.equal(targetCardIdOf("person", "yoon"), null);
+  assert.equal(targetCardIdOf("panel", ""), null);
+  assert.equal(targetCardIdOf("case", null), null);
+});
+
+test("해시 → 탭: 세 재판 기록부의 재판부·사건 딥링크가 올바른 탭을 연다", () => {
+  for (const ds of DATASET_KEYS) {
+    if (ds === "impeachment") continue; // 탄핵 표결은 최상위 기록부
+    const panel = parseHash(`#${ds}/panel/서울고법-형사1부`);
+    assert.equal(panel.dataset, ds);
+    assert.equal(targetViewOf(panel.targetType), "judges");
+    assert.equal(targetCardIdOf(panel.targetType, panel.targetId), "panel-서울고법-형사1부");
+    const kase = parseHash(`#${ds}/case/yoon-main`);
+    assert.equal(targetViewOf(kase.targetType), "cases");
+    assert.equal(targetCardIdOf(kase.targetType, kase.targetId), "case-yoon-main");
+  }
+});
+
+test("해시 → 탭: 탭 해시·인물 딥링크는 탭을 바꾸지 않는다", () => {
+  for (const hash of ["#dec03/cases", "#kim", "#judges", "#impeachment", "#dec03/person/yoon"]) {
+    const r = parseHash(hash);
+    assert.equal(targetViewOf(r && r.targetType), null, hash);
+  }
 });

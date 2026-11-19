@@ -33,6 +33,23 @@ function parseHash(hash){
   return null;
 }
 
+// 딥링크 타깃이 열어야 할 탭. 재판부(panel)는 재판부 탭, 사건(case)은 사건별 탭이다.
+// 인물(person)은 탭이 아니라 모달이므로 null. (해시 파싱과 화면 전환이 같은 규칙을 쓰도록 여기 둔다)
+function targetViewOf(targetType){
+  if(targetType==="panel")return "judges";
+  if(targetType==="case")return "cases";
+  return null;
+}
+// 타깃이 가리키는 카드의 DOM id. 재판부 카드 id 는 panelIdOf(court) 와 같은 규칙이고,
+// 해시에는 panel- 접두사가 있을 수도 없을 수도 있어 하나로 맞춘다.
+function targetCardIdOf(targetType,targetId){
+  const id=String(targetId==null?"":targetId);
+  if(!id)return null;
+  if(targetType==="panel")return id.startsWith("panel-")?id:"panel-"+id;
+  if(targetType==="case")return "case-"+id;
+  return null;
+}
+
 // ===== 검색: 한글 초성 매칭 + 대소문자 무시 =====
 // 한글 음절(0xAC00~0xD7A3)을 초성 자모로 치환한다. 영문·숫자·공백·이미 초성인 자모는 그대로 둔다.
 const CHO=["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
@@ -235,7 +252,7 @@ if (typeof module !== "undefined" && module.exports) {
     VIEWS, DATASET_KEYS, TARGET_TYPES,
     CHO, chosungOf, textMatches,
     isAcq, getSentenceWeight, sentenceMonths, caseOutcome, calculateOutcomeStats,
-    parseHash,
+    parseHash, targetViewOf, targetCardIdOf,
     todayOf, isSchedRuling,
     CHART_SCALE, chartMonthsOf, buildChartRows,
     impChosung, impNorm, impMatch,

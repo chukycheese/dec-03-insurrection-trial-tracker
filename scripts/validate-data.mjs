@@ -470,6 +470,40 @@ for (const tag of ['href="styles.css"', 'src="core.js"', 'src="app.js"']) {
 }
 console.log(errors === splitBefore ? "통과" : "실패");
 
+// ── 파비콘: index.html 이 벡터·ICO 아이콘을 링크하고 파일이 실제로 있는지 ────────────
+process.stdout.write("- 파비콘·터치 아이콘 ... ");
+const iconBefore = errors;
+for (const name of ["favicon.svg", "favicon.ico", "apple-touch-icon.png"]) {
+  if (!existsSync(join(publicDir, name))) fail(name, "파일이 없습니다 (브라우저가 404 를 받습니다)");
+}
+for (const tag of [
+  '<link rel="icon" href="favicon.svg" type="image/svg+xml">',
+  '<link rel="icon" href="favicon.ico" sizes="32x32">',
+  '<link rel="apple-touch-icon" href="apple-touch-icon.png">',
+]) {
+  if (!indexHtml.includes(tag)) fail("index.html", `아이콘 링크가 없습니다: ${tag}`);
+}
+if (existsSync(join(publicDir, "favicon.ico"))) {
+  const ico = readFileSync(join(publicDir, "favicon.ico"));
+  if (ico.length < 22 || ico.readUInt16LE(0) !== 0 || ico.readUInt16LE(2) !== 1) {
+    fail("favicon.ico", "ICO 헤더가 올바르지 않습니다 (예약 0 · type 1 로 시작해야 합니다)");
+  } else {
+    const count = ico.readUInt16LE(4);
+    const sizes = [];
+    for (let i = 0; i < count; i += 1) sizes.push(ico[6 + i * 16] || 256);   // 0 은 256px 표기
+    if (!sizes.includes(16) || !sizes.includes(32)) fail("favicon.ico", `16px·32px 항목이 없습니다 (${sizes.join("/")})`);
+  }
+}
+if (existsSync(join(publicDir, "apple-touch-icon.png"))) {
+  const png = readFileSync(join(publicDir, "apple-touch-icon.png"));
+  if (!(png[0] === 0x89 && png[1] === 0x50 && png[2] === 0x4e && png[3] === 0x47)) fail("apple-touch-icon.png", "PNG 파일이 아닙니다");
+}
+if (existsSync(join(publicDir, "favicon.svg"))) {
+  const svg = readFileSync(join(publicDir, "favicon.svg"), "utf8");
+  if (!svg.includes("<svg") || !svg.includes('viewBox="0 0 32 32"')) fail("favicon.svg", "32×32 viewBox 를 가진 SVG 가 아닙니다");
+}
+console.log(errors === iconBefore ? "통과" : "실패");
+
 process.stdout.write("- app.js 문법·모듈 경계 ... ");
 const appBefore = errors;
 try {
@@ -509,7 +543,7 @@ console.log(errors === liteBefore ? "통과" : "실패");
 process.stdout.write("- 오프라인 사본 단일 파일(외부 CSS/JS 없음) ... ");
 const singleBefore = errors;
 const offlineHtml = readFileSync(join(publicDir, "insurrection-trials-offline.html"), "utf8");
-for (const tag of ['href="styles.css"', 'src="core.js"', 'src="app.js"']) {
+for (const tag of ['href="styles.css"', 'src="core.js"', 'src="app.js"', 'href="favicon', 'apple-touch-icon.png"']) {
   if (offlineHtml.includes(tag)) fail("insurrection-trials-offline.html", `외부 참조가 남아 있습니다: ${tag} (scripts/build-offline.py 로 다시 생성하세요)`);
 }
 if (!offlineHtml.includes("let OFFLINE_ONLY=true;")) {
