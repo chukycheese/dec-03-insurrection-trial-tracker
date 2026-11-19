@@ -2103,7 +2103,7 @@ function renderCharts(cases){
         ${bar("구형",r.demandTxt,r.demandM,"demand")}
         ${bar("1심",r.t1.txt,r.t1.m,"lv1",r.p1Txt)}
         ${bar("2심",r.t2.txt,r.t2.m,"lv2",r.p2Txt)}
-        ${bar("확정",r.fin.txt,r.fin.m,"final")}
+        ${bar(r.fin.final||!/파기|환송/.test(r.fin.txt||"")?"확정":"대법원",r.fin.txt,r.fin.m,"final")}
       </div>
       ${badges.length?`<div class="chart-badges">${badges.join("")}</div>`:""}
     </article>`;
