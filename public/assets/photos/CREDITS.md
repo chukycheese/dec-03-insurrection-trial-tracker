@@ -33,10 +33,10 @@
 | `jeonsb-*.webp` | 전성배 | [뉴스1](https://www.news1.kr/society/court-prosecution/6222206) | 뉴스1 권진영 기자 | © 뉴스1 (출처 표시) |
 | `kwonos-*.webp` | 권오수 | [메가경제](https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065614751323735) | 메가경제 박제성 기자 | © 메가경제 (출처 표시) |
 | `leejh-*.webp` | 이종호 | [연합뉴스](https://www.yna.co.kr/view/AKR20260716078400004) | 연합뉴스 | © 연합뉴스 (출처 표시) |
-| `choijy-*.webp` | 최재영 | [뉴데일리](https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600178.html) | 뉴데일리 정상윤 기자 | © 뉴데일리 (출처 표시) |
+| `choijy-*.webp` | 최재영 | [더팩트](https://news.tf.co.kr/read/photomovie/2270544.htm) | 더팩트 송호영 기자 | © 더팩트 (출처 표시) |
 | `leebj-*.webp` | 이배용 | [뉴스1 포토](https://www.news1.kr/photos/8121681) | 뉴스1 이종수 기자 | © 뉴스1 (출처 표시) |
-| `seosb-*.webp` | 서성빈 | [뉴데일리](https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600175.html) | 뉴데일리 정상윤 기자 | © 뉴데일리 (출처 표시) |
-| `leebg-*.webp` | 이봉관 | [뉴데일리](https://www.newdaily.co.kr/site/data/html/2026/06/26/2026062600177.html) | 뉴데일리 정상윤 기자 | © 뉴데일리 (출처 표시) |
+| `seosb-*.webp` | 서성빈 | [뉴스핌](https://www.newspim.com/news/view/20251120000459) | 뉴스핌 이길동 기자 | © 뉴스핌 (출처 표시) |
+| `leebg-*.webp` | 이봉관 | [뉴스핌](https://www.newspim.com/news/view/20260317000396) | 뉴스핌 류기찬 기자 | © 뉴스핌 (출처 표시) |
 | `jungjb-*.webp` | 정종범 | [뉴스1](https://www.news1.kr/politics/diplomacy-defense/5488020) | 뉴스1 허고운 기자 | © 뉴스1 (출처 표시) |
 | `shinc-*.webp` | 신범철 | [뉴스1](https://www.news1.kr/society/general-society/5911564) | 뉴스1 김기성 기자 | © 뉴스1 (출처 표시) |
 | `yooje-*.webp` | 유재은 | [더팩트](https://news.tf.co.kr/read/photomovie/2254979.htm) | 더팩트 이새롬 기자 | © 더팩트 (출처 표시) |
@@ -68,8 +68,8 @@
 | --- | --- | --- | --- | --- | --- |
 | `chojh-*.webp` | 조지호 (전 경찰청장) | [연합뉴스](https://www.yna.co.kr/view/AKR20260219070300004) | 연합뉴스 (촬영 윤동진) | © 연합뉴스 (출처 표시) | 연합뉴스 캡션 `조지호 경찰청장(왼쪽)과 김봉식 전 서울경찰청장` / [오마이뉴스 2024.12.09 법사위](https://www.ohmynews.com/NWS_Web/View/img_pg.aspx?CNTN_CD=IE003388746) 캡션 `조지호 경찰청장이 … 답변하고 있다` |
 | `kimbs-*.webp` | 김봉식 (전 서울경찰청장) | [연합뉴스](https://www.yna.co.kr/view/AKR20260605061800004) | 헌법재판소 제공 / 연합뉴스 | © 연합뉴스 (출처 표시) | 연합뉴스 캡션 `답변하는 김봉식 전 서울청장 … [헌법재판소 제공]` / [국제뉴스 2025.02.04 청문회](https://www.gukjenews.com/news/articleView.html?idxno=3194150) 캡션 `김봉식 전 서울경찰청장이 … 답변하고 있다` |
-| `kimsh-*.webp` | 김성훈 (전 경호처 차장) | [뉴데일리](https://www.newdaily.co.kr/site/data/html/2026/07/09/2026070900278.html) | 뉴데일리 정상윤 기자 | © 뉴데일리 (출처 표시) | 뉴데일리 2026.07.09 포토 `1심 선고공판 출석하는 김성훈 전 경호처 차장` / [더팩트 2026.04.23](https://news.tf.co.kr/read/photomovie/2316647.htm) 포토 `공판 출석하는 김성훈 전 경호처 차장` |
-| `leekw-*.webp` | 이광우 (전 경호본부장) | [뉴데일리](https://www.newdaily.co.kr/site/data/html/2026/04/23/2026042300234.html) | 뉴데일리 서성진 기자 | © 뉴데일리 (출처 표시) | 뉴데일리 2026.04.23 포토 `재판 출석하는 이광우 전 대통령 경호처 경호본부장` / [더팩트 2026.04.23](https://news.tf.co.kr/read/photomovie/2316648.htm) 포토 `공판 출석하는 이광우 전 대통령 경호본부장` |
+| `kimsh-*.webp` | 김성훈 (전 경호처 차장) | [이투데이](https://www.etoday.co.kr/news/view/2582386) | 이투데이 고이란 기자 | © 이투데이 (출처 표시) | 이투데이 2026.05.07 포토 `김성훈 전 경호처 차장, 체포영장 집행 방해 혐의 공판 출석` / [더팩트 2026.04.23](https://news.tf.co.kr/read/photomovie/2316647.htm) 포토 `공판 출석하는 김성훈 전 경호처 차장` |
+| `leekw-*.webp` | 이광우 (전 경호본부장) | [더팩트](https://news.tf.co.kr/read/photomovie/2316648.htm) | 더팩트 남윤호 기자 | © 더팩트 (출처 표시) | 더팩트 2026.04.23 포토 `공판 출석하는 이광우 전 대통령 경호처 경호본부장` / [이투데이 2025.03.21](https://www.etoday.co.kr/news/view/2454660) 포토 `대통령 경호처 김성훈 차장·이광우 본부장 영장실질심사 출석` |
 | `anms-*.webp` | 안무성 (전 9공수특전여단장) | [뉴스핌](https://newspim.com/news/view/20250122000529) | 뉴스핌 윤창빈 기자 | © 뉴스핌 (출처 표시) | 뉴스핌 2025.01.22 포토 `답변하는 안무성 9공수여단장`(군복 명찰 `안무성`) / [연합뉴스 2024.12.10 촬영 김주성](https://www.yna.co.kr/view/AKR20250912150200004) 캡션 `안무성 제9공수여단장` |
 | `kimjg-*.webp` | 김정근 (전 3공수특전여단장) | [연합뉴스](https://www.yna.co.kr/view/PYH20241213058200013) | 연합뉴스 임헌정 기자 | © 연합뉴스 (출처 표시) | 연합뉴스 2024.12.13 포토 `검찰 조사받고 나오는 김정근 제3공수특전여단장` / [머니투데이 게재 뉴스1 사진(임세영)](https://www.mt.co.kr/society/2024/12/13/2024121310025380527) — 군복 명찰 `김정근` |
 | `munsh-*.webp` | 문상호 (전 국군정보사령관) | [한겨레(연합뉴스 사진)](https://www.hani.co.kr/arti/politics/defense/1172130.html) | 연합뉴스 김주성 기자 | © 연합뉴스 (출처 표시) | 한겨레 2024.12.10 캡션 `문상호 국군정보사령관(육군 소장)이 … 답변하고 있다. 연합뉴스`(군복 명찰 `문상호`) / [뉴시스 2024.12.10](https://www.newsis.com/view/NISI20241210_0020625387) 포토 `답변하는 문상호 정보사령관` |

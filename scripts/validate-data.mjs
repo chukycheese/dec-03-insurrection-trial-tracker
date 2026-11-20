@@ -26,8 +26,9 @@ const IMP_PARTIES = ["더불어민주당", "국민의힘", "조국혁신당", "�
 const IMP_VOTE1 = ["참석", "불참", "미재임"];
 const IMP_VOTE0 = ["참석", "불참", "미재임"];
 const IMP_STANCE = ["support", "oppose", "undisclosed", "none"];
-// 인용 금지 언론사: 표기(이름)와 도메인을 모두 검사하되, 판결의 sources 항목만 본다.
-// (사진 저작자 표시 photoCredit/photoLicense 등 다른 필드는 대상이 아니다 — 라이선스상 출처 표기가 필요하다.)
+// 인용 금지 언론사: 표기(이름)와 도메인을 모두 검사한다.
+// 판결의 sources 항목과 함께 인물 사진의 출처·저작자 표시 필드(PHOTO_CREDIT_FIELDS)도 검사한다 —
+// 사진은 저작자 표시가 필요하므로, 인용 금지 언론사 사진을 쓰려면 다른 매체 사진으로 교체해야 한다.
 const EXCLUDED_OUTLETS = [
   ["위키트리", "wikitree.co.kr"],
   ["허프포스트", "huffingtonpost.kr"],
@@ -37,6 +38,9 @@ const EXCLUDED_OUTLETS = [
   ["시사타파뉴스", "sstpnews.com"],
   ["민들레", "mindlenews.com"],
 ];
+
+// 인물 사진의 출처·저작자 표시 필드: 여기 적힌 매체가 하나라도 남아 있으면 검증 실패.
+const PHOTO_CREDIT_FIELDS = ["photoCredit", "photoLicense", "photoLicenseUrl", "photoSource"];
 
 let errors = 0;
 let warnings = 0;
@@ -69,6 +73,18 @@ function checkDate(file, label, value) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(value))) {
     fail(file, `${label} 날짜 형식이 올바르지 않습니다: ${JSON.stringify(value)}`);
   }
+}
+
+// 문자열 하나(저작자 표시·출처 URL 등)에 인용 금지 언론사가 들어 있는지 판별한다. 아니면 빈 문자열.
+function findExcludedOutletText(text) {
+  const value = String(text ?? "");
+  if (!value) return "";
+  const lower = value.toLowerCase();
+  for (const [outlet, domain] of EXCLUDED_OUTLETS) {
+    if (value.includes(outlet)) return `${outlet} (표기 “${value}”)`;
+    if (lower.includes(domain)) return `${outlet} (도메인 ${domain})`;
+  }
+  return "";
 }
 
 // sources 한 항목이 인용 금지 언론사인지 판별한다. 아니면 빈 문자열.
@@ -175,6 +191,15 @@ function validateDataset(file, data) {
     if (!isObject(person) || !person.name) {
       fail(file, `people.${personId} 에 name 이 없습니다`);
       continue;
+    }
+    for (const field of PHOTO_CREDIT_FIELDS) {
+      const excluded = findExcludedOutletText(person[field]);
+      if (excluded) {
+        fail(
+          file,
+          `people.${personId}.${field} 에 인용 금지 언론사가 있습니다: ${excluded} — 연합뉴스·뉴스1·뉴스핌·더팩트 등 다른 매체 사진으로 교체하세요`,
+        );
+      }
     }
     if (!person.photo) continue;
     for (const size of ["160", "320"]) {
