@@ -26,6 +26,17 @@ const IMP_PARTIES = ["더불어민주당", "국민의힘", "조국혁신당", "�
 const IMP_VOTE1 = ["참석", "불참", "미재임"];
 const IMP_VOTE0 = ["참석", "불참", "미재임"];
 const IMP_STANCE = ["support", "oppose", "undisclosed", "none"];
+// 인용 금지 언론사: 표기(이름)와 도메인을 모두 검사하되, 판결의 sources 항목만 본다.
+// (사진 저작자 표시 photoCredit/photoLicense 등 다른 필드는 대상이 아니다 — 라이선스상 출처 표기가 필요하다.)
+const EXCLUDED_OUTLETS = [
+  ["위키트리", "wikitree.co.kr"],
+  ["허프포스트", "huffingtonpost.kr"],
+  ["인사이트", "insight.co.kr"],
+  ["뉴데일리", "newdaily.co.kr"],
+  ["데일리안", "dailian.co.kr"],
+  ["시사타파뉴스", "sstpnews.com"],
+  ["민들레", "mindlenews.com"],
+];
 
 let errors = 0;
 let warnings = 0;
@@ -58,6 +69,18 @@ function checkDate(file, label, value) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(value))) {
     fail(file, `${label} 날짜 형식이 올바르지 않습니다: ${JSON.stringify(value)}`);
   }
+}
+
+// sources 한 항목이 인용 금지 언론사인지 판별한다. 아니면 빈 문자열.
+function findExcludedOutlet(source) {
+  if (!Array.isArray(source)) return "";
+  const label = String(source[0] ?? "");
+  const link = String(source[1] ?? "").toLowerCase();
+  for (const [outlet, domain] of EXCLUDED_OUTLETS) {
+    if (label.includes(outlet)) return `${outlet} (표기 “${label}”)`;
+    if (link.includes(domain)) return `${outlet} (도메인 ${domain})`;
+  }
+  return "";
 }
 
 function validateDataset(file, data) {
@@ -110,6 +133,14 @@ function validateDataset(file, data) {
       for (const source of ruling.sources) {
         if (!Array.isArray(source) || source.length < 2 || !source[1]) {
           fail(file, `rulings.${rulingId}.sources 형식이 올바르지 않습니다: ${JSON.stringify(source)}`);
+          continue;
+        }
+        const excluded = findExcludedOutlet(source);
+        if (excluded) {
+          fail(
+            file,
+            `rulings.${rulingId}.sources 에 인용 금지 언론사가 있습니다: ${excluded} — ${JSON.stringify(source)} (연합뉴스·한겨레·경향신문·KBS·MBC·SBS·법률신문 등으로 교체하세요)`,
+          );
         }
       }
     }
