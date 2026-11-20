@@ -269,6 +269,9 @@ function validateImpeachment(file) {
     if (m.stanceSource !== undefined) {
       if (!Array.isArray(m.stanceSource) || m.stanceSource.length < 2 || !/^https?:\/\//.test(String(m.stanceSource[1] || ""))) {
         fail(IMP_FILE, `${m.name}: stanceSource 형식이 올바르지 않습니다`);
+      } else {
+        const excluded = findExcludedOutlet(m.stanceSource);
+        if (excluded) fail(IMP_FILE, `${m.name}.stanceSource 에 인용 금지 언론사가 있습니다: ${excluded}`);
       }
     }
     if (!m.district || !["지역구", "비례"].includes(m.district)) fail(IMP_FILE, `${m.name}: district 값 오류`);
@@ -386,7 +389,10 @@ function validateImpeachment(file) {
       cur.sources.forEach((s, i) => {
         if (!Array.isArray(s) || s.length < 2 || !/^https?:\/\//.test(String(s[1] || ""))) {
           fail(IMP_FILE, `meta.current.sources[${i}] 링크 형식이 올바르지 않습니다`);
+          return;
         }
+        const excluded = findExcludedOutlet(s);
+        if (excluded) fail(IMP_FILE, `meta.current.sources[${i}] 에 인용 금지 언론사가 있습니다: ${excluded}`);
       });
     }
   }
