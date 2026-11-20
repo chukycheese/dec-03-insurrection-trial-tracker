@@ -175,7 +175,7 @@ function justiceProfilesHTML(p){
     const stance=m.stance?`<span class="stance-pill ${m.stance==="반대의견"?"stance-dissent":"stance-major"}">${esc(m.stance)}</span>`:"";
     const hist=(Array.isArray(m.history)?m.history:[]).map(h=>{
       const srcs=(h.sources||[]).filter(s=>Array.isArray(s)&&s[1])
-        .map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0]||"출처")} ↗</a>`).join(" · ");
+        .map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0]||"출처")} ↗</a>`).join("");
       return `<li>${h.year?`<span class="y">${esc(h.year)}</span>`:""}<span class="c">${esc(h.case||"")}</span>${h.conclusion?`<span class="d"> · ${esc(h.conclusion)}</span>`:""}${srcs?`<span class="src">${srcs}</span>`:""}</li>`;
     }).join("");
     return `<article class="justice">

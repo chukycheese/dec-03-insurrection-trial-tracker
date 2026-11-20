@@ -405,8 +405,9 @@ body.graph-fs-open{overflow:hidden}
 .justice-hist .y{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
 .justice-hist .c{font-weight:600}
 .justice-hist .d{color:var(--ink)}
-.justice-hist .src{display:flex;flex-wrap:wrap;gap:0 8px;font-size:11.5px}
+.justice-hist .src{display:flex;flex-wrap:wrap;gap:0 10px;font-size:11.5px}
 .justice-hist .src a{color:var(--accent);white-space:nowrap}
+.justice-hist .src a+a::before{content:"·";color:var(--muted);margin-right:6px}
 @media (max-width:760px){.judges{grid-template-columns:1fr}.judge-link{padding:3px 4px;margin:-3px -4px}.justice-list{padding:2px 9px 6px}}
 
 /* 링크 복사(공유) 버튼과 복사 완료 토스트 */
@@ -1225,7 +1226,7 @@ function justiceProfilesHTML(p){
     const stance=m.stance?`<span class="stance-pill ${m.stance==="반대의견"?"stance-dissent":"stance-major"}">${esc(m.stance)}</span>`:"";
     const hist=(Array.isArray(m.history)?m.history:[]).map(h=>{
       const srcs=(h.sources||[]).filter(s=>Array.isArray(s)&&s[1])
-        .map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0]||"출처")} ↗</a>`).join(" · ");
+        .map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0]||"출처")} ↗</a>`).join("");
       return `<li>${h.year?`<span class="y">${esc(h.year)}</span>`:""}<span class="c">${esc(h.case||"")}</span>${h.conclusion?`<span class="d"> · ${esc(h.conclusion)}</span>`:""}${srcs?`<span class="src">${srcs}</span>`:""}</li>`;
     }).join("");
     return `<article class="justice">
