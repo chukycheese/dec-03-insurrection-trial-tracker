@@ -41,6 +41,8 @@ const EXCLUDED_OUTLETS = [
 
 // 인물 사진의 출처·저작자 표시 필드: 여기 적힌 매체가 하나라도 남아 있으면 검증 실패.
 const PHOTO_CREDIT_FIELDS = ["photoCredit", "photoLicense", "photoLicenseUrl", "photoSource"];
+// 재판부 프로필의 2026-11-19 전원합의체 의견 표기
+const JUDGE_STANCES = ["다수의견", "반대의견"];
 
 let errors = 0;
 let warnings = 0;
@@ -212,6 +214,51 @@ function validateDataset(file, data) {
 
   for (const [judgeId, judge] of Object.entries(judges)) {
     if (!isObject(judge) || !judge.name) fail(file, `judges.${judgeId} 에 name 이 없습니다`);
+    // 선택 필드(재판부 탭 프로필): 임명 정보·2026-11-19 전원합의체 의견·주요 이전 판결.
+    // 이전 판결은 정론지·대법원 보도자료 출처를 반드시 달고, 인용 금지 언론사는 막는다.
+    if (!isObject(judge)) continue;
+    if (judge.stance !== undefined && !JUDGE_STANCES.includes(judge.stance)) {
+      fail(file, `judges.${judgeId}.stance 값이 올바르지 않습니다: ${JSON.stringify(judge.stance)}`);
+    }
+    for (const field of ["appointed", "note", "opinion"]) {
+      if (judge[field] !== undefined && (typeof judge[field] !== "string" || !judge[field].trim())) {
+        fail(file, `judges.${judgeId}.${field} 는 비어 있지 않은 문자열이어야 합니다`);
+      }
+    }
+    if (judge.order !== undefined && !Number.isFinite(judge.order)) {
+      fail(file, `judges.${judgeId}.order 가 숫자가 아닙니다: ${JSON.stringify(judge.order)}`);
+    }
+    if (judge.history === undefined) continue;
+    if (!Array.isArray(judge.history) || !judge.history.length) {
+      fail(file, `judges.${judgeId}.history 는 비어 있지 않은 배열이어야 합니다`);
+      continue;
+    }
+    judge.history.forEach((item, i) => {
+      const label = `judges.${judgeId}.history[${i}]`;
+      if (!isObject(item)) {
+        fail(file, `${label} 가 객체가 아닙니다`);
+        return;
+      }
+      for (const field of ["case", "year", "conclusion"]) {
+        if (typeof item[field] !== "string" || !item[field].trim()) {
+          fail(file, `${label}.${field} 가 비어 있습니다 (사건명·연도·결론을 함께 적어야 합니다)`);
+        }
+      }
+      if (!Array.isArray(item.sources) || !item.sources.length) {
+        fail(file, `${label}.sources 가 없습니다 (정론지·대법원 보도자료 출처를 1건 이상 달아야 합니다)`);
+        return;
+      }
+      for (const source of item.sources) {
+        if (!Array.isArray(source) || source.length < 2 || !/^https?:\/\//.test(String(source[1] || ""))) {
+          fail(file, `${label}.sources 형식이 올바르지 않습니다: ${JSON.stringify(source)}`);
+          continue;
+        }
+        const excluded = findExcludedOutlet(source);
+        if (excluded) {
+          fail(file, `${label}.sources 에 인용 금지 언론사가 있습니다: ${excluded} — ${JSON.stringify(source)}`);
+        }
+      }
+    });
   }
 }
 

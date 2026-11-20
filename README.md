@@ -10,7 +10,7 @@
 - `public/core.js`: DOM·네트워크와 무관한 순수 로직(해시 라우팅, 날짜·'예정' 판정, 초성 검색, 형량 환산·심급 통계). 브라우저에서는 `app.js` 앞에 로드되고, Node 단위 테스트에서 `require` 로 그대로 쓴다
 - `public/app.js`: 화면 렌더링·이벤트·데이터 로딩. `core.js` 다음에 로드된다
 - `public/insurrection-trials-offline.html`: 위 세 파일을 모두 인라인하고 네 기록부 데이터까지 내장한 오프라인 단일 파일(`npm run build:offline` 생성). `file://` 로 열어도 동작한다. 소스를 고친 뒤 다시 만들지 않으면 `npm run validate` 가 실패한다
-- `public/insurrection-trials-data.json`: 사건, 피고인, 판결 및 재판부 데이터
+- `public/insurrection-trials-data.json`: 사건, 피고인, 판결 및 재판부 데이터. `judges` 항목은 이름·직위 외에 선택 필드로 프로필을 가질 수 있다 — `appointed`(제청·임명권자), `note`(경력), `stance`(`다수의견`/`반대의견`), `opinion`(2026-11-19 한덕수 사건 의견·역할), `history`(주요 이전 판결의 사건명·연도·결론·정론지 출처). 12명 대법관 프로필은 재판부 탭에서 접기/펼치기로 표시된다
 - `public/impeachment-assembly-data.json`: 22대 국회의원 300석 명부(승계 1명 포함 301명)와 12.4 비상계엄해제 요구안·1차(2024.12.7)·2차(2024.12.14) 탄핵소추안 표결 기록. 탄핵 반대를 공개한 19명의 발언·출처와 반대 85표·1차 불참 105명 해설(`meta.analysis`) 포함. 2024.12 표결 이후 2026년 현재까지의 행적은 `meta.current`(통계·필터 묶음·출처)와 의원별 `currentTitle`·`currentParty`·`currentStatusBadge`·`currentNote`에 담았다 — 6·3 지방선거 광역단체장 당선 9명, 당적 변경 6명, 의원직 상실·사퇴 2명
 - `public/assets/photos/`: 인물사전 프로필 사진(WebP) 및 출처·라이선스 문서
 - `public/assets/members/`: 22대 국회의원 301명 공식 프로필 사진(120×120 WebP, 열린국회정보 `NAAS_PIC`)과 출처 문서(`CREDITS.md`)

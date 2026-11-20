@@ -155,9 +155,41 @@ function buildPanels(cases){
       stats:{total:rul.length,finals,acq,prison,probation,heavy,light}};
   }).sort((a,b)=>(order.indexOf(a.group)<0?9:order.indexOf(a.group))-(order.indexOf(b.group)<0?9:order.indexOf(b.group))||a.court.localeCompare(b.court,"ko"));
 }
+// 판사 프로필(임명 정보·이전 판결)까지 검색 대상에 넣는다: '조국'으로 검색하면 그 사건을 맡았던 엄상필 대법관의 재판부가 걸린다.
+function judgeHay(m){
+  return [m.name,m.position||"",m.appointed||"",m.note||"",m.stance||"",m.opinion||"",
+    ...(Array.isArray(m.history)?m.history.map(h=>(h.case||"")+" "+(h.year||"")+" "+(h.conclusion||"")):[])].join(" ");
+}
 function panelHay(p){
-  return [p.court,p.group,p.badge,...p.members.map(m=>m.name+" "+(m.position||"")),...Object.entries(p.roles).map(([n,r])=>r+" "+n),
+  return [p.court,p.group,p.badge,...p.members.map(judgeHay),...Object.entries(p.roles).map(([n,r])=>r+" "+n),
     ...p.rulings.map(r=>(r.caseTitle||"")+" "+(r.result||"")+" "+(r.summary||"")+" "+(r.judgeNote||"")+" "+(r.caseNo||""))].join(" ");
+}
+
+// 판사·대법관 프로필 블록: 임명 정보(제청·임명권자)와 주요 이전 판결을 접기/펼치기로 붙인다.
+// 항목마다 출처 링크를 함께 두고, 성향 점수화·단정은 하지 않는다(사실·의견 구도만).
+function justiceProfilesHTML(p){
+  const list=(p.members||[]).filter(m=>m.appointed||m.stance||m.opinion||(Array.isArray(m.history)&&m.history.length));
+  if(!list.length)return "";
+  list.sort((a,b)=>(a.order??99)-(b.order??99)||a.name.localeCompare(b.name,"ko"));
+  const rows=list.map(m=>{
+    const stance=m.stance?`<span class="stance-pill ${m.stance==="반대의견"?"stance-dissent":"stance-major"}">${esc(m.stance)}</span>`:"";
+    const hist=(Array.isArray(m.history)?m.history:[]).map(h=>{
+      const srcs=(h.sources||[]).filter(s=>Array.isArray(s)&&s[1])
+        .map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0]||"출처")} ↗</a>`).join(" · ");
+      return `<li>${h.year?`<span class="y">${esc(h.year)}</span>`:""}<span class="c">${esc(h.case||"")}</span>${h.conclusion?`<span class="d"> · ${esc(h.conclusion)}</span>`:""}${srcs?`<span class="src">${srcs}</span>`:""}</li>`;
+    }).join("");
+    return `<article class="justice">
+      <div class="justice-head"><strong>${esc(m.name)}</strong>${stance}<span class="pos">${esc(m.position||"")}</span></div>
+      ${m.appointed?`<div class="justice-meta">임명 · ${esc(m.appointed)}</div>`:""}
+      ${m.note?`<div class="justice-meta">${esc(m.note)}</div>`:""}
+      ${m.opinion?`<div class="justice-op">2026-11-19 한덕수 사건 · ${esc(m.opinion)}</div>`:""}
+      ${hist?`<ul class="justice-hist">${hist}</ul>`:""}
+    </article>`;
+  }).join("");
+  return `<details class="justice-profiles">
+    <summary>대법관 ${list.length}명 임명 정보·주요 이전 판결</summary>
+    <div class="justice-list">${rows}</div>
+  </details>`;
 }
 
 function renderSummary(cases){
@@ -1305,6 +1337,7 @@ function renderJudges(cases){
         <div class="judge-members">${membersHTML}</div>
       </div>
       <div class="judge-stats"><span>${stats.join(" · ")}</span>${badges.length?badges.join(""):""}</div>
+      ${justiceProfilesHTML(p)}
       <div class="judge-cases">${caseHTML}</div>
     </article>`;
   }).join("");
